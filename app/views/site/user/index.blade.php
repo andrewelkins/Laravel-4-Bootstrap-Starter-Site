@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-Account ::
+{{ Lang::get('user.user.settings'); }} ::
 @parent
 @stop
 
@@ -17,14 +17,18 @@ body {
 {{-- Content --}}
 @section('content')
 <div class="page-header">
-	<h1>Edit your settings</h1>
+	<h3>Edit your settings</h3>
 </div>
-<form method="post" action="" class="form-horizontal">
+<form method="post" action="" class="form-horizontal" autocomplete="off">
+	<!-- CSRF Token -->
+	<input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}" />
+	<!-- ./ csrf token -->
+
 	<!-- First Name -->
 	<div class="control-group {{ $errors->has('first_name') ? 'error' : '' }}">
 		<label class="control-label" for="first_name">First Name</label>
 		<div class="controls">
-			<input type="text" name="first_name" id="first_name" value="{{ Request::old('first_name', $user->first_name) }}" />
+			<input type="text" name="first_name" id="first_name" value="{{ Input::old('first_name', $user->first_name) }}" />
 			{{ $errors->first('first_name') }}
 		</div>
 	</div>
@@ -34,7 +38,7 @@ body {
 	<div class="control-group {{ $errors->has('last_name') ? 'error' : '' }}">
 		<label class="control-label" for="last_name">Last Name</label>
 		<div class="controls">
-			<input type="text" name="last_name" id="last_name" value="{{ Request::old('last_name', $user->last_name) }}" />
+			<input type="text" name="last_name" id="last_name" value="{{ Input::old('last_name', $user->last_name) }}" />
 			{{ $errors->first('last_name') }}
 		</div>
 	</div>
@@ -44,7 +48,7 @@ body {
 	<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
 		<label class="control-label" for="email">Email</label>
 		<div class="controls">
-			<input type="text" name="email" id="email" value="{{ Request::old('email', $user->email) }}" />
+			<input type="text" name="email" id="email" value="{{ Input::old('email', $user->email) }}" />
 			{{ $errors->first('email') }}
 		</div>
 	</div>
