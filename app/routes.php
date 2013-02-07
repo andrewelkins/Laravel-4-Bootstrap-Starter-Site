@@ -52,7 +52,6 @@ Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
 
 # Index Page - Last route, no matches
-//Route::get('/', 'HomeController@showIndex');
 Route::get('/', 'BlogController@getIndex');
 
 

@@ -15,5 +15,6 @@ return array(
 	'account'           => 'Account',
 	'forgot_password'   => 'Forgot Password',
 	'settings'          => 'Settings',
+	'profile'          => 'Profile',
 
 );

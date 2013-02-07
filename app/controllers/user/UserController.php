@@ -1,18 +1,9 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Confide Controller Template
-|--------------------------------------------------------------------------
-|
-| This is the default Confide controller template for controlling user
-| authentication. Feel free to change to your needs.
-|
-*/
 
 class UserController extends BaseController {
 
     /**
-     * Shows the account main page.
+     * Shows public user profile
      *
      * @return View
      */
@@ -23,7 +14,7 @@ class UserController extends BaseController {
     }
 
     /**
-     * Displays the form for account creation
+     * Displays the form for user creation
      *
      */
     public function getCreate()
@@ -32,7 +23,7 @@ class UserController extends BaseController {
     }
 
     /**
-     * Stores new account
+     * Stores new user
      *
      */
     public function postIndex()
@@ -226,11 +217,25 @@ class UserController extends BaseController {
             $user->save();
 
             // Redirect to the register page
-            return Redirect::to('account/settings')->with('success', 'Account updated with success!');
+            return Redirect::to('user/settings')->with('success', 'Account updated with success!');
         }
 
         // Something went wrong
-        return Redirect::to('account/settings')->withInput()->withErrors($validator->messages());
+        return Redirect::to('user/settings')->withInput()->withErrors($validator->messages());
+    }
+
+    public function getProfile($username)
+    {
+        $userModel = new User;
+        $user = $userModel->getUserByUsername($username);
+
+        // Check if the user exists
+        if (is_null($user))
+        {
+            return App::abort(404);
+        }
+
+        return View::make('site/user/profile', compact('user'));
     }
 
 }

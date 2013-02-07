@@ -17,4 +17,24 @@ class User extends ConfideUser implements PresentableInterface {
         return new UserPresenter($this);
     }
 
+    /**
+     * Get user by username
+     * @param $username
+     * @return mixed
+     */
+    public function getUserByUsername( $username )
+    {
+        return $this->where('username', '=', $username)->first();
+    }
+
+    /**
+     * Get the date the user was created.
+     *
+     * @return string
+     */
+    public function joined()
+    {
+        return ExpressiveDate::make($this->created_at)->getRelativeDate();
+    }
+
 }
