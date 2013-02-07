@@ -34,12 +34,8 @@ Route::controller('admin', 'AdminDashboardController');
  */
 
 //:: User Account Routes ::
-//:: User RESTful Routes (Includes Authentication and Authorization) ::
 
-# Settings
-Route::controller('user/settings', 'UserSettingsController');
-
-# User RESTful Routes for everything else
+# User RESTful Routes (Includes Authentication, Authorization and Settings)
 Route::controller('user', 'UserController');
 
 //:: Application Routes ::
