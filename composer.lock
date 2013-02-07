@@ -48,7 +48,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/ircmaxell/password_compat/archive/v1.0.0.zip",
+                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/v1.0.0",
                 "reference": "v1.0.0",
                 "shasum": ""
             },
@@ -128,12 +128,12 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/laravel/framework",
-                "reference": "651bf0125104bd655781f4889f95c1fda9fc2aa7"
+                "reference": "daf725492092a223d51008cf039a70f2acff4606"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/651bf0125104bd655781f4889f95c1fda9fc2aa7",
-                "reference": "651bf0125104bd655781f4889f95c1fda9fc2aa7",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/daf725492092a223d51008cf039a70f2acff4606",
+                "reference": "daf725492092a223d51008cf039a70f2acff4606",
                 "shasum": ""
             },
             "require": {
@@ -185,7 +185,7 @@
                 "iron-io/iron_mq": "1.4.*",
                 "mockery/mockery": "0.7.2"
             },
-            "time": "2013-02-06 04:05:24",
+            "time": "2013-02-07 04:17:46",
             "type": "library",
             "extra": {
                 "branch-alias": {

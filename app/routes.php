@@ -11,33 +11,22 @@
 |
 */
 
-
-
 /** ------------------------------------------
  *  Admin Routes
  *  ------------------------------------------
  */
 
 # Blog Management
-Route::get('admin/blogs/{blogId}/edit', 'AdminBlogsController@getEdit');
-Route::post('admin/blogs/{blogId}/edit', 'AdminBlogsController@postEdit');
-Route::get('admin/blogs/{blogId}/delete', 'AdminBlogsController@getDelete');
-//Route::controller('admin/blogs', 'AdminBlogsController');
+Route::resource('admin/blogs', 'AdminBlogsController');
 
 # User Management
-Route::get('admin/users/{userId}/edit', 'AdminUsersController@getEdit');
-Route::post('admin/users/{userId}/edit', 'AdminUsersController@postEdit');
-Route::get('admin/users/{userId}/delete', 'AdminUsersController@getDelete');
-//Route::controller('admin/users', 'AdminUsersController');
+Route::resource('admin/users', 'AdminUsersController');
 
 # Group Management
-Route::get('admin/groups/{groupId}/edit', 'AdminGroupsController@getEdit');
-Route::post('admin/groups/{groupId}/edit', 'AdminGroupsController@postEdit');
-Route::get('admin/groups/{groupId}/delete', 'AdminGroupsController@getDelete');
-//Route::controller('admin/groups', 'AdminGroupsController');
+Route::resource('admin/groups', 'AdminGroupsController');
 
 # Admin Dashboard
-//Route::controller('admin', 'AdminDashboardController');
+Route::controller('admin', 'AdminDashboardController');
 
 /** ------------------------------------------
  *  Frontend Routes
