@@ -1,0 +1,1 @@
+@extends('site.layouts.default')

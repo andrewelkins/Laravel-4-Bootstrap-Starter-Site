@@ -1,0 +1,19 @@
+{
+	"require": {
+		"laravel/framework": "4.0.*",
+		"zizaco/confide": "dev-master",
+		"laravelbook/laravel4-powerpack": "dev-master",
+        "jasonlewis/expressive-date": "1.*",
+        "bigelephant/presenter": "dev-master"
+	},
+	"autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/models",
+			"app/database/migrations",
+			"app/tests/TestCase.php"
+		]
+	},
+	"minimum-stability": "dev"
+}
