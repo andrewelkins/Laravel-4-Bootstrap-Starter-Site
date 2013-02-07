@@ -86,12 +86,12 @@ Should work, if not try
     chmod -R 777 app/storage
 
 ## Step 7: Start Page
-Navigate to your Laravel 4 website and try to login with the default credentials:
+Navigate to your Laravel 4 website and login at /user/login:
 
 	email : test@test.com
 	password : test
 
-Create a new user at /account/register
+Create a new user at /user/create
 
 -----
 ## Included Package Information
