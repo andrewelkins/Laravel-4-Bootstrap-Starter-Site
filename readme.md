@@ -13,12 +13,12 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 	* 500 for internal server errors
 * [Confide](#confide) for Authentication and Authorization
 * Back-end
-	* User and Group management
-	* Manage blog posts and comments
+	* User and Group management [TODO Groups]
+	* Manage blog posts and comments [TODO Admin]
 * Front-end
 	* User login, registration, forgot password
-	* User account area
-	* Simple Blog functionality
+	* User account area [TODO User Settings]
+	* Simple Blog functionality [TODO Blog Post Page]
 * Packages included:
 	* [Confide](#confide)
 	* [Ardent](#ardent)
