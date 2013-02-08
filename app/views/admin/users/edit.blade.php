@@ -2,8 +2,8 @@
 
 {{-- Web site Title --}}
 @section('title')
+User Update ::
 @parent
-:: User Update
 @stop
 
 {{-- Content --}}

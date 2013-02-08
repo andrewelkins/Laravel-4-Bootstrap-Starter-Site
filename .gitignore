@@ -3,3 +3,4 @@ composer.phar
 composer.lock
 .DS_Store
 .idea/
+app/config/mail.php

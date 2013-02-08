@@ -2,8 +2,8 @@
 
 {{-- Web site Title --}}
 @section('title')
+User Management ::
 @parent
-:: User Management
 @stop
 
 {{-- Content --}}

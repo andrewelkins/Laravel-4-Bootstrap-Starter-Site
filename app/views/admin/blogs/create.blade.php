@@ -2,8 +2,8 @@
 
 {{-- Web site Title --}}
 @section('title')
+Create a New Blog Post ::
 @parent
-:: Create a New Blog Post
 @stop
 
 {{-- Content --}}

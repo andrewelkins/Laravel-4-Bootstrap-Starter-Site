@@ -2,8 +2,8 @@
 
 {{-- Web site Title --}}
 @section('title')
+Group Management ::
 @parent
-:: Group Management
 @stop
 
 {{-- Content --}}

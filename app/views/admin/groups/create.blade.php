@@ -2,8 +2,8 @@
 
 {{-- Web site Title --}}
 @section('title')
+Create a Group ::
 @parent
-:: Create a Group
 @stop
 
 {{-- Content --}}

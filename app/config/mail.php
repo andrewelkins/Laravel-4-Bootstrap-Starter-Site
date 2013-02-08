@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'test@example.com', 'name' => 'Test Application'),
 
 	/*
 	|--------------------------------------------------------------------------

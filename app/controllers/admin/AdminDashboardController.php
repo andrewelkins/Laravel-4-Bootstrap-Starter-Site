@@ -1,15 +1,14 @@
 <?php
 
-class AdminDashboardController extends BaseController {
+class AdminDashboardController extends AdminController {
 
 	/**
-	 * Display a listing of the resource.
+	 * Admin dashboard
 	 *
 	 */
-	public function index()
+	public function getIndex()
 	{
-        return View::make('home');
+        return View::make('admin/dashboard');
 	}
-
 
 }

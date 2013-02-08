@@ -2,8 +2,8 @@
 
 {{-- Web site Title --}}
 @section('title')
+Blog Post Update ::
 @parent
-:: Blog Post Update
 @stop
 
 {{-- Content --}}

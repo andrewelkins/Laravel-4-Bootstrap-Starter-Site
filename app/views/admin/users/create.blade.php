@@ -2,8 +2,8 @@
 
 {{-- Web site Title --}}
 @section('title')
+Create a User ::
 @parent
-:: Create a User
 @stop
 
 {{-- Content --}}
