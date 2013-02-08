@@ -1,6 +1,8 @@
 <?php
 
-class Comment extends Eloquent {
+use BigElephant\Presenter\PresentableInterface;
+
+class Comment extends Eloquent implements PresentableInterface{
 
 	/**
 	 * Get the date the post was created.
@@ -41,4 +43,9 @@ class Comment extends Eloquent {
 	{
 		return $this->belongsTo('Post');
 	}
+
+    public function getPresenter()
+    {
+        return new CommentPresenter($this);
+    }
 }

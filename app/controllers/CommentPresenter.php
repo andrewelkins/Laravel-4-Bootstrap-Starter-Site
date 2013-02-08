@@ -2,7 +2,7 @@
 
 use BigElephant\Presenter\Presenter;
 
-class UserPresenter extends Presenter
+class CommentPresenter extends Presenter
 {
 
 }

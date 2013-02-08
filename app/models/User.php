@@ -12,11 +12,6 @@ class User extends ConfideUser implements PresentableInterface {
 	 */
 	protected $table = 'users';
 
-    public function getPresenter()
-    {
-        return new UserPresenter($this);
-    }
-
     /**
      * Get user by username
      * @param $username
@@ -35,6 +30,11 @@ class User extends ConfideUser implements PresentableInterface {
     public function joined()
     {
         return ExpressiveDate::make($this->created_at)->getRelativeDate();
+    }
+
+    public function getPresenter()
+    {
+        return new UserPresenter($this);
     }
 
 }

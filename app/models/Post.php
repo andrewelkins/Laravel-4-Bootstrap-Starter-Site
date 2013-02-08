@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\URL; # not sure why i need this here :c
+use BigElephant\Presenter\PresentableInterface;
 
-class Post extends Eloquent {
+class Post extends Eloquent implements PresentableInterface {
 
 	/**
 	 * Deletes a blog post and all
@@ -91,5 +92,10 @@ class Post extends Eloquent {
 	{
 		return ExpressiveDate::make($this->updated_at)->getRelativeDate();
 	}
+
+    public function getPresenter()
+    {
+        return new PostPresenter($this);
+    }
 
 }

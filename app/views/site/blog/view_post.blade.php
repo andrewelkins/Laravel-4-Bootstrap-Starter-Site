@@ -48,7 +48,7 @@
 	<div class="span11">
 		<div class="row">
 			<div class="span11">
-				<span class="muted">{{ $comment->author->fullName() }}</span>
+				<span class="muted">{{ $comment->author->username }}</span>
 				&bull;
 				{{ $comment->date() }}
 			</div>
