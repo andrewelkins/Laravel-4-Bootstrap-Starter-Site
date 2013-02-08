@@ -1,5 +1,5 @@
 {
-    "hash": "53b1c35dfc410f01e48f671283dcaf84",
+    "hash": "f563696b0277612201673922aadadf94",
     "packages": [
         {
             "name": "bigelephant/presenter",
@@ -128,12 +128,12 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/laravel/framework",
-                "reference": "daf725492092a223d51008cf039a70f2acff4606"
+                "reference": "8171f911c2d59a076c3c203cae213dcb40377735"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/daf725492092a223d51008cf039a70f2acff4606",
-                "reference": "daf725492092a223d51008cf039a70f2acff4606",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/8171f911c2d59a076c3c203cae213dcb40377735",
+                "reference": "8171f911c2d59a076c3c203cae213dcb40377735",
                 "shasum": ""
             },
             "require": {
@@ -185,7 +185,7 @@
                 "iron-io/iron_mq": "1.4.*",
                 "mockery/mockery": "0.7.2"
             },
-            "time": "2013-02-07 04:17:46",
+            "time": "2013-02-07 23:05:58",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -827,18 +827,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation",
-                "reference": "v2.2.0-RC1"
+                "reference": "50fc78802bdd2004944a937f864f7d8562306680"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/v2.2.0-RC1",
-                "reference": "v2.2.0-RC1",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/50fc78802bdd2004944a937f864f7d8562306680",
+                "reference": "50fc78802bdd2004944a937f864f7d8562306680",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2013-02-04 12:41:52",
+            "time": "2013-02-07 15:26:12",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -877,12 +877,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel",
-                "reference": "v2.2.0-RC1"
+                "reference": "c05197af185dcb1b9ca27ac46dd961fe875e8aac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/v2.2.0-RC1",
-                "reference": "v2.2.0-RC1",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/c05197af185dcb1b9ca27ac46dd961fe875e8aac",
+                "reference": "c05197af185dcb1b9ca27ac46dd961fe875e8aac",
                 "shasum": ""
             },
             "require": {
@@ -910,7 +910,7 @@
                 "symfony/dependency-injection": "2.2.*",
                 "symfony/finder": "2.2.*"
             },
-            "time": "2013-02-05 07:31:53",
+            "time": "2013-02-07 16:32:34",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -993,12 +993,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing",
-                "reference": "v2.2.0-RC1"
+                "reference": "a18edb8179a20ecc47bbd31de54b3c362ce94fdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Routing/zipball/v2.2.0-RC1",
-                "reference": "v2.2.0-RC1",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/a18edb8179a20ecc47bbd31de54b3c362ce94fdb",
+                "reference": "a18edb8179a20ecc47bbd31de54b3c362ce94fdb",
                 "shasum": ""
             },
             "require": {
@@ -1016,7 +1016,7 @@
                 "symfony/config": "2.2.*",
                 "symfony/yaml": "2.2.*"
             },
-            "time": "2013-02-01 09:33:53",
+            "time": "2013-02-07 22:44:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1106,25 +1106,28 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/Zizaco/confide.git",
-                "reference": "dbc0f4d09d4ca76fc12c4bacf3cc85593f1fb133"
+                "reference": "4e219e3fe4de059d1e5bbb90a708a4415188b447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Zizaco/confide/zipball/dbc0f4d09d4ca76fc12c4bacf3cc85593f1fb133",
-                "reference": "dbc0f4d09d4ca76fc12c4bacf3cc85593f1fb133",
+                "url": "https://api.github.com/repos/Zizaco/confide/zipball/4e219e3fe4de059d1e5bbb90a708a4415188b447",
+                "reference": "4e219e3fe4de059d1e5bbb90a708a4415188b447",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "4.0.x",
                 "laravelbook/ardent": "*",
-                "php": ">=5.4.0"
+                "php": ">=5.3.0"
             },
             "require-dev": {
                 "illuminate/auth": "4.0.x",
                 "illuminate/database": "4.0.x",
                 "mockery/mockery": "0.7.2"
             },
-            "time": "2013-02-06 22:08:46",
+            "suggest": {
+                "zizaco/entrust": "add Role-based Permissions to Laravel 4"
+            },
+            "time": "2013-02-08 02:26:01",
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -1151,6 +1154,61 @@
                 "illuminate",
                 "laravel"
             ]
+        },
+        {
+            "name": "zizaco/entrust",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/Zizaco/entrust.git",
+                "reference": "6a1be44ffe3f43835433b98f5fb2ff2d015f13cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/6a1be44ffe3f43835433b98f5fb2ff2d015f13cf",
+                "reference": "6a1be44ffe3f43835433b98f5fb2ff2d015f13cf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.0.x",
+                "laravelbook/ardent": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/database": "4.0.x",
+                "mockery/mockery": "0.7.2",
+                "zizaco/factory-muff": "dev-master"
+            },
+            "suggest": {
+                "zizaco/confide": "Confide is an authentication solution for Laravel 4 that couples very well with Entrust"
+            },
+            "time": "2013-02-08 02:30:22",
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/commands"
+                ],
+                "psr-0": {
+                    "Zizaco\\Entrust": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Zizaco Zizuini",
+                    "email": "zizaco@gmail.com"
+                }
+            ],
+            "description": "This package provides a flexible way to add Role-based Permissions to Laravel 4",
+            "keywords": [
+                "auth",
+                "illuminate",
+                "laravel",
+                "roles"
+            ]
         }
     ],
     "packages-dev": null,
@@ -1160,6 +1218,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "zizaco/confide": 20,
+        "zizaco/entrust": 20,
         "laravelbook/laravel4-powerpack": 20,
         "bigelephant/presenter": 20
     }
