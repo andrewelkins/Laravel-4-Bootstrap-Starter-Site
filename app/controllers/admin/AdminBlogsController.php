@@ -22,7 +22,7 @@ class AdminBlogsController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function getCreate()
 	{
         // Show the page
         return View::make('admin/blogs/create');
@@ -33,7 +33,7 @@ class AdminBlogsController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function postCreate()
 	{
         // Declare the rules for the form validation
         $rules = array(
@@ -52,7 +52,7 @@ class AdminBlogsController extends AdminController {
 
             // Update the blog post data
             $post->title            = Input::get('title');
-            $post->slug             = convert_to_slug(Input::get('title'));
+            $post->slug             = $post->convert_to_slug(Input::get('title'));
             $post->content          = Input::get('content');
             $post->meta_title       = Input::get('meta-title');
             $post->meta_description = Input::get('meta-description');
@@ -79,7 +79,7 @@ class AdminBlogsController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function show($id)
+	public function getShow($id)
 	{
         // redirect to the frontend
 	}
@@ -89,7 +89,7 @@ class AdminBlogsController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function edit($id)
+	public function getEdit($id)
 	{
 
         // Check if the blog post exists
@@ -108,7 +108,7 @@ class AdminBlogsController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function update($id)
+	public function postEdit($id)
 	{
         // Check if the blog post exists
         if (is_null($post = Post::find($id)))
@@ -157,7 +157,7 @@ class AdminBlogsController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function postDelete($id)
 	{
 
         // Check if the blog post exists

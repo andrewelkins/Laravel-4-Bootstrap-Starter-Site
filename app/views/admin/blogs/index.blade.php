@@ -34,8 +34,8 @@ Blog Management ::
 			<td>{{ $post->comments()->count() }}</td>
 			<td>{{ $post->created_at() }}</td>
 			<td>
-				<a href="{{ URL::to('admin/blogs/' . $post->id . '/edit') }}" class="btn btn-mini">{{ Lang::get('button.edit') }}</a>
-				<a href="{{ URL::to('admin/blogs/' . $post->id . '/delete') }}" class="btn btn-mini btn-danger">{{ Lang::get('button.delete') }}</a>
+				<a href="{{ URL::to('admin/blogs/' . $post->id . '/edit' ) }}" class="btn btn-mini">{{ Lang::get('button.edit') }}</a>
+				<a href="{{ URL::to('admin/blogs/' . $post->id . '/delete' ) }}" class="btn btn-mini btn-danger">{{ Lang::get('button.delete') }}</a>
 			</td>
 		</tr>
 		@endforeach

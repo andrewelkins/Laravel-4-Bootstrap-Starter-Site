@@ -7,7 +7,7 @@ class AdminGroupsController extends AdminController {
      *
      * @return Response
      */
-    public function index()
+    public function getIndex()
     {
         // Grab all the groups
         $groups = Group::paginate(10);
@@ -21,7 +21,7 @@ class AdminGroupsController extends AdminController {
      *
      * @return Response
      */
-    public function create()
+    public function getCreate()
     {
         // Get all the available permissions
         $permissions = $this->permissions;
@@ -38,7 +38,7 @@ class AdminGroupsController extends AdminController {
      *
      * @return Response
      */
-    public function store()
+    public function postStore()
     {
         // Declare the rules for the form validation
         $rules = array(
@@ -88,7 +88,7 @@ class AdminGroupsController extends AdminController {
      *
      * @return Response
      */
-    public function show($id)
+    public function getShow($id)
     {
         // redirect to the frontend
     }
@@ -98,7 +98,7 @@ class AdminGroupsController extends AdminController {
      *
      * @return Response
      */
-    public function edit($id)
+    public function getEdit($id)
     {
         try
         {
@@ -126,7 +126,7 @@ class AdminGroupsController extends AdminController {
      *
      * @return Response
      */
-    public function update($id)
+    public function postUpdate($id)
     {
         try
         {
@@ -186,7 +186,7 @@ class AdminGroupsController extends AdminController {
      *
      * @return Response
      */
-    public function destroy($id)
+    public function postDestroy($id)
     {
         try
         {

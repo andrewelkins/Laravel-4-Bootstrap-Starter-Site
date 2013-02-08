@@ -79,9 +79,9 @@
 											<i class="icon-user"></i> admin	<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu">
-											<li><a href="#"><i class="icon-wrench"></i> Settings</a></li>
+											<li><a href="{{ URL::to('user/settings') }}"><i class="icon-wrench"></i> Settings</a></li>
 											<li class="divider"></li>
-											<li><a href="#"><i class="icon-share"></i> Logout</a></li>
+											<li><a href="{{ URL::to('user/logout') }}"><i class="icon-share"></i> Logout</a></li>
 										</ul>
 									</div>
 								</li>

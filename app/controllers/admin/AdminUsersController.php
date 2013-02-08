@@ -7,7 +7,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function index()
+    public function getIndex()
     {
         // Grab all the users
         $users = User::paginate(10);
@@ -21,7 +21,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function create()
+    public function getCreate()
     {
         // Get all the available groups
         $groups = Sentry::getGroupProvider()->findAll();
@@ -44,7 +44,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function store()
+    public function postStore()
     {
         // Declare the rules for the form validation
         $rules = array(
@@ -110,7 +110,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function show($id)
+    public function getShow($id)
     {
         // redirect to the frontend
     }
@@ -120,7 +120,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function edit($id)
+    public function getEdit($id)
     {
         try
         {
@@ -155,7 +155,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function update($id)
+    public function postUpdate($id)
     {
 
         try
@@ -261,7 +261,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function destroy($id)
+    public function postDestroy($id)
     {
         try
         {

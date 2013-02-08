@@ -15,18 +15,46 @@
  *  Admin Routes
  *  ------------------------------------------
  */
+Route::group(array('prefix' => 'admin'), function()
+{
 
-# Blog Management
-Route::resource('admin/blogs', 'AdminBlogsController');
+    # Blog Management
+    Route::get('blogs/{id}/show', 'AdminBlogsController@getShow')
+        ->where('id', '[0-9]+');
+    Route::get('blogs/{id}/edit', 'AdminBlogsController@getEdit')
+        ->where('id', '[0-9]+');
+    Route::post('blogs/{id}/edit', 'AdminBlogsController@postEdit')
+        ->where('id', '[0-9]+');
+    Route::post('blogs/{id}/delete', 'AdminBlogsController@postDelete')
+        ->where('id', '[0-9]+');
+    Route::controller('blogs', 'AdminBlogsController');
 
-# User Management
-Route::resource('admin/users', 'AdminUsersController');
+    # User Management
+    Route::get('users/{id}/show', 'AdminUsersController@getShow')
+        ->where('id', '[0-9]+');
+    Route::get('users/{id}/edit', 'AdminUsersController@getEdit')
+        ->where('id', '[0-9]+');
+    Route::post('users/{id}/edit', 'AdminUsersController@postEdit')
+        ->where('id', '[0-9]+');
+    Route::post('users/{id}/delete', 'AdminUsersController@postDelete')
+        ->where('id', '[0-9]+');
+    Route::controller('users', 'AdminUsersController');
 
-# Group Management
-Route::resource('admin/groups', 'AdminGroupsController');
+    # User Group Management
+    Route::get('groups/{id}/show', 'AdminGroupsController@getShow')
+        ->where('id', '[0-9]+');
+    Route::get('groups/{id}/edit', 'AdminGroupsController@getEdit')
+        ->where('id', '[0-9]+');
+    Route::post('groups/{id}/edit', 'AdminGroupsController@postEdit')
+        ->where('id', '[0-9]+');
+    Route::post('groups/{id}/delete', 'AdminGroupsController@postDelete')
+        ->where('id', '[0-9]+');
+    Route::controller('groups', 'AdminGroupsController');
 
-# Admin Dashboard
-Route::controller('admin', 'AdminDashboardController');
+    # Admin Dashboard
+    Route::controller('/', 'AdminDashboardController');
+});
+
 
 /** ------------------------------------------
  *  Frontend Routes
