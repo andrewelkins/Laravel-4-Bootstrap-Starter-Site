@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'test@example.com', 'name' => 'Example Application'),
+	'from' => array('address' => null, 'name' => null),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'username' => '2a393787-5b84-4884-82c9-d16a2b38f6ac',
+	'username' => null,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,6 +78,6 @@ return array(
 	|
 	*/
 
-	'password' => '2a393787-5b84-4884-82c9-d16a2b38f6ac',
+	'password' => null,
 
 );
