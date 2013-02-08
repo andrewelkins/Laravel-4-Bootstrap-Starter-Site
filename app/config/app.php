@@ -110,6 +110,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		/* Additional Providers */
 		'Zizaco\Confide\ConfideServiceProvider', // Confide Provider
+        'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
 		'LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider', // PowerPack Provider
         'ExpressiveDateServiceProvider', // Expressive Date
         'BigElephant\Presenter\PresenterServiceProvider', // Presenter
@@ -177,11 +178,12 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		/* Additional Aliases */
 		'Confide'    	  => 'Zizaco\Confide\ConfideFacade', // Confide Alias
-		'HTML' => 'LaravelBook\Laravel4Powerpack\Facades\HTMLFacade', // PowerPack Alias
-		'Form' => 'LaravelBook\Laravel4Powerpack\Facades\FormFacade', // PowerPack Alias
-		'Str' => 'LaravelBook\Laravel4Powerpack\Facades\StrFacade', // PowerPack Alias
-        'Presenter'     => 'BigElephant\Presenter\Presenter', // Presenter
-        'Presentable'   => 'BigElephant\Presenter\PresentableInterface', // Presenter
+        'Entrust'         => 'Zizaco\Entrust\EntrustFacade', // Entrust Alias
+		'HTML'            => 'LaravelBook\Laravel4Powerpack\Facades\HTMLFacade', // PowerPack Alias
+		'Form'            => 'LaravelBook\Laravel4Powerpack\Facades\FormFacade', // PowerPack Alias
+		'Str'             => 'LaravelBook\Laravel4Powerpack\Facades\StrFacade', // PowerPack Alias
+        'Presenter'       => 'BigElephant\Presenter\Presenter', // Presenter
+        'Presentable'     => 'BigElephant\Presenter\PresentableInterface', // Presenter
 
 	),
 
