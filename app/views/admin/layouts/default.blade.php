@@ -6,7 +6,7 @@
 		<meta charset="utf-8" />
 		<title>
 			@section('title')
-			Laravel 4 - Bootstrap App
+			Administration
 			@show
 		</title>
 		<meta name="keywords" content="your, awesome, keywords, here" />
@@ -24,9 +24,9 @@
 
 		<style>
 		@section('styles')
-			body {
-				padding-top: 60px;
-			}
+		body {
+			padding: 60px 0;
+		}
 		@show
 		</style>
 
@@ -45,43 +45,58 @@
 	</head>
 
 	<body>
-		<!-- Navbar -->
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-
-					<div class="nav-collapse collapse">
-						<ul class="nav">
-							<li {{ (Request::is('/') ? 'class="active"' : '') }}><a href="{{ URL::to('') }}">Home</a></li>
-						</ul>
-
-			                        <ul class="nav pull-right">
-			                            @if (Auth::check())
-			                            <li class="navbar-text">Logged in as {{ Auth::user()->username }}</li>
-			                            <li class="divider-vertical"></li>
-			                            <li {{ (Request::is('account') ? 'class="active"' : '') }}><a href="{{ URL::to('user') }}">Account</a></li>
-			                            <li><a href="{{ URL::to('user/logout') }}">Logout</a></li>
-			                            @else
-			                            <li {{ (Request::is('user/login') ? 'class="active"' : '') }}><a href="{{ URL::to('user/login') }}">Login</a></li>
-			                            <li {{ (Request::is('user/register') ? 'class="active"' : '') }}><a href="{{ URL::to('user/register') }}">Sign Up</a></li>
-			                            @endif
-			                        </ul>
-					</div>
-					<!-- ./ nav-collapse -->
-				</div>
-			</div>
-		</div>
-		<!-- ./ navbar -->
-
 		<!-- Container -->
 		<div class="container">
+			<!-- Navbar -->
+			<div class="navbar navbar-inverse navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</a>
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{ URL::to('admin') }}"><i class="icon-home icon-white"></i> Home</a></li>
+								<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/blogs') }}"><i class="icon-list-alt icon-white"></i> Blogs</a></li>
+								<li class="dropdown{{ (Request::is('admin/users*|admin/groups*') ? ' active' : '') }}">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="{{ URL::to('admin/users') }}">
+										<i class="icon-user icon-white"></i> Users <span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/users') }}"><i class="icon-user"></i> Users</a></li>
+										<li{{ (Request::is('admin/groups*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/groups') }}"><i class="icon-user"></i> Groups</a></li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="nav pull-right">
+								<li><a href="{{ URL::to('/') }}">View Homepage</a></li>
+								<li class="divider-vertical"></li>
+								<li>
+									<div class="btn-group">
+										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+											<i class="icon-user"></i> admin	<span class="caret"></span>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#"><i class="icon-wrench"></i> Settings</a></li>
+											<li class="divider"></li>
+											<li><a href="#"><i class="icon-share"></i> Logout</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<!-- ./ nav-collapse -->
+					</div>
+					<!-- ./ container-fluid -->
+				</div>
+				<!-- ./ navbar-inner -->
+			</div>
+			<!-- ./ navbar -->
+
 			<!-- Notifications -->
-			@include('notifications')
+			@include('site/notifications')
 			<!-- ./ notifications -->
 
 			<!-- Content -->
