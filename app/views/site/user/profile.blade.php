@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-{{ Lang::get('user.user.profile'); }} ::
+{{ Lang::get('user/user.profile') }} ::
 @parent
 @stop
 

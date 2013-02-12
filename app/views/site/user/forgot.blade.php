@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-{{ Lang::get('user.user.forgot_password'); }} ::
+{{ Lang::get('user/user.forgot_password') }} ::
 @parent
 @stop
 

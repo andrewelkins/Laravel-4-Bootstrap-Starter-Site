@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-Create a Group ::
+Role Update ::
 @parent
 @stop
 
@@ -10,10 +10,10 @@ Create a Group ::
 @section('content')
 <div class="page-header">
 	<h3>
-		Create a New Group
+		Role Update
 
 		<div class="pull-right">
-			<a href="{{ URL::to('admin/groups') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+			<a href="{{ URL::to('admin/roles') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
 		</div>
 	</h3>
 </div>
@@ -32,44 +32,44 @@ Create a Group ::
 
 	<!-- Tabs Content -->
 	<div class="tab-content">
-		<!-- Tab General -->
+		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
 			<!-- Name -->
 			<div class="control-group {{ $errors->has('name') ? 'error' : '' }}">
 				<label class="control-label" for="name">Name</label>
 				<div class="controls">
-					<input type="text" name="name" id="name" value="{{ Input::old('name') }}" />
+					<input type="text" name="name" id="name" value="{{ Input::old('name', $role->name) }}" />
 					{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
 			<!-- ./ name -->
 		</div>
-		<!-- ./ tab general -->
+		<!-- ./ general tab -->
 
-		<!-- Tab Permissions -->
+		<!-- Permissions tab -->
 		<div class="tab-pane" id="tab-permissions">
-			<div class="control-group">
-				<div class="controls">
+			<div class="controls">
+				<div class="control-group">
 					@foreach ($permissions as $permissionId => $permissionName)
 					<label>
 						<input type="hidden" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="0" />
-						<input type="checkbox" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="1"{{ ( ! empty($selectedPermissions[ $permissionId ]) ? ' checked="checked"' : '') }} />
+						<input type="checkbox" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="1"{{ (array_key_exists($permissionId, $rolePermissions) ? ' checked="checked"' : '')}} />
 						{{ $permissionName }}
 					</label>
 					@endforeach
 				</div>
 			</div>
 		</div>
-		<!-- ./ tab permissions -->
+		<!-- ./ permissions tab -->
 	</div>
 	<!-- ./ tabs content -->
 
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{ URL::to('admin/groups') }}">Cancel</a>
+			<a class="btn btn-link" href="{{ URL::to('admin/roles') }}">Cancel</a>
 			<button type="reset" class="btn">Reset</button>
-			<button type="submit" class="btn btn-success">Create Group</button>
+			<button type="submit" class="btn btn-success">Update Role</button>
 		</div>
 	</div>
 	<!-- ./ form actions -->

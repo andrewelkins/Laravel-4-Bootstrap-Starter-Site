@@ -36,20 +36,20 @@ Route::group(array('prefix' => 'admin'), function()
         ->where('id', '[0-9]+');
     Route::post('users/{id}/edit', 'AdminUsersController@postEdit')
         ->where('id', '[0-9]+');
-    Route::post('users/{id}/delete', 'AdminUsersController@postDelete')
+    Route::get('users/{id}/delete', 'AdminUsersController@getDelete')
         ->where('id', '[0-9]+');
     Route::controller('users', 'AdminUsersController');
 
-    # User Group Management
-    Route::get('groups/{id}/show', 'AdminGroupsController@getShow')
+    # User Role Management
+    Route::get('roles/{id}/show', 'AdminRolesController@getShow')
         ->where('id', '[0-9]+');
-    Route::get('groups/{id}/edit', 'AdminGroupsController@getEdit')
+    Route::get('roles/{id}/edit', 'AdminRolesController@getEdit')
         ->where('id', '[0-9]+');
-    Route::post('groups/{id}/edit', 'AdminGroupsController@postEdit')
+    Route::post('roles/{id}/edit', 'AdminRolesController@postEdit')
         ->where('id', '[0-9]+');
-    Route::post('groups/{id}/delete', 'AdminGroupsController@postDelete')
+    Route::get('roles/{id}/delete', 'AdminRolesController@getDelete')
         ->where('id', '[0-9]+');
-    Route::controller('groups', 'AdminGroupsController');
+    Route::controller('roles', 'AdminRolesController');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
@@ -63,6 +63,8 @@ Route::group(array('prefix' => 'admin'), function()
 
 //:: User Account Routes ::
 
+Route::get('user/login/{url1?}/{url2?}/{url3?}', 'UserController@getLogin');
+Route::post('user/login/{url1?}/{url2?}/{url3?}', 'UserController@postLogin');
 # User RESTful Routes (Includes Authentication, Authorization and Settings)
 Route::controller('user', 'UserController');
 

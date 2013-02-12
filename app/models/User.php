@@ -6,12 +6,18 @@ use BigElephant\Presenter\PresentableInterface;
 
 class User extends ConfideUser implements PresentableInterface {
     use HasRole;
+
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
 	protected $table = 'users';
+
+    public function getPresenter()
+    {
+        return new UserPresenter($this);
+    }
 
     /**
      * Get user by username
@@ -33,9 +39,5 @@ class User extends ConfideUser implements PresentableInterface {
         return ExpressiveDate::make($this->created_at)->getRelativeDate();
     }
 
-    public function getPresenter()
-    {
-        return new UserPresenter($this);
-    }
 
 }

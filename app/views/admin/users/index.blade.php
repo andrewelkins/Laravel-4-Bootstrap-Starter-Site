@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-User Management ::
+{{ Lang::get('admin/user/title.user_management') }} ::
 @parent
 @stop
 
@@ -36,13 +36,13 @@ User Management ::
 			<td>{{ $user->first_name }}</td>
 			<td>{{ $user->last_name }}</td>
 			<td>{{ $user->email }}</td>
-			<td>{{ implode(', ', array_map(function($group) { return $group->name; }, $user->groups->all())) }}</td>
-			<td>{{ Lang::get('general.' . ($user->isActivated() ? 'yes' : 'no')) }}</td>
-			<td>{{ $user->created_at() }}</td>
+			<td>insert roles here</td>
+			<td>{{ Lang::get('general.' . ($user->confirmed ? 'yes' : 'no')) }}</td>
+			<td>{{ $user->getPresenter()->displayDate() }}</td>
 			<td>
 				<a href="{{ URL::to('admin/users/' . $user->id . '/edit') }}" class="btn btn-mini">{{ Lang::get('button.edit') }}</a>
 
-				@if (Sentry::getId() !== $user->id)
+				@if (Auth::user()->id != $user->id )
 				<a href="{{ URL::to('admin/users/' . $user->id . '/delete') }}" class="btn btn-mini btn-danger">{{ Lang::get('button.delete') }}</a>
 				@endif
 			</td>

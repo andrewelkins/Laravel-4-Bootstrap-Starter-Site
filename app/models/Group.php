@@ -1,9 +1,18 @@
 <?php
 
-use Cartalyst\Sentry\Groups\Eloquent\Group as SentryGroupModel;
+use Zizaco\Confide\ConfideUser;
+use BigElephant\Presenter\PresentableInterface;
 
-class Group extends SentryGroupModel {
+class Group extends ConfideUser implements PresentableInterface {
 
+    /**
+     * Same presenter as the user model.
+     * @return BigElephant\Presenter\BigElephant\Presenter\Presenter|UserPresenter
+     */
+    public function getPresenter()
+    {
+        return new UserPresenter($this);
+    }
 	/**
 	 * Returns the user full name, it simply
 	 * concatenates the first and last name.

@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-{{ Lang::get('user.user.register'); }} ::
+{{ Lang::get('user/user.register') }} ::
 @parent
 @stop
 

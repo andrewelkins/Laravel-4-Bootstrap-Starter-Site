@@ -12,6 +12,10 @@ class AdminUsersController extends AdminController {
         // Grab all the users
         $users = User::paginate(10);
 
+        if( ! Auth::check() )
+        {
+            return Redirect::to('user/login?r=admin/users')->with('error', Lang::get('general.must_login'));
+        }
         // Show the page
         return View::make('admin/users/index', compact('users'));
     }
@@ -44,7 +48,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function postStore()
+    public function postCreate()
     {
         // Declare the rules for the form validation
         $rules = array(
@@ -155,7 +159,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function postUpdate($id)
+    public function postEdit($id)
     {
 
         try
@@ -261,7 +265,7 @@ class AdminUsersController extends AdminController {
      *
      * @return Response
      */
-    public function postDestroy($id)
+    public function postDelete($id)
     {
         try
         {

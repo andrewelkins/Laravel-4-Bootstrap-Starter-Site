@@ -60,13 +60,13 @@
 							<ul class="nav">
 								<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{ URL::to('admin') }}"><i class="icon-home icon-white"></i> Home</a></li>
 								<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/blogs') }}"><i class="icon-list-alt icon-white"></i> Blogs</a></li>
-								<li class="dropdown{{ (Request::is('admin/users*|admin/groups*') ? ' active' : '') }}">
+								<li class="dropdown{{ (Request::is('admin/users*|admin/roles*') ? ' active' : '') }}">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="{{ URL::to('admin/users') }}">
 										<i class="icon-user icon-white"></i> Users <span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu">
 										<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/users') }}"><i class="icon-user"></i> Users</a></li>
-										<li{{ (Request::is('admin/groups*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/groups') }}"><i class="icon-user"></i> Groups</a></li>
+										<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/roles') }}"><i class="icon-user"></i> Roles</a></li>
 									</ul>
 								</li>
 							</ul>

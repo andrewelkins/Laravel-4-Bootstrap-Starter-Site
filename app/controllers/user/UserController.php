@@ -68,16 +68,17 @@ class UserController extends BaseController {
      * Displays the login form
      *
      */
-    public function getLogin()
+    public function getLogin($url1=null,$url2=null,$url3=null)
     {
-        return View::make('site/user/login');
+        $redirect = $this->processRedirect($url1,$url2,$url3);
+        return View::make('site/user/login', compact('redirect'));
     }
 
     /**
      * Attempt to do login
      *
      */
-    public function postLogin()
+    public function postLogin($url1=null,$url2=null,$url3=null)
     {
         $input = array(
             'email'    => Input::get( 'email' ), // May be the username too
@@ -90,6 +91,11 @@ class UserController extends BaseController {
         // logAttempt will check if the 'email' perhaps is the username.
         if ( Confide::logAttempt( $input ) ) 
         {
+            $r = $this->processRedirect($url1,$url2,$url3);
+            if (!empty($r))
+            {
+                return Redirect::to($r);
+            }
             return Redirect::to('/');
         }
         else
@@ -177,4 +183,16 @@ class UserController extends BaseController {
         return View::make('site/user/profile', compact('user'));
     }
 
+    public function processRedirect($url1,$url2,$url3)
+    {
+
+        $redirect = '';
+        if( ! empty( $url1 ) )
+        {
+            $redirect = $url1;
+            $redirect .= (empty($url2)? '' : '/' . $url2);
+            $redirect .= (empty($url3)? '' : '/' . $url3);
+        }
+        return $redirect;
+    }
 }
