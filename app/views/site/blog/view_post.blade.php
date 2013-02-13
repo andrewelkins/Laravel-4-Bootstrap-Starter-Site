@@ -26,9 +26,9 @@
 
 {{-- Content --}}
 @section('content')
-<h3>{{ $post->title }}</h3>
+<h3>{{{ $post->title }}}</h3>
 
-<p>{{ $post->content() }}</p>
+<p>{{{ $post->content() }}}</p>
 
 <div>
 	<span class="badge badge-info">Posted {{ $post->date() }}</span>
