@@ -7,7 +7,7 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 ##Included features
 
 * Twitter Bootstrap 2.2.2
-* Custom Error Pages (Templates provided.):
+* Custom Error Pages:
 	* 403 for forbidden page accesses
 	* 404 for not found pages
 	* 500 for internal server errors
