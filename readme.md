@@ -86,12 +86,19 @@ Should work, if not try
     chmod -R 777 app/storage
 
 ## Step 7: Start Page
+### User login with commenting permission
 Navigate to your Laravel 4 website and login at /user/login:
 
-	email : test@test.com
-	password : test
+	username : user
+	password : user
 
 Create a new user at /user/create
+
+### Admin login
+Navigate to /admin
+
+    username: admin
+    password: admin
 
 -----
 ## Included Package Information
