@@ -29,7 +29,7 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 
 ##Requirements
 
-	PHP >= 5.4.0 (Confide requires 5.4, this is an increase over Laravel's 5.3.7 requirement)
+	PHP >= 5.4.0 (Entrust requires 5.4, this is an increase over Laravel's 5.3.7 requirement)
 	MCrypt PHP Extension
 
 ##How to install
