@@ -1,6 +1,7 @@
 #Laravel 4 - Bootstrap Starter Site (ALPHA 1 - Work In Progress)
 
-This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules. Big thanks goes to [brunogaspar](https://github.com/brunogaspar) for a lot of the code within.
+This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules.
+Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar) for a lot of the code within.
 
 -----
 
@@ -36,28 +37,28 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 ### Step 1: Get the code
 #### Option 1: Git Clone
 
-	git clone git://github.com/andrew13/Laravel-4-Bootstrap-Empowered.git laravel
+	git clone git://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git laravel
 	cd laravel
 
 #### Option 2: Download the repository
 
-    https://github.com/andrew13/Laravel-4-Bootstrap-Empowered/archive/develop.zip
+    https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/archive/master.zip
 
 -----
 
 ### Step 2: Use Composer to install dependencies
 ### Step 1: Get the code
-#### Option 1: Composer is not [installed globally](http://andrewelkins.com/programming/php/setting-up-composer-globally-for-laravel-4/)
+#### Option 1: Composer is not installed globally
 
     cd laravel
 	curl -s http://getcomposer.org/installer | php
 	php composer.phar install
 
-#### Option 2: Composer is [installed globally](http://andrewelkins.com/programming/php/setting-up-composer-globally-for-laravel-4/)
+#### Option 2: Composer is installed globally
 
     https://github.com/andrew13/Laravel-4-Bootstrap-Empowered/archive/develop.zip
 
-If you haven't already, you might want to make [composer as an alias](http://andrewelkins.com/programming/php/setting-up-composer-globally-for-laravel-4/) for future ease of use.
+If you haven't already, you might want to make [composer be installed globally](http://andrewelkins.com/programming/php/setting-up-composer-globally-for-laravel-4/) for future ease of use.
 
 ### Step 3: Configure Database
 
