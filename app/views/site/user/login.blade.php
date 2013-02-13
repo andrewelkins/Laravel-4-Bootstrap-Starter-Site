@@ -11,7 +11,7 @@
 <div class="page-header">
 	<h1>Login into your account</h1>
 </div>
-<form method="POST" action="user/login/{{$redirect}}" accept-charset="UTF-8">
+<form method="POST" action="/user/login/{{$redirect}}" accept-charset="UTF-8">
     <input type="hidden" name="csrf_token" value="{{{ Session::getToken() }}}">
     <fieldset>
         <label for="email">{{{ Lang::get('confide::confide.username_e_mail') }}}</label>
