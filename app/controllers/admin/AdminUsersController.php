@@ -27,20 +27,20 @@ class AdminUsersController extends AdminController {
      */
     public function getCreate()
     {
-        // Get all the available groups
-        $groups = Sentry::getGroupProvider()->findAll();
+        // All roles
+        $roles = Role::all();
 
         // Get all the available permissions
-        $permissions = $this->permissions;
+        $permissions = Role::getAvailablePermissions();
 
         // Selected groups
-        $selectedGroups = Input::old('groups', array());
+        $selectedRoles = Input::old('roles', array());
 
         // Selected permissions
         $selectedPermissions = Input::old('permissions', array());
 
         // Show the page
-        return View::make('admin/users/create', compact('groups', 'permissions', 'selectedGroups', 'selectedPermissions'));
+        return View::make('admin/users/create', compact('roles', 'permissions', 'selectedRoles', 'selectedPermissions'));
     }
 
     /**
@@ -60,12 +60,19 @@ class AdminUsersController extends AdminController {
         // before saving. This field will be used in Ardent's
         // auto validation.
         $user->password_confirmation = Input::get( 'password_confirmation' );
+        $user->confirm = Input::get( 'confirm' );
+
+        // Permissions are currently tied to roles. Can't do this yet.
+        //$user->permissions = $user->roles()->preparePermissionsForSave(Input::get( 'permissions' ));
 
         // Save if valid. Password field will be hashed before save
         $user->save();
 
         if ( $user->id )
         {
+            // Save roles. Handles updating.
+            $user->saveRoles(Input::get( 'roles' ));
+
             // Redirect to the new user page
             return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
         }
@@ -103,13 +110,6 @@ class AdminUsersController extends AdminController {
         {
             $roles = Role::all();
             $permissions = Role::getAvailablePermissions();
-//            var_dump($user->currentRoleIds());
-//            foreach($roles as $role)
-//            {
-//                var_dump($role->id);
-//                echo array_search($role->id, $user->currentRoleIds());
-//            }
-//            die();
             // Show the page
             return View::make('admin/users/edit', compact('user', 'roles', 'permissions'));
         }

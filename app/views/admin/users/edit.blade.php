@@ -21,7 +21,6 @@ User Update ::
 <!-- Tabs -->
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
-	<li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
 </ul>
 <!-- ./ tabs -->
 
@@ -75,21 +74,21 @@ User Update ::
 			<!-- ./ password confirm -->
 
 			<!-- Activation Status -->
-			<div class="control-group {{ $errors->has('activated') ? 'error' : '' }}">
-				<label class="control-label" for="activated">Activate User?</label>
+			<div class="control-group {{ $errors->has('confirm') ? 'error' : '' }}">
+				<label class="control-label" for="confirm">Activate User?</label>
 				<div class="controls">
-					<select{{ ($user->id === Confide::user()->id ? ' disabled="disabled"' : '') }} name="activated" id="activated">
+					<select{{ ($user->id === Confide::user()->id ? ' disabled="disabled"' : '') }} name="confirm" id="confirm">
 						<option value="1"{{ ($user->confirm() ? ' selected="selected"' : '') }}>{{ Lang::get('general.yes') }}</option>
 						<option value="0"{{ ( ! $user->confirm() ? ' selected="selected"' : '') }}>{{ Lang::get('general.no') }}</option>
 					</select>
-					{{ $errors->first('activated', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('confirm', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
 			<!-- ./ activation status -->
 
 			<!-- Groups -->
 			<div class="control-group {{ $errors->has('roles') ? 'error' : '' }}">
-				<label class="control-label" for="groups">Roles</label>
+				<label class="control-label" for="roles">Roles</label>
 				<div class="controls">
 					<select name="roles[]" id="roles[]" multiple>
 						@foreach ($roles as $role)
@@ -106,24 +105,6 @@ User Update ::
 		</div>
 		<!-- ./ general tab -->
 
-		<!-- Permissions tab -->
-		<div class="tab-pane" id="tab-permissions">
-			<div class="controls">
-				<div class="control-group">
-                    @foreach ($permissions as $permissionId => $permissionName)
-                    <label>
-                        <input type="hidden" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="0" />
-                        <input type="checkbox" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="1"{{ ( ! empty($selectedPermissions[ $permissionId ]) ? ' checked="checked"' : '') }} />
-                        {{ $permissionName }}
-                    </label>
-                    @endforeach
-
-					<span class="help-block">
-						A user has permissions from roles that it is given. If you want to specify a permission not contained in a rule, do so here.
-					</span>
-				</div>
-			</div>
-		</div>
 		<!-- ./ permissions tab -->
 	</div>
 	<!-- ./ tabs content -->

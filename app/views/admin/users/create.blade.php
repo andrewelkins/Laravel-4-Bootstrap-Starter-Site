@@ -21,7 +21,6 @@ Create a User ::
 <!-- Tabs -->
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
-	<li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
 </ul>
 <!-- ./ tabs -->
 
@@ -34,25 +33,15 @@ Create a User ::
 	<div class="tab-content">
 		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
-			<!-- First Name -->
-			<div class="control-group {{ $errors->has('first_name') ? 'error' : '' }}">
-				<label class="control-label" for="first_name">First Name</label>
-				<div class="controls">
-					<input type="text" name="first_name" id="first_name" value="{{ Input::old('first_name') }}" />
-					{{ $errors->first('first_name', '<span class="help-inline">:message</span>') }}
-				</div>
-			</div>
-			<!-- ./ first name -->
-
-			<!-- Last Name -->
-			<div class="control-group {{ $errors->has('last_name') ? 'error' : '' }}">
-				<label class="control-label" for="last_name">Last Name</label>
-				<div class="controls">
-					<input type="text" name="last_name" id="last_name" value="{{ Input::old('last_name') }}" />
-					{{ $errors->first('last_name', '<span class="help-inline">:message</span>') }}
-				</div>
-			</div>
-			<!-- ./ last name -->
+            <!-- username -->
+            <div class="control-group {{ $errors->has('username') ? 'error' : '' }}">
+                <label class="control-label" for="username">Username</label>
+                <div class="controls">
+                    <input type="text" name="username" id="username" value="{{ Input::old('username') }}" />
+                    {{ $errors->first('username', '<span class="help-inline">:message</span>') }}
+                </div>
+            </div>
+            <!-- ./ username -->
 
 			<!-- Email -->
 			<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
@@ -86,51 +75,36 @@ Create a User ::
 
 			<!-- Activation Status -->
 			<div class="control-group {{ $errors->has('activated') ? 'error' : '' }}">
-				<label class="control-label" for="activated">Activate User?</label>
+				<label class="control-label" for="confirm">Activate User?</label>
 				<div class="controls">
-					<select name="activated" id="activated">
-						<option value="1"{{ (Input::old('activated', 0) === 1 ? ' selected="selected"' : '') }}>{{ Lang::get('general.yes') }}</option>
-						<option value="0"{{ (Input::old('activated', 0) === 0 ? ' selected="selected"' : '') }}>{{ Lang::get('general.no') }}</option>
+					<select name="confirm" id="confirm">
+						<option value="1"{{ (Input::old('confirm', 0) === 1 ? ' selected="selected"' : '') }}>{{ Lang::get('general.yes') }}</option>
+						<option value="0"{{ (Input::old('confirm', 0) === 0 ? ' selected="selected"' : '') }}>{{ Lang::get('general.no') }}</option>
 					</select>
-					{{ $errors->first('activated', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('confirm', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
 			<!-- ./ activation status -->
 
-			<!-- Groups -->
-			<div class="control-group {{ $errors->has('groups') ? 'error' : '' }}">
-				<label class="control-label" for="groups">Groups</label>
-				<div class="controls">
-					<select name="groups[]" id="groups[]" multiple="multiple">
-						@foreach ($groups as $group)
-						<option value="{{ $group->id }}"{{ (in_array($group->id, $selectedGroups) ? ' selected="selected"' : '') }}>{{ $group->name }}</option>
-						@endforeach
-					</select>
+            <!-- Groups -->
+            <div class="control-group {{ $errors->has('roles') ? 'error' : '' }}">
+                <label class="control-label" for="roles">Roles</label>
+                <div class="controls">
+                    <select name="roles[]" id="roles[]" multiple>
+                        @foreach ($roles as $role)
+                        <option value="{{ $role->id }}"{{ ( in_array($role->id, $selectedRoles) ? ' selected="selected"' : '') }}>{{ $role->name }}</option>
+                        @endforeach
+                    </select>
 
 					<span class="help-block">
 						Select a group to assign to the user, remember that a user takes on the permissions of the group they are assigned.
 					</span>
-				</div>
-			</div>
-			<!-- ./ groups -->
+                </div>
+            </div>
+            <!-- ./ groups -->
 		</div>
 		<!-- ./ general tab -->
 
-		<!-- Permissions tab -->
-		<div class="tab-pane" id="tab-permissions">
-			<div class="control-group">
-				<div class="controls">
-					@foreach ($permissions as $permissionId => $permissionName)
-					<label>
-						<input type="hidden" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="0" />
-						<input type="checkbox" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="1"{{ ( ! empty($selectedPermissions[ $permissionId ]) ? ' checked="checked"' : '') }} />
-						{{ $permissionName }}
-					</label>
-					@endforeach
-				</div>
-			</div>
-		</div>
-		<!-- ./ permissions tab -->
 	</div>
 	<!-- ./ tabs content -->
 
