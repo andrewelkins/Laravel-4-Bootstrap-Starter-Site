@@ -12,21 +12,16 @@ return array(
 		'success' => 'User created successfully.'
 	),
 
-	'update' => array(
-		'error'   => 'User was not updated, please try again',
-		'success' => 'User updated successfully.'
-	),
+    'edit' => array(
+        'impossible' => 'You cannot edit yourself.',
+        'error'      => 'There was an issue editing the user. Please try again.',
+        'success'    => 'The user was edited successfully.'
+    )
 
     'delete' => array(
         'impossible' => 'You cannot delete yourself.',
         'error'      => 'There was an issue deleting the user. Please try again.',
         'success'    => 'The user was deleted successfully.'
     ),
-
-    'edit' => array(
-        'impossible' => 'You cannot edit yourself.',
-        'error'      => 'There was an issue editing the user. Please try again.',
-        'success'    => 'The user was edited successfully.'
-    )
 
 );
