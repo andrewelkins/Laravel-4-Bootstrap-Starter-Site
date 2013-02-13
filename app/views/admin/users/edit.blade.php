@@ -78,8 +78,8 @@ User Update ::
 				<label class="control-label" for="confirm">Activate User?</label>
 				<div class="controls">
 					<select{{ ($user->id === Confide::user()->id ? ' disabled="disabled"' : '') }} name="confirm" id="confirm">
-						<option value="1"{{ ($user->confirm() ? ' selected="selected"' : '') }}>{{ Lang::get('general.yes') }}</option>
-						<option value="0"{{ ( ! $user->confirm() ? ' selected="selected"' : '') }}>{{ Lang::get('general.no') }}</option>
+						<option value="1"{{ ($user->confirmed ? ' selected="selected"' : '') }}>{{ Lang::get('general.yes') }}</option>
+						<option value="0"{{ ( ! $user->confirmed ? ' selected="selected"' : '') }}>{{ Lang::get('general.no') }}</option>
 					</select>
 					{{ $errors->first('confirm', '<span class="help-inline">:message</span>') }}
 				</div>

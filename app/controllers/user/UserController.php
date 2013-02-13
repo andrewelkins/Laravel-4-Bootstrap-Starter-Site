@@ -183,6 +183,20 @@ class UserController extends BaseController {
         return View::make('site/user/profile', compact('user'));
     }
 
+    public function getSettings()
+    {
+        $userModel = new User;
+        $user = $userModel->getUserByUsername($username);
+
+        // Check if the user exists
+        if (is_null($user))
+        {
+            return App::abort(404);
+        }
+
+        return View::make('site/user/profile', compact('user'));
+    }
+
     public function processRedirect($url1,$url2,$url3)
     {
 
