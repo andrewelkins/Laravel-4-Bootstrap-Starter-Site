@@ -165,6 +165,6 @@ For full usage see [Using Expressive Date](http://jasonlewis.me/code/expressive-
 
 ## Additional information
 
-Inspired by and roughly based on [laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit)
+Inspired by and based on [laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit)
 
 Any questions, feel free to [contact me](http://twitter.com/andrewelkins).
