@@ -12,10 +12,6 @@ class AdminUsersController extends AdminController {
         // Grab all the users
         $users = User::paginate(10);
 
-        if( ! Auth::check() )
-        {
-            return Redirect::to('user/login/admin/users')->with('error', Lang::get('general.must_login'));
-        }
         // Show the page
         return View::make('admin/users/index', compact('users'));
     }
