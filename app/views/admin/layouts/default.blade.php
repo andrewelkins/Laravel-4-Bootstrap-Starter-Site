@@ -20,7 +20,9 @@
 		<!-- CSS
 		================================================== -->
 		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/bootstrap-responsive.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/wysihtml5/prettify.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/bootstrap-responsive.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/wysihtml5/bootstrap-wysihtml5-0.0.2.css') }}" rel="stylesheet">
 
 		<style>
 		@section('styles')
@@ -107,7 +109,18 @@
 
 		<!-- Javascripts
 		================================================== -->
-		<script src="{{ asset('assets/js/jquery.v1.8.3.min.js') }}"></script>
-		<script src="{{ asset('assets/js/bootstrap-2.2.2/bootstrap.min.js') }}"></script>
+        <script src="{{{ asset('assets/js/wysihtml5/wysihtml5-0.3.0.js') }}}"></script>
+		<script src="{{{ asset('assets/js/jquery.v1.8.3.min.js') }}}"></script>
+		<script src="{{{ asset('assets/js/prettify.js') }}}"></script>
+		<script src="{{{ asset('assets/js/bootstrap-2.2.2/bootstrap.min.js') }}}"></script>
+		<script src="/assets/js/wysihtml5/bootstrap-wysihtml5.js"></script>
+    `
+        <script>
+            $('.wysihtml5').wysihtml5();
+        </script>
+
+        <script type="text/javascript" charset="utf-8">
+            $(prettyPrint);
+        </script>
 	</body>
 </html>

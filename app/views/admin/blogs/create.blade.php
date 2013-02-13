@@ -48,7 +48,7 @@ Create a New Blog Post ::
 			<div class="control-group {{ $errors->has('content') ? 'error' : '' }}">
 				<label class="control-label" for="content">Content</label>
 				<div class="controls">
-					<textarea class="full-width span10" name="content" value="content" rows="10">{{ Input::old('content') }}</textarea>
+					<textarea class="full-width span10 wysihtml5" name="content" value="content" rows="10">{{ Input::old('content') }}</textarea>
 					{{ $errors->first('content', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
