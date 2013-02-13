@@ -14,7 +14,7 @@ class AdminUsersController extends AdminController {
 
         if( ! Auth::check() )
         {
-            return Redirect::to('user/login?r=admin/users')->with('error', Lang::get('general.must_login'));
+            return Redirect::to('user/login/admin/users')->with('error', Lang::get('general.must_login'));
         }
         // Show the page
         return View::make('admin/users/index', compact('users'));

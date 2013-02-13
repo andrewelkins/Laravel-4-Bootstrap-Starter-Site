@@ -41,8 +41,11 @@ class BlogController extends BaseController {
 		// Get this post comments
 		$comments = $post->comments()->orderBy('created_at', 'DESC')->get();
 
+        $roleModel = new Role();
+        $roles = $roleModel->validateRoles(array('comment'));
+
 		// Show the page
-		return View::make('site/blog/view_post', compact('post', 'comments'));
+		return View::make('site/blog/view_post', compact('post', 'comments', 'roles'));
 	}
 
 	/**

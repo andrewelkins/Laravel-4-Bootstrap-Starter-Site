@@ -64,7 +64,7 @@
 			                            @if (Auth::check())
 			                            <li><a href="{{ URL::to('user/profile/'.Auth::user()->username) }}">Logged in as {{ Auth::user()->username }}</a></li>
 			                            <li class="divider-vertical"></li>
-			                            <li {{ (Request::is('account') ? 'class="active"' : '') }}><a href="{{ URL::to('user/settings') }}">Account</a></li>
+			                            <li {{ (Request::is('user') ? 'class="active"' : '') }}><a href="{{ URL::to('user/settings') }}">Account</a></li>
 			                            <li><a href="{{ URL::to('user/logout') }}">Logout</a></li>
 			                            @else
 			                            <li {{ (Request::is('user/login') ? 'class="active"' : '') }}><a href="{{ URL::to('user/login') }}">Login</a></li>

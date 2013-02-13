@@ -71,7 +71,9 @@
 
 @if ( ! Auth::check())
 You need to be logged in to add comments.<br /><br />
-Click <a href="{{ URL::to('account/login') }}">here</a> to login into your account.
+Click <a href="{{ URL::to('user/login') }}">here</a> to login into your account.
+@elseif ( ! $roles->comment )
+You don't have the correct permissions to add comments.
 @else
 <h4>Add a Comment</h4>
 <form method="post" action="{{ URL::to($post->slug) }}">

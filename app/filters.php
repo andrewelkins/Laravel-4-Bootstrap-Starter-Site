@@ -62,3 +62,28 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| Role Permissions
+|--------------------------------------------------------------------------
+|
+| Access filters based on roles.
+|
+*/
+
+Route::filter('admin_role', function()
+{
+    if (! Entrust::hasRole('admin') ) // Checks the current user
+    {
+        App::abort(404);
+    }
+});
+
+Route::filter('comment_role', function()
+{
+    if (! Entrust::hasRole('comment') ) // Checks the current user
+    {
+        App::abort(404);
+    }
+});

@@ -15,7 +15,7 @@
  *  Admin Routes
  *  ------------------------------------------
  */
-Route::group(array('prefix' => 'admin'), function()
+Route::group(array('prefix' => 'admin', 'before' => 'auth|admin_role'), function()
 {
 
     # Blog Management
