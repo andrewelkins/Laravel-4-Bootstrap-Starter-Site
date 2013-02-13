@@ -2,8 +2,8 @@
 
 {{-- Web site Title --}}
 @section('title')
+{{ Str::title($post->title) }} ::
 @parent
-{{ Str::title($post->title) }}
 @stop
 
 {{-- Update the Meta Title --}}
