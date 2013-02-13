@@ -25,7 +25,7 @@ User Update ::
 </ul>
 <!-- ./ tabs -->
 
-<form class="form-horizontal" method="post" action="" autocomplete="off">
+<form class="form-horizontal" method="post" action="/admin/users/{{$user->id}}/edit" autocomplete="off">
 	<!-- CSRF Token -->
 	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 	<!-- ./ csrf token -->
@@ -34,25 +34,15 @@ User Update ::
 	<div class="tab-content">
 		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
-			<!-- First Name -->
-			<div class="control-group {{ $errors->has('first_name') ? 'error' : '' }}">
-				<label class="control-label" for="first_name">First Name</label>
+			<!-- username -->
+			<div class="control-group {{ $errors->has('username') ? 'error' : '' }}">
+				<label class="control-label" for="username">Username</label>
 				<div class="controls">
-					<input type="text" name="first_name" id="first_name" value="{{ Input::old('first_name', $user->first_name) }}" />
-					{{ $errors->first('first_name', '<span class="help-inline">:message</span>') }}
+					<input type="text" name="username" id="username" value="{{ Input::old('username', $user->username) }}" />
+					{{ $errors->first('username', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ first name -->
-
-			<!-- Last Name -->
-			<div class="control-group {{ $errors->has('last_name') ? 'error' : '' }}">
-				<label class="control-label" for="last_name">Last Name</label>
-				<div class="controls">
-					<input type="text" name="last_name" id="last_name" value="{{ Input::old('last_name', $user->last_name) }}" />
-					{{ $errors->first('last_name', '<span class="help-inline">:message</span>') }}
-				</div>
-			</div>
-			<!-- ./ last name -->
+			<!-- ./ username -->
 
 			<!-- Email -->
 			<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
@@ -88,9 +78,9 @@ User Update ::
 			<div class="control-group {{ $errors->has('activated') ? 'error' : '' }}">
 				<label class="control-label" for="activated">Activate User?</label>
 				<div class="controls">
-					<select{{ ($user->id === Sentry::getId() ? ' disabled="disabled"' : '') }} name="activated" id="activated">
-						<option value="1"{{ ($user->isActivated() ? ' selected="selected"' : '') }}>{{ Lang::get('general.yes') }}</option>
-						<option value="0"{{ ( ! $user->isActivated() ? ' selected="selected"' : '') }}>{{ Lang::get('general.no') }}</option>
+					<select{{ ($user->id === Confide::user()->id ? ' disabled="disabled"' : '') }} name="activated" id="activated">
+						<option value="1"{{ ($user->confirm() ? ' selected="selected"' : '') }}>{{ Lang::get('general.yes') }}</option>
+						<option value="0"{{ ( ! $user->confirm() ? ' selected="selected"' : '') }}>{{ Lang::get('general.no') }}</option>
 					</select>
 					{{ $errors->first('activated', '<span class="help-inline">:message</span>') }}
 				</div>
@@ -98,12 +88,12 @@ User Update ::
 			<!-- ./ activation status -->
 
 			<!-- Groups -->
-			<div class="control-group {{ $errors->has('groups') ? 'error' : '' }}">
-				<label class="control-label" for="groups">Groups</label>
+			<div class="control-group {{ $errors->has('roles') ? 'error' : '' }}">
+				<label class="control-label" for="groups">Roles</label>
 				<div class="controls">
-					<select name="groups[]" id="groups[]" multiple>
-						@foreach ($groups as $group)
-						<option value="{{ $group->id }}"{{ (array_key_exists($group->id, $userGroups) ? ' selected="selected"' : '') }}>{{ $group->name }}</option>
+					<select name="roles[]" id="roles[]" multiple>
+						@foreach ($roles as $role)
+						<option value="{{ $role->id }}"{{ ( array_search($role->id, $user->currentRoleIds()) !== false && array_search($role->id, $user->currentRoleIds()) >= 0 ? ' selected="selected"' : '') }}>{{ $role->name }}</option>
 						@endforeach
 					</select>
 
@@ -120,13 +110,17 @@ User Update ::
 		<div class="tab-pane" id="tab-permissions">
 			<div class="controls">
 				<div class="control-group">
-					@foreach ($permissions as $permissionId => $permissionName)
-					<label>
-						<input type="hidden" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="0" />
-						<input type="checkbox" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="1"{{ (array_key_exists($permissionId, $userPermissions) ? ' checked="checked"' : '')}} />
-						{{ $permissionName }}
-					</label>
-					@endforeach
+                    @foreach ($permissions as $permissionId => $permissionName)
+                    <label>
+                        <input type="hidden" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="0" />
+                        <input type="checkbox" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="1"{{ ( ! empty($selectedPermissions[ $permissionId ]) ? ' checked="checked"' : '') }} />
+                        {{ $permissionName }}
+                    </label>
+                    @endforeach
+
+					<span class="help-block">
+						A user has permissions from roles that it is given. If you want to specify a permission not contained in a rule, do so here.
+					</span>
 				</div>
 			</div>
 		</div>

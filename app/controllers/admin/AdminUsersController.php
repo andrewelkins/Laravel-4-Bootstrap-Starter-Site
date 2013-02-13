@@ -50,63 +50,34 @@ class AdminUsersController extends AdminController {
      */
     public function postCreate()
     {
-        // Declare the rules for the form validation
-        $rules = array(
-            'first_name'            => 'required|min:3',
-            'last_name'             => 'required|min:3',
-            'email'                 => 'required|email|unique:users,email',
-            'password'              => 'required|between:3,32|confirmed',
-            'password_confirmation' => 'required|between:3,32'
-        );
+        $user = new User;
 
-        // Validate the inputs
-        $validator = Validator::make(Input::all(), $rules);
+        $user->username = Input::get( 'username' );
+        $user->email = Input::get( 'email' );
+        $user->password = Input::get( 'password' );
 
-        // Check if the form was validated with success
-        if ($validator->passes())
+        // The password confirmation will be removed from model
+        // before saving. This field will be used in Ardent's
+        // auto validation.
+        $user->password_confirmation = Input::get( 'password_confirmation' );
+
+        // Save if valid. Password field will be hashed before save
+        $user->save();
+
+        if ( $user->id )
         {
-            try
-            {
-                // Get the inputs, with some exceptions
-                $inputs = Input::except('csrf_token', 'password_confirmation', 'groups');
-
-                // Was the user created?
-                if ($user = Sentry::getUserProvider()->create($inputs))
-                {
-                    // Assign the selected groups to this user
-                    foreach (Input::get('groups', array()) as $groupId)
-                    {
-                        $group = Sentry::getGroupProvider()->findById($groupId);
-
-                        $user->addGroup($group);
-                    }
-
-                    // Redirect to the new user page
-                    return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
-                }
-
-                // Redirect to the new user page
-                return Redirect::to('admin/users/create')->with('error', Lang::get('admin/users/messages.create.error'));
-            }
-            catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
-            {
-                $error = 'login_required';
-            }
-            catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
-            {
-                $error = 'password_required';
-            }
-            catch (Cartalyst\Sentry\Users\UserExistsException $e)
-            {
-                $error = 'already_exists';
-            }
-
-            // Redirect to the user create page
-            return Redirect::to('admin/users/create')->withInput()->with('error', Lang::get('admin/users/messages.' . $error));
+            // Redirect to the new user page
+            return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
         }
+        else
+        {
+            // Get validation errors (see Ardent package)
+            $error = $user->getErrors()->all();
 
-        // Form validation failed
-        return Redirect::to('admin/users/create')->withInput()->withErrors($validator);
+            return Redirect::to('admin/users/create')
+                ->withInput(Input::except('password'))
+                ->with( 'error', $error );
+        }
     }
 
     /**
@@ -126,32 +97,26 @@ class AdminUsersController extends AdminController {
      */
     public function getEdit($id)
     {
-        try
+        $user = User::find($id);
+
+        if ( $user->id )
         {
-            // Get the user information
-            $user = Sentry::getUserProvider()->findById($id);
-
-            // Get the user groups
-            $userGroups = $user->groups()->lists('name', 'group_id');
-
-            // Get all the available groups
-            $groups = Sentry::getGroupProvider()->findAll();
-
-            // Get all the available permissions
-            $permissions = $this->permissions;
-
-            // Get this user permissions
-            $userPermissions = $user->getPermissions();
+            $roles = Role::all();
+            $permissions = Role::getAvailablePermissions();
+//            var_dump($user->currentRoleIds());
+//            foreach($roles as $role)
+//            {
+//                var_dump($role->id);
+//                echo array_search($role->id, $user->currentRoleIds());
+//            }
+//            die();
+            // Show the page
+            return View::make('admin/users/edit', compact('user', 'roles', 'permissions'));
         }
-        catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+        else
         {
-            // Redirect to the user management page
             return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
         }
-
-        // Show the page
-        return View::make('admin/users/edit', compact('user', 'groups', 'userGroups', 'permissions', 'userPermissions'));
-
     }
 
     /**
@@ -162,102 +127,42 @@ class AdminUsersController extends AdminController {
     public function postEdit($id)
     {
 
-        try
+        $user = User::find($id);
+
+        if ( empty($user->id) )
         {
-            // Get the user information
-            $user = Sentry::getUserProvider()->findById($id);
-        }
-        catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
-        {
-            // Redirect to the user management page
-            return Rediret::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
         }
 
-        // Declare the rules for the form validation
-        $rules = array(
-            'first_name' => 'required|min:3',
-            'last_name'  => 'required|min:3',
-            'email'      => 'required|email|unique:users,email,' . $user->email . ',email'
-        );
+        // Save roles. Handles updating.
+        $user->saveRoles(Input::get( 'roles' ));
 
-        // Do we want to update the user password?
-        if (Input::get('password'))
+        $user->username = Input::get( 'username' );
+        $user->email = Input::get( 'email' );
+
+        $password = Input::get( 'password' );
+        $passwordConfirmation = Input::get( 'password_confirmation' );
+        if( ! empty( $password ) && ! empty( $passwordConfirmation ) )
         {
-            $rules['password']              = 'required|between:3,32|confirmed';
-            $rules['password_confirmation'] = 'required|between:3,32';
+            $user->password = Input::get( 'password' );
+            // The password confirmation will be removed from model
+            // before saving. This field will be used in Ardent's
+            // auto validation.
+            $user->password_confirmation = Input::get( 'password_confirmation' );
         }
 
-        // Validate the inputs
-        $validator = Validator::make(Input::all(), $rules);
+        // Save if valid. Password field will be hashed before save
+        $user->save();
 
-        // Check if the form validates with success
-        if ($validator->passes())
+        if ( $user->id )
         {
-            try
-            {
-                // Update the user
-                $user->first_name  = Input::get('first_name');
-                $user->last_name   = Input::get('last_name');
-                $user->email       = Input::get('email');
-                $user->activated   = Input::get('activated', $user->activated);
-                $user->permissions = Input::get('permissions');
-
-                // Do we want to update the user password?
-                if ($password = Input::get('password'))
-                {
-                    $user->password = $password;
-                }
-
-                // Get the current user groups
-                $userGroups = $user->groups()->lists('group_id');
-
-                // Get the selected groups
-                $selectedGroups = Input::get('groups', array());
-
-                // Groups comparison between the groups the user currently
-                // have and the groups the user wish to have.
-                $groupsToAdd    = array_diff($selectedGroups, $userGroups);
-                $groupsToRemove = array_diff($userGroups, $selectedGroups);
-
-                // Assign the user to groups
-                foreach ($groupsToAdd as $groupId)
-                {
-                    $group = Sentry::getGroupProvider()->findById($groupId);
-
-                    $user->addGroup($group);
-                }
-
-                // Remove the user from groups
-                foreach ($groupsToRemove as $groupId)
-                {
-                    $group = Sentry::getGroupProvider()->findById($groupId);
-
-                    $user->removeGroup($group);
-                }
-
-                // Was the user updated?
-                if ($user->save())
-                {
-                    // Redirect to the user page
-                    return Redirect::to('admin/users/' . $id . '/edit')->with('success', Lang::get('admin/users/messages.update.success'));
-                }
-                else
-                {
-                    // Redirect to the user page
-                    return Redirect::to('admin/users/' . $id . '/edit')->with('error', Lang::get('admin/users/messages.update.error'));
-                }
-            }
-            catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
-            {
-                $error = Lang::get('admin/users/messages.login_required');
-            }
-
-            // Redirect to the user page
-            return Redirect::to('admin/users/' . $id . '/edit')->withInput()->with('error', $error);
+            // Redirect to the new user page
+            return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.edit.success'));
         }
-
-        // Form validation failed
-        return Redirect::to('admin/users/' . $id . '/edit')->withInput()->withErrors($validator);
+        else
+        {
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
+        }
     }
 
     /**
@@ -267,32 +172,30 @@ class AdminUsersController extends AdminController {
      */
     public function postDelete($id)
     {
-        try
+
+        $user = User::find($id);
+
+        if ( $user->id )
         {
-            // Get user information
-            $user = Sentry::getUserProvider()->findById($id);
-
-            // Check if we are not trying to delete ourselves
-            if ($user->id === Sentry::getId())
-            {
-                // Redirect to the user management page
-                return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.delete.impossible'));
-            }
-
-            // Was the user deleted?
-            if($user->delete())
-            {
-                // Redirect to the user management page
-                return Redirect::to('admin/users')->with('success', Lang::get('admin/users/messages.delete.success'));
-            }
-
-            // There was a problem deleting the user
-            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.delete.error'));
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
         }
-        catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+
+
+        // Check if we are not trying to delete ourselves
+        if ($user->id === Confide::user()->id)
         {
             // Redirect to the user management page
-            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.not_found'));
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.delete.impossible'));
+        }
+        elseif ( $user->delete() )
+        {
+            // Try and delete user
+            return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.delete.success'));
+        }
+        else
+        {
+            // There was a problem deleting the user
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.delete.error'));
         }
     }
 }
