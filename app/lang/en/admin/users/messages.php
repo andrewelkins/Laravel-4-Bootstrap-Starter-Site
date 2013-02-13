@@ -16,12 +16,12 @@ return array(
         'impossible' => 'You cannot edit yourself.',
         'error'      => 'There was an issue editing the user. Please try again.',
         'success'    => 'The user was edited successfully.'
-    )
+    ),
 
     'delete' => array(
         'impossible' => 'You cannot delete yourself.',
         'error'      => 'There was an issue deleting the user. Please try again.',
         'success'    => 'The user was deleted successfully.'
-    ),
+    )
 
 );
