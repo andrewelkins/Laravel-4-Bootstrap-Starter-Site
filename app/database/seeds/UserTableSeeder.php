@@ -10,7 +10,13 @@ class UserTableSeeder extends Seeder {
             'username'      => 'test',
             'email'      => 'test@test.com',
             'password'   => Hash::make('test'),
-            'confirmed'   => 0
+            'confirmed'   => 1
+        ),
+        array(
+            'username'      => 'test_commenter',
+            'email'      => 'test_commenter@test.com',
+            'password'   => Hash::make('test'),
+            'confirmed'   => 1
         ));
     }
 
