@@ -35,7 +35,10 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::to('user/login/'.Request::path());
+	if (Auth::guest()) {
+        Session::put('loginRedirect', Request::url());
+        return Redirect::to('user/login/');
+    }
 });
 
 
@@ -76,7 +79,7 @@ Route::filter('admin_role', function()
 {
     if (! Entrust::hasRole('admin') ) // Checks the current user
     {
-        App::abort(404);
+        App::abort(404);return View::make('error/403');
     }
 });
 

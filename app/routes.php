@@ -67,8 +67,6 @@ Route::group(array('before' => 'auth'), function()
 {
     Route::get('user/settings', 'UserController@getSettings');
 });
-Route::get('user/login/{url1?}/{url2?}/{url3?}', 'UserController@getLogin');
-Route::post('user/login/{url1?}/{url2?}/{url3?}', 'UserController@postLogin');
 # User RESTful Routes (Includes Authentication, Authorization and Settings)
 Route::controller('user', 'UserController');
 

@@ -1,4 +1,4 @@
-#Laravel 4 - Bootstrap Starter Site (WORK IN PROGRESS - Likely Broken)
+#Laravel 4 - Bootstrap Starter Site (WORK IN PROGRESS - ALPHA 1)
 
 This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) and [andrew13/Laravel-4-Bootstrap-Empowered](http://github.com/andrew13/Laravel-4-Bootstrap-Empowered) combining the starter kit with substitute modules. Big thanks goes to [brunogaspar](https://github.com/brunogaspar)
 
@@ -13,12 +13,12 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 	* 500 for internal server errors
 * [Confide](#confide) for Authentication and Authorization
 * Back-end
-	* User and Group management [TODO Groups]
-	* Manage blog posts and comments [TODO Admin]
+	* User and Role management
+	* Manage blog posts and comments
 * Front-end
 	* User login, registration, forgot password
-	* User account area [TODO User Settings]
-	* Simple Blog functionality [TODO Blog Post Page]
+	* User account area
+	* Simple Blog functionality
 * Packages included:
 	* [Confide](#confide)
 	* [Ardent](#ardent)

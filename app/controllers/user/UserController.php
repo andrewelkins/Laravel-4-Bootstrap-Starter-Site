@@ -68,10 +68,9 @@ class UserController extends BaseController {
      * Displays the login form
      *
      */
-    public function getLogin($url1=null,$url2=null,$url3=null)
+    public function getLogin()
     {
-        $redirect = $this->processRedirect($url1,$url2,$url3);
-        return View::make('site/user/login', compact('redirect'));
+        return View::make('site/user/login');
     }
 
     /**
@@ -91,9 +90,10 @@ class UserController extends BaseController {
         // logAttempt will check if the 'email' perhaps is the username.
         if ( Confide::logAttempt( $input ) ) 
         {
-            $r = $this->processRedirect($url1,$url2,$url3);
+            $r = Session::get('loginRedirect');;
             if (!empty($r))
             {
+                Session::forget('loginRedirect');
                 return Redirect::to($r);
             }
             return Redirect::to('/');
