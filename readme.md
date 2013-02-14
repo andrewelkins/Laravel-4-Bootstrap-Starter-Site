@@ -1,6 +1,6 @@
 #Laravel 4 - Bootstrap Starter Site (RC 1)
 
-This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules.
+This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
 Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 
 -----
