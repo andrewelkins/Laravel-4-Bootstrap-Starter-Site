@@ -61,8 +61,8 @@
 						<div class="nav-collapse collapse">
 							<ul class="nav">
 								<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{ URL::to('admin') }}"><i class="icon-home icon-white"></i> Home</a></li>
-								<li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/comments') }}"><i class="icon-bullhorn icon-white"></i> Comments</a></li>
 								<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/blogs') }}"><i class="icon-list-alt icon-white"></i> Blogs</a></li>
+								<li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/comments') }}"><i class="icon-bullhorn icon-white"></i> Comments</a></li>
 								<li class="dropdown{{ (Request::is('admin/users*|admin/roles*') ? ' active' : '') }}">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="{{ URL::to('admin/users') }}">
 										<i class="icon-user icon-white"></i> Users <span class="caret"></span>

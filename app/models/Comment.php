@@ -44,6 +44,38 @@ class Comment extends Eloquent implements PresentableInterface{
 		return $this->belongsTo('Post');
 	}
 
+    /**
+     * Get the post's author.
+     *
+     * @return User
+     */
+    public function user()
+    {
+        return $this->belongsTo('User', 'user_id');
+    }
+
+    /**
+     * Returns the date of the blog post creation,
+     * on a good and more readable format :)
+     *
+     * @return string
+     */
+    public function created_at()
+    {
+        return ExpressiveDate::make($this->created_at)->getRelativeDate();
+    }
+
+    /**
+     * Returns the date of the blog post last update,
+     * on a good and more readable format :)
+     *
+     * @return string
+     */
+    public function updated_at()
+    {
+        return ExpressiveDate::make($this->updated_at)->getRelativeDate();
+    }
+
     public function getPresenter()
     {
         return new CommentPresenter($this);

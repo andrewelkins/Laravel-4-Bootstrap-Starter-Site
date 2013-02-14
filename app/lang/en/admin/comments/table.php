@@ -3,7 +3,7 @@
 return array(
 
 	'title'      => 'Comment',
-	'comments'   => '# of Comments',
+	'user_id'   => '# of Comments',
 	'created_at' => 'Created at',
 
 );

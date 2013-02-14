@@ -56,8 +56,10 @@ class BlogController extends BaseController {
 	 */
 	public function postView($slug)
 	{
-		// The user needs to be logged in, make that check please.
-		if ( ! Sentry::check())
+
+        $roleModel = new Role();
+        $roles = $roleModel->validateRoles(array('comment'));
+		if ( ! $roles->comment)
 		{
 			return Redirect::to($slug . '#comments')->with('error', 'You need to be logged in to post comments!');
 		}
@@ -78,7 +80,7 @@ class BlogController extends BaseController {
 		{
 			// Save the comment
 			$comment = new Comment;
-			$comment->user_id = User::getUser()->id;
+			$comment->user_id = Auth::user()->id;
 			$comment->content = Input::get('comment');
 
 			// Was the comment saved with success?
