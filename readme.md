@@ -7,7 +7,7 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 
 ##Included features
 
-* Twitter Bootstrap 2.3.0
+* Twitter Bootstrap 2.
 * Custom Error Pages
 	* 403 for forbidden page accesses
 	* 404 for not found pages
@@ -25,7 +25,8 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 	* [Confide](#confide)
 	* [Ardent](#ardent)
 	* [PowerPack](#powerpack)
-	* [Jason Lewis Expressive Date](#expressive-date)
+	* [Expressive Date](#expressive-date)
+	* [Basset](#basset)
 
 -----
 
@@ -160,7 +161,33 @@ $date->addOneWeek();
 echo $date->getShortDate(); // Jan 31, 2012
 ```
 
-For full usage see [Using Expressive Date](http://jasonlewis.me/code/expressive-date)
+For full usage see [Using Expressive Date by Jason Lewis](http://jasonlewis.me/code/expressive-date)
+
+-----
+
+<a name="basset"></a>
+## Basset
+
+A Better Asset Management package for Laravel.
+
+Adding assets in the configuration file `config/packages/jasonlewis/basset/config.php`
+```php
+<?php
+
+'collections' => array(
+        'public-css' => function($collection)
+        {
+            $collection->add('assets/css/bootstrap.min.css');
+            $collection->add('assets/css/bootstrap-responsive.min.css');
+        },
+    ),
+```
+
+Compiling assets
+
+    $ php artisan basset:compile
+
+For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basset)
 
 -----
 
