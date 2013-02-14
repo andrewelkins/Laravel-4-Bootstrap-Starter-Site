@@ -7,7 +7,7 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 
 ##Included features
 
-* Twitter Bootstrap 2.
+* Twitter Bootstrap 2.3.0
 * Custom Error Pages
 	* 403 for forbidden page accesses
 	* 404 for not found pages
@@ -172,8 +172,6 @@ A Better Asset Management package for Laravel.
 
 Adding assets in the configuration file `config/packages/jasonlewis/basset/config.php`
 ```php
-<?php
-
 'collections' => array(
         'public-css' => function($collection)
         {
