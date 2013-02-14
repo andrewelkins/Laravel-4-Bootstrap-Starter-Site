@@ -113,7 +113,7 @@
         <script src="{{{ asset('assets/js/wysihtml5/wysihtml5-0.3.0.js') }}}"></script>
 		<script src="{{{ asset('assets/js/jquery.v1.8.3.min.js') }}}"></script>
 		<script src="{{{ asset('assets/js/prettify.js') }}}"></script>
-		<script src="{{{ asset('assets/js/bootstrap-2.2.2/bootstrap.min.js') }}}"></script>
+		<script src="{{{ asset('assets/js/bootstrap/bootstrap.min.js') }}}"></script>
 		<script src="/assets/js/wysihtml5/bootstrap-wysihtml5.js"></script>
     `
         <script>
