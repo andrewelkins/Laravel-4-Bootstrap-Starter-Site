@@ -19,8 +19,7 @@
 
 		<!-- CSS
 		================================================== -->
-		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/bootstrap-responsive.css') }}" rel="stylesheet">
+        {{{ Basset::show('public-css.css') }}}
 
 		<style>
 		@section('styles')
@@ -90,7 +89,6 @@
 
 		<!-- Javascripts
 		================================================== -->
-		<script src="{{ asset('assets/js/jquery.v1.8.3.min.js') }}"></script>
-		<script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
+        {{{ Basset::show('public-js.js') }}}
 	</body>
 </html>

@@ -19,10 +19,7 @@
 
 		<!-- CSS
 		================================================== -->
-		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/wysihtml5/prettify.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/bootstrap-responsive.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/wysihtml5/bootstrap-wysihtml5-0.0.2.css') }}" rel="stylesheet">
+        {{{ Basset::show('admin-css.css') }}}
 
 		<style>
 		@section('styles')
@@ -110,11 +107,7 @@
 
 		<!-- Javascripts
 		================================================== -->
-        <script src="{{{ asset('assets/js/wysihtml5/wysihtml5-0.3.0.js') }}}"></script>
-		<script src="{{{ asset('assets/js/jquery.v1.8.3.min.js') }}}"></script>
-		<script src="{{{ asset('assets/js/prettify.js') }}}"></script>
-		<script src="{{{ asset('assets/js/bootstrap/bootstrap.min.js') }}}"></script>
-		<script src="/assets/js/wysihtml5/bootstrap-wysihtml5.js"></script>
+        {{{ Basset::show('admin-js.js') }}}
     `
         <script>
             $('.wysihtml5').wysihtml5();

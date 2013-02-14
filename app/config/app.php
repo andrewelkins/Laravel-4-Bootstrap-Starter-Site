@@ -114,6 +114,7 @@ return array(
         'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
 		'LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider', // PowerPack Provider
         'ExpressiveDateServiceProvider', // Expressive Date
+        'Basset\BassetServiceProvider', // Better Asset Management
         'BigElephant\Presenter\PresenterServiceProvider', // Presenter
 
 	),
@@ -185,6 +186,7 @@ return array(
 		'Str'             => 'LaravelBook\Laravel4Powerpack\Facades\StrFacade', // PowerPack Alias
         'Presenter'       => 'BigElephant\Presenter\Presenter', // Presenter
         'Presentable'     => 'BigElephant\Presenter\PresentableInterface', // Presenter
+        'Basset'          => 'Basset\Facades\Basset', // Better Asset Management
 
 	),
 
