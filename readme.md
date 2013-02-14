@@ -7,7 +7,7 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 
 ##Included features
 
-* Twitter Bootstrap 2.2.2
+* Twitter Bootstrap 2.3.0
 * Custom Error Pages
 	* 403 for forbidden page accesses
 	* 404 for not found pages
