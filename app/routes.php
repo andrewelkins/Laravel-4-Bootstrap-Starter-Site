@@ -18,6 +18,17 @@
 Route::group(array('prefix' => 'admin', 'before' => 'auth|admin_role'), function()
 {
 
+    # Comment Management
+    Route::get('comments/{id}/show', 'AdminCommentsController@getShow')
+        ->where('id', '[0-9]+');
+    Route::get('comments/{id}/edit', 'AdminCommentsController@getEdit')
+        ->where('id', '[0-9]+');
+    Route::post('comments/{id}/edit', 'AdminCommentsController@postEdit')
+        ->where('id', '[0-9]+');
+    Route::post('comments/{id}/delete', 'AdminCommentsController@postDelete')
+        ->where('id', '[0-9]+');
+    Route::controller('comments', 'AdminCommentsController');
+
     # Blog Management
     Route::get('blogs/{id}/show', 'AdminBlogsController@getShow')
         ->where('id', '[0-9]+');
