@@ -16,6 +16,7 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 * Back-end
 	* User and Role management
 	* Manage blog posts and comments
+	* WYSIWYG editor for post creation and editing.
 * Front-end
 	* User login, registration, forgot password
 	* User account area

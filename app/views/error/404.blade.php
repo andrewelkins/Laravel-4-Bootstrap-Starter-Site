@@ -117,7 +117,7 @@
 			</p>
 
 			<p>
-				Perhaps you would like to go to our <a href="{{ URL::to('/'); }}">home page</a>?
+				Perhaps you would like to go to our <a href="{{ URL::to('/') }}">home page</a>?
 			</p>
 		</div>
 	</div>
