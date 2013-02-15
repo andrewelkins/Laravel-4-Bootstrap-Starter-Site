@@ -58,7 +58,6 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 #### Option 2: Composer is installed globally
 
     cd laravel
-	curl -s http://getcomposer.org/installer | php
 	composer install
 
 If you haven't already, you might want to make [composer be installed globally](http://andrewelkins.com/programming/php/setting-up-composer-globally-for-laravel-4/) for future ease of use.
