@@ -77,7 +77,7 @@ class UserController extends BaseController {
      * Attempt to do login
      *
      */
-    public function postLogin($url1=null,$url2=null,$url3=null)
+    public function postLogin()
     {
         $input = array(
             'email'    => Input::get( 'email' ), // May be the username too
@@ -100,9 +100,18 @@ class UserController extends BaseController {
         }
         else
         {
-            $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
-                        return Redirect::to('user/login')
-                            ->withInput(Input::except('password'))
+            // Check if there was too many login attempts
+            if( Confide::isThrottled( $input ) )
+            {
+                $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
+            }
+            else
+            {
+                $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
+            }
+
+            return Redirect::to('user/login')
+                ->withInput(Input::except('password'))
                 ->with( 'error', $err_msg );
         }
     }
@@ -143,17 +152,57 @@ class UserController extends BaseController {
      */
     public function postForgot()
     {
-        if( Confide::resetPassword( Input::get( 'email' ) ) )
+        if( Confide::forgotPassword( Input::get( 'email' ) ) )
         {
             $notice_msg = Lang::get('confide::confide.alerts.password_reset');
-                        return Redirect::to('user/login')
-                            ->with( 'notice', $notice_msg );
+            return Redirect::to('user/login')
+                ->with( 'notice', $notice_msg );
         }
         else
         {
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
-                        return Redirect::to('user/forgot')
-                            ->withInput()
+            return Redirect::to('user/forgot')
+                ->withInput()
+                ->with( 'error', $error_msg );
+        }
+    }
+
+    /**
+     * Shows the change password form with the given token
+     *
+     */
+    public function getReset( $token )
+    {
+
+        return View::make('site/user/reset')
+            ->with('token',$token);
+    }
+
+
+    /**
+     * Attempt change password of the user
+     *
+     */
+    public function postReset()
+    {
+        $input = array(
+        'token'=>Input::get( 'token' ),
+        'password'=>Input::get( 'password' ),
+        'password_confirmation'=>Input::get( 'password_confirmation' ),
+        );
+
+            // By passing an array with the token, password and confirmation
+        if( Confide::resetPassword( $input ) )
+        {
+            $notice_msg = Lang::get('confide::confide.alerts.password_reset');
+            return Redirect::to('user/login')
+            ->with( 'notice', $notice_msg );
+        }
+        else
+        {
+            $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
+            return Redirect::to('user/reset')
+                ->withInput()
                 ->with( 'error', $error_msg );
         }
     }
