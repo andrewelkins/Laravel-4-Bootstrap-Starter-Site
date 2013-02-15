@@ -4,10 +4,10 @@ class DatabaseSeeder extends Seeder {
 
     public function run()
     {
-        $this->call('UserTableSeeder');
-        $this->call('PostTableSeeder');
-        $this->call('CommentTableSeeder');
-        $this->call('RoleTableSeeder');
+        $this->call('UsersTableSeeder');
+        $this->call('PostsTableSeeder');
+        $this->call('CommentsTableSeeder');
+        $this->call('RolesTableSeeder');
     }
 
 }

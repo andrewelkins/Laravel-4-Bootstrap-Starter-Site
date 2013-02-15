@@ -1,6 +1,6 @@
 <?php
 
-class CommentTableSeeder extends Seeder {
+class CommentsTableSeeder extends Seeder {
 
     protected $content1 = 'Lorem ipsum dolor sit amet, mutat utinam nonumy ea mel.';
     protected $content2 = 'Lorem ipsum dolor sit amet, sale ceteros liberavisse duo ex, nam mazim maiestatis dissentiunt no. Iusto nominavi cu sed, has.';
