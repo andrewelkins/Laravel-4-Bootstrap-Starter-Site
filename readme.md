@@ -29,7 +29,7 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 	* [Basset](#basset)
 
 ## Issues
-* Seeds do not work
+* None known 
 
 -----
 
