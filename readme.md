@@ -23,6 +23,7 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 	* Simple Blog functionality
 * Packages included:
 	* [Confide](#confide)
+	* [Entrust](#entrust)
 	* [Ardent](#ardent)
 	* [PowerPack](#powerpack)
 	* [Expressive Date](#expressive-date)
@@ -122,6 +123,22 @@ Used for the user auth and registration. In general for user controllers you'll 
     }
 
 For full usage see [Zizaco/Confide Documentation](https://github.com/zizaco/confide)
+
+<a name="entrust"></a>
+## Entrust Role Solution
+
+Entrust provides a flexible way to add Role-based Permissions to Laravel4.
+
+    <?php
+
+    use Zizaco\Entrust\EntrustRole;
+    
+    class Role extends EntrustRole
+    {
+    
+    }
+
+For full usage see [Zizaco/Entrust Documentation](https://github.com/zizaco/entrust)
 
 <a name="ardent"></a>
 ## Ardent - Used for handling repetitive validation tasks.
