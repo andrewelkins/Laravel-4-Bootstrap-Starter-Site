@@ -28,6 +28,9 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 	* [Expressive Date](#expressive-date)
 	* [Basset](#basset)
 
+## Issues
+* Seeds do not work
+
 -----
 
 ##Requirements
