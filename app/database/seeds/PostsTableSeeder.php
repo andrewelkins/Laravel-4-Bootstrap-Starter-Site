@@ -26,8 +26,11 @@ Te his dolorem adversarium? Pri eu rebum viris, tation molestie id pri. Mel ei s
     {
         DB::table('posts')->delete();
 
-        User::create(array(
-                'user_id'    => 1,
+        $user_id = User::first()->id;
+
+        DB::table('posts')->insert( array(
+            array(
+                'user_id'    => $user_id,
                 'title'      => 'Lorem ipsum dolor sit amet',
                 'slug'       => 'lorem-ipsum-dolor-sit-amet',
                 'content'    => $this->content,
@@ -35,7 +38,7 @@ Te his dolorem adversarium? Pri eu rebum viris, tation molestie id pri. Mel ei s
                 'updated_at' => new DateTime,
             ),
             array(
-                'user_id'    => 1,
+                'user_id'    => $user_id,
                 'title'      => 'Vivendo suscipiantur vim te vix',
                 'slug'       => 'vivendo-suscipiantur-vim-te-vix',
                 'content'    => $this->content,
@@ -43,13 +46,14 @@ Te his dolorem adversarium? Pri eu rebum viris, tation molestie id pri. Mel ei s
                 'updated_at' => new DateTime,
             ),
             array(
-                'user_id'    => 1,
+                'user_id'    => $user_id,
                 'title'      => 'In iisque similique reprimique eum',
                 'slug'       => 'in-iisque-similique-reprimique-eum',
                 'content'    => $this->content,
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
-            ));
+            ))
+        );
     }
 
 }
