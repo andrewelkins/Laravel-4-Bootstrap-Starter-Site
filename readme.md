@@ -44,7 +44,6 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 #### Option 1: Git Clone
 
 	git clone git://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git laravel
-	cd laravel
 
 #### Option 2: Download the repository
 
