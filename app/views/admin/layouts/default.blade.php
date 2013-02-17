@@ -96,7 +96,7 @@
 			<!-- ./ navbar -->
 
 			<!-- Notifications -->
-			@include('site/notifications')
+			@include('notifications')
 			<!-- ./ notifications -->
 
 			<!-- Content -->
