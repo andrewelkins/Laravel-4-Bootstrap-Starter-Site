@@ -2,11 +2,11 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 		"zizaco/confide": "dev-master",
-        "zizaco/entrust": "dev-master",
+		"zizaco/entrust": "dev-master",
 		"laravelbook/laravel4-powerpack": "dev-master",
-        "jasonlewis/basset": "*",
-        "jasonlewis/expressive-date": "1.*",
-        "bigelephant/presenter": "dev-master"
+		"jasonlewis/basset": "*",
+		"jasonlewis/expressive-date": "1.*",
+		"bigelephant/presenter": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
