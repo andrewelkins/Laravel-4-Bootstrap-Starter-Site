@@ -10,13 +10,13 @@ class UsersTableSeeder extends Seeder {
         $users = array(
             array(
                 'username'      => 'admin',
-                'email'      => 'admin@andrewelkins.com',
+                'email'      => 'admin@test.com',
                 'password'   => Hash::make('admin'),
                 'confirmed'   => 0
             ),
             array(
                 'username'      => 'user',
-                'email'      => 'user@andrewelkins.com',
+                'email'      => 'user@test.com',
                 'password'   => Hash::make('user'),
                 'confirmed'   => 0
             )
@@ -27,15 +27,6 @@ class UsersTableSeeder extends Seeder {
             DB::table('users')->insert(
                 $user
             );
-//            User::create($user);
-//            $u = new User;
-//            $u->username = $user['username'];
-//            $u->email = $user['email'];
-//            $u->password = $user['password'];
-//            $u->password_confirmation = $user['password'];
-//            $u->confirmed = $user['confirmed'];
-//            $u->save();
-//            unset($u);
         }
     }
 
