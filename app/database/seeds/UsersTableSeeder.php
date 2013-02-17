@@ -22,12 +22,7 @@ class UsersTableSeeder extends Seeder {
             )
         );
 
-        foreach( $users as $user )
-        {
-            DB::table('users')->insert(
-                $user
-            );
-        }
+        DB::table('users')->insert( $users );
     }
 
 }

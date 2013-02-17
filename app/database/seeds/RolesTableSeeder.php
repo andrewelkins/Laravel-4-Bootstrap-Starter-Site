@@ -6,20 +6,21 @@ class RolesTableSeeder extends Seeder {
     {
         DB::table('roles')->delete();
 
-        Role::create(
-            array(
-                'name'    => 'admin',
-                'permissions'      => '{"1":"manage_posts","2":"manage_pages","3":"manage_users","4":"post_comment"}'
-            ),
-            array(
-                'name'    => 'comment',
-                'permissions'      => '{"4":"post_comment"}'
-            ));
+        $adminRole = new Role;
+        $adminRole->name = 'admin';
+        $adminRole->permissions = array('manage_posts','manage_pages','manage_users','post_comment');
+        $adminRole->save();
+
+        $commentRole = new Role;
+        $commentRole->name = 'comment';
+        $commentRole->permissions = array('post_comment');
+        $commentRole->save();
 
         $user = User::where('username','=','admin')->first();
-        $user->attachRole( 'admin' );
+        $user->attachRole( $adminRole );
+        
         $user = User::where('username','=','user')->first();
-        $user->attachRole( 'comment' );
+        $user->attachRole( $commentRole );
     }
 
 }
