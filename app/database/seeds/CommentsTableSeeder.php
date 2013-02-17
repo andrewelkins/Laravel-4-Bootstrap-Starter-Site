@@ -9,38 +9,43 @@ class CommentsTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('posts')->delete();
+        DB::table('comments')->delete();
 
-        User::create(array(
-                'user_id'    => 1,
-                'post_id'    => 1,
+        $user_id = User::first()->id;
+        $post_id = Post::first()->id;
+
+        DB::table('comments')->insert( array(
+            array(
+                'user_id'    => $user_id,
+                'post_id'    => $post_id,
                 'content'    => $this->content1
             ),
             array(
-                'user_id'    => 1,
-                'post_id'    => 1,
+                'user_id'    => $user_id,
+                'post_id'    => $post_id,
                 'content'    => $this->content2
             ),
             array(
-                'user_id'    => 1,
-                'post_id'    => 1,
+                'user_id'    => $user_id,
+                'post_id'    => $post_id,
                 'content'    => $this->content3
             ),
             array(
-                'user_id'    => 1,
-                'post_id'    => 2,
+                'user_id'    => $user_id,
+                'post_id'    => $post_id+1,
                 'content'    => $this->content1
             ),
             array(
-                'user_id'    => 1,
-                'post_id'    => 2,
+                'user_id'    => $user_id,
+                'post_id'    => $post_id+1,
                 'content'    => $this->content2
             ),
             array(
-                'user_id'    => 1,
-                'post_id'    => 3,
+                'user_id'    => $user_id,
+                'post_id'    => $post_id+2,
                 'content'    => $this->content1
-            ));
+            ))
+        );
     }
 
 }

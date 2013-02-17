@@ -6,7 +6,7 @@ class RolesTableSeeder extends Seeder {
     {
         DB::table('roles')->delete();
 
-        Role::create(
+        DB::table('roles')->insert( array(
             array(
                 'name'    => 'admin',
                 'permissions'      => '{"1":"manage_posts","2":"manage_pages","3":"manage_users","4":"post_comment"}'
@@ -14,7 +14,8 @@ class RolesTableSeeder extends Seeder {
             array(
                 'name'    => 'comment',
                 'permissions'      => '{"4":"post_comment"}'
-            ));
+            ))
+        );
 
         $user = User::where('username','=','admin')->first();
         $user->attachRole( 'admin' );
