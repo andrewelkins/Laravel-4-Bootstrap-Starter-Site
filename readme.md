@@ -1,7 +1,6 @@
 #Laravel 4 - Bootstrap Starter Site (RC 1)
 
 This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
-Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 
 -----
 
@@ -28,6 +27,7 @@ Again, big thanks goes to [brunogaspar](https://github.com/brunogaspar).
 	* [PowerPack](#powerpack)
 	* [Expressive Date](#expressive-date)
 	* [Basset](#basset)
+	* [Presenter](#presenter)
 
 ## Issues
 * None known 
@@ -183,8 +183,6 @@ echo $date->getShortDate(); // Jan 31, 2012
 
 For full usage see [Using Expressive Date by Jason Lewis](http://jasonlewis.me/code/expressive-date)
 
------
-
 <a name="basset"></a>
 ## Basset
 
@@ -206,6 +204,18 @@ Compiling assets
     $ php artisan basset:compile
 
 For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basset)
+
+<a name="presenter"></a>
+## Presenter
+
+Simple presenter to wrap and render objects. Think of it of a way to modify an asset for the view layer only.
+Control the presentation in the presentation layer not in the model.
+
+The core idea is the relationship between two classes: your model full of data and a presenter which works as a sort of wrapper to help with your views.
+For instance, if you have a `User` object you might have a `UserPresenter` presenter to go with it. To use it all you do is `$userObject = new UserPresenter($userObject);`.
+The `$userObject` will function the same unless a method is called that is a member of the `UserPresenter`. Another way to think of it is that any call that doesn't exist in the `UserPresenter` falls through to the original object.
+
+For full usage see [Using Presenter](https://github.com/bigelephant/presenter)
 
 -----
 
