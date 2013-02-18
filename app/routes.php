@@ -76,7 +76,7 @@ Route::group(array('before' => 'auth'), function()
 {
     Route::get('user/settings', 'UserController@getSettings');
 });
-# User RESTful Routes (Includes Authentication, Authorization and Settings)
+# User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
 
 //:: Application Routes ::
