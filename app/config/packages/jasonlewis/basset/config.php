@@ -62,7 +62,10 @@ return array(
 	|
 	*/
 
-	'directories' => array(),
+	'directories' => [
+		'css' => 'assets/css',
+		'js' => 'assets/js',
+	],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -100,33 +103,33 @@ return array(
 	|
 	*/
 
-	'collections' => array(
-        'public-css' => function($collection)
-        {
-            $collection->add('assets/css/bootstrap.min.css');
-            $collection->add('assets/css/bootstrap-responsive.min.css');
-        },
-        'public-js' => function($collection)
-        {
-            $collection->add('assets/js/jquery.v1.8.3.min.js');
-            $collection->add('assets/js/bootstrap/bootstrap.min.js');
-        },
-        'admin-css' => function($collection)
-        {
-            $collection->add('assets/css/bootstrap.min.css');
-            $collection->add('assets/css/wysihtml5/prettify.css');
-            $collection->add('assets/css/bootstrap-responsive.css');
-            $collection->add('assets/css/wysihtml5/bootstrap-wysihtml5-0.0.2.css');
-        },
-        'admin-js' => function($collection)
-        {
-            $collection->add('assets/js/wysihtml5/wysihtml5-0.3.0.js');
-            $collection->add('assets/js/jquery.v1.8.3.min.js');
-            $collection->add('assets/js/prettify.js');
-            $collection->add('assets/js/bootstrap/bootstrap.min.js');
-            $collection->add('assets/js/wysihtml5/bootstrap-wysihtml5.js');
-        },
-    ),
+	'collections' => [
+		'public-css' => function($collection)
+		{
+			$collection->add('bootstrap.min.css');
+			$collection->add('bootstrap-responsive.min.css');
+		},
+		'public-js' => function($collection)
+		{
+			$collection->add('jquery.v1.8.3.min.js');
+			$collection->add('bootstrap/bootstrap.min.js');
+		},
+		'admin-css' => function($collection)
+		{
+			$collection->add('bootstrap.min.css');
+			$collection->add('wysihtml5/prettify.css');
+			$collection->add('bootstrap-responsive.css');
+			$collection->add('wysihtml5/bootstrap-wysihtml5-0.0.2.css');
+		},
+		'admin-js' => function($collection)
+		{
+			$collection->add('wysihtml5/wysihtml5-0.3.0.js');
+			$collection->add('jquery.v1.8.3.min.js');
+			$collection->add('prettify.js');
+			$collection->add('bootstrap/bootstrap.min.js');
+			$collection->add('wysihtml5/bootstrap-wysihtml5.js');
+		},
+	],
 
 	/*
 	|--------------------------------------------------------------------------
