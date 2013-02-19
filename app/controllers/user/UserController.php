@@ -10,8 +10,8 @@ class UserController extends BaseController {
      */
     public function getIndex()
     {
-        // Get the user information
-        $user = Confide::getAuthIdentifier();
+        list($user,$redirect) = User::checkAuthAndRedirect('user');
+        if($redirect){return $redirect;}
 
         // Show the page
         return View::make('site/user/index', compact('user'));
@@ -234,7 +234,8 @@ class UserController extends BaseController {
 
     public function getSettings()
     {
-        $user = Confide::user();
+        list($user,$redirect) = User::checkAuthAndRedirect('user/settings');
+        if($redirect){return $redirect;}
 
         return View::make('site/user/profile', compact('user'));
     }
