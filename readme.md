@@ -217,6 +217,9 @@ The `$userObject` will function the same unless a method is called that is a mem
 For full usage see [Presenter Readme](https://github.com/bigelephant/presenter)
 
 -----
+## License
+
+This is free software distributed under the terms of the MIT license
 
 ## Additional information
 
