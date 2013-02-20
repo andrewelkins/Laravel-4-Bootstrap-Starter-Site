@@ -49,6 +49,7 @@ class AdminBlogsController extends AdminController {
         {
             // Create a new blog post
             $post = new Post;
+            $user = Auth::user();
 
             // Update the blog post data
             $post->title            = Input::get('title');
@@ -57,7 +58,7 @@ class AdminBlogsController extends AdminController {
             $post->meta_title       = Input::get('meta-title');
             $post->meta_description = Input::get('meta-description');
             $post->meta_keywords    = Input::get('meta-keywords');
-            $post->user_id          = Sentry::getId();
+            $post->user_id          = $user->id;
 
             // Was the blog post created?
             if($post->save())
