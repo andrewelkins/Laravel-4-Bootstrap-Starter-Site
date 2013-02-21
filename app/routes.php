@@ -34,7 +34,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth|admin_role'), function
         ->where('id', '[0-9]+');
     Route::post('blogs/{id}/edit', 'AdminBlogsController@postEdit')
         ->where('id', '[0-9]+');
-    Route::post('blogs/{id}/delete', 'AdminBlogsController@postDelete')
+    Route::get('blogs/{id}/delete', 'AdminBlogsController@getDelete')
         ->where('id', '[0-9]+');
     Route::controller('blogs', 'AdminBlogsController');
 

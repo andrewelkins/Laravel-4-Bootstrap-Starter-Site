@@ -158,7 +158,7 @@ class AdminBlogsController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function postDelete($id)
+	public function getDelete($id)
 	{
 
         // Check if the blog post exists
