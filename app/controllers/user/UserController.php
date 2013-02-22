@@ -40,16 +40,16 @@ class UserController extends BaseController {
         if ( $user->id )
         {
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
-                        return Redirect::to('user/login')
-                            ->with( 'notice', Lang::get('confide::confide.alerts.account_created') );
+            return Redirect::to('user/login')
+                ->with( 'notice', Lang::get('confide::confide.alerts.account_created') );
         }
         else
         {
             // Get validation errors (see Ardent package)
             $error = $user->getErrors()->all();
 
-                        return Redirect::to('user/create')
-                            ->withInput(Input::except('password'))
+            return Redirect::to('user/create')
+                ->withInput(Input::except('password'))
                 ->with( 'error', $error );
         }
     }
@@ -88,7 +88,8 @@ class UserController extends BaseController {
         // If you wish to only allow login from confirmed users, call logAttempt
         // with the second parameter as true.
         // logAttempt will check if the 'email' perhaps is the username.
-        if ( Confide::logAttempt( $input ) ) 
+        // Check that the user is confirmed.
+        if ( Confide::logAttempt( $input, true ) )
         {
             $r = Session::get('loginRedirect');;
             if (!empty($r))
