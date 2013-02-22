@@ -32,8 +32,8 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 ## Issues
 * None known 
 
-## Todo
-* Build out test cases 
+## Coming in future releases
+* Full test case coverage.
 
 -----
 
