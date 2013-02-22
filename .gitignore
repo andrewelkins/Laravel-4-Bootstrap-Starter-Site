@@ -4,3 +4,4 @@ composer.lock
 .DS_Store
 .idea/
 app/config/mail.php
+app/_ide_helpers.php
