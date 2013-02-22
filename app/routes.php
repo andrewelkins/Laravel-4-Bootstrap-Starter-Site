@@ -15,7 +15,7 @@
  *  Admin Routes
  *  ------------------------------------------
  */
-Route::group(array('prefix' => 'admin', 'before' => 'auth|admin_role'), function()
+Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
 
     # Comment Management
