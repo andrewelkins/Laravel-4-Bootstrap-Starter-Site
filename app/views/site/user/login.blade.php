@@ -20,7 +20,7 @@
         <label for="password">
             {{{ Lang::get('confide::confide.password') }}}
             <small>
-                <a href="user/forgot">{{{ Lang::get('confide::confide.login.forgot_password') }}}</a>
+                <a href="forgot">{{{ Lang::get('confide::confide.login.forgot_password') }}}</a>
             </small>
         </label>
         <input tabindex="2" placeholder="{{{ Lang::get('confide::confide.password') }}}" type="password" name="password" id="password">
