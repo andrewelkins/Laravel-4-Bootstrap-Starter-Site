@@ -11,5 +11,5 @@
 <div class="page-header">
 	<h1>Forgot Password</h1>
 </div>
-{{{ Confide::makeForgetPasswordForm()->render() }}}
+{{{ Confide::makeForgotPasswordForm() }}}
 @stop
