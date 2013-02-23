@@ -106,6 +106,10 @@ class UserController extends BaseController {
             {
                 $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
             }
+            elseif( ! User::isConfirmed( $input ) )
+            {
+                $err_msg = Lang::get('user/user.user_account_is_not_confirmed');
+            }
             else
             {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
