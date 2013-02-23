@@ -18,32 +18,44 @@ class CommentsTableSeeder extends Seeder {
             array(
                 'user_id'    => $user_id,
                 'post_id'    => $post_id,
-                'content'    => $this->content1
+                'content'    => $this->content1,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
             ),
             array(
                 'user_id'    => $user_id,
                 'post_id'    => $post_id,
-                'content'    => $this->content2
+                'content'    => $this->content2,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
             ),
             array(
                 'user_id'    => $user_id,
                 'post_id'    => $post_id,
-                'content'    => $this->content3
+                'content'    => $this->content3,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
             ),
             array(
                 'user_id'    => $user_id,
                 'post_id'    => $post_id+1,
-                'content'    => $this->content1
+                'content'    => $this->content1,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
             ),
             array(
                 'user_id'    => $user_id,
                 'post_id'    => $post_id+1,
-                'content'    => $this->content2
+                'content'    => $this->content2,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
             ),
             array(
                 'user_id'    => $user_id,
                 'post_id'    => $post_id+2,
-                'content'    => $this->content1
+                'content'    => $this->content1,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
             ))
         );
     }
