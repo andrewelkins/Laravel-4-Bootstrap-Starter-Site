@@ -108,6 +108,7 @@ return array(
 		{
 			$collection->add('bootstrap.min.css');
 			$collection->add('bootstrap-responsive.min.css');
+			$collection->add('style.css');
 		},
 		'public-js' => function($collection)
 		{
@@ -120,6 +121,7 @@ return array(
 			$collection->add('wysihtml5/prettify.css');
 			$collection->add('bootstrap-responsive.css');
 			$collection->add('wysihtml5/bootstrap-wysihtml5-0.0.2.css');
+            $collection->add('style.css');
 		},
 		'admin-js' => function($collection)
 		{

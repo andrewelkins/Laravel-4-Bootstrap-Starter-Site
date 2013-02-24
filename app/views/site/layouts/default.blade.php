@@ -23,48 +23,6 @@
 
 		<style>
 		@section('styles')
-
-			html,
-			body {
-			height: 100%;
-			/* The html and body elements cannot have any padding or margin. */
-			}
-
-			/* Wrapper for page content to push down footer */
-			#wrap {
-			min-height: 100%;
-			height: auto !important;
-			height: 100%;
-			/* Negative indent footer by it's height */
-			margin: 0 auto -60px;
-			}
-
-			/* Set the fixed height of the footer here */
-			#push,
-			#footer {
-			height: 60px;
-			}
-			#footer {
-			background-color: #f5f5f5;
-			}
-
-
-			#wrap > .container {
-			padding-top: 60px;
-			}
-			.container .credit {
-			margin: 20px 0;
-			}
-
-			/* Lastly, apply responsive CSS fixes as necessary */
-			@media (max-width: 767px) {
-			#footer {
-			  margin-left: -20px;
-			  margin-right: -20px;
-			  padding-left: 20px;
-			  padding-right: 20px;
-			}
-			}
 		@show
 		</style>
 
@@ -136,7 +94,7 @@
 
 	    <div id="footer">
 	      <div class="container">
-	        <p class="muted credit">Laravel 4 starter template on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.</p>
+	        <p class="muted credit">Laravel 4 Starter Site on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.</p>
 	      </div>
 	    </div>
 
