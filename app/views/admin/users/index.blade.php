@@ -21,8 +21,7 @@
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
-			<th class="span2">{{ Lang::get('admin/users/table.first_name') }}</th>
-			<th class="span2">{{ Lang::get('admin/users/table.last_name') }}</th>
+			<th class="span2">{{ Lang::get('admin/users/table.username') }}</th>
 			<th class="span3">{{ Lang::get('admin/users/table.email') }}</th>
 			<th class="span3">{{ Lang::get('admin/users/table.groups') }}</th>
 			<th class="span2">{{ Lang::get('admin/users/table.activated') }}</th>
@@ -33,8 +32,7 @@
 	<tbody>
 		@foreach ($users as $user)
 		<tr>
-			<td>{{ $user->first_name }}</td>
-			<td>{{ $user->last_name }}</td>
+			<td>{{ $user->username }}</td>
 			<td>{{ $user->email }}</td>
 			<td>insert roles here</td>
 			<td>{{ Lang::get('general.' . ($user->confirmed ? 'yes' : 'no')) }}</td>
