@@ -32,7 +32,7 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 ## Issues
 See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
 
-## Coming in future releases
+## Coming in future releases (Development is in develop branch)
 * Full test coverage.
 
 -----
