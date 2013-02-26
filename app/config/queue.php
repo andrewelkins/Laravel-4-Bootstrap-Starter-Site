@@ -40,6 +40,14 @@ return array(
 			'queue'  => 'default',
 		),
 
+        'sqs' => array(
+            'driver' => 'sqs',
+            'key'    => 'your-public-key',
+            'secret' => 'your-secret-key',
+            'queue'  => 'your-queue-url',
+            'region' => 'us-east-1',
+        ),
+
 	),
 
 );
