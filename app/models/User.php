@@ -90,7 +90,7 @@ class User extends ConfideUser implements PresentableInterface {
             ->first();
 
         // If confirmed return true.
-        if( $user->confirmed )
+        if( !is_null($user) AND $user->confirmed )
         {
             return true;
         }
