@@ -1,12 +1,12 @@
 @extends('admin/layouts.default')
 
-{{{-- Web site Title --}}}
+{{-- Web site Title --}}
 @section('title')
 Create a User ::
 @parent
 @stop
 
-{{{-- Content --}}}
+{{-- Content --}}
 @section('content')
 <div class="page-header">
 	<h3>

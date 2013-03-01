@@ -1,6 +1,6 @@
 @extends('site.layouts.default')
 
-{{{-- Content --}}}
+{{-- Content --}}
 @section('content')
 @foreach ($posts as $post)
 <div class="row">

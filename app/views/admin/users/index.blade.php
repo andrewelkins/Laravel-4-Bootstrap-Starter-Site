@@ -1,12 +1,12 @@
 @extends('admin/layouts.default')
 
-{{{-- Web site Title --}}}
+{{-- Web site Title --}}
 @section('title')
 {{{ Lang::get('admin/user/title.user_management') }}} ::
 @parent
 @stop
 
-{{{-- Content --}}}
+{{-- Content --}}
 @section('content')
 <div class="page-header">
 	<h3>

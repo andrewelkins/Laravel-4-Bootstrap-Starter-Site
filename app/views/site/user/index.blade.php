@@ -1,12 +1,12 @@
 @extends('site.layouts.default')
 
-{{{-- Web site Title --}}}
+{{-- Web site Title --}}
 @section('title')
 {{{ Lang::get('user/user.settings') }}} ::
 @parent
 @stop
 
-{{{-- New Laravel 4 Feature in use --}}}
+{{-- New Laravel 4 Feature in use --}}
 @section('styles')
 @parent
 body {
@@ -14,7 +14,7 @@ body {
 }
 @stop
 
-{{{-- Content --}}}
+{{-- Content --}}
 @section('content')
 <div class="page-header">
 	<h3>Edit your settings</h3>

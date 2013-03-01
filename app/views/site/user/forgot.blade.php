@@ -1,12 +1,12 @@
 @extends('site.layouts.default')
 
-{{{-- Web site Title --}}}
+{{-- Web site Title --}}
 @section('title')
 {{{ Lang::get('user/user.forgot_password') }}} ::
 @parent
 @stop
 
-{{{-- Content --}}}
+{{-- Content --}}
 @section('content')
 <div class="page-header">
 	<h1>Forgot Password</h1>

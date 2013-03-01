@@ -1,30 +1,30 @@
 @extends('site.layouts.default')
 
-{{{-- Web site Title --}}}
+{{-- Web site Title --}}
 @section('title')
 {{{ Str::title($post->title) }}} ::
 @parent
 @stop
 
-{{{-- Update the Meta Title --}}}
+{{-- Update the Meta Title --}}
 @section('meta_title')
 @parent
 
 @stop
 
-{{{-- Update the Meta Description --}}}
+{{-- Update the Meta Description --}}
 @section('meta_description')
 @parent
 
 @stop
 
-{{{-- Update the Meta Keywords --}}}
+{{-- Update the Meta Keywords --}}
 @section('meta_keywords')
 @parent
 
 @stop
 
-{{{-- Content --}}}
+{{-- Content --}}
 @section('content')
 <h3>{{ $post->title }}</h3>
 
