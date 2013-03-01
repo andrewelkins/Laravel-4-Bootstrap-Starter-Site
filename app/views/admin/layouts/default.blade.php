@@ -19,7 +19,7 @@
 
 		<!-- CSS
 		================================================== -->
-        {{{ Basset::show('admin-css.css') }}}
+        {{ Basset::show('admin-css.css') }}
 
 		<style>
 		@section('styles')
@@ -36,11 +36,11 @@
 
 		<!-- Favicons
 		================================================== -->
-		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('assets/ico/apple-touch-icon-144-precomposed.png') }}">
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('assets/ico/apple-touch-icon-114-precomposed.png') }}">
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}">
-		<link rel="apple-touch-icon-precomposed" href="{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}">
-		<link rel="shortcut icon" href="{{ asset('assets/ico/favicon.png') }}">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{{ asset('assets/ico/apple-touch-icon-144-precomposed.png') }}}">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{{ asset('assets/ico/apple-touch-icon-114-precomposed.png') }}}">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}}">
+		<link rel="apple-touch-icon-precomposed" href="{{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}}">
+		<link rel="shortcut icon" href="{{{ asset('assets/ico/favicon.png') }}}">
 	</head>
 
 	<body>
@@ -57,21 +57,21 @@
 						</a>
 						<div class="nav-collapse collapse">
 							<ul class="nav">
-								<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{ URL::to('admin') }}"><i class="icon-home icon-white"></i> Home</a></li>
-								<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/blogs') }}"><i class="icon-list-alt icon-white"></i> Blogs</a></li>
-								<li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/comments') }}"><i class="icon-bullhorn icon-white"></i> Comments</a></li>
-								<li class="dropdown{{ (Request::is('admin/users*|admin/roles*') ? ' active' : '') }}">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="{{ URL::to('admin/users') }}">
+								<li{{{ (Request::is('admin') ? ' class="active"' : '') }}}><a href="{{{ URL::to('admin') }}}"><i class="icon-home icon-white"></i> Home</a></li>
+								<li{{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}}><a href="{{{ URL::to('admin/blogs') }}}"><i class="icon-list-alt icon-white"></i> Blogs</a></li>
+								<li{{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}}><a href="{{{ URL::to('admin/comments') }}}"><i class="icon-bullhorn icon-white"></i> Comments</a></li>
+								<li class="dropdown{{{ (Request::is('admin/users*|admin/roles*') ? ' active' : '') }}}">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/users') }}}">
 										<i class="icon-user icon-white"></i> Users <span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu">
-										<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/users') }}"><i class="icon-user"></i> Users</a></li>
-										<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/roles') }}"><i class="icon-user"></i> Roles</a></li>
+										<li{{{ (Request::is('admin/users*') ? ' class="active"' : '') }}}><a href="{{{ URL::to('admin/users') }}}"><i class="icon-user"></i> Users</a></li>
+										<li{{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}}><a href="{{{ URL::to('admin/roles') }}}"><i class="icon-user"></i> Roles</a></li>
 									</ul>
 								</li>
 							</ul>
 							<ul class="nav pull-right">
-								<li><a href="{{ URL::to('/') }}">View Homepage</a></li>
+								<li><a href="{{{ URL::to('/') }}}">View Homepage</a></li>
 								<li class="divider-vertical"></li>
 								<li>
 									<div class="btn-group">
@@ -79,9 +79,9 @@
 											<i class="icon-user"></i> admin	<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu">
-											<li><a href="{{ URL::to('user/settings') }}"><i class="icon-wrench"></i> Settings</a></li>
+											<li><a href="{{{ URL::to('user/settings') }}}"><i class="icon-wrench"></i> Settings</a></li>
 											<li class="divider"></li>
-											<li><a href="{{ URL::to('user/logout') }}"><i class="icon-share"></i> Logout</a></li>
+											<li><a href="{{{ URL::to('user/logout') }}}"><i class="icon-share"></i> Logout</a></li>
 										</ul>
 									</div>
 								</li>
@@ -107,7 +107,7 @@
 
 		<!-- Javascripts
 		================================================== -->
-        {{{ Basset::show('admin-js.js') }}}
+        {{ Basset::show('admin-js.js') }}
     `
         <script>
             $('.wysihtml5').wysihtml5();

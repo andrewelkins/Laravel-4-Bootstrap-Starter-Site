@@ -19,7 +19,7 @@
 
 		<!-- CSS
 		================================================== -->
-        {{{ Basset::show('public-css.css') }}}
+        {{ Basset::show('public-css.css') }}
 
 		<style>
 		@section('styles')
@@ -33,11 +33,11 @@
 
 		<!-- Favicons
 		================================================== -->
-		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('assets/ico/apple-touch-icon-144-precomposed.png') }}">
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('assets/ico/apple-touch-icon-114-precomposed.png') }}">
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}">
-		<link rel="apple-touch-icon-precomposed" href="{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}">
-		<link rel="shortcut icon" href="{{ asset('assets/ico/favicon.png') }}">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{{ asset('assets/ico/apple-touch-icon-144-precomposed.png') }}}">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{{ asset('assets/ico/apple-touch-icon-114-precomposed.png') }}}">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}}">
+		<link rel="apple-touch-icon-precomposed" href="{{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}}">
+		<link rel="shortcut icon" href="{{{ asset('assets/ico/favicon.png') }}}">
 	</head>
 
 	<body>
@@ -55,16 +55,16 @@
 
 					<div class="nav-collapse collapse">
 						<ul class="nav">
-							<li {{ (Request::is('/') ? 'class="active"' : '') }}><a href="{{ URL::to('') }}">Home</a></li>
+							<li {{{ (Request::is('/') ? 'class="active"' : '') }}}><a href="{{{ URL::to('') }}}">Home</a></li>
 						</ul>
 
 			                        <ul class="nav pull-right">
 			                            @if (Auth::check())
-			                            <li><a href="{{ URL::to('user/settings') }}">Logged in as {{ Auth::user()->username }}</a></li>
-			                            <li><a href="{{ URL::to('user/logout') }}">Logout</a></li>
+			                            <li><a href="{{{ URL::to('user/settings') }}}">Logged in as {{{ Auth::user()->username }}}</a></li>
+			                            <li><a href="{{{ URL::to('user/logout') }}}">Logout</a></li>
 			                            @else
-			                            <li {{ (Request::is('user/login') ? 'class="active"' : '') }}><a href="{{ URL::to('user/login') }}">Login</a></li>
-			                            <li {{ (Request::is('user/register') ? 'class="active"' : '') }}><a href="{{ URL::to('user/create') }}">Sign Up</a></li>
+			                            <li {{{ (Request::is('user/login') ? 'class="active"' : '') }}}><a href="{{{ URL::to('user/login') }}}">Login</a></li>
+			                            <li {{{ (Request::is('user/register') ? 'class="active"' : '') }}}><a href="{{{ URL::to('user/create') }}}">Sign Up</a></li>
 			                            @endif
 			                        </ul>
 					</div>
@@ -100,6 +100,6 @@
 
 		<!-- Javascripts
 		================================================== -->
-        {{{ Basset::show('public-js.js') }}}
+        {{ Basset::show('public-js.js') }}
 	</body>
 </html>

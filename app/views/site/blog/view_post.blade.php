@@ -1,43 +1,43 @@
 @extends('site.layouts.default')
 
-{{-- Web site Title --}}
+{{{-- Web site Title --}}}
 @section('title')
-{{ Str::title($post->title) }} ::
+{{{ Str::title($post->title) }}} ::
 @parent
 @stop
 
-{{-- Update the Meta Title --}}
+{{{-- Update the Meta Title --}}}
 @section('meta_title')
 @parent
 
 @stop
 
-{{-- Update the Meta Description --}}
+{{{-- Update the Meta Description --}}}
 @section('meta_description')
 @parent
 
 @stop
 
-{{-- Update the Meta Keywords --}}
+{{{-- Update the Meta Keywords --}}}
 @section('meta_keywords')
 @parent
 
 @stop
 
-{{-- Content --}}
+{{{-- Content --}}}
 @section('content')
-<h3>{{{ $post->title }}}</h3>
+<h3>{{ $post->title }}</h3>
 
-<p>{{{ $post->content() }}}</p>
+<p>{{ $post->content() }}</p>
 
 <div>
-	<span class="badge badge-info">Posted {{ $post->date() }}</span>
+	<span class="badge badge-info">Posted {{{ $post->date() }}}</span>
 </div>
 
 <hr />
 
 <a id="comments"></a>
-<h4>{{ $comments->count() }} Comments</h4>
+<h4>{{{ $comments->count() }}} Comments</h4>
 
 @if ($comments->count())
 @foreach ($comments as $comment)
@@ -48,9 +48,9 @@
 	<div class="span11">
 		<div class="row">
 			<div class="span11">
-				<span class="muted">{{ $comment->author->username }}</span>
+				<span class="muted">{{{ $comment->author->username }}}</span>
 				&bull;
-				{{ $comment->date() }}
+				{{{ $comment->date() }}}
 			</div>
 
 			<div class="span11">
@@ -58,7 +58,7 @@
 			</div>
 
 			<div class="span11">
-				{{ $comment->content() }}
+				{{{ $comment->content() }}}
 			</div>
 		</div>
 	</div>
@@ -71,15 +71,15 @@
 
 @if ( ! Auth::check())
 You need to be logged in to add comments.<br /><br />
-Click <a href="{{ URL::to('user/login') }}">here</a> to login into your account.
+Click <a href="{{{ URL::to('user/login') }}}">here</a> to login into your account.
 @elseif ( ! $roles->comment )
 You don't have the correct permissions to add comments.
 @else
 <h4>Add a Comment</h4>
-<form method="post" action="{{ URL::to($post->slug) }}">
-	<input type="hidden" name="csrf_token" value="{{ Session::getToken() }}" />
+<form method="post" action="{{{ URL::to($post->slug) }}}">
+	<input type="hidden" name="csrf_token" value="{{{ Session::getToken() }}}" />
 
-	<textarea class="input-block-level" rows="4" name="comment" id="comment">{{ Request::old('comment') }}</textarea>
+	<textarea class="input-block-level" rows="4" name="comment" id="comment">{{{ Request::old('comment') }}}</textarea>
 
 	<div class="control-group">
 		<div class="controls">

@@ -1,19 +1,19 @@
 @extends('admin/layouts.default')
 
-{{-- Web site Title --}}
+{{{-- Web site Title --}}}
 @section('title')
 Role Update ::
 @parent
 @stop
 
-{{-- Content --}}
+{{{-- Content --}}}
 @section('content')
 <div class="page-header">
 	<h3>
 		Role Update
 
 		<div class="pull-right">
-			<a href="{{ URL::to('admin/roles') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+			<a href="{{{ URL::to('admin/roles') }}}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
 		</div>
 	</h3>
 </div>
@@ -27,7 +27,7 @@ Role Update ::
 
 <form class="form-horizontal" method="post" action="" autocomplete="off">
 	<!-- CSRF Token -->
-	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+	<input type="hidden" name="csrf_token" value="{{{ csrf_token() }}}" />
 	<!-- ./ csrf token -->
 
 	<!-- Tabs Content -->
@@ -35,11 +35,11 @@ Role Update ::
 		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
 			<!-- Name -->
-			<div class="control-group {{ $errors->has('name') ? 'error' : '' }}">
+			<div class="control-group {{{ $errors->has('name') ? 'error' : '' }}}">
 				<label class="control-label" for="name">Name</label>
 				<div class="controls">
-					<input type="text" name="name" id="name" value="{{ Input::old('name', $role->name) }}" />
-					{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
+					<input type="text" name="name" id="name" value="{{{ Input::old('name', $role->name) }}}" />
+					{{{ $errors->first('name', '<span class="help-inline">:message</span>') }}}
 				</div>
 			</div>
 			<!-- ./ name -->
@@ -52,9 +52,9 @@ Role Update ::
 				<div class="control-group">
 					@foreach ($permissions as $permissionId => $permissionName)
 					<label>
-						<input type="hidden" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="0" />
-						<input type="checkbox" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="1"{{ (array_key_exists($permissionId, $rolePermissions) ? ' checked="checked"' : '')}} />
-						{{ $permissionName }}
+						<input type="hidden" id="permissions[{{{ $permissionId }}}]" name="permissions[{{{ $permissionId }}}]" value="0" />
+						<input type="checkbox" id="permissions[{{{ $permissionId }}}]" name="permissions[{{{ $permissionId }}}]" value="1"{{{ (array_key_exists($permissionId, $rolePermissions) ? ' checked="checked"' : '')}}} />
+						{{{ $permissionName }}}
 					</label>
 					@endforeach
 				</div>
@@ -67,7 +67,7 @@ Role Update ::
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{ URL::to('admin/roles') }}">Cancel</a>
+			<a class="btn btn-link" href="{{{ URL::to('admin/roles') }}}">Cancel</a>
 			<button type="reset" class="btn">Reset</button>
 			<button type="submit" class="btn btn-success">Update Role</button>
 		</div>
