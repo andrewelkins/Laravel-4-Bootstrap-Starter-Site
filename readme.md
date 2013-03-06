@@ -81,7 +81,6 @@ If you don't set that registration will fail because it cannot send the confirma
 ### Step 5: Populate Database
 Run these commands to create and populate Users table:
 
-	php artisan migrate:install
 	php artisan migrate
 	php artisan db:seed
 
