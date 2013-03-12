@@ -24,7 +24,7 @@ User Update ::
 </ul>
 <!-- ./ tabs -->
 
-<form class="form-horizontal" method="post" action="/admin/users/{{{$user->id}}}/edit" autocomplete="off">
+<form class="form-horizontal" method="post" action="{{ URL::to('admin/users/' . $user->id . '/edit') }}" autocomplete="off">
 	<!-- CSRF Token -->
 	<input type="hidden" name="csrf_token" value="{{{ csrf_token() }}}" />
 	<!-- ./ csrf token -->
