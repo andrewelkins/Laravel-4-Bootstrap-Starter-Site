@@ -84,8 +84,26 @@ Run these commands to create and populate Users table:
 	php artisan migrate
 	php artisan db:seed
 
+### Step 6: Set Encyrption Key
+In app/config/app.php
+    /*
+	|--------------------------------------------------------------------------
+	| Encryption Key
+	|--------------------------------------------------------------------------
+	|
+	| This key is used by the Illuminate encrypter service and should be set
+	| to a random, long string, otherwise these encrypted values will not
+	| be safe. Make sure to change it before deploying any application!
+	|
+	*/
 
-### Step 6: Make sure app/storage is writable by your web server.
+	'key' => 'YourSecretKey!!!',
+
+You can use artisan to do this
+    php artisan key:generate
+
+
+### Step 7: Make sure app/storage is writable by your web server.
 If permissions are set correctly:
 
     chmod -R 775 app/storage
@@ -94,7 +112,7 @@ Should work, if not try
 
     chmod -R 777 app/storage
 
-## Step 7: Start Page
+## Step 8: Start Page
 ### User login with commenting permission
 Navigate to your Laravel 4 website and login at /user/login:
 
