@@ -81,7 +81,7 @@ class UserController extends BaseController {
     {
         $input = array(
             'email'    => Input::get( 'email' ), // May be the username too
-            'username'    => Input::get( 'email' ), // May be the username too
+            'username' => Input::get( 'email' ), // May be the username too
             'password' => Input::get( 'password' ),
             'remember' => Input::get( 'remember' ),
         );
