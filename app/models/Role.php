@@ -91,5 +91,4 @@ class Role extends EntrustRole implements PresentableInterface
     {
         return self::$availablePermissions;
     }
-
 }

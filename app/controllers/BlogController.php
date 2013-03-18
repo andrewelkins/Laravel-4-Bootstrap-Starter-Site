@@ -41,11 +41,11 @@ class BlogController extends BaseController {
 		// Get this post comments
 		$comments = $post->comments()->orderBy('created_at', 'DESC')->get();
 
-        $roleModel = new Role();
-        $roles = $roleModel->validateRoles(array('comment'));
+        $user = Confide::user();
+        $canComment = $user->can('post_comment');
 
 		// Show the page
-		return View::make('site/blog/view_post', compact('post', 'comments', 'roles'));
+		return View::make('site/blog/view_post', compact('post', 'comments', 'canComment'));
 	}
 
 	/**
@@ -57,9 +57,9 @@ class BlogController extends BaseController {
 	public function postView($slug)
 	{
 
-        $roleModel = new Role();
-        $roles = $roleModel->validateRoles(array('comment'));
-		if ( ! $roles->comment)
+        $user = Confide::user();
+        $canComment = $user->can('post_comment');
+		if ( ! $canComment)
 		{
 			return Redirect::to($slug . '#comments')->with('error', 'You need to be logged in to post comments!');
 		}
