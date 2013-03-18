@@ -86,16 +86,19 @@ Run these commands to create and populate Users table:
 
 ### Step 6: Set Encyrption Key
 In app/config/app.php
-    /*
-	|--------------------------------------------------------------------------
-	| Encryption Key
-	|--------------------------------------------------------------------------
-	|
-	| This key is used by the Illuminate encrypter service and should be set
-	| to a random, long string, otherwise these encrypted values will not
-	| be safe. Make sure to change it before deploying any application!
-	|
-	*/
+
+```
+/*
+|--------------------------------------------------------------------------
+| Encryption Key
+|--------------------------------------------------------------------------
+|
+| This key is used by the Illuminate encrypter service and should be set
+| to a random, long string, otherwise these encrypted values will not
+| be safe. Make sure to change it before deploying any application!
+|
+*/
+```
 
 	'key' => 'YourSecretKey!!!',
 
