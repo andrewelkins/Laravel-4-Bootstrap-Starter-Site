@@ -41,6 +41,7 @@ class BlogController extends BaseController {
 		// Get this post comments
 		$comments = $post->comments()->orderBy('created_at', 'DESC')->get();
 
+        // Get current user and check permission
         $user = Confide::user();
         $canComment = false;
         if(!empty($user)) {
