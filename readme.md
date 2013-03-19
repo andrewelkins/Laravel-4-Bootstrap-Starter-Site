@@ -53,8 +53,6 @@ See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-
 
     https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/archive/master.zip
 
------
-
 ### Step 2: Use Composer to install dependencies
 #### Option 1: Composer is not installed globally
 
