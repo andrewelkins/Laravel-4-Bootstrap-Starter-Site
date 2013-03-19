@@ -42,7 +42,10 @@ class BlogController extends BaseController {
 		$comments = $post->comments()->orderBy('created_at', 'DESC')->get();
 
         $user = Confide::user();
-        $canComment = $user->can('post_comment');
+        $canComment = false;
+        if(!empty($user)) {
+            $canComment = $user->can('post_comment');
+        }
 
 		// Show the page
 		return View::make('site/blog/view_post', compact('post', 'comments', 'canComment'));
