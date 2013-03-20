@@ -52,7 +52,6 @@ class AdminCommentsController extends AdminController {
 
         // Declare the rules for the form validation
         $rules = array(
-            'title'   => 'required|min:3',
             'content' => 'required|min:3'
         );
 
@@ -63,15 +62,10 @@ class AdminCommentsController extends AdminController {
         if ($validator->passes())
         {
             // Update the comment post data
-            $post->title            = Input::get('title');
-            $post->slug             = Str::slug(Input::get('title'));
-            $post->content          = Input::get('content');
-            $post->meta_title       = Input::get('meta-title');
-            $post->meta_description = Input::get('meta-description');
-            $post->meta_keywords    = Input::get('meta-keywords');
-
+            $comment->content = Input::get('content');
+            
             // Was the comment post updated?
-            if($post->save())
+            if($comment->save())
             {
                 // Redirect to the new comment post page
                 return Redirect::to('admin/comments/' . $id . '/edit')->with('success', Lang::get('admin/comments/messages.update.success'));
