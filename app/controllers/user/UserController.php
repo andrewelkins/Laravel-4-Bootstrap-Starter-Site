@@ -92,7 +92,7 @@ class UserController extends BaseController {
         // Check that the user is confirmed.
         if ( Confide::logAttempt( $input, true ) )
         {
-            $r = Session::get('loginRedirect');;
+            $r = Session::get('loginRedirect');
             if (!empty($r))
             {
                 Session::forget('loginRedirect');
