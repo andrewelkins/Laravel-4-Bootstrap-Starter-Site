@@ -41,18 +41,18 @@ return array(
 
 	'locale' => 'en',
 
-	/*
-	|--------------------------------------------------------------------------
-	| Application Fallback Locale
-	|--------------------------------------------------------------------------
-	|
-	| The fallback locale determines the locale to use when the current one
-	| is not available. You may change the value to correspond to any of
-	| the language folders that are provided through your application.
-	|
-	*/
+    /*
+    |--------------------------------------------------------------------------
+    | Routable Locales
+    |--------------------------------------------------------------------------
+    |
+    | Here you may list the locales that are "routable" for your application.
+    | When a request with a URI beginning with one of the locales is sent
+    | to the application, the "default" locale will be set accordingly.
+    |
+    */
 
-	'fallback_locale' => 'en',
+    'locales' => array(),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,40 +80,42 @@ return array(
 
 	'providers' => array(
 		/* Laravel Base Providers */
-		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
-		'Illuminate\Auth\AuthServiceProvider',
-		'Illuminate\Cache\CacheServiceProvider',
-		'Illuminate\Foundation\Providers\CommandCreatorServiceProvider',
-		'Illuminate\Session\CommandsServiceProvider',	
-		'Illuminate\Foundation\Providers\ComposerServiceProvider',
-		'Illuminate\Routing\ControllerServiceProvider',
-		'Illuminate\Cookie\CookieServiceProvider',
-		'Illuminate\Database\DatabaseServiceProvider',
+        'Illuminate\Foundation\Providers\ArtisanServiceProvider',
+        'Illuminate\Auth\AuthServiceProvider',
+        'Illuminate\Cache\CacheServiceProvider',
+        'Illuminate\Foundation\Providers\CommandCreatorServiceProvider',
+        'Illuminate\Session\CommandsServiceProvider',
+        'Illuminate\Foundation\Providers\ComposerServiceProvider',
+        'Illuminate\Routing\ControllerServiceProvider',
+        'Illuminate\Cookie\CookieServiceProvider',
+        'Illuminate\Database\DatabaseServiceProvider',
+        'Illuminate\Encryption\EncryptionServiceProvider',
+        'Illuminate\Filesystem\FilesystemServiceProvider',
+        'Illuminate\Hashing\HashServiceProvider',
+        'Illuminate\Html\HtmlServiceProvider',
+        'Illuminate\Foundation\Providers\KeyGeneratorServiceProvider',
+        'Illuminate\Log\LogServiceProvider',
+        'Illuminate\Mail\MailServiceProvider',
+        'Illuminate\Database\MigrationServiceProvider',
         'Illuminate\Foundation\Providers\OptimizeServiceProvider',
-		'Illuminate\Encryption\EncryptionServiceProvider',
-		'Illuminate\Filesystem\FilesystemServiceProvider',
-		'Illuminate\Hashing\HashServiceProvider',
-		'Illuminate\Foundation\Providers\KeyGeneratorServiceProvider',
-		'Illuminate\Log\LogServiceProvider',
-		'Illuminate\Mail\MailServiceProvider',
-		'Illuminate\Database\MigrationServiceProvider',
-		'Illuminate\Pagination\PaginationServiceProvider',
-		'Illuminate\Foundation\Providers\PublisherServiceProvider',
-		'Illuminate\Queue\QueueServiceProvider',
-		'Illuminate\Redis\RedisServiceProvider',
-		'Illuminate\Auth\Reminders\ReminderServiceProvider',
-		'Illuminate\Database\SeedServiceProvider',
-		'Illuminate\Foundation\Providers\ServerServiceProvider',
-		'Illuminate\Session\SessionServiceProvider',
-		'Illuminate\Foundation\Providers\TinkerServiceProvider',
-		'Illuminate\Translation\TranslationServiceProvider',
-		'Illuminate\Validation\ValidationServiceProvider',
-		'Illuminate\View\ViewServiceProvider',
-		'Illuminate\Workbench\WorkbenchServiceProvider',
+        'Illuminate\Pagination\PaginationServiceProvider',
+        'Illuminate\Foundation\Providers\PublisherServiceProvider',
+        'Illuminate\Queue\QueueServiceProvider',
+        'Illuminate\Redis\RedisServiceProvider',
+        'Illuminate\Auth\Reminders\ReminderServiceProvider',
+        'Illuminate\Foundation\Providers\RouteListServiceProvider',
+        'Illuminate\Database\SeedServiceProvider',
+        'Illuminate\Foundation\Providers\ServerServiceProvider',
+        'Illuminate\Session\SessionServiceProvider',
+        'Illuminate\Foundation\Providers\TinkerServiceProvider',
+        'Illuminate\Translation\TranslationServiceProvider',
+        'Illuminate\Validation\ValidationServiceProvider',
+        'Illuminate\View\ViewServiceProvider',
+        'Illuminate\Workbench\WorkbenchServiceProvider',
+
 		/* Additional Providers */
 		'Zizaco\Confide\ConfideServiceProvider', // Confide Provider
         'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
-		'LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider', // PowerPack Provider
         'ExpressiveDateServiceProvider', // Expressive Date
         'Basset\BassetServiceProvider', // Better Asset Management
         'BigElephant\Presenter\PresenterServiceProvider', // Presenter
@@ -131,7 +133,7 @@ return array(
 	|
 	*/
 
-	'manifest' => __DIR__.'/../storage/meta',
+	'manifest' => storage_path().'/meta',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -146,46 +148,45 @@ return array(
 
 	'aliases' => array(
 		/* Laravel Base Aliases */
-		'App'             => 'Illuminate\Support\Facades\App',
-		'Artisan'         => 'Illuminate\Support\Facades\Artisan',
-		'Auth'            => 'Illuminate\Support\Facades\Auth',
-		'Blade'           => 'Illuminate\Support\Facades\Blade',
-		'Cache'           => 'Illuminate\Support\Facades\Cache',
-		'ClassLoader'     => 'Illuminate\Support\ClassLoader',
-		'Config'          => 'Illuminate\Support\Facades\Config',
-		'Controller'      => 'Illuminate\Routing\Controllers\Controller',
-		'Cookie'          => 'Illuminate\Support\Facades\Cookie',
-		'Crypt'           => 'Illuminate\Support\Facades\Crypt',
-		'DB'              => 'Illuminate\Support\Facades\DB',
-		'Eloquent'        => 'Illuminate\Database\Eloquent\Model',
-		'Event'           => 'Illuminate\Support\Facades\Event',
-		'File'            => 'Illuminate\Support\Facades\File',
-		'Hash'            => 'Illuminate\Support\Facades\Hash',
-		'Input'           => 'Illuminate\Support\Facades\Input',
-		'Lang'            => 'Illuminate\Support\Facades\Lang',
-		'Log'             => 'Illuminate\Support\Facades\Log',
-		'Mail'            => 'Illuminate\Support\Facades\Mail',
-		'Paginator'       => 'Illuminate\Support\Facades\Paginator',
-		'Password'        => 'Illuminate\Support\Facades\Password',
-		'Queue'           => 'Illuminate\Support\Facades\Queue',
-		'Redirect'        => 'Illuminate\Support\Facades\Redirect',
-		'Redis'           => 'Illuminate\Support\Facades\Redis',
-		'Request'         => 'Illuminate\Support\Facades\Request',
-		'Response'        => 'Illuminate\Support\Facades\Response',
-		'Route'           => 'Illuminate\Support\Facades\Route',
-		'Schema'          => 'Illuminate\Support\Facades\Schema',
-		'Seeder'          => 'Illuminate\Database\Seeder',		
-		'Session'         => 'Illuminate\Support\Facades\Session',
-//        'Str'             => 'Illuminate\Support\Str',
-		'URL'             => 'Illuminate\Support\Facades\URL',
-		'Validator'       => 'Illuminate\Support\Facades\Validator',
-		'View'            => 'Illuminate\Support\Facades\View',
+        'App'             => 'Illuminate\Support\Facades\App',
+        'Artisan'         => 'Illuminate\Support\Facades\Artisan',
+        'Auth'            => 'Illuminate\Support\Facades\Auth',
+        'Blade'           => 'Illuminate\Support\Facades\Blade',
+        'Cache'           => 'Illuminate\Support\Facades\Cache',
+        'ClassLoader'     => 'Illuminate\Support\ClassLoader',
+        'Config'          => 'Illuminate\Support\Facades\Config',
+        'Controller'      => 'Illuminate\Routing\Controllers\Controller',
+        'Cookie'          => 'Illuminate\Support\Facades\Cookie',
+        'Crypt'           => 'Illuminate\Support\Facades\Crypt',
+        'DB'              => 'Illuminate\Support\Facades\DB',
+        'Eloquent'        => 'Illuminate\Database\Eloquent\Model',
+        'Event'           => 'Illuminate\Support\Facades\Event',
+        'File'            => 'Illuminate\Support\Facades\File',
+        'Form'            => 'Illuminate\Support\Facades\Form',
+        'Hash'            => 'Illuminate\Support\Facades\Hash',
+        'Html'            => 'Illuminate\Support\Facades\Html',
+        'Input'           => 'Illuminate\Support\Facades\Input',
+        'Lang'            => 'Illuminate\Support\Facades\Lang',
+        'Log'             => 'Illuminate\Support\Facades\Log',
+        'Mail'            => 'Illuminate\Support\Facades\Mail',
+        'Paginator'       => 'Illuminate\Support\Facades\Paginator',
+        'Password'        => 'Illuminate\Support\Facades\Password',
+        'Queue'           => 'Illuminate\Support\Facades\Queue',
+        'Redirect'        => 'Illuminate\Support\Facades\Redirect',
+        'Redis'           => 'Illuminate\Support\Facades\Redis',
+        'Request'         => 'Illuminate\Support\Facades\Request',
+        'Response'        => 'Illuminate\Support\Facades\Response',
+        'Route'           => 'Illuminate\Support\Facades\Route',
+        'Schema'          => 'Illuminate\Support\Facades\Schema',
+        'Seeder'          => 'Illuminate\Database\Seeder',
+        'Session'         => 'Illuminate\Support\Facades\Session',
+        'Str'             => 'Illuminate\Support\Str',
+        'URL'             => 'Illuminate\Support\Facades\URL',
+        'Validator'       => 'Illuminate\Support\Facades\Validator',
+        'View'            => 'Illuminate\Support\Facades\View',
 		/* Additional Aliases */
 		'Confide'    	  => 'Zizaco\Confide\ConfideFacade', // Confide Alias
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade', // Entrust Alias
-		'HTML'            => 'LaravelBook\Laravel4Powerpack\Facades\HTMLFacade', // PowerPack Alias
-		'Form'            => 'LaravelBook\Laravel4Powerpack\Facades\FormFacade', // PowerPack Alias
-		'Str'             => 'LaravelBook\Laravel4Powerpack\Facades\StrFacade', // PowerPack Alias
         'Presenter'       => 'BigElephant\Presenter\Presenter', // Presenter
         'Presentable'     => 'BigElephant\Presenter\PresentableInterface', // Presenter
         'Basset'          => 'Basset\Facades\Basset', // Better Asset Management
