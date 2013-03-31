@@ -45,15 +45,11 @@ class User extends ConfideUser implements PresentableInterface {
      */
     public function saveRoles($inputRoles)
     {
-        $this->roles()->delete();
-        if(! empty($inputRoles))
-        {
+        if(! empty($inputRoles)) {
             $this->roles()->sync($inputRoles);
-            foreach( $inputRoles as $role )
-            {
-                // Attach role to user by id.
-                $this->attachRole( $role ); // Parameter can be an Role object, array or id.
-            }
+        } else {
+            $this->roles()->detach();
+
         }
     }
 
@@ -65,8 +61,7 @@ class User extends ConfideUser implements PresentableInterface {
     {
         $roles = $this->roles;
         $roleIds = false;
-        if( !empty( $roles ) )
-        {
+        if( !empty( $roles ) ) {
             $roleIds = array();
             foreach( $roles as &$role )
             {
@@ -90,12 +85,9 @@ class User extends ConfideUser implements PresentableInterface {
             ->first();
 
         // If confirmed return true.
-        if( !is_null($user) AND $user->confirmed )
-        {
+        if( !is_null($user) AND $user->confirmed ) {
             return true;
-        }
-        else
-        {
+        } else {
             // Fail
             return false;
         }
