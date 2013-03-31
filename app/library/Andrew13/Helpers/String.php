@@ -1,7 +1,5 @@
 <?php namespace Andrew13\Helpers;
 
-use Illuminate\Support\Str;
-
 class String {
 
     /**
@@ -12,9 +10,7 @@ class String {
      */
     public static function capitalize($value)
     {
-        $value = Str::ascii($value);
-
-        return ucwords($value);
+        return mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
     }
 
     /**
