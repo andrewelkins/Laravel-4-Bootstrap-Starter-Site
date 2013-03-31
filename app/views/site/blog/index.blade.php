@@ -8,7 +8,7 @@
 		<!-- Post Title -->
 		<div class="row">
 			<div class="span8">
-				<h4><strong><a href="{{{ $post->url() }}}">{{{ Str::title($post->title) }}}</a></strong></h4>
+				<h4><strong><a href="{{{ $post->url() }}}">{{ String::capitalize($post->title) }}</a></strong></h4>
 			</div>
 		</div>
 		<!-- ./ post title -->
@@ -20,7 +20,7 @@
 			</div>
 			<div class="span6">
 				<p>
-					{{{ Str::limit($post->content, 200) }}}
+					{{ String::tidy(Str::limit($post->content, 200)) }}
 				</p>
 				<p><a class="btn btn-mini" href="{{{ $post->url() }}}">Read more</a></p>
 			</div>

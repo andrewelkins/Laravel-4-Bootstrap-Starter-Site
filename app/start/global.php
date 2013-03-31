@@ -13,6 +13,7 @@
 
 ClassLoader::addDirectories(array(
 
+    app_path().'/commands',
 	app_path().'/controllers',
 	app_path().'/models',
 	app_path().'/presenters',
@@ -52,17 +53,17 @@ App::error(function(Exception $exception, $code)
 {
     Log::error($exception);
 
-    switch ($code)
-    {
-        case 403:
-            return View::make('error/403');
-
-        case 500:
-            return View::make('error/500');
-
-        default:
-            return View::make('error/404');
-    }
+//    switch ($code)
+//    {
+//        case 403:
+//            return View::make('error/403');
+//
+//        case 500:
+//            return View::make('error/500');
+//
+//        default:
+//            return View::make('error/404');
+//    }
 });
 
 /*

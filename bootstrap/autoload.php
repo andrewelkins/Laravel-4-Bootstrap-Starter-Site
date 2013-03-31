@@ -1,5 +1,7 @@
 <?php
 
+define('LARAVEL_START', microtime(true));
+
 /*
 |--------------------------------------------------------------------------
 | Register The Composer Auto Loader
@@ -27,7 +29,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 if (file_exists($compiled = __DIR__.'/compiled.php'))
 {
-	require $compiled;
+    require $compiled;
 }
 
 /*
@@ -56,5 +58,5 @@ Illuminate\Support\ClassLoader::register();
 
 if (is_dir($workbench = __DIR__.'/../workbench'))
 {
-	Illuminate\Workbench\Starter::start($workbench);
+    Illuminate\Workbench\Starter::start($workbench);
 }

@@ -27,8 +27,8 @@ Blog Comment Management ::
 	<tbody>
 		@foreach ($comments as $comment)
 		<tr>
-			<td><a href="{{{ URL::to('admin/comments/'. $comment->id .'/edit') }}}">{{{ Str::limitExact($comment->content, 40, '...') }}}</a></td>
-			<td><a href="{{{ URL::to('admin/blogs/'. $comment->post()->first()->id .'/edit') }}}">{{{ Str::limitExact($comment->post()->first()->title, 40, '...') }}}</a></td>
+			<td><a href="{{{ URL::to('admin/comments/'. $comment->id .'/edit') }}}">{{{ Str::limit($comment->content, 40, '...') }}}</a></td>
+			<td><a href="{{{ URL::to('admin/blogs/'. $comment->post()->first()->id .'/edit') }}}">{{{ Str::limit($comment->post()->first()->title, 40, '...') }}}</a></td>
 			<td><a href="{{{ URL::to('admin/users/'. $comment->user()->first()->id .'/edit') }}}">{{{ $comment->user()->first()->username }}}</a></td>
 			<td>{{{ $comment->created_at() }}}</td>
 			<td>
