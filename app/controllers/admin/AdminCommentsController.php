@@ -138,8 +138,11 @@ class AdminCommentsController extends AdminController {
             return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.not_found'));
         }
 
+        $comment->delete();
+
         // Was the comment post deleted?
-        if($comment->delete())
+        $comment = Comment::find($id);
+        if(empty($comment))
         {
             // Redirect to the comment posts management page
             return Redirect::to('admin/comments')->with('success', Lang::get('admin/comments/messages.delete.success'));

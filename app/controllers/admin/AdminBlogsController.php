@@ -168,8 +168,11 @@ class AdminBlogsController extends AdminController {
             return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.not_found'));
         }
 
+        $post->delete();
+
         // Was the blog post deleted?
-        if($post->delete())
+        $post = Post::find($id);
+        if(empty($post))
         {
             // Redirect to the blog posts management page
             return Redirect::to('admin/blogs')->with('success', Lang::get('admin/blogs/messages.delete.success'));
