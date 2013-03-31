@@ -10,7 +10,13 @@
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	<h4>Success</h4>
-	{{{ $message }}}
+    @if(is_array($message))
+        @foreach ($message as $m)
+            {{ $m }}
+        @endforeach
+    @else
+        {{ $message }}
+    @endif
 </div>
 @endif
 
@@ -18,7 +24,13 @@
 <div class="alert alert-error alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	<h4>Error</h4>
-	{{{ $message }}}
+    @if(is_array($message))
+    @foreach ($message as $m)
+    {{ $m }}
+    @endforeach
+    @else
+    {{ $message }}
+    @endif
 </div>
 @endif
 
@@ -26,7 +38,13 @@
 <div class="alert alert-warning alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	<h4>Warning</h4>
-	{{{ $message }}}
+    @if(is_array($message))
+    @foreach ($message as $m)
+    {{ $m }}
+    @endforeach
+    @else
+    {{ $message }}
+    @endif
 </div>
 @endif
 
@@ -34,6 +52,12 @@
 <div class="alert alert-info alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	<h4>Info</h4>
-	{{{ $message }}}
+    @if(is_array($message))
+    @foreach ($message as $m)
+    {{ $m }}
+    @endforeach
+    @else
+    {{ $message }}
+    @endif
 </div>
 @endif
