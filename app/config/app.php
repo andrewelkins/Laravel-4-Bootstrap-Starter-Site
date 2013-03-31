@@ -190,6 +190,7 @@ return array(
         'Presenter'       => 'BigElephant\Presenter\Presenter', // Presenter
         'Presentable'     => 'BigElephant\Presenter\PresentableInterface', // Presenter
         'Basset'          => 'Basset\Facades\Basset', // Better Asset Management
+        'String'          => 'Andrew13\Helpers\String', // Better Asset Management
 
 	),
 

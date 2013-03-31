@@ -23,6 +23,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->where('id', '[0-9]+');
     Route::post('comments/{id}/edit', 'AdminCommentsController@postEdit')
         ->where('id', '[0-9]+');
+    Route::post('comments/{id}/delete', 'AdminCommentsController@getDelete')
+        ->where('id', '[0-9]+');
     Route::post('comments/{id}/delete', 'AdminCommentsController@postDelete')
         ->where('id', '[0-9]+');
     Route::controller('comments', 'AdminCommentsController');

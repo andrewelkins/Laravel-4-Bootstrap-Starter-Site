@@ -12,6 +12,7 @@
 
 			"app/commands",
 			"app/controllers",
+            "app/library",
 			"app/models",
 			"app/presenters",
 			"app/database/migrations",
