@@ -75,21 +75,23 @@ class AdminBlogsController extends AdminController {
         return Redirect::to('admin/blogs/create')->withInput()->withErrors($validator);
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Display the specified resource.
+     *
+     * @param $id
+     * @return Response
+     */
 	public function getShow($id)
 	{
         // redirect to the frontend
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param $id
+     * @return Response
+     */
 	public function getEdit($id)
 	{
 
@@ -104,11 +106,12 @@ class AdminBlogsController extends AdminController {
         return View::make('admin/blogs/edit', compact('post'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $id
+     * @return Response
+     */
 	public function postEdit($id)
 	{
         // Check if the blog post exists
@@ -153,11 +156,12 @@ class AdminBlogsController extends AdminController {
         return Redirect::to('admin/blogs/' . $id . '/edit')->withInput()->withErrors($validator);
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $id
+     * @return Response
+     */
 	public function getDelete($id)
 	{
 

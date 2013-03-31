@@ -5,7 +5,7 @@ class AdminController extends BaseController {
     /**
      * Initializer.
      *
-     * @return void
+     * @return \AdminController
      */
     public function __construct()
     {

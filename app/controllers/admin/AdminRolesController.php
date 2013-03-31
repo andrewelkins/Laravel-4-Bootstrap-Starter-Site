@@ -80,6 +80,7 @@ class AdminRolesController extends AdminController {
     /**
      * Display the specified resource.
      *
+     * @param $id
      * @return Response
      */
     public function getShow($id)
@@ -90,6 +91,7 @@ class AdminRolesController extends AdminController {
     /**
      * Show the form for editing the specified resource.
      *
+     * @param $id
      * @return Response
      */
     public function getEdit($id)
@@ -117,6 +119,7 @@ class AdminRolesController extends AdminController {
     /**
      * Update the specified resource in storage.
      *
+     * @param $id
      * @return Response
      */
     public function postEdit($id)
@@ -165,6 +168,7 @@ class AdminRolesController extends AdminController {
     /**
      * Remove the specified resource from storage.
      *
+     * @param $id
      * @return Response
      */
     public function getDelete($id)

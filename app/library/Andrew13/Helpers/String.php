@@ -18,7 +18,8 @@ class String {
     }
 
     /**
-     * @param $html
+     * @param $value
+     * @internal param $html
      * @return string
      */
     public static function tidy($value)

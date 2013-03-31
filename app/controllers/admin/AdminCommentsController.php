@@ -17,11 +17,12 @@ class AdminCommentsController extends AdminController {
         return View::make('admin/comments/index', compact('comments'));
     }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param $id
+     * @return Response
+     */
 	public function getEdit($id)
 	{
 
@@ -36,11 +37,12 @@ class AdminCommentsController extends AdminController {
         return View::make('admin/comments/edit', compact('comment'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $id
+     * @return Response
+     */
 	public function postEdit($id)
 	{
         // Check if the comment post exists
@@ -79,11 +81,12 @@ class AdminCommentsController extends AdminController {
         return Redirect::to('admin/comments/' . $id . '/edit')->withInput()->withErrors($validator);
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $id
+     * @return Response
+     */
 	public function getDelete($id)
 	{
 
@@ -123,11 +126,12 @@ class AdminCommentsController extends AdminController {
         return Redirect::to('admin/comments/' . $id . '/edit')->withInput()->withErrors($validator);
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $id
+     * @return Response
+     */
 	public function postDelete($id)
 	{
 

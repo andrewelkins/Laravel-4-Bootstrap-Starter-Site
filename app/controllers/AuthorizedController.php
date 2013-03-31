@@ -4,12 +4,12 @@ class AuthorizedController extends BaseController
 {
 	protected $whitelist = array();
 
-	/**
-	 * Initializer.
-	 *
-	 * @access   public
-	 * @return   void
-	 */
+    /**
+     * Initializer.
+     *
+     * @access   public
+     * @return \AuthorizedController
+     */
 	public function __construct()
 	{
 		// Check if the user is logged in.
