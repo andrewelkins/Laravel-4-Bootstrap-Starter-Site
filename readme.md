@@ -28,6 +28,7 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 	* [Expressive Date](#expressive-date)
 	* [Basset](#basset)
 	* [Presenter](#presenter)
+	* [Generators](#generators)
 
 ## Issues
 See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
@@ -236,6 +237,21 @@ For instance, if you have a `User` object you might have a `UserPresenter` prese
 The `$userObject` will function the same unless a method is called that is a member of the `UserPresenter`. Another way to think of it is that any call that doesn't exist in the `UserPresenter` falls through to the original object.
 
 For full usage see [Presenter Readme](https://github.com/bigelephant/presenter)
+
+<a name="generators"></a>
+## Laravel 4 Generators
+
+Laravel 4 Generators package provides a variety of generators to speed up your development process. These generators include:
+
+- `generate:model`
+- `generate:seed`
+- `generate:test`
+- `generate:view`
+- `generate:migration`
+- `generate:resource`
+
+For full usage see [Laravel 4 Generators Readme](https://github.com/JeffreyWay/Laravel-4-Generators/blob/master/readme.md)
+
 
 -----
 ## License
