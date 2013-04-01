@@ -24,7 +24,6 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 	* [Confide](#confide)
 	* [Entrust](#entrust)
 	* [Ardent](#ardent)
-	* [PowerPack](#powerpack)
 	* [Expressive Date](#expressive-date)
 	* [Basset](#basset)
 	* [Presenter](#presenter)
@@ -167,21 +166,6 @@ For full usage see [Zizaco/Entrust Documentation](https://github.com/zizaco/entr
 Self-validating, secure and smart models for Laravel 4's Eloquent ORM 
 
 For full usage see [Ardent Documentation](https://github.com/laravelbook/ardent) 
-
-<a name="powerpack"></a>
-## Laravel 4 PowerPack
-
-Adds string helper classes from Laravel 3 to Laravel 4.
-
-**`laravel4-powerpack`** contains Laravel 4 ports of the following helper classes:
-
-- [HTML](https://github.com/laravelbook/laravel4-powerpack#html_class)
-
-- [Form](https://github.com/laravelbook/laravel4-powerpack#form_class)
-
-- [Str](https://github.com/laravelbook/laravel4-powerpack#str_class)
-
-For full usage see [PowerPack Documentation](https://github.com/laravelbook/laravel4-powerpack)
 
 <a name="expressive-date"></a>
 ## Expressive Date
