@@ -55,7 +55,7 @@
 
 					<div class="nav-collapse collapse">
 						<ul class="nav">
-							<li {{{ (Request::is('/') ? 'class="active"' : '') }}}><a href="{{{ URL::to('') }}}">Home</a></li>
+							<li {{ (Request::is('/') ? 'class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
 						</ul>
 
 			                        <ul class="nav pull-right">
@@ -63,8 +63,8 @@
 			                            <li><a href="{{{ URL::to('user/settings') }}}">Logged in as {{{ Auth::user()->username }}}</a></li>
 			                            <li><a href="{{{ URL::to('user/logout') }}}">Logout</a></li>
 			                            @else
-			                            <li {{{ (Request::is('user/login') ? 'class="active"' : '') }}}><a href="{{{ URL::to('user/login') }}}">Login</a></li>
-			                            <li {{{ (Request::is('user/register') ? 'class="active"' : '') }}}><a href="{{{ URL::to('user/create') }}}">Sign Up</a></li>
+			                            <li {{ (Request::is('user/login') ? 'class="active"' : '') }}><a href="{{{ URL::to('user/login') }}}">Login</a></li>
+			                            <li {{ (Request::is('user/register') ? 'class="active"' : '') }}><a href="{{{ URL::to('user/create') }}}">Sign Up</a></li>
 			                            @endif
 			                        </ul>
 					</div>
