@@ -119,6 +119,7 @@ return array(
         'ExpressiveDateServiceProvider', // Expressive Date
         'Basset\BassetServiceProvider', // Better Asset Management
         'BigElephant\Presenter\PresenterServiceProvider', // Presenter
+        'Way\Generators\GeneratorsServiceProvider' // Generators
 
 	),
 

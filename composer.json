@@ -5,7 +5,8 @@
 		"zizaco/entrust": "dev-master",
 		"jasonlewis/basset": "*",
 		"jasonlewis/expressive-date": "1.*",
-		"bigelephant/presenter": "dev-master"
+		"bigelephant/presenter": "dev-master",
+		"way/generators": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
