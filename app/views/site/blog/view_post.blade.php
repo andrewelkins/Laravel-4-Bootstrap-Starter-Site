@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-{{{ String::capitalize($post->title) }}} ::
+{{{ String::title($post->title) }}} ::
 @parent
 @stop
 

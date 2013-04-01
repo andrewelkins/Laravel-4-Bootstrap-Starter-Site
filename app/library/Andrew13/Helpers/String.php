@@ -8,9 +8,9 @@ class String {
      * @param string  $value
      * @return string
      */
-    public static function capitalize($value)
+    public static function title($value)
     {
-        return mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
+        return mb_convert_case($value, MB_CASE_TITLE);
     }
 
     /**

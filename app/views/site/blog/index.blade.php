@@ -8,7 +8,7 @@
 		<!-- Post Title -->
 		<div class="row">
 			<div class="span8">
-				<h4><strong><a href="{{{ $post->url() }}}">{{ String::capitalize($post->title) }}</a></strong></h4>
+				<h4><strong><a href="{{{ $post->url() }}}">{{ String::title($post->title) }}</a></strong></h4>
 			</div>
 		</div>
 		<!-- ./ post title -->
