@@ -32,7 +32,7 @@
 			<div class="span8">
 				<p></p>
 				<p>
-					<i class="icon-user"></i> by <span class="muted">{{{ $post->author->first_name }}}</span>
+					<i class="icon-user"></i> by <span class="muted">{{{ $post->author->username }}}</span>
 					| <i class="icon-calendar"></i> <!--Sept 16th, 2012-->{{{ $post->date() }}}
 					| <i class="icon-comment"></i> <a href="{{{ $post->url() }}}#comments">{{{ $post->comments()->count() }}} Comments</a>
 				</p>
