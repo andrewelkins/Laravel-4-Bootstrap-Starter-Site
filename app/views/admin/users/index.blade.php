@@ -23,7 +23,7 @@
 		<tr>
 			<th class="span2">{{{ Lang::get('admin/users/table.username') }}}</th>
 			<th class="span3">{{{ Lang::get('admin/users/table.email') }}}</th>
-			<th class="span3">{{{ Lang::get('admin/users/table.groups') }}}</th>
+			<th class="span3">{{{ Lang::get('admin/users/table.roles') }}}</th>
 			<th class="span2">{{{ Lang::get('admin/users/table.activated') }}}</th>
 			<th class="span2">{{{ Lang::get('admin/users/table.created_at') }}}</th>
 			<th class="span2">{{{ Lang::get('table.actions') }}}</th>
@@ -34,7 +34,9 @@
 		<tr>
 			<td>{{{ $user->username }}}</td>
 			<td>{{{ $user->email }}}</td>
-			<td>insert roles here</td>
+			<td>@foreach ($user->roles as $u)
+                <div>{{ $u->name }}</div>
+                @endforeach</td>
 			<td>{{{ Lang::get('general.' . ($user->confirmed ? 'yes' : 'no')) }}}</td>
 			<td>{{{ $user->getPresenter()->displayDate() }}}</td>
 			<td>

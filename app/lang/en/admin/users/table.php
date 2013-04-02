@@ -8,6 +8,7 @@ return array(
 	'username'  => 'Username',
 	'email'      => 'Email',
 	'groups'     => 'Groups',
+	'roles'     => 'Roles',
 	'activated'  => 'Activated',
 	'created_at' => 'Created at',
 
