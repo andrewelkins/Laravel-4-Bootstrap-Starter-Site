@@ -89,7 +89,6 @@ class AdminCommentsController extends AdminController {
      */
 	public function getDelete($id)
 	{
-
         // Check if the comment post exists
         if (is_null($comment = Comment::find($id)))
         {
@@ -97,33 +96,8 @@ class AdminCommentsController extends AdminController {
             return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.not_found'));
         }
 
-        // Declare the rules for the form validation
-        $rules = array(
-            'content' => 'required|min:3'
-        );
-
-        // Validate the inputs
-        $validator = Validator::make(Input::all(), $rules);
-
-        // Check if the form validates with success
-        if ($validator->passes())
-        {
-            // Update the comment post data
-            $comment->content = Input::get('content');
-
-            // Was the comment post updated?
-            if($comment->save())
-            {
-                // Redirect to the new comment post page
-                return Redirect::to('admin/comments/' . $id . '/edit')->with('success', Lang::get('admin/comments/messages.update.success'));
-            }
-
-            // Redirect to the comments post management page
-            return Redirect::to('admin/comments/' . $id . '/edit')->with('error', Lang::get('admin/comments/messages.update.error'));
-        }
-
-        // Form validation failed
-        return Redirect::to('admin/comments/' . $id . '/edit')->withInput()->withErrors($validator);
+        // Show the page
+        return View::make('admin/comments/delete', compact('comment'));
 	}
 
     /**
@@ -134,24 +108,34 @@ class AdminCommentsController extends AdminController {
      */
 	public function postDelete($id)
 	{
+        // Declare the rules for the form validation
+        $rules = array(
+            'id' => 'required|integer'
+        );
 
-        // Check if the comment post exists
-        if (is_null($comment = Comment::find($id)))
+        // Validate the inputs
+        $validator = Validator::make(Input::all(), $rules);
+
+        // Check if the form validates with success
+        if ($validator->passes())
         {
-            // Redirect to the comments management page
-            return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.not_found'));
+            // Check if the comment post exists
+            if (is_null($comment = Comment::find(Input::get('id'))))
+            {
+                // Redirect to the comments management page
+                return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.not_found'));
+            }
+
+            $comment->delete();
+
+            // Was the comment post deleted?
+            $comment = Comment::find($id);
+            if(empty($comment))
+            {
+                // Redirect to the comment posts management page
+                return Redirect::to('admin/comments')->with('success', Lang::get('admin/comments/messages.delete.success'));
+            }
         }
-
-        $comment->delete();
-
-        // Was the comment post deleted?
-        $comment = Comment::find($id);
-        if(empty($comment))
-        {
-            // Redirect to the comment posts management page
-            return Redirect::to('admin/comments')->with('success', Lang::get('admin/comments/messages.delete.success'));
-        }
-
         // There was a problem deleting the comment post
         return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.delete.error'));
 	}
