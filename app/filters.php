@@ -76,17 +76,16 @@ Route::filter('csrf', function()
 */
 
 // Check for role on all admin routes
-Entrust::routeNeedsRole( 'admin*', 'admin', function(){
-    Session::put( 'loginRedirect', Request::url() );
-    return Redirect::to( 'user/login' );
-} );
+Route::when('admin*', 'admin_role');
 
 // Check for admin role where this filter is applied
 Route::filter('admin_role', function()
 {
-    if (! Entrust::hasRole('admin') ) // Checks the current user
-    {
-        App::abort(404);return View::make('error/403');
+    if(Auth::guest()) {
+        Session::put( 'loginRedirect', Request::url() );
+        return Redirect::to( 'user/login' );
+    } elseif (! Entrust::hasRole('admin') ) {
+        App::abort(404);return View::make('error/404');
     }
 });
 
