@@ -171,6 +171,25 @@ class AdminUsersController extends AdminController {
     }
 
     /**
+     * Remove user.
+     *
+     * @param $id
+     * @return Response
+     */
+    public function getDelete($id)
+    {
+        // Check if the user exists
+        if (is_null($user = User::find($id)))
+        {
+            // Redirect to the users management page
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
+        }
+
+        // Show the page
+        return View::make('admin/users/delete', compact('user'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param $id
@@ -181,7 +200,7 @@ class AdminUsersController extends AdminController {
 
         $user = User::find($id);
 
-        if ( $user->id )
+        if ( empty($user->id) )
         {
             return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
         }
@@ -193,10 +212,15 @@ class AdminUsersController extends AdminController {
             // Redirect to the user management page
             return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.delete.impossible'));
         }
-        elseif ( $user->delete() )
+
+        $user->delete();
+
+        // Was the comment post deleted?
+        $user = User::find($id);
+        if ( empty($user) )
         {
-            // Try and delete user
-            return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.delete.success'));
+            // TODO needs to delete all of that user's content
+            return Redirect::to('admin/users')->with('success', Lang::get('admin/users/messages.delete.success'));
         }
         else
         {

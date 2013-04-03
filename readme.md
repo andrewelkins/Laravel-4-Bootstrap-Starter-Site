@@ -35,6 +35,7 @@ See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-
 ## Coming in future releases
 (Checkout develop branch for latest unstable code.) 
 * Full test coverage.
+* When a user is deleted, user's content should be deleted.
 
 -----
 

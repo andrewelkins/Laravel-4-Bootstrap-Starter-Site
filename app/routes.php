@@ -49,6 +49,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->where('id', '[0-9]+');
     Route::get('users/{id}/delete', 'AdminUsersController@getDelete')
         ->where('id', '[0-9]+');
+    Route::post('users/{id}/delete', 'AdminUsersController@postDelete')
+        ->where('id', '[0-9]+');
     Route::controller('users', 'AdminUsersController');
 
     # User Role Management

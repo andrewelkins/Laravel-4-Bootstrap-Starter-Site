@@ -248,7 +248,6 @@ class UserController extends BaseController {
 
     public function processRedirect($url1,$url2,$url3)
     {
-
         $redirect = '';
         if( ! empty( $url1 ) )
         {
