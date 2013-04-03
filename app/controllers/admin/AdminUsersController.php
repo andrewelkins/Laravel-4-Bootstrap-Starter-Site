@@ -171,7 +171,7 @@ class AdminUsersController extends AdminController {
     }
 
     /**
-     * Remove user.
+     * Remove user page.
      *
      * @param $id
      * @return Response
@@ -190,7 +190,7 @@ class AdminUsersController extends AdminController {
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified user from storage.
      *
      * @param $id
      * @return Response

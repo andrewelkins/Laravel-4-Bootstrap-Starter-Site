@@ -224,6 +224,11 @@ class UserController extends BaseController {
         return Redirect::to('/');
     }
 
+    /**
+     * Get user's profile
+     * @param $username
+     * @return mixed
+     */
     public function getProfile($username)
     {
         $userModel = new User;
@@ -238,6 +243,10 @@ class UserController extends BaseController {
         return View::make('site/user/profile', compact('user'));
     }
 
+    /**
+     * Get user's setting page.
+     * @return mixed
+     */
     public function getSettings()
     {
         list($user,$redirect) = User::checkAuthAndRedirect('user/settings');
@@ -246,6 +255,13 @@ class UserController extends BaseController {
         return View::make('site/user/profile', compact('user'));
     }
 
+    /**
+     * Process a dumb redirect.
+     * @param $url1
+     * @param $url2
+     * @param $url3
+     * @return string
+     */
     public function processRedirect($url1,$url2,$url3)
     {
         $redirect = '';
