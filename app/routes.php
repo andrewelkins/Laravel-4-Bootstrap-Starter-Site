@@ -21,11 +21,11 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     # Comment Management
     Route::get('comments/{id}/edit', 'AdminCommentsController@getEdit')
         ->where('id', '[0-9]+');
-    Route::post('comments/{id}/edit', 'AdminCommentsController@postEdit')
+    Route::post('comments/{id}/edit', array('before' => 'csrf', 'AdminCommentsController@postEdit'))
         ->where('id', '[0-9]+');
     Route::get('comments/{id}/delete', 'AdminCommentsController@getDelete')
         ->where('id', '[0-9]+');
-    Route::post('comments/{id}/delete', 'AdminCommentsController@postDelete')
+    Route::post('comments/{id}/delete', array('before' => 'csrf', 'AdminCommentsController@postDelete'))
         ->where('id', '[0-9]+');
     Route::controller('comments', 'AdminCommentsController');
 
@@ -34,7 +34,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->where('id', '[0-9]+');
     Route::get('blogs/{id}/edit', 'AdminBlogsController@getEdit')
         ->where('id', '[0-9]+');
-    Route::post('blogs/{id}/edit', 'AdminBlogsController@postEdit')
+    Route::post('blogs/{id}/edit', array('before' => 'csrf', 'AdminBlogsController@postEdit'))
         ->where('id', '[0-9]+');
     Route::get('blogs/{id}/delete', 'AdminBlogsController@getDelete')
         ->where('id', '[0-9]+');
@@ -45,11 +45,11 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->where('id', '[0-9]+');
     Route::get('users/{id}/edit', 'AdminUsersController@getEdit')
         ->where('id', '[0-9]+');
-    Route::post('users/{id}/edit', 'AdminUsersController@postEdit')
+    Route::post('users/{id}/edit', array('before' => 'csrf', 'AdminUsersController@postEdit'))
         ->where('id', '[0-9]+');
     Route::get('users/{id}/delete', 'AdminUsersController@getDelete')
         ->where('id', '[0-9]+');
-    Route::post('users/{id}/delete', 'AdminUsersController@postDelete')
+    Route::post('users/{id}/delete', array('before' => 'csrf', 'AdminUsersController@postDelete'))
         ->where('id', '[0-9]+');
     Route::controller('users', 'AdminUsersController');
 
@@ -58,7 +58,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->where('id', '[0-9]+');
     Route::get('roles/{id}/edit', 'AdminRolesController@getEdit')
         ->where('id', '[0-9]+');
-    Route::post('roles/{id}/edit', 'AdminRolesController@postEdit')
+    Route::post('roles/{id}/edit', array('before' => 'csrf', 'AdminRolesController@postEdit'))
         ->where('id', '[0-9]+');
     Route::get('roles/{id}/delete', 'AdminRolesController@getDelete')
         ->where('id', '[0-9]+');
