@@ -2,6 +2,7 @@
 
 class AdminUsersController extends AdminController {
 
+
     /**
      * Display a listing of the resource.
      *
@@ -142,24 +143,26 @@ class AdminUsersController extends AdminController {
 
         $password = Input::get( 'password' );
         $passwordConfirmation = Input::get( 'password_confirmation' );
-        if( ! empty( $password ) && ! empty( $passwordConfirmation ) )
-        {
-            if($password == $passwordConfirmation) {
-                $user->password = $password;
-                // The password confirmation will be removed from model
-                // before saving. This field will be used in Ardent's
-                // auto validation.
-                $user->password_confirmation = $passwordConfirmation;
-            } else {
-                // Redirect to the new user page
-                return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
-            }
+        
+        if($password === $passwordConfirmation) {
+            $user->password = $password;
+            // The password confirmation will be removed from model
+            // before saving. This field will be used in Ardent's
+            // auto validation.
+            $user->password_confirmation = $passwordConfirmation;
+        } else {
+            // Redirect to the new user page
+            return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
         }
-
+        
         // Save if valid. Password field will be hashed before save
-        $user->save();
+        $check = $user->save($user->updateRules);
 
-        if ( $user->id )
+        if ( !$check )
+        {
+            return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.edit.failure'));
+        }
+        elseif ( $user->id )
         {
             // Redirect to the new user page
             return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.edit.success'));
