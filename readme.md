@@ -43,6 +43,7 @@ See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-
 
 	PHP >= 5.4.0 (Entrust requires 5.4, this is an increase over Laravel's 5.3.7 requirement)
 	MCrypt PHP Extension
+	Composer
 
 ##How to install
 ### Step 1: Get the code
@@ -73,7 +74,7 @@ Now that you have the Laravel 4 installed, you need to create a database for it 
 
 ### Step 4: Configure Mailer
 
-Set the `address` and `name` from the `from` array in `config/mail.php`. Those will be used to send account confirmation and password reset emails to the users.
+Set the `address` and `name` from the `from` array in ***app/config/mail.php***. Those will be used to send account confirmation and password reset emails to the users.
 If you don't set that registration will fail because it cannot send the confirmation email.
 
 ### Step 5: Populate Database
@@ -83,7 +84,7 @@ Run these commands to create and populate Users table:
 	php artisan db:seed
 
 ### Step 6: Set Encyrption Key
-In app/config/app.php
+***app/config/app.php***
 
 ```
 /*
