@@ -101,6 +101,7 @@ Run these commands to create and populate Users table:
 	'key' => 'YourSecretKey!!!',
 
 You can use artisan to do this
+
     php artisan key:generate
 
 
