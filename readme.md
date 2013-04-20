@@ -73,7 +73,7 @@ Now that you have the Laravel 4 installed, you need to create a database for it 
 
 ### Step 4: Configure Mailer
 
-Set the `address` and `name` from the `from` array in `config/mail.php`. Those will be used to send account confirmation and password reset emails to the users.
+Set the `address` and `name` from the `from` array in ***config/mail.php***. Those will be used to send account confirmation and password reset emails to the users.
 If you don't set that registration will fail because it cannot send the confirmation email.
 
 ### Step 5: Populate Database
@@ -83,7 +83,7 @@ Run these commands to create and populate Users table:
 	php artisan db:seed
 
 ### Step 6: Set Encyrption Key
-In app/config/app.php
+***In app/config/app.php***
 
 ```
 /*
