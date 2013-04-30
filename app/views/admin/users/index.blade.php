@@ -51,5 +51,5 @@
 	</tbody>
 </table>
 
-{{{ $users->links() }}}
+{{ $users->links() }}
 @stop
