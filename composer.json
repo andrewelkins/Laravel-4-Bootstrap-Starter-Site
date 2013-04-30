@@ -5,7 +5,7 @@
 		"zizaco/entrust": "dev-master",
 		"jasonlewis/basset": "*",
 		"jasonlewis/expressive-date": "1.*",
-		"bigelephant/presenter": "dev-master",
+		"robclancy/presenter": "1.0.*",
 		"way/generators": "dev-master"
 	},
 	"autoload": {
