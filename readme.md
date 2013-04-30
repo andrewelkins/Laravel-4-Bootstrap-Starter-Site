@@ -222,7 +222,7 @@ The core idea is the relationship between two classes: your model full of data a
 For instance, if you have a `User` object you might have a `UserPresenter` presenter to go with it. To use it all you do is `$userObject = new UserPresenter($userObject);`.
 The `$userObject` will function the same unless a method is called that is a member of the `UserPresenter`. Another way to think of it is that any call that doesn't exist in the `UserPresenter` falls through to the original object.
 
-For full usage see [Presenter Readme](https://github.com/bigelephant/presenter)
+For full usage see [Presenter Readme](https://github.com/robclancy/presenter)
 
 <a name="generators"></a>
 ## Laravel 4 Generators
