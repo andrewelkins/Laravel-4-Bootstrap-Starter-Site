@@ -13,7 +13,7 @@
 
 			"app/commands",
 			"app/controllers",
-            "app/library",
+            		"app/library",
 			"app/models",
 			"app/presenters",
 			"app/database/migrations",
