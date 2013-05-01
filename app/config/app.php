@@ -118,7 +118,7 @@ return array(
         'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
         'ExpressiveDateServiceProvider', // Expressive Date
         'Basset\BassetServiceProvider', // Better Asset Management
-        'BigElephant\Presenter\PresenterServiceProvider', // Presenter
+        'Robbo\Presenter\PresenterServiceProvider', // Presenter
         'Way\Generators\GeneratorsServiceProvider', // Generators
 
     ),
@@ -188,8 +188,8 @@ return array(
         /* Additional Aliases */
         'Confide' => 'Zizaco\Confide\ConfideFacade', // Confide Alias
         'Entrust' => 'Zizaco\Entrust\EntrustFacade', // Entrust Alias
-        'Presenter' => 'BigElephant\Presenter\Presenter', // Presenter
-        'Presentable' => 'BigElephant\Presenter\PresentableInterface', // Presenter
+        'Presenter' => 'Robbo\Presenter\Presenter', // Presenter
+        'Presentable' => 'Robbo\Presenter\PresentableInterface', // Presenter
         'Basset' => 'Basset\Facades\Basset', // Better Asset Management
         'String' => 'Andrew13\Helpers\String', // Better Asset Management
 
