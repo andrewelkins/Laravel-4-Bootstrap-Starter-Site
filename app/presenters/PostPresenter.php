@@ -1,6 +1,6 @@
 <?php
 
-use BigElephant\Presenter\Presenter;
+use Robbo\Presenter\Presenter;
 
 class PostPresenter extends Presenter
 {

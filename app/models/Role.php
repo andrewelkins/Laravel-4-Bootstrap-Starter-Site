@@ -1,7 +1,7 @@
 <?php
 
 use Zizaco\Entrust\EntrustRole;
-use BigElephant\Presenter\PresentableInterface;
+use Robbo\Presenter\PresentableInterface;
 
 class Role extends EntrustRole implements PresentableInterface
 {
@@ -15,7 +15,7 @@ class Role extends EntrustRole implements PresentableInterface
 
     /**
      * Same presenter as the user model.
-     * @return BigElephant\Presenter\BigElephant\Presenter\Presenter|UserPresenter
+     * @return Robbo\Presenter\Presenter|UserPresenter
      */
     public function getPresenter()
     {

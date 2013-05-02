@@ -1,13 +1,13 @@
 <?php
 
 use Zizaco\Confide\ConfideUser;
-use BigElephant\Presenter\PresentableInterface;
+use Robbo\Presenter\PresentableInterface;
 
 class Group extends ConfideUser implements PresentableInterface {
 
     /**
      * Same presenter as the user model.
-     * @return BigElephant\Presenter\BigElephant\Presenter\Presenter|UserPresenter
+     * @return Robbo\Presenter\Presenter|UserPresenter
      */
     public function getPresenter()
     {

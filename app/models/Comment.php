@@ -1,6 +1,6 @@
 <?php
 
-use BigElephant\Presenter\PresentableInterface;
+use Robbo\Presenter\PresentableInterface;
 
 class Comment extends Eloquent implements PresentableInterface{
 

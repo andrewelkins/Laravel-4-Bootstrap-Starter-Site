@@ -2,7 +2,7 @@
 
 use Zizaco\Confide\ConfideUser;
 use Zizaco\Entrust\HasRole;
-use BigElephant\Presenter\PresentableInterface;
+use Robbo\Presenter\PresentableInterface;
 
 class User extends ConfideUser implements PresentableInterface {
     use HasRole;
