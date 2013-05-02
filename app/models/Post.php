@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\URL; # not sure why i need this here :c
-use BigElephant\Presenter\PresentableInterface;
+use Robbo\Presenter\PresentableInterface;
 
 class Post extends Eloquent implements PresentableInterface {
 
