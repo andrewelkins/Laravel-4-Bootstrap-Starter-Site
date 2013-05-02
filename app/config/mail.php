@@ -16,7 +16,7 @@ return array(
 	*/
 
 	'driver' => 'smtp',
-	
+
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Host Address
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'test@example.com', 'name' => 'Test Application'),
+	'from' => array('address' => null, 'name' => null),
 
 	/*
 	|--------------------------------------------------------------------------
