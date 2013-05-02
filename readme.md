@@ -118,8 +118,8 @@ Should work, if not try
 ### User login with commenting permission
 Navigate to your Laravel 4 website and login at /user/login:
 
-	username : user
-	password : user
+    username : user
+    password : user
 
 Create a new user at /user/create
 
@@ -128,6 +128,13 @@ Navigate to /admin
 
     username: admin
     password: admin
+    
+-----
+## Application Structure
+
+The structure of this starter site is the same as default Laravel 4 with one exception. 
+This starter site adds a `library` folder. Which, houses application specific library files.
+The files within library could also be handled within a composer package, but is included here as an example.
 
 -----
 ## Included Package Information
