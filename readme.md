@@ -136,6 +136,25 @@ The structure of this starter site is the same as default Laravel 4 with one exc
 This starter site adds a `library` folder. Which, houses application specific library files.
 The files within library could also be handled within a composer package, but is included here as an example.
 
+### Production Launch
+
+By default debugging is enabled. Before you go to production you should disable debugging in `app/config/app.php`
+
+```
+    /*
+    |--------------------------------------------------------------------------
+    | Application Debug Mode
+    |--------------------------------------------------------------------------
+    |
+    | When your application is in debug mode, detailed error messages with
+    | stack traces will be shown on every error that occurs within your
+    | application. If disabled, a simple generic error page is shown.
+    |
+    */
+
+    'debug' => false,
+```
+
 -----
 ## Included Package Information
 <a name="confide"></a>
