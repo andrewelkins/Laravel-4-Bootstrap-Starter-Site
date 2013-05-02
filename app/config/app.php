@@ -191,7 +191,7 @@ return array(
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade', // Entrust Alias
         'Presenter'       => 'Robbo\Presenter\Presenter', // Presenter
         'Presentable'     => 'Robbo\Presenter\PresentableInterface', // Presenter
-        'Basset'          => 'Basset\Facades\Basset', // Better Asset Management
+        'Basset'          => 'Basset\Facade', // Better Asset Management
         'String'          => 'Andrew13\Helpers\String', // Better Asset Management
 
     ),
