@@ -9,7 +9,7 @@
 {{-- Content --}}
 @section('content')
 <div class="page-header">
-	<h1>Forgot Password</h1>
+    <h1>Forgot Password</h1>
 </div>
 {{ Confide::makeForgotPasswordForm() }}
 @stop
