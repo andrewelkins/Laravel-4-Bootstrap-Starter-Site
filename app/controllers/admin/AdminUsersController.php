@@ -144,15 +144,20 @@ class AdminUsersController extends AdminController {
         $password = Input::get( 'password' );
         $passwordConfirmation = Input::get( 'password_confirmation' );
         
-        if($password === $passwordConfirmation) {
-            $user->password = $password;
-            // The password confirmation will be removed from model
-            // before saving. This field will be used in Ardent's
-            // auto validation.
-            $user->password_confirmation = $passwordConfirmation;
+        if(!empty($password)) {
+            if($password === $passwordConfirmation) {
+                $user->password = $password;
+                // The password confirmation will be removed from model
+                // before saving. This field will be used in Ardent's
+                // auto validation.
+                $user->password_confirmation = $passwordConfirmation;
+            } else {
+                // Redirect to the new user page
+                return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
+            }
         } else {
-            // Redirect to the new user page
-            return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
+            unset($user->password);
+            unset($user->password_confirmation);
         }
         
         // Save if valid. Password field will be hashed before save
