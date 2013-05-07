@@ -175,8 +175,7 @@ class AdminRolesController extends AdminController {
     public function getDelete($id)
     {
         // Check if the user exists
-        if (is_null($role = Role::find($id)))
-        {
+        if (is_null($role = Role::find($id))) {
             // Redirect to the users management page
             return Redirect::to('admin/roles')->with('error', Lang::get('admin/roles/messages.does_not_exist'));
         }
@@ -193,26 +192,19 @@ class AdminRolesController extends AdminController {
      */
     public function postDelete($id)
     {
-
         // Get the group information
         $role = Role::find($id);
 
-        if(! empty( $role->id ))
-        {
-
+        if(! empty( $role->id )) {
             // Was the group deleted?
-            if($role->delete())
-            {
+            if($role->delete()) {
                 // Redirect to the group management page
                 return Redirect::to('admin/roles')->with('success', Lang::get('admin/roles/messages.delete.success'));
             }
 
             // There was a problem deleting the group
             return Redirect::to('admin/roles')->with('error', Lang::get('admin/roles/messages.delete.error'));
-        }
-        else
-        {
-
+        } else {
             // Redirect to the group management page
             return Redirect::to('admin/roles')->with('error', Lang::get('admin/roles/messages.not_found'));
         }
