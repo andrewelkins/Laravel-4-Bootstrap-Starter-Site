@@ -72,27 +72,7 @@ Route::filter('guest', function()
 */
 
 // Check for role on all admin routes
-Route::when('admin*', 'admin_role');
-
-// Check for admin role where this filter is applied
-Route::filter('admin_role', function()
-{
-    if(Auth::guest()) {
-        Session::put( 'loginRedirect', Request::url() );
-        return Redirect::to( 'user/login' );
-    } elseif (! Entrust::hasRole('admin') ) {
-        App::abort(404);return View::make('error/404');
-    }
-});
-
-// Check for comment role where this filter is applied
-Route::filter('comment_role', function()
-{
-    if (! Entrust::hasRole('comment') ) // Checks the current user
-    {
-        App::abort(404);
-    }
-});
+Entrust::routeNeedsRole( 'admin*', array('admin'));
 
 /*
 |--------------------------------------------------------------------------

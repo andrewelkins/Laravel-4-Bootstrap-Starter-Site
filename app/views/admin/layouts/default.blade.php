@@ -76,7 +76,7 @@
 								<li>
 									<div class="btn-group">
 										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-											<i class="icon-user"></i> admin	<span class="caret"></span>
+											<i class="icon-user"></i> {{{ Auth::user()->username }}}	<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu">
 											<li><a href="{{{ URL::to('user/settings') }}}"><i class="icon-wrench"></i> Settings</a></li>
