@@ -41,6 +41,9 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->before('csrf');
     Route::get('blogs/{id}/delete', 'AdminBlogsController@getDelete')
         ->where('id', '[0-9]+');
+    Route::post('blogs/{id}/delete', 'AdminBlogsController@postDelete')
+        ->where('id', '[0-9]+')
+        ->before('csrf');
     Route::controller('blogs', 'AdminBlogsController');
 
     # User Management

@@ -156,34 +156,67 @@ class AdminBlogsController extends AdminController {
         return Redirect::to('admin/blogs/' . $id . '/edit')->withInput()->withErrors($validator);
 	}
 
+
     /**
      * Remove the specified resource from storage.
      *
      * @param $id
      * @return Response
      */
-	public function getDelete($id)
-	{
-
-        // Check if the blog post exists
+    public function getDelete($id)
+    {
+        // Check if the comment post exists
         if (is_null($post = Post::find($id)))
         {
-            // Redirect to the blogs management page
-            return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.not_found'));
+            // Redirect to the comments management page
+            return Redirect::to('admin/comments')->with('error', Lang::get('admin/blogs/messages.not_found'));
         }
 
-        $post->delete();
+        // Show the page
+        return View::make('admin/blogs/delete', compact('post'));
+    }
 
-        // Was the blog post deleted?
-        $post = Post::find($id);
-        if(empty($post))
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param $id
+     * @return Response
+     */
+    public function postDelete($id)
+    {
+        // Declare the rules for the form validation
+        $rules = array(
+            'id' => 'required|integer'
+        );
+
+        // Validate the inputs
+        $validator = Validator::make(Input::all(), $rules);
+
+        // Check if the form validates with success
+        if ($validator->passes())
         {
-            // Redirect to the blog posts management page
-            return Redirect::to('admin/blogs')->with('success', Lang::get('admin/blogs/messages.delete.success'));
-        }
 
+            // Check if the blog post exists
+            if (is_null($post = Post::find($id)))
+            {
+                // Redirect to the blogs management page
+                return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.not_found'));
+            }
+
+            $post->delete();
+
+            // Was the blog post deleted?
+            $post = Post::find($id);
+            if(empty($post))
+            {
+                // Redirect to the blog posts management page
+                return Redirect::to('admin/blogs')->with('success', Lang::get('admin/blogs/messages.delete.success'));
+            }
+
+
+        }
         // There was a problem deleting the blog post
         return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.delete.error'));
-	}
+    }
 
 }

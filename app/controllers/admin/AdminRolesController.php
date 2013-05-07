@@ -165,14 +165,35 @@ class AdminRolesController extends AdminController {
         return Redirect::to('admin/roles/' . $id . '/edit')->withInput()->withErrors($validator);
     }
 
+
     /**
-     * Remove the specified resource from storage.
+     * Remove user page.
      *
      * @param $id
      * @return Response
      */
     public function getDelete($id)
     {
+        // Check if the user exists
+        if (is_null($role = Role::find($id)))
+        {
+            // Redirect to the users management page
+            return Redirect::to('admin/roles')->with('error', Lang::get('admin/roles/messages.does_not_exist'));
+        }
+
+        // Show the page
+        return View::make('admin/roles/delete', compact('role'));
+    }
+
+    /**
+     * Remove the specified user from storage.
+     *
+     * @param $id
+     * @return Response
+     */
+    public function postDelete($id)
+    {
+
         // Get the group information
         $role = Role::find($id);
 
