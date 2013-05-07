@@ -22,7 +22,15 @@
 		]
 	},
 	"scripts": {
-		"post-update-cmd": "php artisan optimize"
+		"pre-update-cmd": [
+			"php artisan clear-compiled"
+		],
+		"post-install-cmd": [
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan optimize"
+		]
 	},
 	"config": {
 		"preferred-install": "dist"
