@@ -279,6 +279,10 @@ return array(
 
         )
 
-    )
+    ),
+
+
+    'development' => true,
+
 
 );

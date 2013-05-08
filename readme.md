@@ -234,9 +234,11 @@ Adding assets in the configuration file `config/packages/jasonlewis/basset/confi
 
 Compiling assets
 
-    $ php artisan basset:compile
+    $ php artisan basset:build
 
-For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basset)
+I would recommend using development collections for development instead of compiling .
+
+For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basset/4.0)
 
 <a name="presenter"></a>
 ## Presenter
