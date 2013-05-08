@@ -1,5 +1,7 @@
 <?php namespace Andrew13\Helpers;
 
+use tidy;
+
 class String {
 
     /**
@@ -21,11 +23,10 @@ class String {
     public static function tidy($value)
     {
         // Check to see if Tidy is available.
-        if(class_exists('Tidy')) {
-            $tidy = new Tidy();
-            return $tidy->repairString($value, array(
-                'output-xml' => true,
-                'input-xml' => true
+        if(class_exists('tidy')) {
+            $tidy = new tidy();
+            return  $tidy->repairString($value, array(
+                'show-body-only' => true,
             ));
         } else { // No Tidy, Time for regex and possibly a broken DOM :(
             preg_match_all('#<(?!meta|img|br|hr|input\b)\b([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $value, $result);
