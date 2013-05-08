@@ -87,10 +87,10 @@ class AdminUsersController extends AdminController {
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param $user
      * @return Response
      */
-    public function getShow($id)
+    public function getShow($user)
     {
         // redirect to the frontend
     }
@@ -98,13 +98,11 @@ class AdminUsersController extends AdminController {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param $id
+     * @param $user
      * @return Response
      */
-    public function getEdit($id)
+    public function getEdit($user)
     {
-        $user = User::find($id);
-
         if ( $user->id )
         {
             $roles = Role::all();
@@ -121,19 +119,11 @@ class AdminUsersController extends AdminController {
     /**
      * Update the specified resource in storage.
      *
-     * @param $id
+     * @param $user
      * @return Response
      */
-    public function postEdit($id)
+    public function postEdit($user)
     {
-
-        $user = User::find($id);
-
-        if ( empty($user->id) )
-        {
-            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
-        }
-
         // Save roles. Handles updating.
         $user->saveRoles(Input::get( 'roles' ));
 
@@ -181,18 +171,11 @@ class AdminUsersController extends AdminController {
     /**
      * Remove user page.
      *
-     * @param $id
+     * @param $user
      * @return Response
      */
-    public function getDelete($id)
+    public function getDelete($user)
     {
-        // Check if the user exists
-        if (is_null($user = User::find($id)))
-        {
-            // Redirect to the users management page
-            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
-        }
-
         // Show the page
         return View::make('admin/users/delete', compact('user'));
     }
@@ -200,20 +183,11 @@ class AdminUsersController extends AdminController {
     /**
      * Remove the specified user from storage.
      *
-     * @param $id
+     * @param $user
      * @return Response
      */
-    public function postDelete($id)
+    public function postDelete($user)
     {
-
-        $user = User::find($id);
-
-        if ( empty($user->id) )
-        {
-            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
-        }
-
-
         // Check if we are not trying to delete ourselves
         if ($user->id === Confide::user()->id)
         {
@@ -221,6 +195,9 @@ class AdminUsersController extends AdminController {
             return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.delete.impossible'));
         }
 
+        AssignedRoles::where('user_id', $user->id)->delete();
+
+        $id = $user->id;
         $user->delete();
 
         // Was the comment post deleted?

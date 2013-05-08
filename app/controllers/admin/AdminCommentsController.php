@@ -20,19 +20,11 @@ class AdminCommentsController extends AdminController {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param $id
+     * @param $comment
      * @return Response
      */
-	public function getEdit($id)
+	public function getEdit($comment)
 	{
-
-        // Check if the comment post exists
-        if (is_null($comment = Comment::find($id)))
-        {
-            // Redirect to the comments management page
-            return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.does_not_exist'));
-        }
-
         // Show the page
         return View::make('admin/comments/edit', compact('comment'));
 	}
@@ -40,18 +32,11 @@ class AdminCommentsController extends AdminController {
     /**
      * Update the specified resource in storage.
      *
-     * @param $id
+     * @param $comment
      * @return Response
      */
-	public function postEdit($id)
+	public function postEdit($comment)
 	{
-        // Check if the comment post exists
-        if (is_null($comment = Comment::find($id)))
-        {
-            // Redirect to the comments management page
-            return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.does_not_exist'));
-        }
-
         // Declare the rules for the form validation
         $rules = array(
             'content' => 'required|min:3'
@@ -70,32 +55,25 @@ class AdminCommentsController extends AdminController {
             if($comment->save())
             {
                 // Redirect to the new comment post page
-                return Redirect::to('admin/comments/' . $id . '/edit')->with('success', Lang::get('admin/comments/messages.update.success'));
+                return Redirect::to('admin/comments/' . $comment->id . '/edit')->with('success', Lang::get('admin/comments/messages.update.success'));
             }
 
             // Redirect to the comments post management page
-            return Redirect::to('admin/comments/' . $id . '/edit')->with('error', Lang::get('admin/comments/messages.update.error'));
+            return Redirect::to('admin/comments/' . $comment->id . '/edit')->with('error', Lang::get('admin/comments/messages.update.error'));
         }
 
         // Form validation failed
-        return Redirect::to('admin/comments/' . $id . '/edit')->withInput()->withErrors($validator);
+        return Redirect::to('admin/comments/' . $comment->id . '/edit')->withInput()->withErrors($validator);
 	}
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
+     * @param $comment
      * @return Response
      */
-	public function getDelete($id)
+	public function getDelete($comment)
 	{
-        // Check if the comment post exists
-        if (is_null($comment = Comment::find($id)))
-        {
-            // Redirect to the comments management page
-            return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.not_found'));
-        }
-
         // Show the page
         return View::make('admin/comments/delete', compact('comment'));
 	}
@@ -103,10 +81,10 @@ class AdminCommentsController extends AdminController {
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
+     * @param $comment
      * @return Response
      */
-	public function postDelete($id)
+	public function postDelete($comment)
 	{
         // Declare the rules for the form validation
         $rules = array(
@@ -119,13 +97,7 @@ class AdminCommentsController extends AdminController {
         // Check if the form validates with success
         if ($validator->passes())
         {
-            // Check if the comment post exists
-            if (is_null($comment = Comment::find(Input::get('id'))))
-            {
-                // Redirect to the comments management page
-                return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.not_found'));
-            }
-
+            $id = $comment->id;
             $comment->delete();
 
             // Was the comment post deleted?

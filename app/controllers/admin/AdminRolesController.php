@@ -91,13 +91,11 @@ class AdminRolesController extends AdminController {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param $id
+     * @param $role
      * @return Response
      */
-    public function getEdit($id)
+    public function getEdit($role)
     {
-        // Get the group information
-        $role = Role::find($id);
         if(! empty($role))
         {
             // Get all the available permissions
@@ -119,20 +117,11 @@ class AdminRolesController extends AdminController {
     /**
      * Update the specified resource in storage.
      *
-     * @param $id
+     * @param $role
      * @return Response
      */
-    public function postEdit($id)
+    public function postEdit($role)
     {
-        // Get the group information
-        $role = Role::find($id);
-
-        if( empty($role->id) )
-        {
-            // Redirect to the groups management page
-            return Rediret::to('admin/roles')->with('error', Lang::get('admin/roles/messages.does_not_exist'));
-        }
-
         // Declare the rules for the form validation
         $rules = array(
             'name' => 'required'
@@ -152,34 +141,28 @@ class AdminRolesController extends AdminController {
             if ($role->save())
             {
                 // Redirect to the group page
-                return Redirect::to('admin/roles/' . $id . '/edit')->with('success', Lang::get('admin/roles/messages.update.success'));
+                return Redirect::to('admin/roles/' . $role->id . '/edit')->with('success', Lang::get('admin/roles/messages.update.success'));
             }
             else
             {
                 // Redirect to the group page
-                return Redirect::to('admin/roles/' . $id . '/edit')->with('error', Lang::get('admin/roles/messages.update.error'));
+                return Redirect::to('admin/roles/' . $role->id . '/edit')->with('error', Lang::get('admin/roles/messages.update.error'));
             }
         }
 
         // Form validation failed
-        return Redirect::to('admin/roles/' . $id . '/edit')->withInput()->withErrors($validator);
+        return Redirect::to('admin/roles/' . $role->id . '/edit')->withInput()->withErrors($validator);
     }
 
 
     /**
      * Remove user page.
      *
-     * @param $id
+     * @param $role
      * @return Response
      */
-    public function getDelete($id)
+    public function getDelete($role)
     {
-        // Check if the user exists
-        if (is_null($role = Role::find($id))) {
-            // Redirect to the users management page
-            return Redirect::to('admin/roles')->with('error', Lang::get('admin/roles/messages.does_not_exist'));
-        }
-
         // Show the page
         return View::make('admin/roles/delete', compact('role'));
     }
@@ -190,12 +173,8 @@ class AdminRolesController extends AdminController {
      * @param $id
      * @return Response
      */
-    public function postDelete($id)
+    public function postDelete($role)
     {
-        // Get the group information
-        $role = Role::find($id);
-
-        if(! empty( $role->id )) {
             // Was the group deleted?
             if($role->delete()) {
                 // Redirect to the group management page
@@ -204,10 +183,6 @@ class AdminRolesController extends AdminController {
 
             // There was a problem deleting the group
             return Redirect::to('admin/roles')->with('error', Lang::get('admin/roles/messages.delete.error'));
-        } else {
-            // Redirect to the group management page
-            return Redirect::to('admin/roles')->with('error', Lang::get('admin/roles/messages.not_found'));
-        }
     }
 
 }

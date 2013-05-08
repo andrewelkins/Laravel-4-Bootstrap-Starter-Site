@@ -18,5 +18,6 @@ return array(
 	'settings'              => 'Settings',
 	'profile'               => 'Profile',
 	'user_account_is_not_confirmed'          => 'User Account is not confirmed.',
+	'user_account_updated'          => 'User Account updated.',
 
 );

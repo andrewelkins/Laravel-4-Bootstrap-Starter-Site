@@ -21,18 +21,31 @@ class UserController extends BaseController {
      * Stores new user
      *
      */
-    public function postIndex()
+    public function postIndex($user)
     {
-        $user = new User;
+        var_dump($user);
 
         $user->username = Input::get( 'username' );
         $user->email = Input::get( 'email' );
-        $user->password = Input::get( 'password' );
 
-        // The password confirmation will be removed from model
-        // before saving. This field will be used in Ardent's
-        // auto validation.
-        $user->password_confirmation = Input::get( 'password_confirmation' );
+        $password = Input::get( 'password' );
+        $passwordConfirmation = Input::get( 'password_confirmation' );
+
+        if(!empty($password)) {
+            if($password === $passwordConfirmation) {
+                $user->password = $password;
+                // The password confirmation will be removed from model
+                // before saving. This field will be used in Ardent's
+                // auto validation.
+                $user->password_confirmation = $passwordConfirmation;
+            } else {
+                // Redirect to the new user page
+                return Redirect::to('users')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
+            }
+        } else {
+            unset($user->password);
+            unset($user->password_confirmation);
+        }
 
         // Save if valid. Password field will be hashed before save
         $user->save();
@@ -41,14 +54,14 @@ class UserController extends BaseController {
         {
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
             return Redirect::to('user/login')
-                ->with( 'notice', Lang::get('confide::confide.alerts.account_created') );
+                ->with( 'notice', Lang::get('user.user.user_account_updated') );
         }
         else
         {
             // Get validation errors (see Ardent package)
             $error = $user->errors()->all();
 
-            return Redirect::to('user/create')
+            return Redirect::to('user')
                 ->withInput(Input::except('password'))
                 ->with( 'error', $error );
         }

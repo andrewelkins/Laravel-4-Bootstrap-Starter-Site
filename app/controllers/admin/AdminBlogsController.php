@@ -78,10 +78,10 @@ class AdminBlogsController extends AdminController {
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param $post
      * @return Response
      */
-	public function getShow($id)
+	public function getShow($post)
 	{
         // redirect to the frontend
 	}
@@ -89,19 +89,11 @@ class AdminBlogsController extends AdminController {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param $id
+     * @param $post
      * @return Response
      */
-	public function getEdit($id)
+	public function getEdit($post)
 	{
-
-        // Check if the blog post exists
-        if (is_null($post = Post::find($id)))
-        {
-            // Redirect to the blogs management page
-            return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.does_not_exist'));
-        }
-
         // Show the page
         return View::make('admin/blogs/edit', compact('post'));
 	}
@@ -109,17 +101,11 @@ class AdminBlogsController extends AdminController {
     /**
      * Update the specified resource in storage.
      *
-     * @param $id
+     * @param $post
      * @return Response
      */
-	public function postEdit($id)
+	public function postEdit($post)
 	{
-        // Check if the blog post exists
-        if (is_null($post = Post::find($id)))
-        {
-            // Redirect to the blogs management page
-            return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.does_not_exist'));
-        }
 
         // Declare the rules for the form validation
         $rules = array(
@@ -145,33 +131,26 @@ class AdminBlogsController extends AdminController {
             if($post->save())
             {
                 // Redirect to the new blog post page
-                return Redirect::to('admin/blogs/' . $id . '/edit')->with('success', Lang::get('admin/blogs/messages.update.success'));
+                return Redirect::to('admin/blogs/' . $post->id . '/edit')->with('success', Lang::get('admin/blogs/messages.update.success'));
             }
 
             // Redirect to the blogs post management page
-            return Redirect::to('admin/blogs/' . $id . '/edit')->with('error', Lang::get('admin/blogs/messages.update.error'));
+            return Redirect::to('admin/blogs/' . $post->id . '/edit')->with('error', Lang::get('admin/blogs/messages.update.error'));
         }
 
         // Form validation failed
-        return Redirect::to('admin/blogs/' . $id . '/edit')->withInput()->withErrors($validator);
+        return Redirect::to('admin/blogs/' . $post->id . '/edit')->withInput()->withErrors($validator);
 	}
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
+     * @param $post
      * @return Response
      */
-    public function getDelete($id)
+    public function getDelete($post)
     {
-        // Check if the comment post exists
-        if (is_null($post = Post::find($id)))
-        {
-            // Redirect to the comments management page
-            return Redirect::to('admin/comments')->with('error', Lang::get('admin/blogs/messages.not_found'));
-        }
-
         // Show the page
         return View::make('admin/blogs/delete', compact('post'));
     }
@@ -179,10 +158,10 @@ class AdminBlogsController extends AdminController {
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
+     * @param $post
      * @return Response
      */
-    public function postDelete($id)
+    public function postDelete($post)
     {
         // Declare the rules for the form validation
         $rules = array(
@@ -195,14 +174,7 @@ class AdminBlogsController extends AdminController {
         // Check if the form validates with success
         if ($validator->passes())
         {
-
-            // Check if the blog post exists
-            if (is_null($post = Post::find($id)))
-            {
-                // Redirect to the blogs management page
-                return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.not_found'));
-            }
-
+            $id = $post->id;
             $post->delete();
 
             // Was the blog post deleted?
