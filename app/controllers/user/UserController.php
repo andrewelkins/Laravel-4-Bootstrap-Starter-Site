@@ -23,8 +23,6 @@ class UserController extends BaseController {
      */
     public function postIndex($user)
     {
-        var_dump($user);
-
         $user->username = Input::get( 'username' );
         $user->email = Input::get( 'email' );
 
