@@ -281,8 +281,4 @@ return array(
 
     ),
 
-
-    'development' => true,
-
-
 );
