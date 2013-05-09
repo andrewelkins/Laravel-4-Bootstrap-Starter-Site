@@ -1,4 +1,5 @@
-#Laravel 4 Bootstrap Starter Site `Version: 1.1.0 Stable`
+#Laravel 4 Bootstrap Starter Site 
+`Version: 1.1.0 Stable`
 
 Laravel 4 Bootstrap Starter Site is a sample application for beginning development with Larvel 4. 
 
