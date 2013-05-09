@@ -1,6 +1,8 @@
-#Laravel 4 - Bootstrap Starter Site (Version 1.1.0 Stable)
+#Laravel 4 Bootstrap Starter Site `Version: 1.1.0 Stable`
 
-This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
+Laravel 4 Bootstrap Starter Site is a sample application for beginning development with Larvel 4. 
+
+It began as a fork of [Laravel 4 Starter Kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
 
 -----
 
