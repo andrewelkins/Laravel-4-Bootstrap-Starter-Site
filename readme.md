@@ -34,10 +34,8 @@ It began as a fork of [Laravel 4 Starter Kit](https://github.com/brunogaspar/lar
 ## Issues
 See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
 
-## Coming in future releases
-(Checkout develop branch for latest unstable code.) 
-* Full test coverage.
-* When a user is deleted, user's content should be deleted.
+## Wiki
+[Roadmap](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/wiki/Roadmap) 
 
 -----
 
