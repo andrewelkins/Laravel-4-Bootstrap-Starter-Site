@@ -6,7 +6,7 @@ Laravel 4 Bootstrap Starter Site is a sample application for beginning developme
 It began as a fork of [Laravel 4 Starter Kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
 
 
-##Included features
+## Features
 
 * Twitter Bootstrap 2.3.0
 * Custom Error Pages
