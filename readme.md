@@ -1,10 +1,12 @@
-#Laravel 4 - Bootstrap Starter Site (Version 1.1.0 Stable)
+#Laravel 4 Bootstrap Starter Site 
+`Version: 1.1.0 Stable` [![ProjectStatus](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site)
 
-This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
+Laravel 4 Bootstrap Starter Site is a sample application for beginning development with Larvel 4. 
 
------
+It began as a fork of [Laravel 4 Starter Kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
 
-##Included features
+
+## Features
 
 * Twitter Bootstrap 2.3.0
 * Custom Error Pages
@@ -32,10 +34,8 @@ This is a Laravel 4 Starter Site. It is a fork off of [brunogaspar/laravel4-star
 ## Issues
 See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
 
-## Coming in future releases
-(Checkout develop branch for latest unstable code.) 
-* Full test coverage.
-* When a user is deleted, user's content should be deleted.
+## Wiki
+[Roadmap](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/wiki/Roadmap) 
 
 -----
 
