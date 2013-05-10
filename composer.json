@@ -6,7 +6,7 @@
 		"jasonlewis/basset": "*",
 		"jasonlewis/expressive-date": "1.*",
 		"robclancy/presenter": "1.0.*",
-		"way/generators": "dev-master"
+		"way/generators": "1.0.*@dev"
 	},
 	"autoload": {
 		"classmap": [
