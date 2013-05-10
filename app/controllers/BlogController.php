@@ -2,6 +2,29 @@
 
 class BlogController extends BaseController {
 
+    /**
+     * Post Model
+     * @var Post
+     */
+    protected $post;
+
+    /**
+     * User Model
+     * @var User
+     */
+    protected $user;
+
+    /**
+     * Inject the models.
+     * @param Post $post
+     * @param User $user
+     */
+    public function __construct(Post $post, User $user)
+    {
+        $this->post = $post;
+        $this->user = $user;
+    }
+    
 	/**
 	 * Returns all the blog posts.
 	 *
@@ -10,7 +33,7 @@ class BlogController extends BaseController {
 	public function getIndex()
 	{
 		// Get all the blog posts
-		$posts = Post::orderBy('created_at', 'DESC')->paginate(10);
+		$posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
 
 		// Show the page
 		return View::make('site/blog/index', compact('posts'));
@@ -26,7 +49,7 @@ class BlogController extends BaseController {
 	public function getView($slug)
 	{
 		// Get this blog post data
-		$post = Post::where('slug', '=', $slug)->first();
+		$post = $this->post->where('slug', '=', $slug)->first();
 
 		// Check if the blog post exists
 		if (is_null($post))
@@ -42,7 +65,7 @@ class BlogController extends BaseController {
 		$comments = $post->comments()->orderBy('created_at', 'ASC')->get();
 
         // Get current user and check permission
-        $user = Confide::user();
+        $user = $this->user->currentUser();
         $canComment = false;
         if(!empty($user)) {
             $canComment = $user->can('post_comment');
@@ -61,7 +84,7 @@ class BlogController extends BaseController {
 	public function postView($slug)
 	{
 
-        $user = Confide::user();
+        $user = $this->user->currentUser();
         $canComment = $user->can('post_comment');
 		if ( ! $canComment)
 		{
@@ -69,7 +92,7 @@ class BlogController extends BaseController {
 		}
 
 		// Get this blog post data
-		$post = Post::where('slug', '=', $slug)->first();
+		$post = $this->post->where('slug', '=', $slug)->first();
 
 		// Declare the rules for the form validation
 		$rules = array(

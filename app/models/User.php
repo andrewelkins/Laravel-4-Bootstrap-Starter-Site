@@ -1,6 +1,7 @@
 <?php
 
 use Zizaco\Confide\ConfideUser;
+use Zizaco\Confide\Confide;
 use Zizaco\Entrust\HasRole;
 use Robbo\Presenter\PresentableInterface;
 
@@ -129,6 +130,11 @@ class User extends ConfideUser implements PresentableInterface {
         }
 
         return array($user, $redirectTo);
+    }
+
+    public function currentUser()
+    {
+        return (new Confide)->user();
     }
 
 

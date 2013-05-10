@@ -2,6 +2,20 @@
 
 class UserController extends BaseController {
 
+    /**
+     * User Model
+     * @var User
+     */
+    protected $user;
+
+    /**
+     * Inject the models.
+     * @param User $user
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     /**
      * Users settings page
@@ -10,7 +24,7 @@ class UserController extends BaseController {
      */
     public function getIndex()
     {
-        list($user,$redirect) = User::checkAuthAndRedirect('user');
+        list($user,$redirect) = $this->user->checkAuthAndRedirect('user');
         if($redirect){return $redirect;}
 
         // Show the page
