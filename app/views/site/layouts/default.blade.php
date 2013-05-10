@@ -60,7 +60,7 @@
 
 			                        <ul class="nav pull-right">
 			                            @if (Auth::check())
-			                            <li><a href="{{{ URL::to('user/settings') }}}">Logged in as {{{ Auth::user()->username }}}</a></li>
+			                            <li><a href="{{{ URL::to('user') }}}">Logged in as {{{ Auth::user()->username }}}</a></li>
 			                            <li><a href="{{{ URL::to('user/logout') }}}">Logout</a></li>
 			                            @else
 			                            <li {{ (Request::is('user/login') ? ' class="active"' : '') }}><a href="{{{ URL::to('user/login') }}}">Login</a></li>

@@ -93,14 +93,10 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
  */
 
 //:: User Account Routes ::
-
-Route::group(array('before' => 'auth'), function()
-{
-    Route::get('user/settings', 'UserController@getSettings');
-});
-Route::post('user/{user}/edit', 'UserController@postIndex')
+Route::post('user/{user}/edit', 'UserController@postEdit')
     ->where('user', '[0-9]+')
     ->before('csrf');
+
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
 

@@ -40,6 +40,7 @@ class AdminRolesController extends AdminController {
      */
     public function postCreate()
     {
+
         // Declare the rules for the form validation
         $rules = array(
             'name' => 'required'
@@ -47,7 +48,6 @@ class AdminRolesController extends AdminController {
 
         // Validate the inputs
         $validator = Validator::make(Input::all(), $rules);
-
         // Check if the form validates with success
         if ($validator->passes())
         {
