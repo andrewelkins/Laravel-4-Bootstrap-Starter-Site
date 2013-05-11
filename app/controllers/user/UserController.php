@@ -148,6 +148,11 @@ class UserController extends BaseController {
      */
     public function getLogin()
     {
+        list($user,$redirect) = $this->user->checkAuthAndRedirect('user');
+        if(!empty($user)){
+            return Redirect::to('/');
+        }
+
         return View::make('site/user/login');
     }
 

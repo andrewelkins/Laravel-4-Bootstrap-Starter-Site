@@ -2,7 +2,8 @@
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class BaseControllerTestCase extends TestCase {
+class BaseControllerTestCase extends TestCase
+{
 
     /**
      * Will contain the parameters of the next request
@@ -38,21 +39,18 @@ class BaseControllerTestCase extends TestCase {
      * @param array $params
      * @return BaseControllerTestCase this for method chaining.
      */
-    public function requestAction( $method, $action, $params = array())
+    public function requestAction($method, $action, $params = array())
     {
         $action_url = URL::action($action, $params);
 
-        if( $action_url == '' )
+        if ($action_url == '')
             trigger_error("Action '$action' does not exist");
 
-        try
-        {
+        try {
             // The following method returns Synfony's DomCrawler
             // but it will not be used when testing controllers
-            $this->client->request( $method, $action_url, array_merge($params, $this->requestInput) );
-        }
-        catch(HttpException $e)
-        {
+            $this->client->request($method, $action_url, array_merge($params, $this->requestInput));
+        } catch (HttpException $e) {
             // Store the HttpException in order to check it later
             $this->lastException = $e;
         }
@@ -67,7 +65,7 @@ class BaseControllerTestCase extends TestCase {
      * @param array $params Post paratemers array.
      * @return mixed this.
      */
-    public function withInput( $params )
+    public function withInput($params)
     {
         $this->requestInput = $params;
 
@@ -80,18 +78,15 @@ class BaseControllerTestCase extends TestCase {
      * @param $code Correct status code
      * @return void
      */
-    public function assertStatusCode( $code )
+    public function assertStatusCode($code)
     {
-        if($this->lastException)
-        {
+        if ($this->lastException) {
             $realCode = $this->lastException->getStatusCode();
-        }
-        else
-        {
+        } else {
             $realCode = $this->client->getResponse()->getStatusCode();
         }
 
-        $this->assertEquals( $code, $realCode, "Response was not $code, status code was $realCode" );
+        $this->assertEquals($code, $realCode, "Response was not $code, status code was $realCode");
     }
 
     /**
@@ -101,7 +96,7 @@ class BaseControllerTestCase extends TestCase {
      */
     public function assertRequestOk()
     {
-        $this->assertStatusCode( 200 );
+        $this->assertStatusCode(200);
     }
 
     /**
@@ -110,29 +105,25 @@ class BaseControllerTestCase extends TestCase {
      * @param $location Location where it should be redirected
      * @return void
      */
-    public function assertRedirection( $location = null )
+    public function assertRedirection($location = null)
     {
         $response = $this->client->getResponse();
 
-        if($this->lastException)
-        {
+        if ($this->lastException) {
             $statusCode = $this->lastException->getStatusCode();
-        }
-        else
-        {
+        } else {
             $statusCode = $response->getStatusCode();
         }
 
         $isRedirection = in_array($statusCode, array(201, 301, 302, 303, 307, 308));
 
-        $this->assertTrue( $isRedirection, "Last request was not a redirection. Status code was ".$statusCode );
+        $this->assertTrue($isRedirection, "Last request was not a redirection. Status code was " . $statusCode);
 
-        if( $location )
-        {
-            if(! strpos( $location, '://' ))
-                $location = 'http://:'.$location;
+        if ($location) {
+            if (!strpos($location, '://'))
+                $location = 'http://:' . $location;
 
-            $this->assertEquals( $location, $response->headers->get('Location'), 'Page was not redirected to the correct place' );
+            $this->assertEquals($this->cleanTrailingSlash($location), $this->cleanTrailingSlash($response->headers->get('Location')), 'Page was not redirected to the correct place');
         }
 
     }
@@ -144,20 +135,28 @@ class BaseControllerTestCase extends TestCase {
      * @param mixed $value Session variable value.
      * @return void.
      */
-    public function assertSessionHas( $name, $value = null )
+    public function assertSessionHas($name, $value = null)
     {
-        $this->assertTrue( Session::has($name), "Session doesn't contain '$name'" );
+        $this->assertTrue(Session::has($name), "Session doesn't contain '$name'");
 
-        if( $value )
-        {
-            $this->assertContains( $value, Session::get($name), "Session '$name' are not equal to $value" );
+        if ($value) {
+            $this->assertContains($value, Session::get($name), "Session '$name' are not equal to $value");
         }
     }
 
-    public function assertEqualsUrlPath($url, $value=null)
+    public function assertEqualsUrlPath($url, $value = null)
     {
         $path = parse_url($url, PHP_URL_PATH);
         $pathWithoutSlash = substr($path, 1);
-        $this->assertEquals($pathWithoutSlash,$value);
+        $this->assertEquals($pathWithoutSlash, $value);
+    }
+
+    public function cleanTrailingSlash($string)
+    {
+        if (substr($string, -1) == '/') {
+            $string = substr($string, 0, -1);
+        }
+
+        return $string;
     }
 }
