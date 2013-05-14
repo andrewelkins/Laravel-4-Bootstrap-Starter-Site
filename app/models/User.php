@@ -60,7 +60,6 @@ class User extends ConfideUser implements PresentableInterface {
             $this->roles()->sync($inputRoles);
         } else {
             $this->roles()->detach();
-
         }
     }
 

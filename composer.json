@@ -9,7 +9,8 @@
 	},
 	"require-dev": {
 		"way/generators": "1.0.*@dev",
-        "mockery/mockery": "dev-master@dev"
+        "mockery/mockery": "dev-master@dev",
+        "summerstreet/woodling": "0.1.*"
 	},
 	"autoload": {
 		"classmap": [

@@ -13,7 +13,7 @@ class UserControllerTest extends BaseControllerTestCase {
     public function testShouldDoLogin()
     {
         $credentials = array(
-            'email'=>'admin@test.com',
+            'email'=>'admin@example.org',
             'password'=>'admin',
             'csrf_token' => Session::getToken()
         );
@@ -40,7 +40,7 @@ class UserControllerTest extends BaseControllerTestCase {
     public function testShouldNotDoLoginWhenTokenWrong()
     {
         $credentials = array(
-            'email'=>'admin@test.com',
+            'email'=>'admin@example.org',
             'password'=>'admin',
             'csrf_token' => ''
         );
@@ -63,7 +63,7 @@ class UserControllerTest extends BaseControllerTestCase {
     public function testLoginShouldRedirectUser()
     {
         $credentials = array(
-            'email'=>'admin@test.com',
+            'email'=>'admin@example.org',
             'password'=>'admin',
             'csrf_token' => Session::getToken()
         );
