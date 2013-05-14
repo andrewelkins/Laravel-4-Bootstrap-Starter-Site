@@ -14,11 +14,7 @@ class BlogTest extends BaseControllerTestCase {
         $this->assertTrue($this->client->getResponse()->isOk());
     }
 
-    /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
+
     public function testBlogPostTitle()
     {
         $crawler = $this->client->request('GET', '/');
@@ -26,7 +22,7 @@ class BlogTest extends BaseControllerTestCase {
         $this->assertCount(1, $crawler->filter('h4:contains("In Iisque Similique Reprimique Eum")'));
     }
 
-    public function testGetInTouch()
+    public function testFirstArticleLink()
     {
         $crawler = $this->client->request('GET', '/');
 
@@ -35,6 +31,42 @@ class BlogTest extends BaseControllerTestCase {
         $url = $link->getUri();
 
         $this->assertEqualsUrlPath($url, 'in-iisque-similique-reprimique-eum');
+    }
+
+    public function testBlogPostTitle2()
+    {
+        $crawler = $this->client->request('GET', '/');
+
+        $this->assertCount(1, $crawler->filter('h4:contains("Vivendo Suscipiantur Vim Te Vix")'));
+    }
+
+    public function testFirstArticleLink2()
+    {
+        $crawler = $this->client->request('GET', '/');
+
+        $link = $crawler->selectLink('Vivendo Suscipiantur Vim Te Vix')->link();
+
+        $url = $link->getUri();
+
+        $this->assertEqualsUrlPath($url, 'vivendo-suscipiantur-vim-te-vix');
+    }
+
+    public function testBlogPostTitle3()
+    {
+        $crawler = $this->client->request('GET', '/');
+
+        $this->assertCount(1, $crawler->filter('h4:contains("Lorem Ipsum Dolor Sit Amet")'));
+    }
+
+    public function testFirstArticleLink3()
+    {
+        $crawler = $this->client->request('GET', '/');
+
+        $link = $crawler->selectLink('Lorem Ipsum Dolor Sit Amet')->link();
+
+        $url = $link->getUri();
+
+        $this->assertEqualsUrlPath($url, 'lorem-ipsum-dolor-sit-amet');
     }
 
 }

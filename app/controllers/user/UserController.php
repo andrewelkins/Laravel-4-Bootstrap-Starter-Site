@@ -186,16 +186,11 @@ class UserController extends BaseController {
         else
         {
             // Check if there was too many login attempts
-            if( Confide::isThrottled( $input ) )
-            {
+            if ( Confide::isThrottled( $input ) ) {
                 $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
-            }
-            elseif( ! User::isConfirmed( $input ) )
-            {
+            } elseif ( ! User::isConfirmed( $input ) ) {
                 $err_msg = Lang::get('user/user.user_account_is_not_confirmed');
-            }
-            else
-            {
+            } else {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
 
@@ -214,15 +209,13 @@ class UserController extends BaseController {
     {
         if ( Confide::confirm( $code ) )
         {
-            $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-                        return Redirect::to('user/login')
-                            ->with( 'notice', $notice_msg );
+            return Redirect::to('user/login')
+                ->with( 'notice', Lang::get('confide::confide.alerts.confirmation') );
         }
         else
         {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_confirmation');
-                        return Redirect::to('user/login')
-                            ->with( 'error', $error_msg );
+            return Redirect::to('user/login')
+                ->with( 'error', Lang::get('confide::confide.alerts.wrong_confirmation') );
         }
     }
 
@@ -243,16 +236,14 @@ class UserController extends BaseController {
     {
         if( Confide::forgotPassword( Input::get( 'email' ) ) )
         {
-            $notice_msg = Lang::get('confide::confide.alerts.password_reset');
             return Redirect::to('user/login')
-                ->with( 'notice', $notice_msg );
+                ->with( 'notice', Lang::get('confide::confide.alerts.password_reset') );
         }
         else
         {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_password_forgot');
             return Redirect::to('user/forgot')
                 ->withInput()
-                ->with( 'error', $error_msg );
+                ->with( 'error', Lang::get('confide::confide.alerts.wrong_password_forgot') );
         }
     }
 
@@ -283,16 +274,14 @@ class UserController extends BaseController {
             // By passing an array with the token, password and confirmation
         if( Confide::resetPassword( $input ) )
         {
-            $notice_msg = Lang::get('confide::confide.alerts.password_reset');
             return Redirect::to('user/login')
-            ->with( 'notice', $notice_msg );
+            ->with( 'notice', Lang::get('confide::confide.alerts.password_reset') );
         }
         else
         {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
             return Redirect::to('user/reset')
                 ->withInput()
-                ->with( 'error', $error_msg );
+                ->with( 'error', Lang::get('confide::confide.alerts.wrong_password_reset') );
         }
     }
 

@@ -49,7 +49,6 @@ class UserControllerTest extends BaseControllerTestCase {
             $this->withInput( $credentials )
                 ->requestAction('POST', 'UserController@postLogin');
 
-            $this->assertRedirection( URL::action('UserController@getLogin') );
         } catch (TokenMismatchException $e) {
             // threw an exception when token doesn't match.
             return true;

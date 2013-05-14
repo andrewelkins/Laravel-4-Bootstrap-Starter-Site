@@ -57,8 +57,14 @@ class Post extends Eloquent implements PresentableInterface {
 	 * @return string
 	 */
 	public function date()
-	{
-		return ExpressiveDate::make($this->created_at)->getRelativeDate();
+    {
+        $date = ExpressiveDate::make($this->created_at);
+        $clone = ExpressiveDate::make($this->created_at);
+        if((int) $date->addOneWeek()->getSecondsSinceEpoch() >= (int) ExpressiveDate::make()->getSecondsSinceEpoch()) {
+            return $clone->getRelativeDate();
+        } else {
+            return $clone->getShortDate();
+        }
 	}
 
 	/**
