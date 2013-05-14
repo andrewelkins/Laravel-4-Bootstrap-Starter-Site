@@ -35,34 +35,34 @@ class UserController extends BaseController {
      * Stores new user
      *
      */
-    public function postIndex($user)
+    public function postIndex()
     {
-        $user->username = Input::get( 'username' );
-        $user->email = Input::get( 'email' );
+        $this->user->username = Input::get( 'username' );
+        $this->user->email = Input::get( 'email' );
 
         $password = Input::get( 'password' );
         $passwordConfirmation = Input::get( 'password_confirmation' );
 
         if(!empty($password)) {
             if($password === $passwordConfirmation) {
-                $user->password = $password;
+                $this->user->password = $password;
                 // The password confirmation will be removed from model
                 // before saving. This field will be used in Ardent's
                 // auto validation.
-                $user->password_confirmation = $passwordConfirmation;
+                $this->user->password_confirmation = $passwordConfirmation;
             } else {
                 // Redirect to the new user page
                 return Redirect::to('users')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
             }
         } else {
-            unset($user->password);
-            unset($user->password_confirmation);
+            unset($this->user->password);
+            unset($this->user->password_confirmation);
         }
 
         // Save if valid. Password field will be hashed before save
-        $user->save();
+        $this->user->save();
 
-        if ( $user->id )
+        if ( $this->user->id )
         {
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
             return Redirect::to('user/login')
@@ -71,7 +71,7 @@ class UserController extends BaseController {
         else
         {
             // Get validation errors (see Ardent package)
-            $error = $user->errors()->all();
+            $error = $this->user->errors()->all();
 
             return Redirect::to('user')
                 ->withInput(Input::except('password'))
