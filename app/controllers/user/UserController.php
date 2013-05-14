@@ -73,7 +73,7 @@ class UserController extends BaseController {
             // Get validation errors (see Ardent package)
             $error = $this->user->errors()->all();
 
-            return Redirect::to('user')
+            return Redirect::to('user/create')
                 ->withInput(Input::except('password'))
                 ->with( 'error', $error );
         }
