@@ -14,6 +14,7 @@ Woodling::seed('UserAdmin', array('class' => 'User', 'do' => function($blueprint
     {
         return date('Y-m-d H:i:s', strtotime("{$blueprint->created} + 2 months"));
     };
+//    $blueprint->role = Woodling::retrieve('RoleAdmin');
 }));
 
 Woodling::seed('UserUser', array('class' => 'User', 'do' => function($blueprint)
@@ -27,4 +28,5 @@ Woodling::seed('UserUser', array('class' => 'User', 'do' => function($blueprint)
     {
         return date('Y-m-d H:i:s', strtotime("{$blueprint->created} + 2 months"));
     };
+//    $blueprint->role = Woodling::retrieve('RoleComment');
 }));

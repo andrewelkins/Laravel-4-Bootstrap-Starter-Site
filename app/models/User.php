@@ -87,9 +87,9 @@ class User extends ConfideUser implements PresentableInterface {
      * @param $credentials
      * @return bool
      */
-    public static function isConfirmed( $credentials )
+    public function isConfirmed( $credentials )
     {
-        $user = (new User())
+        $user = $this
             ->where('email','=',$credentials['email'])
             ->orWhere('username','=',$credentials['email'])
             ->first();
