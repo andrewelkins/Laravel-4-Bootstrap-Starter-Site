@@ -40,7 +40,7 @@ class BlogTest extends BaseControllerTestCase {
         $this->assertCount(1, $crawler->filter('h4:contains("Vivendo Suscipiantur Vim Te Vix")'));
     }
 
-    public function testFirstArticleLink2()
+    public function testArticleLink2()
     {
         $crawler = $this->client->request('GET', '/');
 
@@ -58,7 +58,7 @@ class BlogTest extends BaseControllerTestCase {
         $this->assertCount(1, $crawler->filter('h4:contains("Lorem Ipsum Dolor Sit Amet")'));
     }
 
-    public function testFirstArticleLink3()
+    public function testArticleLink3()
     {
         $crawler = $this->client->request('GET', '/');
 
@@ -67,6 +67,27 @@ class BlogTest extends BaseControllerTestCase {
         $url = $link->getUri();
 
         $this->assertEqualsUrlPath($url, 'lorem-ipsum-dolor-sit-amet');
+    }
+
+    public function testArticleComment()
+    {
+        $crawler = $this->client->request('GET', '/');
+
+        $crawler->selectLink('1 Comment')->link();
+    }
+
+    public function testArticleComment2()
+    {
+        $crawler = $this->client->request('GET', '/');
+
+        $crawler->selectLink('2 Comments')->link();
+    }
+
+    public function testArticleComment3()
+    {
+        $crawler = $this->client->request('GET', '/');
+
+        $crawler->selectLink('3 Comments')->link();
     }
 
 }
