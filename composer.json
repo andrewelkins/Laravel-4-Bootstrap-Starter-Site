@@ -8,7 +8,7 @@
 		"robclancy/presenter": "1.0.*"
 	},
 	"require-dev": {
-		"way/generators": "1.0.*@dev",
+        "way/generators": "dev-master",
         "mockery/mockery": "dev-master@dev",
         "summerstreet/woodling": "0.1.*"
 	},
