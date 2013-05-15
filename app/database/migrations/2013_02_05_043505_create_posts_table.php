@@ -14,7 +14,7 @@ class CreatePostsTable extends Migration {
 		// Create the `Posts` table
 		Schema::create('posts', function($table)
 		{
-            		$table->engine = 'InnoDB';
+            $table->engine = 'InnoDB';
 			$table->increments('id')->unsigned();
 			$table->integer('user_id')->unsigned();
 			$table->string('title');
