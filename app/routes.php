@@ -97,6 +97,10 @@ Route::post('user/{user}/edit', 'UserController@postEdit')
     ->where('user', '[0-9]+')
     ->before('csrf');
 
+//:: User Account Routes ::
+Route::post('user/login', 'UserController@postLogin')
+    ->before('csrf');
+
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
 

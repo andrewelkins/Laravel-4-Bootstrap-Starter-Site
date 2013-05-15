@@ -1,6 +1,7 @@
 <?php
 
 use Zizaco\Confide\ConfideUser;
+use Zizaco\Confide\Confide;
 use Zizaco\Entrust\HasRole;
 use Robbo\Presenter\PresentableInterface;
 
@@ -59,7 +60,6 @@ class User extends ConfideUser implements PresentableInterface {
             $this->roles()->sync($inputRoles);
         } else {
             $this->roles()->detach();
-
         }
     }
 
@@ -87,9 +87,9 @@ class User extends ConfideUser implements PresentableInterface {
      * @param $credentials
      * @return bool
      */
-    public static function isConfirmed( $credentials )
+    public function isConfirmed( $credentials )
     {
-        $user = (new User())
+        $user = $this
             ->where('email','=',$credentials['email'])
             ->orWhere('username','=',$credentials['email'])
             ->first();
@@ -129,6 +129,11 @@ class User extends ConfideUser implements PresentableInterface {
         }
 
         return array($user, $redirectTo);
+    }
+
+    public function currentUser()
+    {
+        return (new Confide)->user();
     }
 
 
