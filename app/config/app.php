@@ -120,8 +120,10 @@ return array(
         'ExpressiveDateServiceProvider', // Expressive Date
         'Basset\BassetServiceProvider', // Better Asset Management
         'Robbo\Presenter\PresenterServiceProvider', // Presenter
-        'Way\Generators\GeneratorsServiceProvider', // Generators
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
+
+        /* Uncomment for use in development */
+//        'Way\Generators\GeneratorsServiceProvider', // Generators
+//        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
 
     ),
 
