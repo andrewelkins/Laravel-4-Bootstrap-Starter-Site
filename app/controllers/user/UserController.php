@@ -148,8 +148,8 @@ class UserController extends BaseController {
      */
     public function getLogin()
     {
-        list($user,$redirect) = $this->user->checkAuthAndRedirect('user');
-        if(!empty($user)){
+        $user = Auth::user();
+        if(!empty($user->id)){
             return Redirect::to('/');
         }
 
