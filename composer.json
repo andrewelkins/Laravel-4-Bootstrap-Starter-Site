@@ -34,8 +34,7 @@
 			"php artisan optimize"
 		],
 		"post-update-cmd": [
-			"php artisan optimize",
-            "php artisan ide-helper:generate"
+			"php artisan optimize"
 		]
 	},
 	"config": {

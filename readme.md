@@ -158,7 +158,14 @@ Uncomment the Generators and IDE Helpers. Then you'll want to run a composer upd
 php composer.phar update --dev
 ```
 This adds the generators and ide helpers.
+To make it build teh ide helpers automatically you'll want to add the following to `composer.json`
 
+```
+		"post-update-cmd": [
+			"php artisan optimize",
+            "php artisan ide-helper:generate"
+		]
+```
 
 ### Production Launch
 
