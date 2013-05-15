@@ -137,6 +137,29 @@ The structure of this starter site is the same as default Laravel 4 with one exc
 This starter site adds a `library` folder. Which, houses application specific library files.
 The files within library could also be handled within a composer package, but is included here as an example.
 
+### Development
+
+For ease of development you'll want to enable a couple useful packages. This requires editing the `app/config/app.php` file.
+
+```
+    'providers' => array(
+
+        [...]
+
+        /* Uncomment for use in development */
+//        'Way\Generators\GeneratorsServiceProvider', // Generators
+//        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
+
+    ),
+```
+Uncomment the Generators and IDE Helpers. Then you'll want to run a composer update with the dev flag.
+
+```
+php composer.phar update --dev
+```
+This adds the generators and ide helpers.
+
+
 ### Production Launch
 
 By default debugging is enabled. Before you go to production you should disable debugging in `app/config/app.php`
