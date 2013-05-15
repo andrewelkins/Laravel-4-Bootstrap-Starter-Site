@@ -10,7 +10,8 @@
 	"require-dev": {
         "way/generators": "dev-master",
         "mockery/mockery": "dev-master@dev",
-        "summerstreet/woodling": "0.1.*"
+        "summerstreet/woodling": "0.1.*",
+        "barryvdh/laravel-ide-helper": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -33,7 +34,8 @@
 			"php artisan optimize"
 		],
 		"post-update-cmd": [
-			"php artisan optimize"
+			"php artisan optimize",
+            "php artisan ide-helper:generate"
 		]
 	},
 	"config": {
