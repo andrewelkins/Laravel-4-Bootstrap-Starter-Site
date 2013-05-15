@@ -5,8 +5,12 @@
 		"zizaco/entrust": "dev-master",
 		"jasonlewis/basset": "*",
 		"jasonlewis/expressive-date": "1.*",
-		"robclancy/presenter": "1.0.*",
-		"way/generators": "1.0.*@dev"
+		"robclancy/presenter": "1.0.*"
+	},
+	"require-dev": {
+		"way/generators": "1.0.*@dev",
+        "mockery/mockery": "dev-master@dev",
+        "summerstreet/woodling": "0.1.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -18,7 +22,7 @@
 			"app/presenters",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
+			"app/tests/library"
 		]
 	},
 	"scripts": {

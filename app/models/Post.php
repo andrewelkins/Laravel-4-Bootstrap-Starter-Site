@@ -51,14 +51,25 @@ class Post extends Eloquent implements PresentableInterface {
 		return $this->hasMany('Comment');
 	}
 
-	/**
-	 * Get the date the post was created.
-	 *
-	 * @return string
-	 */
-	public function date()
-	{
-		return ExpressiveDate::make($this->created_at)->getRelativeDate();
+    /**
+     * Get the date the post was created.
+     *
+     * @param null $date
+     * @return string
+     */
+	public function date($date=null)
+    {
+        if(is_null($date)) {
+            $date = $this->created_at;
+        }
+
+        $originalDate = ExpressiveDate::make($date);
+        $clone = ExpressiveDate::make($date);
+        if((int) $originalDate->addOneWeek()->getSecondsSinceEpoch() >= (int) ExpressiveDate::make()->getSecondsSinceEpoch()) {
+            return $clone->getRelativeDate();
+        } else {
+            return $clone->getShortDate();
+        }
 	}
 
 	/**
@@ -79,7 +90,7 @@ class Post extends Eloquent implements PresentableInterface {
 	 */
 	public function created_at()
 	{
-		return ExpressiveDate::make($this->created_at)->getRelativeDate();
+		return $this->date($this->created_at);
 	}
 
 	/**
@@ -90,7 +101,7 @@ class Post extends Eloquent implements PresentableInterface {
 	 */
 	public function updated_at()
 	{
-		return ExpressiveDate::make($this->updated_at)->getRelativeDate();
+        return $this->date($this->updated_at);
 	}
 
     public function getPresenter()
