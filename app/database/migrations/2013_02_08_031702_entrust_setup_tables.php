@@ -13,6 +13,7 @@ class EntrustSetupTables extends Migration {
         // Creates the roles table
         Schema::create('roles', function($table)
         {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
             $table->text('permissions'); // Model's permissions array parsed as JSON
@@ -22,6 +23,7 @@ class EntrustSetupTables extends Migration {
         // Creates the assigned_roles (Many-to-Many relation) table
         Schema::create('assigned_roles', function($table)
         {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('role_id');
