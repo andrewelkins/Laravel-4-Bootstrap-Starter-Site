@@ -155,7 +155,7 @@ For ease of development you'll want to enable a couple useful packages. This req
 Uncomment the Generators and IDE Helpers. Then you'll want to run a composer update with the dev flag.
 
 ```
-php composer.phar update --dev
+php composer.phar update
 ```
 This adds the generators and ide helpers.
 To make it build the ide helpers automatically you'll want to modify the post-update-cmd in `composer.json`
