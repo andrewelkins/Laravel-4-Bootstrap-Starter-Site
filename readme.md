@@ -294,6 +294,9 @@ Laravel 4 Generators package provides a variety of generators to speed up your d
 - `generate:view`
 - `generate:migration`
 - `generate:resource`
+- `generate:scaffold` 
+- `generate:form` 
+- `generate:test` 
 
 For full usage see [Laravel 4 Generators Readme](https://github.com/JeffreyWay/Laravel-4-Generators/blob/master/readme.md)
 
