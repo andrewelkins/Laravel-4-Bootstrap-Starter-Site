@@ -80,6 +80,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->before('csrf');
     Route::get('roles/{role}/delete', 'AdminRolesController@getDelete')
         ->where('role', '[0-9]+');
+    Route::post('roles/{role}/delete', 'AdminRolesController@postDelete')
+        ->where('role', '[0-9]+');
     Route::controller('roles', 'AdminRolesController');
 
     # Admin Dashboard
