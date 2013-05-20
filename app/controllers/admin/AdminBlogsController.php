@@ -4,6 +4,22 @@ class AdminBlogsController extends AdminController {
 
 
     /**
+     * Post Model
+     * @var Post
+     */
+    protected $post;
+
+    /**
+     * Inject the models.
+     * @param Post $post
+     */
+    public function __construct(Post $post)
+    {
+        parent::__construct();
+        $this->post = $post;
+    }
+
+    /**
      * Show a list of all the blog posts.
      *
      * @return View
@@ -11,7 +27,7 @@ class AdminBlogsController extends AdminController {
     public function getIndex()
     {
         // Grab all the blog posts
-        $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
+        $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
 
         // Show the page
         return View::make('admin/blogs/index', compact('posts'));
@@ -48,23 +64,22 @@ class AdminBlogsController extends AdminController {
         if ($validator->passes())
         {
             // Create a new blog post
-            $post = new Post;
             $user = Auth::user();
 
             // Update the blog post data
-            $post->title            = Input::get('title');
-            $post->slug             = Str::slug(Input::get('title'));
-            $post->content          = Input::get('content');
-            $post->meta_title       = Input::get('meta-title');
-            $post->meta_description = Input::get('meta-description');
-            $post->meta_keywords    = Input::get('meta-keywords');
-            $post->user_id          = $user->id;
+            $this->post->title            = Input::get('title');
+            $this->post->slug             = Str::slug(Input::get('title'));
+            $this->post->content          = Input::get('content');
+            $this->post->meta_title       = Input::get('meta-title');
+            $this->post->meta_description = Input::get('meta-description');
+            $this->post->meta_keywords    = Input::get('meta-keywords');
+            $this->post->user_id          = $user->id;
 
             // Was the blog post created?
-            if($post->save())
+            if($this->post->save())
             {
                 // Redirect to the new blog post page
-                return Redirect::to('admin/blogs/' . $post->id . '/edit')->with('success', Lang::get('admin/blogs/messages.create.success'));
+                return Redirect::to('admin/blogs/' . $this->post->id . '/edit')->with('success', Lang::get('admin/blogs/messages.create.success'));
             }
 
             // Redirect to the blog post create page

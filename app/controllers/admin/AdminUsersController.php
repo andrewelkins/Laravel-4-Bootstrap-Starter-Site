@@ -4,6 +4,30 @@ class AdminUsersController extends AdminController {
 
 
     /**
+     * User Model
+     * @var User
+     */
+    protected $user;
+
+    /**
+     * Role Model
+     * @var Role
+     */
+    protected $role;
+
+    /**
+     * Inject the models.
+     * @param User $user
+     * @param Role $role
+     */
+    public function __construct(User $user, Role $role)
+    {
+        parent::__construct();
+        $this->user = $user;
+        $this->role = $role;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
@@ -11,7 +35,7 @@ class AdminUsersController extends AdminController {
     public function getIndex()
     {
         // Grab all the users
-        $users = User::paginate(10);
+        $users = $this->user->paginate(10);
 
         // Show the page
         return View::make('admin/users/index', compact('users'));
@@ -25,10 +49,10 @@ class AdminUsersController extends AdminController {
     public function getCreate()
     {
         // All roles
-        $roles = Role::all();
+        $roles = $this->role->all();
 
         // Get all the available permissions
-        $permissions = Role::getAvailablePermissions();
+        $permissions = $this->role->getAvailablePermissions();
 
         // Selected groups
         $selectedRoles = Input::old('roles', array());
@@ -47,36 +71,34 @@ class AdminUsersController extends AdminController {
      */
     public function postCreate()
     {
-        $user = new User;
-
-        $user->username = Input::get( 'username' );
-        $user->email = Input::get( 'email' );
-        $user->password = Input::get( 'password' );
+        $this->user->username = Input::get( 'username' );
+        $this->user->email = Input::get( 'email' );
+        $this->user->password = Input::get( 'password' );
 
         // The password confirmation will be removed from model
         // before saving. This field will be used in Ardent's
         // auto validation.
-        $user->password_confirmation = Input::get( 'password_confirmation' );
-        $user->confirmed = Input::get( 'confirm' );
+        $this->user->password_confirmation = Input::get( 'password_confirmation' );
+        $this->user->confirmed = Input::get( 'confirm' );
 
         // Permissions are currently tied to roles. Can't do this yet.
         //$user->permissions = $user->roles()->preparePermissionsForSave(Input::get( 'permissions' ));
 
         // Save if valid. Password field will be hashed before save
-        $user->save();
+        $this->user->save();
 
-        if ( $user->id )
+        if ( $this->user->id )
         {
             // Save roles. Handles updating.
-            $user->saveRoles(Input::get( 'roles' ));
+            $this->user->saveRoles(Input::get( 'roles' ));
 
             // Redirect to the new user page
-            return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
+            return Redirect::to('admin/users/' . $this->user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
         }
         else
         {
             // Get validation errors (see Ardent package)
-            $error = $user->errors()->all();
+            $error = $this->user->errors()->all();
 
             return Redirect::to('admin/users/create')
                 ->withInput(Input::except('password'))
@@ -105,8 +127,8 @@ class AdminUsersController extends AdminController {
     {
         if ( $user->id )
         {
-            $roles = Role::all();
-            $permissions = Role::getAvailablePermissions();
+            $roles = $this->role->all();
+            $permissions = $this->role->getAvailablePermissions();
             // Show the page
             return View::make('admin/users/edit', compact('user', 'roles', 'permissions'));
         }

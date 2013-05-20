@@ -1,7 +1,23 @@
 <?php
 
-class AdminCommentsController extends AdminController {
+class AdminCommentsController extends AdminController
+{
 
+    /**
+     * Comment Model
+     * @var Comment
+     */
+    protected $comment;
+
+    /**
+     * Inject the models.
+     * @param Comment $comment
+     */
+    public function __construct(Comment $comment)
+    {
+        parent::__construct();
+        $this->comment = $comment;
+    }
 
     /**
      * Show a list of all the comment posts.
@@ -11,7 +27,7 @@ class AdminCommentsController extends AdminController {
     public function getIndex()
     {
         // Grab all the comment posts
-        $comments = Comment::orderBy('created_at', 'DESC')->paginate(10);
+        $comments = $this->comment->orderBy('created_at', 'DESC')->paginate(10);
 
         // Show the page
         return View::make('admin/comments/index', compact('comments'));

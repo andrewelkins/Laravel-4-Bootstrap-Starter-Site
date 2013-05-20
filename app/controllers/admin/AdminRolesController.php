@@ -2,6 +2,31 @@
 
 class AdminRolesController extends AdminController {
 
+
+    /**
+     * User Model
+     * @var User
+     */
+    protected $user;
+
+    /**
+     * Role Model
+     * @var Role
+     */
+    protected $role;
+
+    /**
+     * Inject the models.
+     * @param User $user
+     * @param Role $role
+     */
+    public function __construct(User $user, Role $role)
+    {
+        parent::__construct();
+        $this->user = $user;
+        $this->role = $role;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -10,7 +35,7 @@ class AdminRolesController extends AdminController {
     public function getIndex()
     {
         // Grab all the groups
-        $roles = Role::paginate(10);
+        $roles = $this->role->paginate(10);
 
         // Show the page
         return View::make('admin/roles/index', compact('roles'));
@@ -24,7 +49,7 @@ class AdminRolesController extends AdminController {
     public function getCreate()
     {
         // Get all the available permissions
-        $permissions = Role::getAvailablePermissions();
+        $permissions = $this->role->getAvailablePermissions();
 
         // Selected permissions
         $selectedPermissions = Input::old('permissions', array());
@@ -54,16 +79,15 @@ class AdminRolesController extends AdminController {
             // Get the inputs, with some exceptions
             $inputs = Input::except('csrf_token');
 
-            $role = new Role;
-            $role->name = $inputs['name'];
-            $role->permissions = $role->preparePermissionsForSave($inputs['permissions']);
-            $role->save();
+            $this->role->name = $inputs['name'];
+            $this->role->permissions = $this->role->preparePermissionsForSave($inputs['permissions']);
+            $this->role->save();
 
             // Was the group created?
-            if ($role->id)
+            if ($this->role->id)
             {
                 // Redirect to the new group page
-                return Redirect::to('admin/roles/' . $role->id . '/edit')->with('success', Lang::get('admin/roles/messages.create.success'));
+                return Redirect::to('admin/roles/' . $this->role->id . '/edit')->with('success', Lang::get('admin/roles/messages.create.success'));
             }
 
             // Redirect to the new group page
@@ -99,7 +123,7 @@ class AdminRolesController extends AdminController {
         if(! empty($role))
         {
             // Get all the available permissions
-            $permissions = Role::getAvailablePermissions();
+            $permissions = $this->role->getAvailablePermissions();
 
             // Get this role's permissions
             $rolePermissions = $role->preparePermissionsForDisplay($role->permissions);
@@ -170,7 +194,8 @@ class AdminRolesController extends AdminController {
     /**
      * Remove the specified user from storage.
      *
-     * @param $id
+     * @param $role
+     * @internal param $id
      * @return Response
      */
     public function postDelete($role)

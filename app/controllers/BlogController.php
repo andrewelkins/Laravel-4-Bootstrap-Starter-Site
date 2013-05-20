@@ -21,6 +21,8 @@ class BlogController extends BaseController {
      */
     public function __construct(Post $post, User $user)
     {
+        parent::__construct();
+
         $this->post = $post;
         $this->user = $user;
     }
