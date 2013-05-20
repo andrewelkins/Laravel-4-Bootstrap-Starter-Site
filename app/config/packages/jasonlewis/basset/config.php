@@ -35,7 +35,7 @@ return array(
                 $collection->add('bootstrap.min.css');
                 $collection->add('bootstrap-responsive.min.css');
                 $collection->add('style.css');
-            })->apply('UriRewriteFilter');
+            })->apply('UriRewriteFilter')->setArguments(public_path());
         },
         'public-js' => function($collection)
         {
@@ -43,7 +43,7 @@ return array(
             {
                 $collection->add('jquery.v1.8.3.min.js');
                 $collection->add('bootstrap/bootstrap.min.js');
-            })->apply('UriRewriteFilter');
+            })->apply('UriRewriteFilter')->setArguments(public_path());
         },
         'admin-css' => function($collection)
         {
@@ -54,7 +54,7 @@ return array(
                 $collection->add('bootstrap-responsive.css');
                 $collection->add('wysihtml5/bootstrap-wysihtml5-0.0.2.css');
                 $collection->add('style.css');
-            })->apply('UriRewriteFilter');
+            })->apply('UriRewriteFilter')->setArguments(public_path());
         },
         'admin-js' => function($collection)
         {
@@ -65,7 +65,7 @@ return array(
                 $collection->add('prettify.js');
                 $collection->add('bootstrap/bootstrap.min.js');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.js');
-            })->apply('UriRewriteFilter');
+            })->apply('UriRewriteFilter')->setArguments(public_path());
         },
 
         /*
