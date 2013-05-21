@@ -87,7 +87,7 @@ class UserController extends BaseController {
     public function postEdit($user)
     {
         // Validate the inputs
-        $validator = Validator::make(Input::all(), $user->updateRules);
+        $validator = Validator::make(Input::all(), $user->getUpdateRules());
 
 
         if ($validator->passes())
@@ -115,7 +115,7 @@ class UserController extends BaseController {
             }
 
             // Save if valid. Password field will be hashed before save
-            $user->save($user->updateRules);
+            $user->amend();
 
             if ( $user->id )
             {

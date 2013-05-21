@@ -173,7 +173,7 @@ class AdminUsersController extends AdminController {
         }
         
         // Save if valid. Password field will be hashed before save
-        $check = $user->save($user->updateRules);
+        $check = $user->amend();
 
         if ( !$check )
         {

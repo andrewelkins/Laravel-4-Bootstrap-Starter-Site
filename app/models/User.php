@@ -15,16 +15,6 @@ class User extends ConfideUser implements PresentableInterface {
 	 */
 	protected $table = 'users';
 
-    /**
-    * Rules for when updating a user.
-    */
-    public $updateRules = array(
-        'username' => 'required|alpha_num',
-        'email' => 'required|email',
-        'password' => 'between:4,11|confirmed',
-        'password_confirmation' => 'between:4,11',
-    );
-
     public function getPresenter()
     {
         return new UserPresenter($this);
