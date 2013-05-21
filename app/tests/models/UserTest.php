@@ -26,13 +26,13 @@ class UserTest extends TestCase {
     public function testIsConfirmedByUsername()
     {
         $user = Woodling::retrieve('UserAdmin');
-        $this->assertEquals( $user->isConfirmed(array('email'=>'admin')), true );
+        $this->assertEquals( $user->isConfirmed(array('username'=>'admin')), true );
     }
 
     public function testIsConfirmedByUsernameFail()
     {
         $user = Woodling::retrieve('UserAdmin');
-        $this->assertNotEquals( $user->isConfirmed(array('email'=>'non-user')), true );
+        $this->assertNotEquals( $user->isConfirmed(array('username'=>'non-user')), true );
     }
 
     public function testGetByUsername()

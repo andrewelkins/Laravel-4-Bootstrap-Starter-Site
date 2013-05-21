@@ -81,29 +81,6 @@ class User extends ConfideUser implements PresentableInterface {
         return $roleIds;
     }
 
-
-    /**
-     * Check is user is confirmed.
-     * @param $credentials
-     * @return bool
-     */
-    public function isConfirmed( $credentials )
-    {
-        $user = $this
-            ->where('email','=',$credentials['email'])
-            ->orWhere('username','=',$credentials['email'])
-            ->first();
-
-        // If confirmed return true.
-        if( !is_null($user) AND $user->confirmed ) {
-            return true;
-        } else {
-            // Fail
-            return false;
-        }
-
-    }
-
     /**
      * Redirect after auth.
      * If ifValid is set to true it will redirect a logged in user.

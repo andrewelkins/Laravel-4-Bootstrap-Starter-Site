@@ -189,8 +189,8 @@ class UserController extends BaseController {
             // Check if there was too many login attempts
             if ( Confide::isThrottled( $input ) ) {
                 $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
-            } elseif ( ! (new User)->isConfirmed( $input ) ) {
-                $err_msg = Lang::get('user/user.user_account_is_not_confirmed');
+            } elseif ( $this->user->checkUserExists( $input ) && ! $this->user->isConfirmed( $input ) ) {
+                $err_msg = Lang::get('confide::confide.alerts.not_confirmed');
             } else {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
