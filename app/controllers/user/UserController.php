@@ -316,6 +316,14 @@ class UserController extends BaseController {
         return View::make('site/user/profile', compact('user'));
     }
 
+    public function getSettings()
+    {
+        list($user,$redirect) = User::checkAuthAndRedirect('user/settings');
+        if($redirect){return $redirect;}
+
+        return View::make('site/user/profile', compact('user'));
+    }
+
     /**
      * Process a dumb redirect.
      * @param $url1
