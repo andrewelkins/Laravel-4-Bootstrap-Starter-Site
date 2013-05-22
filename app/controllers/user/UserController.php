@@ -92,6 +92,7 @@ class UserController extends BaseController {
 
         if ($validator->passes())
         {
+            $oldUser = clone $user;
             $user->username = Input::get( 'username' );
             $user->email = Input::get( 'email' );
 
@@ -114,23 +115,23 @@ class UserController extends BaseController {
                 unset($user->password_confirmation);
             }
 
+            $user->prepareRules($oldUser, $user);
+
             // Save if valid. Password field will be hashed before save
             $user->amend();
-
-            if ( $user->id )
-            {
-                // Redirect with success message, You may replace "Lang::get(..." for your custom message.
-                return Redirect::to('user')
-                    ->with( 'notice', Lang::get('user/user.user_account_updated') );
-            }
         }
 
         // Get validation errors (see Ardent package)
         $error = $user->errors()->all();
 
-        return Redirect::to('user')
-            ->withInput(Input::except('password'))
-            ->with( 'error', $error );
+        if(empty($error)) {
+            return Redirect::to('user')
+                ->with( 'success', Lang::get('user/user.user_account_updated') );
+        } else {
+            return Redirect::to('user')
+                ->withInput(Input::except('password','password_confirmation'))
+                ->with( 'error', $error );
+        }
     }
 
     /**
