@@ -1,4 +1,14 @@
 {
+    "name": "andrew13/Laravel-4-Bootstrap-Starter-Site",
+    "description": "Laravel 4 Starter Site",
+    "keywords": ["laravel","Starter Site"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Elkins",
+            "homepage": "http://www.andrewelkins.com"
+        }
+    ],
 	"require": {
 		"laravel/framework": "4.0.*",
 		"zizaco/confide": "dev-master",
