@@ -7,7 +7,7 @@ class Permission extends EntrustPermission
     public function preparePermissionsForDisplay($permissions)
     {
         // Get all the available permissions
-        $availablePermissions = Permission::all()->toArray();
+        $availablePermissions = $this->all()->toArray();
 
         foreach($permissions as &$permission) {
             array_walk($availablePermissions, function(&$value) use(&$permission){
