@@ -2,6 +2,7 @@
 
 use Woodling\Woodling;
 use J20\Uuid;
+use Carbon\Carbon;
 
 Woodling::seed('UserAdmin', array('class' => 'User', 'do' => function($blueprint)
 {
@@ -9,11 +10,8 @@ Woodling::seed('UserAdmin', array('class' => 'User', 'do' => function($blueprint
     $blueprint->email = 'admin@example.org';
     $blueprint->confirmation_code = Uuid\Uuid::v4(false);
     $blueprint->confirmed = 1;
-    $blueprint->created = date('Y-m-d H:i:s');
-    $blueprint->updated = function() use($blueprint)
-    {
-        return date('Y-m-d H:i:s', strtotime("{$blueprint->created} + 2 months"));
-    };
+    $blueprint->created = Carbon::now();
+    $blueprint->updated = Carbon::now()->addMonths(2);
 //    $blueprint->role = Woodling::retrieve('RoleAdmin');
 }));
 
@@ -23,10 +21,7 @@ Woodling::seed('UserUser', array('class' => 'User', 'do' => function($blueprint)
     $blueprint->email = 'user@example.org';
     $blueprint->confirmation_code = Uuid\Uuid::v4(false);
     $blueprint->confirmed = 1;
-    $blueprint->created = date('Y-m-d H:i:s');
-    $blueprint->updated = function() use($blueprint)
-    {
-        return date('Y-m-d H:i:s', strtotime("{$blueprint->created} + 2 months"));
-    };
+    $blueprint->created = Carbon::now();
+    $blueprint->updated = Carbon::now()->addMonths(2);
 //    $blueprint->role = Woodling::retrieve('RoleComment');
 }));
