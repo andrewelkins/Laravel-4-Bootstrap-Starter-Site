@@ -16,15 +16,23 @@ class AdminUsersController extends AdminController {
     protected $role;
 
     /**
+     * Permission Model
+     * @var Permission
+     */
+    protected $permission;
+
+    /**
      * Inject the models.
      * @param User $user
      * @param Role $role
+     * @param Permission $permission
      */
-    public function __construct(User $user, Role $role)
+    public function __construct(User $user, Role $role, Permission $permission)
     {
         parent::__construct();
         $this->user = $user;
         $this->role = $role;
+        $this->permission = $permission;
     }
 
     /**
@@ -52,7 +60,7 @@ class AdminUsersController extends AdminController {
         $roles = $this->role->all();
 
         // Get all the available permissions
-        $permissions = $this->role->getAvailablePermissions();
+        $permissions = $this->permission->all();
 
         // Selected groups
         $selectedRoles = Input::old('roles', array());
@@ -128,7 +136,7 @@ class AdminUsersController extends AdminController {
         if ( $user->id )
         {
             $roles = $this->role->all();
-            $permissions = $this->role->getAvailablePermissions();
+            $permissions = $this->permission->all();
             // Show the page
             return View::make('admin/users/edit', compact('user', 'roles', 'permissions'));
         }

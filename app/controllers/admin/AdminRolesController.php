@@ -16,15 +16,23 @@ class AdminRolesController extends AdminController {
     protected $role;
 
     /**
+     * Permission Model
+     * @var Permission
+     */
+    protected $permission;
+
+    /**
      * Inject the models.
      * @param User $user
      * @param Role $role
+     * @param Permission $permission
      */
-    public function __construct(User $user, Role $role)
+    public function __construct(User $user, Role $role, Permission $permission)
     {
         parent::__construct();
         $this->user = $user;
         $this->role = $role;
+        $this->permission = $permission;
     }
 
     /**
@@ -49,7 +57,7 @@ class AdminRolesController extends AdminController {
     public function getCreate()
     {
         // Get all the available permissions
-        $permissions = $this->role->getAvailablePermissions();
+        $permissions = $this->permission->all();
 
         // Selected permissions
         $selectedPermissions = Input::old('permissions', array());
@@ -122,11 +130,7 @@ class AdminRolesController extends AdminController {
     {
         if(! empty($role))
         {
-            // Get all the available permissions
-            $permissions = $this->role->getAvailablePermissions();
-
-            // Get this role's permissions
-            $rolePermissions = $role->preparePermissionsForDisplay($role->permissions);
+            $permissions = $this->permission->preparePermissionsForDisplay($role->perms()->get());
         }
         else
         {
@@ -135,7 +139,7 @@ class AdminRolesController extends AdminController {
         }
 
         // Show the page
-        return View::make('admin/roles/edit', compact('role', 'permissions', 'rolePermissions'));
+        return View::make('admin/roles/edit', compact('role', 'permissions'));
     }
 
     /**
@@ -159,7 +163,7 @@ class AdminRolesController extends AdminController {
         {
             // Update the group data
             $role->name        = Input::get('name');
-            $role->permissions = $role->preparePermissionsForSave(Input::get('permissions'));
+            $role->perms()->sync($this->permission->preparePermissionsForSave(Input::get('permissions')));
 
             // Was the group updated?
             if ($role->save())

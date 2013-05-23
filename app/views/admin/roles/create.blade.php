@@ -46,21 +46,21 @@ Create a Role ::
 		</div>
 		<!-- ./ tab general -->
 
-		<!-- Tab Permissions -->
-		<div class="tab-pane" id="tab-permissions">
-			<div class="control-group">
-				<div class="controls">
-					@foreach ($permissions as $permissionId => $permissionName)
-					<label>
-						<input type="hidden" id="permissions[{{{ $permissionId }}}]" name="permissions[{{{ $permissionId }}}]" value="0" />
-						<input type="checkbox" id="permissions[{{{ $permissionId }}}]" name="permissions[{{{ $permissionId }}}]" value="1"{{{ ( ! empty($selectedPermissions[ $permissionId ]) ? ' checked="checked"' : '') }}} />
-						{{{ $permissionName }}}
-					</label>
-					@endforeach
-				</div>
-			</div>
-		</div>
-		<!-- ./ tab permissions -->
+        <!-- Permissions tab -->
+        <div class="tab-pane" id="tab-permissions">
+            <div class="controls">
+                <div class="control-group">
+                    @foreach ($permissions as $permission)
+                    <label>
+                        <input type="hidden" id="permissions[{{{ $permission['id'] }}}]" name="permissions[{{{ $permission['id'] }}}]" value="0" />
+                        <input type="checkbox" id="permissions[{{{ $permission['id'] }}}]" name="permissions[{{{ $permission['id'] }}}]" value="1"{{{ (isset($permission['checked']) && $permission['checked'] == true ? ' checked="checked"' : '')}}} />
+                        {{{ $permission['display_name'] }}}
+                    </label>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <!-- ./ permissions tab -->
 	</div>
 	<!-- ./ tabs content -->
 

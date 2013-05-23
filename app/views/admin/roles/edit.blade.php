@@ -20,8 +20,8 @@ Role Update ::
 
 <!-- Tabs -->
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
-	<li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
+    <li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
+    <li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
 </ul>
 <!-- ./ tabs -->
 
@@ -50,11 +50,11 @@ Role Update ::
 		<div class="tab-pane" id="tab-permissions">
 			<div class="controls">
 				<div class="control-group">
-					@foreach ($permissions as $permissionId => $permissionName)
+					@foreach ($permissions as $permission)
 					<label>
-						<input type="hidden" id="permissions[{{{ $permissionId }}}]" name="permissions[{{{ $permissionId }}}]" value="0" />
-						<input type="checkbox" id="permissions[{{{ $permissionId }}}]" name="permissions[{{{ $permissionId }}}]" value="1"{{{ (array_key_exists($permissionId, $rolePermissions) ? ' checked="checked"' : '')}}} />
-						{{{ $permissionName }}}
+						<input type="hidden" id="permissions[{{{ $permission['id'] }}}]" name="permissions[{{{ $permission['id'] }}}]" value="0" />
+						<input type="checkbox" id="permissions[{{{ $permission['id'] }}}]" name="permissions[{{{ $permission['id'] }}}]" value="1"{{{ (isset($permission['checked']) && $permission['checked'] == true ? ' checked="checked"' : '')}}} />
+						{{{ $permission['display_name'] }}}
 					</label>
 					@endforeach
 				</div>

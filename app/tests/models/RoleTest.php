@@ -46,18 +46,4 @@ class RoleTest extends TestCase {
 
         $this->assertEquals( $perms[4], 'post_comment' );
     }
-
-    public function testGetAvailablePermissions()
-    {
-        $role = Woodling::retrieve('RoleAdmin');
-
-        $perms = $role->getAvailablePermissions();
-
-        $this->assertEquals( $perms, array(
-            1 => 'manage_posts',
-            2 => 'manage_pages',
-            3 => 'manage_users',
-            4 => 'post_comment'
-        ) );
-    }
 }

@@ -19,7 +19,7 @@
 
 		<!-- CSS
 		================================================== -->
-        {{ Basset::show('public-css.css') }}
+        @stylesheets('public-css')
 
 		<style>
 		@section('styles')
@@ -100,6 +100,6 @@
 
 		<!-- Javascripts
 		================================================== -->
-        {{ Basset::show('public-js.js') }}
+        @javascripts('public-js')
 	</body>
 </html>
