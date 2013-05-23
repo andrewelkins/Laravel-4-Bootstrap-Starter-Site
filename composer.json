@@ -14,7 +14,6 @@
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
 		"jasonlewis/basset": "dev-master",
-		"jasonlewis/expressive-date": "1.*",
 		"robclancy/presenter": "1.0.*"
 	},
 	"require-dev": {

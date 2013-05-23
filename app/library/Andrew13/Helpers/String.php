@@ -1,5 +1,6 @@
 <?php namespace Andrew13\Helpers;
 
+use Carbon\Carbon;
 use tidy;
 
 class String {
@@ -46,6 +47,15 @@ class String {
                 }
             }
             return $value;
+        }
+    }
+
+    public static function date(Carbon $date)
+    {
+        if($date->diffInDays(Carbon::now()) < 7) {
+            return $date->diffForHumans();
+        } else {
+            return $date->toFormattedDateString();
         }
     }
 

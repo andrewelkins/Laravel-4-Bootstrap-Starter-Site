@@ -37,7 +37,7 @@ class User extends ConfideUser implements PresentableInterface {
      */
     public function joined()
     {
-        return ExpressiveDate::make($this->created_at)->getRelativeDate();
+        return String::date($this->created_at);
     }
 
     /**

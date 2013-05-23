@@ -43,7 +43,7 @@ class UserPresenter extends Presenter
      */
     public function created_at()
     {
-        return ExpressiveDate::make($this->created_at)->getRelativeDate();
+        return String::date($this->created_at);
     }
 
     /**
@@ -54,6 +54,6 @@ class UserPresenter extends Presenter
      */
     public function updated_at()
     {
-        return ExpressiveDate::make($this->updated_at)->getRelativeDate();
+        return String::date($this->updated_at);
     }
 }
