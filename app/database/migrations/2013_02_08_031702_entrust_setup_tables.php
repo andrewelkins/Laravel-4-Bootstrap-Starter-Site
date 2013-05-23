@@ -16,7 +16,7 @@ class EntrustSetupTables extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
-            $table->text('permissions'); // Model's permissions array parsed as JSON
+            $table->string('permissions');
             $table->timestamps();
         });
 
