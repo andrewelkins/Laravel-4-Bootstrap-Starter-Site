@@ -57,7 +57,7 @@ class Post extends Eloquent implements PresentableInterface {
      * @param \Carbon|null $date
      * @return string
      */
-    public function date(Carbon $date=null)
+    public function date($date=null)
     {
         if(is_null($date)) {
             $date = $this->created_at;
