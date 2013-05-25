@@ -2,11 +2,6 @@
 /vendor
 composer.phar
 composer.lock
-<<<<<<< HEAD
 .DS_Store
 .idea/
-app/config/mail.php
 app/_ide_helpers.php
-=======
-.DS_Store
->>>>>>> e72b12092986c2ff70a616eebd3d2a9675ee5b92
