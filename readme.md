@@ -27,7 +27,7 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 	* [Confide](#confide)
 	* [Entrust](#entrust)
 	* [Ardent](#ardent)
-	* [Expressive Date](#expressive-date)
+	* [Carbon](#carbon)
 	* [Basset](#basset)
 	* [Presenter](#presenter)
 	* [Generators](#generators)
@@ -226,26 +226,29 @@ Self-validating, secure and smart models for Laravel 4's Eloquent ORM
 
 For full usage see [Ardent Documentation](https://github.com/laravelbook/ardent) 
 
-<a name="expressive-date"></a>
-## Expressive Date
+<a name="carbon"></a>
+## Carbon
 
 A fluent extension to PHPs DateTime class.
 
 ```php
 <?php
+printf("Right now is %s", Carbon::now()->toDateTimeString());
+printf("Right now in Vancouver is %s", Carbon::now('America/Vancouver'));  //implicit __toString()
+$tomorrow = Carbon::now()->addDay();
+$lastWeek = Carbon::now()->subWeek();
+$nextSummerOlympics = Carbon::createFromDate(2012)->addYears(4);
 
-$date = new ExpressiveDate;
+$officialDate = Carbon::now()->toRFC2822String();
 
-$date->minusOneDay();
+$howOldAmI = Carbon::createFromDate(1975, 5, 21)->age;
 
-echo $date->getRelativeDate(); // 1 day ago
+$noonTodayLondonTime = Carbon::createFromTime(12, 0, 0, 'Europe/London');
 
-$date->addOneWeek();
-
-echo $date->getShortDate(); // Jan 31, 2012
+$worldWillEnd = Carbon::createFromDate(2012, 12, 21, 'GMT');
 ```
 
-For full usage see [Using Expressive Date by Jason Lewis](http://jasonlewis.me/code/expressive-date)
+For full usage see [Carbon](https://github.com/briannesbitt/Carbon)
 
 <a name="basset"></a>
 ## Basset
