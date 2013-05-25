@@ -37,7 +37,7 @@ class User extends ConfideUser implements PresentableInterface {
      */
     public function joined()
     {
-        return String::date(\Carbon\Carbon::create($this->created_at));
+        return String::date($this->created_at);
     }
 
     /**
