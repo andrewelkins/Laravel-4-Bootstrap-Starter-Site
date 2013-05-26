@@ -31,6 +31,7 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 	* [Basset](#basset)
 	* [Presenter](#presenter)
 	* [Generators](#generators)
+    * [ReCaptcha](#recaptcha)
 
 ## Issues
 See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
@@ -83,7 +84,7 @@ Run these commands to create and populate Users table:
 	php artisan migrate
 	php artisan db:seed
 
-### Step 6: Set Encyrption Key
+### Step 6: Set Encryption Key
 ***In app/config/app.php***
 
 ```
@@ -186,16 +187,6 @@ By default debugging is enabled. Before you go to production you should disable 
     'debug' => false,
 ```
 
-## Troubleshooting
-
-### Styles are not displaying
-
-You may need to recompile the assets for basset. This is easy to with one command.
-
-```
-php artisan basset:build
-```
-
 -----
 ## Included Package Information
 <a name="confide"></a>
@@ -283,6 +274,24 @@ Compiling assets
 I would recommend using development collections for development instead of compiling .
 
 For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basset/4.0)
+
+<a name="recaptcha"></a>
+## ReCaptcha (greggilbert/recaptcha)
+A reCAPTCHA Validator for Laravel 4.
+
+ReCaptcha Laravel 4 Setup
+
+1. Add `Greggilbert\Recaptcha\RecaptchaServiceProvider` to the service provider list in `app/config/app.php`.
+2. Run `php artisan config:publish greggilbert/recaptcha`.
+3. In `app/config/packages/greggilbert/recaptcha/config.php`, enter your reCAPTCHA public and private keys.
+4. Add the following line into `app/lang/[lang]/validation.php`:
+
+```php
+    "recaptcha" => 'The :attribute field is not correct.',
+```
+
+For full usage see [greggilbert/recaptcha Documentation](https://github.
+    com/greggilbert/recaptcha)
 
 <a name="presenter"></a>
 ## Presenter
