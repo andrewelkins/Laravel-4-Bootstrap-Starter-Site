@@ -40,7 +40,13 @@ class UserController extends BaseController {
     {
         $this->user->username = Input::get( 'username' );
         $this->user->email = Input::get( 'email' );
-        $this->user->recaptcha_response_field = Input::get( 'recaptcha_response_field' );
+
+        // If using ReCaptcha, add it to the list of inputs
+        if( Confide::isUsingReCaptcha() )
+        {
+            $this->user->recaptcha_response_field = Input::get( 'recaptcha_response_field' );
+        }
+        
 
         $password = Input::get( 'password' );
         $passwordConfirmation = Input::get( 'password_confirmation' );
@@ -239,8 +245,13 @@ class UserController extends BaseController {
     {
         $rules = array(
           'email' => 'required|email',
-          'recaptcha_response_field' => 'required|recaptcha',
         );
+
+        // If using ReCaptcha, add his field to the Validation rules
+        if( Confide::isUsingReCaptcha() )
+        {
+            $rules['recaptcha_response_field'] = 'required|recaptcha';
+        }        
 
         $validator = Validator::make( Input::all(), $rules );
 
@@ -289,10 +300,9 @@ class UserController extends BaseController {
             'token'=>Input::get( 'token' ),
             'password'=>Input::get( 'password' ),
             'password_confirmation'=>Input::get( 'password_confirmation' ),
-            'recaptcha_response_field' => Input::get( 'recaptcha_response_field' ),
         );
 
-            // By passing an array with the token, password and confirmation
+        // By passing an array with the token, password and confirmation
         if( Confide::resetPassword( $input ) )
         {
             return Redirect::to('user/login')

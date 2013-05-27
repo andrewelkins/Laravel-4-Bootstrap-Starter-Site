@@ -279,6 +279,19 @@ For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basse
 ## ReCaptcha (greggilbert/recaptcha)
 A reCAPTCHA Validator for Laravel 4.
 
+To use reCAPTCHA, you first need to enable (true) it in your `app/config/packages/zizaco/confide/config.php`
+```
+    /*
+    |--------------------------------------------------------------------------
+    | Use ReCaptcha
+    |--------------------------------------------------------------------------
+    |
+    | Define if we want to use ReCaptcha, false by default
+    |
+    */
+    'use_recaptcha' => true,
+```
+
 ReCaptcha Laravel 4 Setup
 
 1. Add `Greggilbert\Recaptcha\RecaptchaServiceProvider` to the service provider list in `app/config/app.php`.
