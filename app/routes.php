@@ -87,6 +87,9 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
  *  ------------------------------------------
  */
 
+// User reset routes
+Route::post('user/reset/{id}', 'UserController@getReset')
+    ->where('id', '[0-9a-zA-Z_]+');
 //:: User Account Routes ::
 Route::post('user/{user}/edit', 'UserController@postEdit')
     ->where('user', '[0-9]+');
