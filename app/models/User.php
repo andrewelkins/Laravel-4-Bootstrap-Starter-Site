@@ -4,6 +4,7 @@ use Zizaco\Confide\ConfideUser;
 use Zizaco\Confide\Confide;
 use Zizaco\Entrust\HasRole;
 use Robbo\Presenter\PresentableInterface;
+use Carbon\Carbon;
 
 class User extends ConfideUser implements PresentableInterface {
     use HasRole;
@@ -37,7 +38,7 @@ class User extends ConfideUser implements PresentableInterface {
      */
     public function joined()
     {
-        return String::date($this->created_at);
+        return String::date(Carbon::create($this->created_at));
     }
 
     /**
