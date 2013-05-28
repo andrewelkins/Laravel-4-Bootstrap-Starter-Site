@@ -51,7 +51,7 @@ Blog Comment Update ::
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{{ URL::to('admin/blog') }}}">Cancel</a>
+			<a class="btn btn-link" href="{{{ URL::to('admin/comments') }}}">Cancel</a>
 			<button type="reset" class="btn">Reset</button>
 			<button type="submit" class="btn btn-success">Update</button>
 		</div>
