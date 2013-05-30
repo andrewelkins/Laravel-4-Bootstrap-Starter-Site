@@ -47,10 +47,4 @@ class UserTest extends TestCase {
         $this->assertEquals( $user->getUserByUsername('non-user'), false );
     }
 
-    public function testJoined()
-    {
-        $user = Woodling::retrieve('UserAdmin');
-        $this->assertGreaterThan( 0, strpos($user->joined(), 'ago') );
-    }
-
 }
