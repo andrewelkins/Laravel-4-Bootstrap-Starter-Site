@@ -2,6 +2,7 @@
 
 use Zizaco\Confide\ConfideUser;
 use Zizaco\Confide\Confide;
+use Zizaco\Confide\ConfideRepository;
 use Zizaco\Entrust\HasRole;
 use Robbo\Presenter\PresentableInterface;
 use Carbon\Carbon;
@@ -101,7 +102,7 @@ class User extends ConfideUser implements PresentableInterface {
 
     public function currentUser()
     {
-        return (new Confide())->user();
+        return (new Confide(new ConfideRepository()))->user();
     }
 
 
