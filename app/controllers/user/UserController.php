@@ -53,7 +53,7 @@ class UserController extends BaseController {
                 $this->user->password_confirmation = $passwordConfirmation;
             } else {
                 // Redirect to the new user page
-                return Redirect::to('users')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
+                return Redirect::to('user/create')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
             }
         } else {
             unset($this->user->password);
