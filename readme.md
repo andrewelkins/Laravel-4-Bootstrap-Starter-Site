@@ -187,6 +187,16 @@ By default debugging is enabled. Before you go to production you should disable 
     'debug' => false,
 ```
 
+## Troubleshooting
+
+### Styles are not displaying
+
+You may need to recompile the assets for basset. This is easy to with one command.
+
+```
+php artisan basset:build
+```
+
 -----
 ## Included Package Information
 <a name="confide"></a>
