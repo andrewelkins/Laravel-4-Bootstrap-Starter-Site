@@ -67,9 +67,15 @@ class AdminUsersController extends AdminController {
 
         // Selected permissions
         $selectedPermissions = Input::old('permissions', array());
+        
+		// Title
+		$title = Lang::get('admin/users/title.create_a_new_user');
 
-        // Show the page
-        return View::make('admin/users/create', compact('roles', 'permissions', 'selectedRoles', 'selectedPermissions'));
+		// Mode
+		$mode = 'create';
+
+		// Show the page
+		return View::make('admin/users/edit', compact('roles', 'permissions', 'selectedRoles', 'selectedPermissions', 'title', 'mode'));
     }
 
     /**
@@ -137,8 +143,13 @@ class AdminUsersController extends AdminController {
         {
             $roles = $this->role->all();
             $permissions = $this->permission->all();
+
             // Show the page
-            return View::make('admin/users/edit', compact('user', 'roles', 'permissions'));
+        	$title = Lang::get('admin/users/title.user_update');;
+        	// mode
+        	$mode = 'edit'; 
+            
+        	return View::make('admin/users/edit', compact('user', 'roles', 'permissions', 'title', 'mode'));
         }
         else
         {
