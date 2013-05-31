@@ -41,13 +41,6 @@ class UserController extends BaseController {
         $this->user->username = Input::get( 'username' );
         $this->user->email = Input::get( 'email' );
 
-        // If using ReCaptcha, add it to the list of inputs
-        if( Confide::isUsingReCaptcha() )
-        {
-            $this->user->recaptcha_response_field = Input::get( 'recaptcha_response_field' );
-        }
-        
-
         $password = Input::get( 'password' );
         $passwordConfirmation = Input::get( 'password_confirmation' );
 
@@ -245,38 +238,16 @@ class UserController extends BaseController {
      */
     public function postForgot()
     {
-        $rules = array(
-          'email' => 'required|email',
-        );
-
-        // If using ReCaptcha, add his field to the Validation rules
-        if( Confide::isUsingReCaptcha() )
+        if( Confide::forgotPassword( Input::get( 'email' ) ) )
         {
-            $rules['recaptcha_response_field'] = 'required|recaptcha';
-        }        
-
-        $validator = Validator::make( Input::all(), $rules );
-
-        if ( $validator->passes() ) {
-            if( Confide::forgotPassword( Input::get( 'email' ) ) )
-            {
-                return Redirect::to('user/login')
-                    ->with( 'notice', Lang::get('confide::confide.alerts.password_reset') );
-            }
-            else
-            {
-                return Redirect::to('user/forgot')
-                    ->withInput()
-                    ->with( 'error', Lang::get('confide::confide.alerts.wrong_password_forgot') );
-            }
+            return Redirect::to('user/login')
+                ->with( 'notice', Lang::get('confide::confide.alerts.password_reset') );
         }
         else
         {
-            $error = $validator->messages()->all();
-            
             return Redirect::to('user/forgot')
                 ->withInput()
-                ->with( 'error', $error );
+                ->with( 'error', Lang::get('confide::confide.alerts.wrong_password_forgot') );
         }
     }
 
