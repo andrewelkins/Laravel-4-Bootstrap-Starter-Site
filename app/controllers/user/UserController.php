@@ -61,7 +61,7 @@ class UserController extends BaseController {
             } else {
                 // Redirect to the new user page
                 return Redirect::to('user/create')
-                    ->withInput(Input::except('password'))
+                    ->withInput(Input::except('password','password_confirmation'))
                     ->with('error', Lang::get('admin/users/messages.password_does_not_match'));
             }
         } else {
