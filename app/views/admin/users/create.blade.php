@@ -1,16 +1,13 @@
 @extends('admin/layouts.default')
 
 {{-- Web site Title --}}
-@section('title')
-Create a User ::
-@parent
-@stop
+@section('title') {{ $title }} :: @parent @stop
 
 {{-- Content --}}
 @section('content')
 <div class="page-header">
 	<h3>
-		Create a New User
+		{{ $title }}
 
 		<div class="pull-right">
 			<a href="{{{ URL::to('admin/users') }}}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
@@ -24,7 +21,7 @@ Create a User ::
 </ul>
 <!-- ./ tabs -->
 
-<form class="form-horizontal" method="post" action="" autocomplete="off">
+<form class="form-horizontal" method="post" action="@if (isset($user)){{ URL::to('admin/users/' . $user->id . '/edit') }}@endif" autocomplete="off">
 	<!-- CSRF Token -->
 	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 	<!-- ./ csrf token -->
@@ -33,21 +30,21 @@ Create a User ::
 	<div class="tab-content">
 		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
-            <!-- username -->
-            <div class="control-group {{{ $errors->has('username') ? 'error' : '' }}}">
-                <label class="control-label" for="username">Username</label>
-                <div class="controls">
-                    <input type="text" name="username" id="username" value="{{{ Input::old('username') }}}" />
-                    {{{ $errors->first('username', '<span class="help-inline">:message</span>') }}}
-                </div>
-            </div>
-            <!-- ./ username -->
+			<!-- username -->
+			<div class="control-group {{{ $errors->has('username') ? 'error' : '' }}}">
+				<label class="control-label" for="username">Username</label>
+				<div class="controls">
+					<input type="text" name="username" id="username" value="{{{ Input::old('username', isset($user) ? $user->username : null) }}}" />
+					{{{ $errors->first('username', '<span class="help-inline">:message</span>') }}}
+				</div>
+			</div>
+			<!-- ./ username -->
 
 			<!-- Email -->
 			<div class="control-group {{{ $errors->has('email') ? 'error' : '' }}}">
 				<label class="control-label" for="email">Email</label>
 				<div class="controls">
-					<input type="text" name="email" id="email" value="{{{ Input::old('email') }}}" />
+					<input type="text" name="email" id="email" value="{{{ Input::old('email', isset($user) ? $user->email : null) }}}" />
 					{{{ $errors->first('email', '<span class="help-inline">:message</span>') }}}
 				</div>
 			</div>
@@ -74,34 +71,45 @@ Create a User ::
 			<!-- ./ password confirm -->
 
 			<!-- Activation Status -->
-			<div class="control-group {{{ $errors->has('activated') ? 'error' : '' }}}">
+			<div class="control-group {{{ $errors->has('activated') || $errors->has('confirm') ? 'error' : '' }}}">
 				<label class="control-label" for="confirm">Activate User?</label>
 				<div class="controls">
-					<select name="confirm" id="confirm">
-						<option value="1"{{{ (Input::old('confirm', 0) === 1 ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.yes') }}}</option>
-						<option value="0"{{{ (Input::old('confirm', 0) === 0 ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.no') }}}</option>
-					</select>
+					@if ($mode == 'create')
+						<select name="confirm" id="confirm">
+							<option value="1"{{{ (Input::old('confirm', 0) === 1 ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.yes') }}}</option>
+							<option value="0"{{{ (Input::old('confirm', 0) === 0 ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.no') }}}</option>
+						</select>
+					@else
+						<select{{{ ($user->id === Confide::user()->id ? ' disabled="disabled"' : '') }}} name="confirm" id="confirm">
+							<option value="1"{{{ ($user->confirmed ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.yes') }}}</option>
+							<option value="0"{{{ ( ! $user->confirmed ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.no') }}}</option>
+						</select>
+					@endif
 					{{{ $errors->first('confirm', '<span class="help-inline">:message</span>') }}}
 				</div>
 			</div>
 			<!-- ./ activation status -->
 
-            <!-- Groups -->
-            <div class="control-group {{{ $errors->has('roles') ? 'error' : '' }}}">
+			<!-- Groups -->
+			<div class="control-group {{{ $errors->has('roles') ? 'error' : '' }}}">
                 <label class="control-label" for="roles">Roles</label>
                 <div class="controls">
-                    <select name="roles[]" id="roles[]" multiple>
-                        @foreach ($roles as $role)
-                        <option value="{{{ $role->id }}}"{{{ ( in_array($role->id, $selectedRoles) ? ' selected="selected"' : '') }}}>{{{ $role->name }}}</option>
-                        @endforeach
-                    </select>
+	                <select name="roles[]" id="roles[]" multiple>
+	                        @foreach ($roles as $role)
+								@if ($mode == 'create')
+	                        		<option value="{{{ $role->id }}}"{{{ ( in_array($role->id, $selectedRoles) ? ' selected="selected"' : '') }}}>{{{ $role->name }}}</option>
+	                        	@else
+									<option value="{{{ $role->id }}}"{{{ ( array_search($role->id, $user->currentRoleIds()) !== false && array_search($role->id, $user->currentRoleIds()) >= 0 ? ' selected="selected"' : '') }}}>{{{ $role->name }}}</option>
+								@endif
+	                        @endforeach
+					</select>
 
 					<span class="help-block">
 						Select a group to assign to the user, remember that a user takes on the permissions of the group they are assigned.
 					</span>
-                </div>
-            </div>
-            <!-- ./ groups -->
+            	</div>
+			</div>
+			<!-- ./ groups -->
 		</div>
 		<!-- ./ general tab -->
 
@@ -113,7 +121,7 @@ Create a User ::
 		<div class="controls">
 			<a class="btn btn-link" href="{{{ URL::to('admin/users') }}}">Cancel</a>
 			<button type="reset" class="btn">Reset</button>
-			<button type="submit" class="btn btn-success">Create User</button>
+			<button type="submit" class="btn btn-success">OK</button>
 		</div>
 	</div>
 	<!-- ./ form actions -->
