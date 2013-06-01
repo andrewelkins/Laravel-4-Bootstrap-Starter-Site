@@ -14,7 +14,8 @@
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
 		"jasonlewis/basset": "dev-master",
-		"robclancy/presenter": "1.0.*"
+		"robclancy/presenter": "1.0.*",
+        "j20/php-uuid": "dev-master"
 	},
 	"require-dev": {
         "way/generators": "dev-master",

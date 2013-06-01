@@ -283,7 +283,7 @@ class UserController extends BaseController {
         }
         else
         {
-            return Redirect::to('user/reset')
+            return Redirect::to('user/reset/'.$input['token'])
                 ->withInput()
                 ->with( 'error', Lang::get('confide::confide.alerts.wrong_password_reset') );
         }
