@@ -15,5 +15,5 @@ return array(
     | Define if we want to use ReCaptcha, false by default
     |
     */
-    'use_recaptcha' => true,
+    'use_recaptcha' => false,
 );
