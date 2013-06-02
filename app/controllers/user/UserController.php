@@ -62,8 +62,20 @@ class UserController extends BaseController {
             unset($this->user->password_confirmation);
         }
 
+        // get the Confide preset rules, modify the set if we use ReCaptcha
+        $updateRules = $this->user->getUpdateRules();
+
+        // If using ReCaptcha, add it to the list of inputs and update the rules        
+        if( Config::get('config.use_recaptcha') )
+        {
+            $this->user->recaptcha_response_field = Input::get( 'recaptcha_response_field' );
+            
+            $updateRules = $this->user->getUpdateRules();
+            $updateRules['recaptcha_response_field'] = 'required|recaptcha';
+        }
+
         // Save if valid. Password field will be hashed before save
-        $this->user->save();
+        $this->user->save($updateRules);
 
         if ( $this->user->id )
         {
@@ -238,16 +250,38 @@ class UserController extends BaseController {
      */
     public function postForgot()
     {
-        if( Confide::forgotPassword( Input::get( 'email' ) ) )
+        $rules = array(
+          'email' => 'required|email',
+        );
+        
+        // If using ReCaptcha, also add that field to the Validation rules
+        if( Config::get('config.use_recaptcha') )
         {
-            return Redirect::to('user/login')
-                ->with( 'notice', Lang::get('confide::confide.alerts.password_reset') );
+            $rules['recaptcha_response_field'] = 'required|recaptcha';
+        }        
+
+        $validator = Validator::make( Input::all(), $rules );
+
+        if ( $validator->passes() ) {
+            if( Confide::forgotPassword( Input::get( 'email' ) ) )
+            {
+                return Redirect::to('user/login')
+                    ->with( 'notice', Lang::get('confide::confide.alerts.password_reset') );
+            }
+            else
+            {
+                return Redirect::to('user/forgot')
+                    ->withInput()
+                    ->with( 'error', Lang::get('confide::confide.alerts.wrong_password_forgot') );
+            }
         }
         else
         {
+            $error = $validator->messages()->all();
+            
             return Redirect::to('user/forgot')
                 ->withInput()
-                ->with( 'error', Lang::get('confide::confide.alerts.wrong_password_forgot') );
+                ->with( 'error', $error );
         }
     }
 
