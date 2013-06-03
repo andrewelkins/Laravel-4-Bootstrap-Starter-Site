@@ -73,7 +73,7 @@ class Post extends Eloquent implements PresentableInterface {
 	 */
 	public function url()
 	{
-		return Url::to($this->slug);
+		return Url::to('blog/'.$this->slug);
 	}
 
 	/**

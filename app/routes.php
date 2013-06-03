@@ -107,8 +107,11 @@ Route::get('contact-us', function()
 });
 
 # Posts - Second to last set, match slug
-Route::get('{postSlug}', 'BlogController@getView');
-Route::post('{postSlug}', 'BlogController@postView');
+Route::group('prefix' => 'blog', function()
+{
+    Route::get('{postSlug}', 'BlogController@getView');
+    Route::post('{postSlug}', 'BlogController@postView');
+});
 
 # Index Page - Last route, no matches
 Route::get('/', 'BlogController@getIndex');

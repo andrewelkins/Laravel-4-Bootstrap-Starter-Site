@@ -76,7 +76,7 @@ Click <a href="{{{ URL::to('user/login') }}}">here</a> to login into your accoun
 You don't have the correct permissions to add comments.
 @else
 <h4>Add a Comment</h4>
-<form method="post" action="{{{ URL::to($post->slug) }}}">
+<form method="post" action="{{{ $post->url() }}}">
 	<input type="hidden" name="_token" value="{{{ Session::getToken() }}}" />
 
 	<textarea class="input-block-level" rows="4" name="comment" id="comment">{{{ Request::old('comment') }}}</textarea>
