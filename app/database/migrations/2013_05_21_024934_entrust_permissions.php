@@ -38,8 +38,9 @@ class EntrustPermissions extends Migration {
      */
     public function down()
     {
-        Schema::drop('permissions');
+        
         Schema::drop('permission_role');
+        Schema::drop('permissions');
     }
 
 }
