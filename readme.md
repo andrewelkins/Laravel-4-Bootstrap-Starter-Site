@@ -1,3 +1,7 @@
+Fork to fix the migration rollback issue. Nested the blog posts into /blog to make it more a module of the site.
+
+The way I see the routes layout is in blocks, so might as well make more prefix groups.
+
 #Laravel 4 Bootstrap Starter Site 
 `Version: 1.2.1 Stable` [![ProjectStatus](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site)
 [![Build Status](https://api.travis-ci.org/Zizaco/confide.png)](https://travis-ci.org/andrew13/Laravel-4-Bootstrap-Starter-Site)
