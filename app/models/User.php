@@ -102,7 +102,7 @@ class User extends ConfideUser implements PresentableInterface {
 
     public function currentUser()
     {
-        return (new Confide(new ConfideRepository()))->user();
+        return (new Confide(new ConfideEloquentRepository()))->user();
     }
 
 
