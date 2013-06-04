@@ -114,8 +114,15 @@ If permissions are set correctly:
 Should work, if not try
 
     chmod -R 777 app/storage
+    
+## Step 8: Build Assets
+Basset needs to build the assets.
 
-## Step 8: Start Page
+```
+php artisan basset:build
+```
+
+## Step 9: Start Page
 ### User login with commenting permission
 Navigate to your Laravel 4 website and login at /user/login:
 
