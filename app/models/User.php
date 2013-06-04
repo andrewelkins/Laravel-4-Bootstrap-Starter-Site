@@ -2,7 +2,7 @@
 
 use Zizaco\Confide\ConfideUser;
 use Zizaco\Confide\Confide;
-use Zizaco\Confide\ConfideRepository;
+use Zizaco\Confide\ConfideEloquentRepository;
 use Zizaco\Entrust\HasRole;
 use Robbo\Presenter\PresentableInterface;
 use Carbon\Carbon;
