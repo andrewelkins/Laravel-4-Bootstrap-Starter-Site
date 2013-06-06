@@ -45,6 +45,6 @@
 <hr />
 @endforeach
 
-{{{ $posts->links() }}}
+{{ $posts->links() }}
 
 @stop
