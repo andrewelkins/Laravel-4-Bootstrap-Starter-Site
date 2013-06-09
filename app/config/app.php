@@ -118,6 +118,7 @@ return array(
         'Zizaco\Confide\ConfideServiceProvider', // Confide Provider
         'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
         'Basset\BassetServiceProvider', // Better Asset Management
+        'Greggilbert\Recaptcha\RecaptchaServiceProvider', // recaptcha
         'Robbo\Presenter\PresenterServiceProvider', // Presenter
 
         /* Uncomment for use in development */

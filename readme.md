@@ -31,6 +31,7 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 	* [Basset](#basset)
 	* [Presenter](#presenter)
 	* [Generators](#generators)
+    * [ReCaptcha](#recaptcha)
 
 ## Issues
 See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
@@ -290,6 +291,35 @@ Compiling assets
 I would recommend using development collections for development instead of compiling .
 
 For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basset/4.0)
+
+<a name="recaptcha"></a>
+## ReCaptcha (greggilbert/recaptcha)
+A reCAPTCHA Validator for Laravel 4.
+
+To use reCAPTCHA, you first need to enable it (true) in your `app/config/config.php`
+```
+    /*
+    |--------------------------------------------------------------------------
+    | Use ReCaptcha
+    |--------------------------------------------------------------------------
+    |
+    | Define if we want to use ReCaptcha, false by default
+    |
+    */
+    'use_recaptcha' => true,
+```
+
+ReCaptcha Laravel 4 Setup
+
+1. In `app/config/packages/greggilbert/recaptcha/config.php`, enter your reCAPTCHA public and private keys.
+2. Add the following line into `app/lang/[lang]/validation.php`:
+
+```php
+    "recaptcha" => 'The :attribute field is not correct.',
+```
+
+For full usage see [greggilbert/recaptcha Documentation](https://github.
+    com/greggilbert/recaptcha)
 
 <a name="presenter"></a>
 ## Presenter
