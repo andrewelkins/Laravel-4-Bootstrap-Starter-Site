@@ -1,7 +1,17 @@
+# Laravel
 /bootstrap/compiled.php
 /vendor
+/app/config/local
+/app/config/staging
+/app/config/production
+
+# Composer
 composer.phar
 composer.lock
+
+# OS
 .DS_Store
 .idea/
+
+# Packages
 app/_ide_helpers.php
