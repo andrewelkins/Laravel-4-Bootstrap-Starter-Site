@@ -214,11 +214,15 @@ class AdminBlogsController extends AdminController {
         $posts = Post::select(array('posts.id', 'posts.title', 'posts.created_at'));
 
         return Datatables::of($posts)
+
         ->add_column('comments', '{{ DB::table(\'comments\')->where(\'post_id\', \'=\', $id)->count() }}')
+
         ->add_column('actions', '<a href="{{{ URL::to(\'admin/blogs/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
                 <a href="{{{ URL::to(\'admin/blogs/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-mini btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
             ')
+
         ->remove_column('id')
+
         ->make();
     }
 

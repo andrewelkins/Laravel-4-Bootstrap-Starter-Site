@@ -13,12 +13,12 @@
 		User Management
 
 		<div class="pull-right">
-			<a href="{{{ URL::to('admin/users/create') }}}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
+			<a href="{{{ URL::to('admin/users/create') }}}" class="btn btn-small btn-info iframe"><i class="icon-plus-sign icon-white"></i> Create</a>
 		</div>
 	</h3>
 </div>
 
-<table class="table table-bordered table-hover">
+<table id="users" class="table table-bordered table-hover">
 	<thead>
 		<tr>
 			<th class="span2">{{{ Lang::get('admin/users/table.username') }}}</th>
@@ -30,26 +30,28 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach ($users as $user)
-		<tr>
-			<td>{{{ $user->username }}}</td>
-			<td>{{{ $user->email }}}</td>
-			<td>@foreach ($user->roles as $u)
-                <div>{{ $u->name }}</div>
-                @endforeach</td>
-			<td>{{{ Lang::get('general.' . ($user->confirmed ? 'yes' : 'no')) }}}</td>
-			<td>{{{ $user->getPresenter()->displayDate() }}}</td>
-			<td>
-				<a href="{{{ URL::to('admin/users/' . $user->id . '/edit') }}}" class="btn btn-mini">{{{ Lang::get('button.edit') }}}</a>
-
-				@if (Auth::user()->id != $user->id )
-				<a href="{{{ URL::to('admin/users/' . $user->id . '/delete') }}}" class="btn btn-mini btn-danger">{{{ Lang::get('button.delete') }}}</a>
-				@endif
-			</td>
-		</tr>
-		@endforeach
 	</tbody>
 </table>
 
-{{ $users->links() }}
+@stop
+
+{{-- Scripts --}}
+@section('scripts')
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#users').dataTable( {
+			"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+			"sPaginationType": "bootstrap",
+			"oLanguage": {
+				"sLengthMenu": "_MENU_ records per page"
+			},
+			"bProcessing": true,
+	        "bServerSide": true,
+	        "sAjaxSource": "/admin/users/data",
+	        "fnDrawCallback": function ( oSettings ) {
+           		$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+     		}
+		});
+	});
+</script>
 @stop

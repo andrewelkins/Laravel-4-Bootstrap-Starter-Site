@@ -43,7 +43,7 @@ class AdminUsersController extends AdminController {
     public function getIndex()
     {
         // Grab all the users
-        $users = $this->user->paginate(10);
+        $users = $this->user;
 
         // Show the page
         return View::make('admin/users/index', compact('users'));
@@ -67,7 +67,7 @@ class AdminUsersController extends AdminController {
 
         // Selected permissions
         $selectedPermissions = Input::old('permissions', array());
-        
+
 		// Title
 		$title = Lang::get('admin/users/title.create_a_new_user');
 
@@ -147,8 +147,8 @@ class AdminUsersController extends AdminController {
             // Show the page
         	$title = Lang::get('admin/users/title.user_update');;
         	// mode
-        	$mode = 'edit'; 
-            
+        	$mode = 'edit';
+
         	return View::make('admin/users/edit', compact('user', 'roles', 'permissions', 'title', 'mode'));
         }
         else
@@ -259,5 +259,37 @@ class AdminUsersController extends AdminController {
             // There was a problem deleting the user
             return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.delete.error'));
         }
+    }
+
+    /**
+     * Show a list of all the users formatted for Datatables.
+     *
+     * @return Datatables JSON
+     */
+    public function getData()
+    {
+        $posts = User::leftjoin('assigned_roles', 'assigned_roles.user_id', '=', 'users.id')
+                    ->leftjoin('roles', 'roles.id', '=', 'assigned_roles.id')
+                    ->select(array('users.id', 'users.username','users.email', 'roles.name as rolename', 'users.confirmed', 'users.created_at'));
+
+        return Datatables::of($posts)
+        // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
+
+        ->edit_column('confirmed','@if($confirmed)
+                            Yes
+                        @else
+                            No
+                        @endif')
+
+        ->add_column('actions', '<a href="{{{ URL::to(\'admin/users/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
+                                @if($username == \'admin\')
+                                @else
+                                    <a href="{{{ URL::to(\'admin/users/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-mini btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
+                                @endif
+            ')
+
+        ->remove_column('id')
+
+        ->make();
     }
 }

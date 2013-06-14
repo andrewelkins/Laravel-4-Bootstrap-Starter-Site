@@ -1,4 +1,4 @@
-@extends('admin/layouts.default')
+@extends('admin/layouts/edit')
 
 {{-- Web site Title --}}
 @section('title') {{ $title }} :: @parent @stop
@@ -119,7 +119,7 @@
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{{ URL::to('admin/users') }}}">Cancel</a>
+			<element class="btn-cancel" onclick="parent.jQuery.fn.colorbox.close();">Cancel</element>
 			<button type="reset" class="btn">Reset</button>
 			<button type="submit" class="btn btn-success">OK</button>
 		</div>
