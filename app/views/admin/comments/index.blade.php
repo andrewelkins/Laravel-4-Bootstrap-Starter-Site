@@ -14,7 +14,7 @@ Blog Comment Management ::
 	</h3>
 </div>
 
-<table class="table table-bordered table-hover">
+<table id="comments" class="table table-bordered table-hover">
 	<thead>
 		<tr>
 			<th class="span3">{{{ Lang::get('admin/comments/table.title') }}}</th>
@@ -24,21 +24,29 @@ Blog Comment Management ::
 			<th class="span2">{{{ Lang::get('table.actions') }}}</th>
 		</tr>
 	</thead>
-	<tbody>
-		@foreach ($comments as $comment)
-		<tr>
-			<td><a href="{{{ URL::to('admin/comments/'. $comment->id .'/edit') }}}">{{{ Str::limit($comment->content, 40, '...') }}}</a></td>
-			<td><a href="{{{ URL::to('admin/blogs/'. $comment->post()->first()->id .'/edit') }}}">{{{ Str::limit($comment->post()->first()->title, 40, '...') }}}</a></td>
-			<td><a href="{{{ URL::to('admin/users/'. $comment->user()->first()->id .'/edit') }}}">{{{ $comment->user()->first()->username }}}</a></td>
-			<td>{{{ $comment->created_at() }}}</td>
-			<td>
-				<a href="{{{ URL::to('admin/comments/' . $comment->id . '/edit' ) }}}" class="btn btn-mini">{{{ Lang::get('button.edit') }}}</a>
-				<a href="{{{ URL::to('admin/comments/' . $comment->id . '/delete' ) }}}" class="btn btn-mini btn-danger">{{{ Lang::get('button.delete') }}}</a>
-			</td>
-		</tr>
-		@endforeach
-	</tbody>
+
 </table>
 
-{{{ $comments->links() }}}
+@stop
+
+{{-- Scripts --}}
+@section('scripts')
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#comments').dataTable( {
+			"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+			"sPaginationType": "bootstrap",
+			"oLanguage": {
+				"sLengthMenu": "_MENU_ records per page"
+			},
+			"bProcessing": true,
+	        "bServerSide": true,
+	        "sAjaxSource": "/admin/comments/data",
+	        "fnDrawCallback": function ( oSettings ) {
+           		$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+     		}
+		});
+	});
+</script>
+
 @stop
