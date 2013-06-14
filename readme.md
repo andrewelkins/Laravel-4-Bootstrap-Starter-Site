@@ -60,13 +60,23 @@ See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-
 
     cd laravel
 	curl -s http://getcomposer.org/installer | php
-	php composer.phar install
+	php composer.phar install --dev
 #### Option 2: Composer is installed globally
 
     cd laravel
-	composer install
+	composer install --dev
 
 If you haven't already, you might want to make [composer be installed globally](http://andrewelkins.com/programming/php/setting-up-composer-globally-for-laravel-4/) for future ease of use.
+
+Please note the use of the `--dev` flag.
+
+Some packages used to preprocess and minify assests are required on the development environment.
+
+When you deploy your project on a production environment you will want to upload the ***composer.lock*** file used on the development environment and only run `php composer.phar install` on the production server.
+
+This will skip the development packages and ensure the version of the packages installed on the production server match those you developped on.
+
+NEVER run `php composer.phar update` on your production server.
 
 ### Step 3: Configure Environments
 
