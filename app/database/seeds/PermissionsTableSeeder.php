@@ -13,7 +13,11 @@ class PermissionsTableSeeder extends Seeder {
                 'display_name'      => 'manage blogs'
             ),
             array(
-                'name'      => 'manage_pages',
+                'name'      => 'manage_posts',
+                'display_name'      => 'manage posts'
+            ),
+            array(
+                'name'      => 'manage_comments',
                 'display_name'      => 'manage comments'
             ),
             array(
@@ -56,8 +60,12 @@ class PermissionsTableSeeder extends Seeder {
                 'permission_id' => 5
             ),
             array(
+                'role_id'      => 1,
+                'permission_id' => 6
+            ),
+            array(
                 'role_id'      => 2,
-                'permission_id' => 4
+                'permission_id' => 6
             ),
         );
 
