@@ -32,28 +32,28 @@ return array(
         {
             $collection->directory('assets/css', function($collection)
             {
-                $collection->add('bootstrap.css');
-                $collection->add('bootstrap-responsive.css');
+                $collection->add('less/bootstrap/bootstrap.less')->apply('Less');
+                $collection->add('less/bootstrap/responsive.less')->apply('Less');
                 $collection->add('style.css');
-            })->apply('UriRewriteFilter');
+            })->apply('UriRewriteFilter')->apply('CssMin');
 
             $collection->directory('assets/js', function($collection)
             {
                 $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
                 $collection->add('bootstrap/bootstrap.js');
-            });
+            })->apply('JsMin');
         },
 
         'admin' => function($collection)
         {
             $collection->directory('assets/css', function($collection)
             {
-                $collection->add('bootstrap.css');
-                $collection->add('bootstrap-responsive.css');
+                $collection->add('less/bootstrap/bootstrap.less')->apply('Less');
+                $collection->add('less/bootstrap/responsive.less')->apply('Less');
                 $collection->add('wysihtml5/prettify.css');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.css');
                 $collection->add('style.css');
-            })->apply('UriRewriteFilter');
+            })->apply('UriRewriteFilter')->apply('CssMin');
 
             $collection->directory('assets/js', function($collection)
             {
@@ -62,7 +62,7 @@ return array(
                 $collection->add('prettify.js');
                 $collection->add('bootstrap/bootstrap.js');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.js');
-            });
+            })->apply('JsMin');
         }
 
         // Basset default config
@@ -217,7 +217,7 @@ return array(
             |
             */
 
-            'Less' => array('LessFilter', function($filter)
+            'Less' => array('LessphpFilter', function($filter)
             {
                 $filter->whenAssetIs('.*\.less')->findMissingConstructorArgs();
             }),

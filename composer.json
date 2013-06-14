@@ -21,7 +21,10 @@
         "way/generators": "dev-master",
         "mockery/mockery": "dev-master@dev",
         "summerstreet/woodling": "0.1.*",
-        "barryvdh/laravel-ide-helper": "dev-master"
+        "barryvdh/laravel-ide-helper": "dev-master",
+        "leafo/lessphp": "v0.3.9",
+        "natxet/CssMin": "dev-master",
+        "lmammino/jsmin4assetic": "1.0.*"
 	},
 	"autoload": {
 		"classmap": [
