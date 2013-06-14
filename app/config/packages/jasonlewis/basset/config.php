@@ -32,9 +32,7 @@ return array(
         {
             $collection->directory('assets/css', function($collection)
             {
-                $collection->add('less/bootstrap/bootstrap.less')->apply('Less');
-                $collection->add('less/bootstrap/responsive.less')->apply('Less');
-                $collection->add('style.css');
+                $collection->add('less/master.less')->apply('Less');
             })->apply('UriRewriteFilter')->apply('CssMin');
 
             $collection->directory('assets/js', function($collection)
@@ -48,25 +46,23 @@ return array(
         {
             $collection->directory('assets/css', function($collection)
             {
-                $collection->add('less/bootstrap/bootstrap.less')->apply('Less');
-                $collection->add('less/bootstrap/responsive.less')->apply('Less');
+                $collection->add('less/master.less')->apply('Less');
                 $collection->add('wysihtml5/prettify.css');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.css');
-                $collection->add('style.css');
                 $collection->add('datatables-bootstrap.css');
                 $collection->add('colorbox.css');
             })->apply('UriRewriteFilter')->apply('CssMin');
 
             $collection->directory('assets/js', function($collection)
             {
-                $collection->add('wysihtml5/wysihtml5-0.3.0.js');
                 $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
-                $collection->add('prettify.js');
                 $collection->add('bootstrap/bootstrap.js');
+                $collection->add('wysihtml5/wysihtml5-0.3.0.js');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.js');
                 $collection->javascript('http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js');
                 $collection->add('datatables-bootstrap.js');
                 $collection->add('jquery.colorbox.js');
+                $collection->add('prettify.js');
             })->apply('JsMin');
         }
 
