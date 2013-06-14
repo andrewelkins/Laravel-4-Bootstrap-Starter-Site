@@ -22,12 +22,13 @@
         {{ Basset::show('admin.css') }}
 
 		<style>
-		@section('styles')
 		body {
 			padding: 60px 0;
 		}
-		@show
 		</style>
+
+		@section('styles')
+		@show
 
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
@@ -116,5 +117,9 @@
         <script type="text/javascript" charset="utf-8">
             $(prettyPrint);
         </script>
+
+        @section('scripts')
+		@show
+
 	</body>
 </html>

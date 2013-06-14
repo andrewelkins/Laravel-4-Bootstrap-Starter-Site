@@ -1,4 +1,4 @@
-@extends('admin/layouts/default')
+@extends('admin/layouts/edit')
 
 {{-- Web site Title --}}
 @section('title')
@@ -32,7 +32,7 @@ Blog Post Delete ::
     <!-- Form Actions -->
     <div class="control-group">
         <div class="controls">
-            <a class="btn btn-link" href="{{{ URL::to('admin/blogs') }}}">Cancel</a>
+            <a class="btn btn-warning" href="{{{ URL::to('admin/blogs') }}}">Cancel</a>
             <button type="submit" class="btn btn-danger">delete</button>
         </div>
     </div>

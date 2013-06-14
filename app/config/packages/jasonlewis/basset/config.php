@@ -53,6 +53,8 @@ return array(
                 $collection->add('wysihtml5/prettify.css');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.css');
                 $collection->add('style.css');
+                $collection->add('datatables-bootstrap.css');
+                $collection->add('colorbox.css');
             })->apply('UriRewriteFilter')->apply('CssMin');
 
             $collection->directory('assets/js', function($collection)
@@ -62,6 +64,9 @@ return array(
                 $collection->add('prettify.js');
                 $collection->add('bootstrap/bootstrap.js');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.js');
+                $collection->javascript('http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js');
+                $collection->add('datatables-bootstrap.js');
+                $collection->add('jquery.colorbox.js');
             })->apply('JsMin');
         }
 
