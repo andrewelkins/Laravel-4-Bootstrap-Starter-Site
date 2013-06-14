@@ -72,7 +72,12 @@ Route::filter('guest', function()
 */
 
 // Check for role on all admin routes
-Entrust::routeNeedsRole( 'admin*', array('admin'));
+Entrust::routeNeedsRole( 'admin*', array('admin'), Redirect::to('/') );
+
+// Check for permissions on admin actions
+Entrust::routeNeedsPermission( 'admin/blogs*', 'manage_blogs', Redirect::to('/admin') );
+Entrust::routeNeedsPermission( 'admin/comments*', 'manage_blogs', Redirect::to('/admin') );
+Entrust::routeNeedsPermission( 'admin/users*', 'manage_users', Redirect::to('/admin') );
 
 /*
 |--------------------------------------------------------------------------

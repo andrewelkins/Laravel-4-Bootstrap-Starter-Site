@@ -14,11 +14,15 @@ class PermissionsTableSeeder extends Seeder {
             ),
             array(
                 'name'      => 'manage_pages',
-                'display_name'      => 'manage pages'
+                'display_name'      => 'manage comments'
             ),
             array(
                 'name'      => 'manage_users',
                 'display_name'      => 'manage users'
+            ),
+            array(
+                'name'      => 'manage_roles',
+                'display_name'      => 'manage roles'
             ),
             array(
                 'name'      => 'post_comment',
@@ -46,6 +50,10 @@ class PermissionsTableSeeder extends Seeder {
             array(
                 'role_id'      => 1,
                 'permission_id' => 4
+            ),
+            array(
+                'role_id'      => 1,
+                'permission_id' => 5
             ),
             array(
                 'role_id'      => 2,
