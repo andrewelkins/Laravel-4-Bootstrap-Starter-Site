@@ -145,6 +145,7 @@ You can use artisan to do this
 Once you have generated your key, you might want to copy it over to your ***app/config/local/app.php*** local configuration file to have a different encryption key for each environment. A little tip, revert the key back to ***'YourSecretKey!!!'*** in ***app/config/app.php*** once you are done copying it. Now it can be generated again when you move the project to another environment.
 
 ### Step 8: Make sure app/storage is writable by your web server.
+
 If permissions are set correctly:
 
     chmod -R 775 app/storage
@@ -153,14 +154,35 @@ Should work, if not try
 
     chmod -R 777 app/storage
 
-## Step 9: Build Assets
-Basset needs to build the assets.
+### Step 9: Build Assets
+
+If you have setup your environments, basset will know you are in development and will build the assets automatically and will not apply certain filters such as minification or combination to keep the code readable. You will need to make the folder where the assets are built writable:
+
+If permissions are set correctly:
+
+    chmod -R 775 public/assets/compiled
+
+Should work, if not try
+
+    chmod -R 777 public/assets/compiled
+
+To force a build of the dev collection use:
 
 ```
 php artisan basset:build
 ```
 
-## Step 10: Start Page
+The starter site uses two asset collections, ***public*** and ***admin***. While in development, assets will be built in two folders, ***public*** and ***admin***, inside of ***public/assets/compiled***. These are ignored by git as you do not want them on your production server. Once you are ready to push or upload the code to production run:
+
+```
+php artisan basset:build -p public
+php artisan basset:build -p admin
+```
+
+This will build the production assets in ***public/assets/compiled*** which will be versioned in git and should be uploaded to your production server.
+
+### Step 10: Start Page
+
 ### User login with commenting permission
 Navigate to your Laravel 4 website and login at /user/login:
 
