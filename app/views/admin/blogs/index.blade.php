@@ -21,7 +21,6 @@ Blog Management ::
 <table id="blogs" class="table table-bordered table-hover">
 	<thead>
 		<tr>
-			<th class="span1">ID</th>
 			<th class="span4">{{{ Lang::get('admin/blogs/table.title') }}}</th>
 			<th class="span2">{{{ Lang::get('admin/blogs/table.created_at') }}}</th>
 			<th class="span2">{{{ Lang::get('admin/blogs/table.comments') }}}</th>

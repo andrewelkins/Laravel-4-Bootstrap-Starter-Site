@@ -19,6 +19,8 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 	* User and Role management
 	* Manage blog posts and comments
 	* WYSIWYG editor for post creation and editing.
+    * DataTables dynamic table sorting and filtering.
+    * Colorbox Lightbox jQuery modal popup.
 * Front-end
 	* User login, registration, forgot password
 	* User account area
