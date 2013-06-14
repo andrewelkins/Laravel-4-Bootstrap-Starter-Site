@@ -6,6 +6,10 @@ Blog Management ::
 @parent
 @stop
 
+@section('keywords')Blogs administration @stop
+@section('author')Nek @stop
+@section('description')Blogs administration index @stop
+
 {{-- Content --}}
 @section('content')
 <div class="page-header">

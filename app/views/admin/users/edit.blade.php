@@ -10,7 +10,7 @@
 		{{ $title }}
 
 		<div class="pull-right">
-			<a href="{{{ URL::to('admin/users') }}}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+			<button class="btn btn-small btn-inverse" id="close_popup"><i class="icon-circle-arrow-left icon-white"></i> Back</button>
 		</div>
 	</h3>
 </div>
@@ -119,11 +119,32 @@
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<element class="btn-cancel" onclick="parent.jQuery.fn.colorbox.close();">Cancel</element>
+			<a class="btn-cancel" id="cancel_popup">Cancel</a>
 			<button type="reset" class="btn">Reset</button>
 			<button type="submit" class="btn btn-success">OK</button>
 		</div>
 	</div>
 	<!-- ./ form actions -->
 </form>
+@stop
+
+{{-- Scripts --}}
+@section('scripts')
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#close_popup').click(function(){
+		parent.oTable.fnReloadAjax();
+		parent.$.colorbox.close();
+		return false;
+	});
+	$('#cancel_popup').click(function(){
+		parent.oTable.fnReloadAjax();
+		parent.$.colorbox.close();
+		return false;
+	});
+});
+
+</script>
 @stop
