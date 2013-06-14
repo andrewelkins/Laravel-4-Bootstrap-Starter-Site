@@ -75,7 +75,7 @@ class AdminUsersController extends AdminController {
 		$mode = 'create';
 
 		// Show the page
-		return View::make('admin/users/edit', compact('roles', 'permissions', 'selectedRoles', 'selectedPermissions', 'title', 'mode'));
+		return View::make('admin/users/create', compact('roles', 'permissions', 'selectedRoles', 'selectedPermissions', 'title', 'mode'));
     }
 
     /**

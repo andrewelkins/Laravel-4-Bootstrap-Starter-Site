@@ -13,7 +13,7 @@ Create a New Blog Post ::
 		Create a New Blog Post
 
 		<div class="pull-right">
-			<a href="{{{ URL::to('admin/blogs') }}}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+			<a href="{{{ URL::to('admin/blogs') }}}" class="btn btn-small btn-inverse" onclick="parent.jQuery.fn.colorbox.close();"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
 		</div>
 	</h3>
 </div>
