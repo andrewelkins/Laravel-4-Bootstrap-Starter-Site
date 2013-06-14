@@ -49,9 +49,9 @@ return array(
             $collection->directory('assets/css', function($collection)
             {
                 $collection->add('bootstrap.css');
-                $collection->add('wysihtml5/prettify.css');
                 $collection->add('bootstrap-responsive.css');
-                $collection->add('wysihtml5/bootstrap-wysihtml5-0.0.2.css');
+                $collection->add('wysihtml5/prettify.css');
+                $collection->add('wysihtml5/bootstrap-wysihtml5.css');
                 $collection->add('style.css');
             })->apply('UriRewriteFilter');
 
