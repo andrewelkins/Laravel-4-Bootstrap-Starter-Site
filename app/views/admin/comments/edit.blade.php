@@ -1,4 +1,4 @@
-@extends('admin/layouts/default')
+@extends('admin/layouts/edit')
 
 {{-- Web site Title --}}
 @section('title')
@@ -51,7 +51,7 @@ Blog Comment Update ::
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{{ URL::to('admin/comments') }}}">Cancel</a>
+			<element class="btn-cancel" onclick="parent.jQuery.fn.colorbox.close();">Cancel</element>
 			<button type="reset" class="btn">Reset</button>
 			<button type="submit" class="btn btn-success">Update</button>
 		</div>

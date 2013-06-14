@@ -95,7 +95,7 @@ Create a New Blog Post ::
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-warning" href="{{{ URL::to('admin/blogs') }}}">Cancel</a>
+			<element class="btn-cancel" onclick="parent.jQuery.fn.colorbox.close();">Cancel</element>
 			<button type="reset" class="btn">Reset</button>
 			<button type="submit" class="btn btn-success">Publish</button>
 		</div>

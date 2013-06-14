@@ -32,7 +32,7 @@ Blog Post Delete ::
     <!-- Form Actions -->
     <div class="control-group">
         <div class="controls">
-            <a class="btn btn-warning" href="{{{ URL::to('admin/blogs') }}}">Cancel</a>
+            <element class="btn-cancel" onclick="parent.jQuery.fn.colorbox.close();">Cancel</element>
             <button type="submit" class="btn btn-danger">delete</button>
         </div>
     </div>
