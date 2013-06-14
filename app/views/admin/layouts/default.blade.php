@@ -19,7 +19,7 @@
 
 		<!-- CSS
 		================================================== -->
-        {{ Basset::show('admin-css.css') }}
+        {{ Basset::show('admin.css') }}
 
 		<style>
 		@section('styles')
@@ -107,8 +107,8 @@
 
 		<!-- Javascripts
 		================================================== -->
-        {{ Basset::show('admin-js.js') }}
-    
+        {{ Basset::show('admin.js') }}
+
         <script>
             $('.wysihtml5').wysihtml5();
         </script>
