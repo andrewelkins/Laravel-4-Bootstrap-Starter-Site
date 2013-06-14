@@ -41,7 +41,7 @@ return array(
         {
             $collection->directory('assets/js', function($collection)
             {
-                $collection->add('jquery.v1.8.3.min.js');
+                $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
                 $collection->add('bootstrap/bootstrap.min.js');
             })->apply('UriRewriteFilter')->setArguments(public_path());
         },
@@ -61,7 +61,7 @@ return array(
             $collection->directory('assets/js', function($collection)
             {
                 $collection->add('wysihtml5/wysihtml5-0.3.0.js');
-                $collection->add('jquery-1.9.1.min.js');
+                $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
                 $collection->add('prettify.js');
                 $collection->add('bootstrap/bootstrap.min.js');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.js');
