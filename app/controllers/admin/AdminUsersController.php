@@ -42,11 +42,14 @@ class AdminUsersController extends AdminController {
      */
     public function getIndex()
     {
+        // Show the page
+        $title = Lang::get('admin/users/title.user_management');
+
         // Grab all the users
         $users = $this->user;
 
         // Show the page
-        return View::make('admin/users/index', compact('users'));
+        return View::make('admin/users/index', compact('users', 'title'));
     }
 
     /**
@@ -145,7 +148,7 @@ class AdminUsersController extends AdminController {
             $permissions = $this->permission->all();
 
             // Show the page
-        	$title = Lang::get('admin/users/title.user_update');;
+        	$title = Lang::get('admin/users/title.user_update');
         	// mode
         	$mode = 'edit';
 
@@ -224,7 +227,10 @@ class AdminUsersController extends AdminController {
     public function getDelete($user)
     {
         // Show the page
-        return View::make('admin/users/delete', compact('user'));
+        $title = Lang::get('admin/users/title.user_delete');
+
+        // Show the page
+        return View::make('admin/users/delete', compact('user', 'title'));
     }
 
     /**

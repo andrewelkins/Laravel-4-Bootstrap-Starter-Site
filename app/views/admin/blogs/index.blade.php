@@ -1,9 +1,8 @@
-@extends('admin/layouts.default')
+@extends('admin.layouts.default')
 
 {{-- Web site Title --}}
 @section('title')
-Blog Management ::
-@parent
+Blog Management :: @parent
 @stop
 
 @section('keywords')Blogs administration @stop
@@ -42,8 +41,11 @@ Blog Management ::
 {{-- Scripts --}}
 @section('scripts')
 <script type="text/javascript">
+
+	var oTable;
+
 	$(document).ready(function() {
-		$('#blogs').dataTable( {
+		oTable = $('#blogs').dataTable( {
 			"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 			"sPaginationType": "bootstrap",
 			"oLanguage": {

@@ -1,4 +1,4 @@
-@extends('admin/layouts/edit')
+@extends('admin/layouts/modal')
 
 {{-- Web site Title --}}
 @section('title')
@@ -13,7 +13,7 @@ Create a New Blog Post ::
 		Create a New Blog Post
 
 		<div class="pull-right">
-			<a href="{{{ URL::to('admin/blogs') }}}" class="btn btn-small btn-inverse" onclick="parent.jQuery.fn.colorbox.close();"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+			<button class="btn btn-small btn-inverse" id="close_popup"><i class="icon-circle-arrow-left icon-white"></i> Back</button>
 		</div>
 	</h3>
 </div>
@@ -95,7 +95,7 @@ Create a New Blog Post ::
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<element class="btn-cancel" onclick="parent.jQuery.fn.colorbox.close();">Cancel</element>
+			<element class="btn-cancel" id="cancel_popup">Cancel</element>
 			<button type="reset" class="btn">Reset</button>
 			<button type="submit" class="btn btn-success">Publish</button>
 		</div>
