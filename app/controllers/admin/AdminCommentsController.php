@@ -26,11 +26,14 @@ class AdminCommentsController extends AdminController
      */
     public function getIndex()
     {
+        // Title
+        $title = Lang::get('admin/comments/title.comment_management');
+
         // Grab all the comment posts
         $comments = $this->comment;
 
         // Show the page
-        return View::make('admin/comments/index', compact('comments'));
+        return View::make('admin/comments/index', compact('comments', 'title'));
     }
 
     /**
@@ -41,8 +44,11 @@ class AdminCommentsController extends AdminController
      */
 	public function getEdit($comment)
 	{
+        // Title
+        $title = Lang::get('admin/comments/title.comment_update');
+
         // Show the page
-        return View::make('admin/comments/edit', compact('comment'));
+        return View::make('admin/comments/edit', compact('comment', 'title'));
 	}
 
     /**
@@ -90,8 +96,11 @@ class AdminCommentsController extends AdminController
      */
 	public function getDelete($comment)
 	{
+        // Title
+        $title = Lang::get('admin/comments/title.comment_delete');
+
         // Show the page
-        return View::make('admin/comments/delete', compact('comment'));
+        return View::make('admin/comments/delete', compact('comment', 'title'));
 	}
 
     /**

@@ -109,7 +109,3 @@
 		<!-- ./ form actions -->
 	</form>
 @stop
-
-{{-- Scripts --}}
-@section('scripts')
-@stop

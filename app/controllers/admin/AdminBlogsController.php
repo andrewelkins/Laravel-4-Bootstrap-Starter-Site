@@ -26,11 +26,14 @@ class AdminBlogsController extends AdminController {
      */
     public function getIndex()
     {
+        // Title
+        $title = Lang::get('admin/blogs/title.blog_management');
+
         // Grab all the blog posts
         $posts = $this->post;
 
         // Show the page
-        return View::make('admin/blogs/index', compact('posts'));
+        return View::make('admin/blogs/index', compact('posts', 'title'));
     }
 
 	/**
@@ -40,8 +43,11 @@ class AdminBlogsController extends AdminController {
 	 */
 	public function getCreate()
 	{
+        // Title
+        $title = Lang::get('admin/blogs/title.create_a_new_blog');
+
         // Show the page
-        return View::make('admin/blogs/create');
+        return View::make('admin/blogs/create', compact('title'));
 	}
 
 	/**
@@ -109,8 +115,11 @@ class AdminBlogsController extends AdminController {
      */
 	public function getEdit($post)
 	{
+        // Title
+        $title = Lang::get('admin/blogs/title.blog_update');
+
         // Show the page
-        return View::make('admin/blogs/edit', compact('post'));
+        return View::make('admin/blogs/edit', compact('post', 'title'));
 	}
 
     /**
@@ -166,8 +175,11 @@ class AdminBlogsController extends AdminController {
      */
     public function getDelete($post)
     {
+        // Title
+        $title = Lang::get('admin/blogs/title.blog_delete');
+
         // Show the page
-        return View::make('admin/blogs/delete', compact('post'));
+        return View::make('admin/blogs/delete', compact('post', 'title'));
     }
 
     /**
@@ -211,11 +223,11 @@ class AdminBlogsController extends AdminController {
      */
     public function getData()
     {
-        $posts = Post::select(array('posts.id', 'posts.title', 'posts.created_at'));
+        $posts = Post::select(array('posts.id', 'posts.title', 'posts.id as comments', 'posts.created_at'));
 
         return Datatables::of($posts)
 
-        ->add_column('comments', '{{ DB::table(\'comments\')->where(\'post_id\', \'=\', $id)->count() }}')
+        ->edit_column('comments', '{{ DB::table(\'comments\')->where(\'post_id\', \'=\', $id)->count() }}')
 
         ->add_column('actions', '<a href="{{{ URL::to(\'admin/blogs/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
                 <a href="{{{ URL::to(\'admin/blogs/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-mini btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>

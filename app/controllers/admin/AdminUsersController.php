@@ -42,7 +42,7 @@ class AdminUsersController extends AdminController {
      */
     public function getIndex()
     {
-        // Show the page
+        // Title
         $title = Lang::get('admin/users/title.user_management');
 
         // Grab all the users
@@ -147,7 +147,7 @@ class AdminUsersController extends AdminController {
             $roles = $this->role->all();
             $permissions = $this->permission->all();
 
-            // Show the page
+            // Title
         	$title = Lang::get('admin/users/title.user_update');
         	// mode
         	$mode = 'edit';
@@ -226,7 +226,7 @@ class AdminUsersController extends AdminController {
      */
     public function getDelete($user)
     {
-        // Show the page
+        // Title
         $title = Lang::get('admin/users/title.user_delete');
 
         // Show the page
@@ -274,11 +274,11 @@ class AdminUsersController extends AdminController {
      */
     public function getData()
     {
-        $posts = User::leftjoin('assigned_roles', 'assigned_roles.user_id', '=', 'users.id')
+        $users = User::leftjoin('assigned_roles', 'assigned_roles.user_id', '=', 'users.id')
                     ->leftjoin('roles', 'roles.id', '=', 'assigned_roles.role_id')
                     ->select(array('users.id', 'users.username','users.email', 'roles.name as rolename', 'users.confirmed', 'users.created_at'));
 
-        return Datatables::of($posts)
+        return Datatables::of($users)
         // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
 
         ->edit_column('confirmed','@if($confirmed)

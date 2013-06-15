@@ -1,41 +1,21 @@
-@extends('admin/layouts/modal')
-
-{{-- Web site Title --}}
-@section('title')
-Blog Post Delete ::
-@parent
-@stop
+@extends('admin.layouts.modal')
 
 {{-- Content --}}
 @section('content')
-<div class="page-header">
-	<h3>
-		Blog Post Delete
+    {{-- Delete Blog Form --}}
+    <form class="form-horizontal" method="post" action="" autocomplete="off">
+        <!-- CSRF Token -->
+        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+        <input type="hidden" name="id" value="{{ $post->id }}" />
+        <!-- ./ csrf token -->
 
-		<div class="pull-right">
-			<button class="btn btn-small btn-inverse" id="close_popup"><i class="icon-circle-arrow-left icon-white"></i> Back</button>
-		</div>
-	</h3>
-</div>
-
-<!-- Tabs -->
-<ul class="nav nav-tabs">
-	<li class="active"><a href="#tab-general" data-toggle="tab">Delete</a></li>
-</ul>
-<!-- ./ tabs -->
-<form class="form-horizontal" method="post" action="" autocomplete="off">
-    <!-- CSRF Token -->
-    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-    <input type="hidden" name="id" value="{{ $post->id }}" />
-    <!-- ./ csrf token -->
-
-    <!-- Form Actions -->
-    <div class="control-group">
-        <div class="controls">
-            <element class="btn-cancel" id="cancel_popup">Cancel</element>
-            <button type="submit" class="btn btn-danger">delete</button>
+        <!-- Form Actions -->
+        <div class="control-group">
+            <div class="controls">
+                <element class="btn-cancel" id="cancel_popup">Cancel</element>
+                <button type="submit" class="btn btn-danger">delete</button>
+            </div>
         </div>
-    </div>
-    <!-- ./ form actions -->
-</form>
+        <!-- ./ form actions -->
+    </form>
 @stop
