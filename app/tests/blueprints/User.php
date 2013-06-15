@@ -23,5 +23,5 @@ Woodling::seed('UserUser', array('class' => 'User', 'do' => function($blueprint)
     $blueprint->confirmed = 1;
     $blueprint->created = Carbon::now();
     $blueprint->updated = Carbon::now()->addMonths(2);
-    $blueprint->role = function() { Woodling::retrieve('RoleComment'); };
+    $blueprint->role = function() { return Woodling::retrieve('RoleComment'); };
 }));
