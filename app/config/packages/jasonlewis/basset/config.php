@@ -38,7 +38,8 @@ return array(
             $collection->directory('assets/js', function($collection)
             {
                 $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
-                $collection->add('bootstrap/bootstrap.js');
+                //$collection->add('bootstrap/bootstrap.js');
+                $collection->requireDirectory('../../../vendor/twitter/bootstrap/js');
             })->apply('JsMin');
         },
 
@@ -56,7 +57,8 @@ return array(
             $collection->directory('assets/js', function($collection)
             {
                 $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
-                $collection->add('bootstrap/bootstrap.js');
+                //$collection->add('bootstrap/bootstrap.js');
+                $collection->requireDirectory('../../../vendor/twitter/bootstrap/js');
                 $collection->add('wysihtml5/wysihtml5-0.3.0.js');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.js');
                 $collection->javascript('http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js');
