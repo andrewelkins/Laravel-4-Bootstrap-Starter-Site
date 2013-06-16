@@ -2,157 +2,95 @@
 
 class AdminUsersController extends AdminController {
 
-
     /**
      * User Model
-     * @var User
+     *
+     * @var Users
      */
-    protected $user;
+    protected $users;
 
     /**
      * Role Model
-     * @var Role
+     *
+     * @var Roles
      */
-    protected $role;
+    protected $roles;
 
     /**
      * Permission Model
-     * @var Permission
+     *
+     * @var Permissions
      */
-    protected $permission;
+    protected $permissions;
 
     /**
      * Inject the models.
-     * @param User $user
-     * @param Role $role
-     * @param Permission $permission
+     *
+     * @param User $users
+     * @param Role $roles
+     * @param Permission $permissions
      */
-    public function __construct(User $user, Role $role, Permission $permission)
+    public function __construct(UserRepositoryInterface $users, Role $roles, Permission $permissions)
     {
         parent::__construct();
-        $this->user = $user;
-        $this->role = $role;
-        $this->permission = $permission;
+        $this->users = $users;
+        $this->roles = $roles;
+        $this->permissions = $permissions;
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the users.
      *
-     * @return Response
+     * @return View
      */
-    public function getIndex()
+    public function index()
     {
-        // Title
+        // Set the page title.
         $title = Lang::get('admin/users/title.user_management');
 
-        // Grab all the users
-        $users = $this->user;
-
-        // Show the page
-        return View::make('admin/users/index', compact('users', 'title'));
+        // There is no need to send any data to the view.
+        // The datatables will be calling the data method.
+        return View::make('admin/users.index', compact('title'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
-     * @return Response
+     * @return View
      */
-    public function getCreate()
+    public function create()
     {
         // All roles
-        $roles = $this->role->all();
+        $roles = $this->roles->all();
 
-        // Get all the available permissions
-        $permissions = $this->permission->all();
+        // Title
+        $title = Lang::get('admin/users/title.create_a_new_user');
 
-        // Selected groups
-        $selectedRoles = Input::old('roles', array());
-
-        // Selected permissions
-        $selectedPermissions = Input::old('permissions', array());
-
-		// Title
-		$title = Lang::get('admin/users/title.create_a_new_user');
-
-		// Mode
-		$mode = 'create';
-
-		// Show the page
-		return View::make('admin/users/create', compact('roles', 'permissions', 'selectedRoles', 'selectedPermissions', 'title', 'mode'));
+        // Show the page
+        return View::make('admin/users/create', compact('roles', 'title'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage.
      *
-     * @return Response
+     * @return Redirect to the user page or the create method if validation does not pass.
      */
-    public function postCreate()
+    public function store()
     {
-        $this->user->username = Input::get( 'username' );
-        $this->user->email = Input::get( 'email' );
-        $this->user->password = Input::get( 'password' );
-
-        // The password confirmation will be removed from model
-        // before saving. This field will be used in Ardent's
-        // auto validation.
-        $this->user->password_confirmation = Input::get( 'password_confirmation' );
-        $this->user->confirmed = Input::get( 'confirm' );
-
-        // Permissions are currently tied to roles. Can't do this yet.
-        //$user->permissions = $user->roles()->preparePermissionsForSave(Input::get( 'permissions' ));
-
-        // Save if valid. Password field will be hashed before save
-        $this->user->save();
-
-        if ( $this->user->id )
-        {
-            // Save roles. Handles updating.
-            $this->user->saveRoles(Input::get( 'roles' ));
-
-            // Redirect to the new user page
-            return Redirect::to('admin/users/' . $this->user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
-        }
-        else
-        {
-            // Get validation errors (see Ardent package)
-            $error = $this->user->errors()->all();
-
-            return Redirect::to('admin/users/create')
-                ->withInput(Input::except('password'))
-                ->with( 'error', $error );
-        }
+        $this->users->store( Input::all() );
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified user.
      *
-     * @param $user
-     * @return Response
+     * @param  int  $id
+     * @return Method
      */
-    public function getShow($user)
-    {
-        // redirect to the frontend
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param $user
-     * @return Response
-     */
-    public function getEdit($user)
+    public function show($id)
     {
         if ( $user->id )
         {
-            $roles = $this->role->all();
-            $permissions = $this->permission->all();
-
-            // Title
-        	$title = Lang::get('admin/users/title.user_update');
-        	// mode
-        	$mode = 'edit';
-
-        	return View::make('admin/users/edit', compact('user', 'roles', 'permissions', 'title', 'mode'));
+            return $this->edit($id);
         }
         else
         {
@@ -161,12 +99,38 @@ class AdminUsersController extends AdminController {
     }
 
     /**
-     * Update the specified resource in storage.
+     * Show the form for editing the specified user.
      *
-     * @param $user
+     * @param  int  $id
+     * @return View
+     */
+    public function edit($id)
+    {
+        $user = $this->users->findById($id);
+
+        if ( $user->id )
+        {
+            // Get the user roles.
+            $roles = $this->roles->all();
+
+            // Set the page title.
+            $title = Lang::get('admin/users/title.user_update');
+
+            return View::make('admin/users/edit', compact('user', 'roles', 'title'));
+        }
+        else
+        {
+            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.does_not_exist'));
+        }
+    }
+
+    /**
+     * Update the specified user in storage.
+     *
+     * @param  int  $id
      * @return Response
      */
-    public function postEdit($user)
+    public function update($id)
     {
         // Validate the inputs
         $validator = Validator::make(Input::all(), $user->getUpdateRules());
@@ -219,52 +183,14 @@ class AdminUsersController extends AdminController {
     }
 
     /**
-     * Remove user page.
+     * Remove the specified resource from storage.
      *
-     * @param $user
+     * @param  int  $id
      * @return Response
      */
-    public function getDelete($user)
+    public function destroy($id)
     {
-        // Title
-        $title = Lang::get('admin/users/title.user_delete');
-
-        // Show the page
-        return View::make('admin/users/delete', compact('user', 'title'));
-    }
-
-    /**
-     * Remove the specified user from storage.
-     *
-     * @param $user
-     * @return Response
-     */
-    public function postDelete($user)
-    {
-        // Check if we are not trying to delete ourselves
-        if ($user->id === Confide::user()->id)
-        {
-            // Redirect to the user management page
-            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.delete.impossible'));
-        }
-
-        AssignedRoles::where('user_id', $user->id)->delete();
-
-        $id = $user->id;
-        $user->delete();
-
-        // Was the comment post deleted?
-        $user = User::find($id);
-        if ( empty($user) )
-        {
-            // TODO needs to delete all of that user's content
-            return Redirect::to('admin/users')->with('success', Lang::get('admin/users/messages.delete.success'));
-        }
-        else
-        {
-            // There was a problem deleting the user
-            return Redirect::to('admin/users')->with('error', Lang::get('admin/users/messages.delete.error'));
-        }
+        //
     }
 
     /**
@@ -298,4 +224,5 @@ class AdminUsersController extends AdminController {
 
         ->make();
     }
+
 }

@@ -2,21 +2,20 @@
 
 {{-- Content --}}
 @section('content')
-	{{-- Create User Form --}}
-	<form class="form-horizontal" method="post" action="@if (isset($user)){{ URL::to('admin/users/' . $user->id . '/edit') }}@endif" autocomplete="off">
-		<!-- CSRF Token -->
-		<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-		<!-- ./ csrf token -->
+{{-- Create User Form --}}
+	{{ Form::open(array('url' => 'admin/users', 'method' => 'post', 'class' => 'form-horizontal')) }}
 
 		<!-- Tabs Content -->
 		<div class="tab-content">
+
 			<!-- General tab -->
 			<div class="tab-pane active" id="tab-general">
+
 				<!-- username -->
 				<div class="control-group {{{ $errors->has('username') ? 'error' : '' }}}">
-					<label class="control-label" for="username">Username</label>
+					{{ Form::label('username', 'Username', array('class' => 'control-label')) }}
 					<div class="controls">
-						<input type="text" name="username" id="username" value="{{{ Input::old('username', isset($user) ? $user->username : null) }}}" />
+						{{ Form::text('username') }}
 						{{{ $errors->first('username', '<span class="help-inline">:message</span>') }}}
 					</div>
 				</div>
@@ -24,9 +23,9 @@
 
 				<!-- Email -->
 				<div class="control-group {{{ $errors->has('email') ? 'error' : '' }}}">
-					<label class="control-label" for="email">Email</label>
+					{{ Form::label('email', 'Email', array('class' => 'control-label')) }}
 					<div class="controls">
-						<input type="text" name="email" id="email" value="{{{ Input::old('email', isset($user) ? $user->email : null) }}}" />
+						{{ Form::text('email') }}
 						{{{ $errors->first('email', '<span class="help-inline">:message</span>') }}}
 					</div>
 				</div>
@@ -34,9 +33,9 @@
 
 				<!-- Password -->
 				<div class="control-group {{{ $errors->has('password') ? 'error' : '' }}}">
-					<label class="control-label" for="password">Password</label>
+					{{ Form::label('password', 'Password', array('class' => 'control-label')) }}
 					<div class="controls">
-						<input type="password" name="password" id="password" value="" />
+						{{ Form::password('password') }}
 						{{{ $errors->first('password', '<span class="help-inline">:message</span>') }}}
 					</div>
 				</div>
@@ -44,9 +43,9 @@
 
 				<!-- Password Confirm -->
 				<div class="control-group {{{ $errors->has('password_confirmation') ? 'error' : '' }}}">
-					<label class="control-label" for="password_confirmation">Password Confirm</label>
+					{{ Form::label('password_confirmation', 'Password Confirm', array('class' => 'control-label')) }}
 					<div class="controls">
-						<input type="password" name="password_confirmation" id="password_confirmation" value="" />
+						{{ Form::password('password_confirmation') }}
 						{{{ $errors->first('password_confirmation', '<span class="help-inline">:message</span>') }}}
 					</div>
 				</div>
@@ -54,19 +53,9 @@
 
 				<!-- Activation Status -->
 				<div class="control-group {{{ $errors->has('activated') || $errors->has('confirm') ? 'error' : '' }}}">
-					<label class="control-label" for="confirm">Activate User?</label>
+					{{ Form::label('confirm', 'Activate User?', array('class' => 'control-label')) }}
 					<div class="controls">
-						@if ($mode == 'create')
-							<select name="confirm" id="confirm">
-								<option value="1"{{{ (Input::old('confirm', 0) === 1 ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.yes') }}}</option>
-								<option value="0"{{{ (Input::old('confirm', 0) === 0 ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.no') }}}</option>
-							</select>
-						@else
-							<select{{{ ($user->id === Confide::user()->id ? ' disabled="disabled"' : '') }}} name="confirm" id="confirm">
-								<option value="1"{{{ ($user->confirmed ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.yes') }}}</option>
-								<option value="0"{{{ ( ! $user->confirmed ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.no') }}}</option>
-							</select>
-						@endif
+						{{ Form::select('confirm', array('1' => Lang::get('general.yes'), '0' => Lang::get('general.no'))) }}
 						{{{ $errors->first('confirm', '<span class="help-inline">:message</span>') }}}
 					</div>
 				</div>
@@ -74,38 +63,35 @@
 
 				<!-- Groups -->
 				<div class="control-group {{{ $errors->has('roles') ? 'error' : '' }}}">
-	                <label class="control-label" for="roles">Roles</label>
+	                {{ Form::label('roles', 'Roles', array('class' => 'control-label')) }}
 	                <div class="controls">
-		                <select name="roles[]" id="roles[]" multiple>
+						<select name="roles[]" id="roles[]" multiple>
 		                        @foreach ($roles as $role)
-									@if ($mode == 'create')
-		                        		<option value="{{{ $role->id }}}"{{{ ( in_array($role->id, $selectedRoles) ? ' selected="selected"' : '') }}}>{{{ $role->name }}}</option>
-		                        	@else
-										<option value="{{{ $role->id }}}"{{{ ( array_search($role->id, $user->currentRoleIds()) !== false && array_search($role->id, $user->currentRoleIds()) >= 0 ? ' selected="selected"' : '') }}}>{{{ $role->name }}}</option>
-									@endif
+		                        	<option value="{{{ $role->id }}}">{{{ $role->name }}}</option>
 		                        @endforeach
 						</select>
-
 						<span class="help-block">
 							Select a group to assign to the user, remember that a user takes on the permissions of the group they are assigned.
 						</span>
 	            	</div>
 				</div>
 				<!-- ./ groups -->
+
 			</div>
 			<!-- ./ general tab -->
 
 		</div>
 		<!-- ./ tabs content -->
-
 		<!-- Form Actions -->
 		<div class="control-group">
 			<div class="controls">
-				<element class="btn-cancel" id="cancel_popup">Cancel</element>
-				<button type="reset" class="btn">Reset</button>
-				<button type="submit" class="btn btn-success">OK</button>
+				<element class="btn-cancel close_popup">Cancel</element>
+				{{ Form::reset('Reset', array('class' => 'btn')) }}
+				{{ Form::submit('OK', array('class' => 'btn btn-success')) }}
 			</div>
 		</div>
 		<!-- ./ form actions -->
-	</form>
+
+	{{ Form::close() }}
+
 @stop

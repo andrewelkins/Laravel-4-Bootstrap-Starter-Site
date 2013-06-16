@@ -12,10 +12,15 @@
 */
 
 /** ------------------------------------------
+ *  Interface repository binding
+ *  ------------------------------------------
+ */
+App::bind('UserRepositoryInterface', 'EloquentUserRepository');
+
+/** ------------------------------------------
  *  Route model binding
  *  ------------------------------------------
  */
-Route::model('user', 'User');
 Route::model('comment', 'Comment');
 Route::model('post', 'Post');
 Route::model('role', 'Role');
@@ -52,17 +57,19 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::controller('blogs', 'AdminBlogsController');
 
     # User Management
-    Route::get('users/{user}/show', 'AdminUsersController@getShow')
-        ->where('user', '[0-9]+');
-    Route::get('users/{user}/edit', 'AdminUsersController@getEdit')
-        ->where('user', '[0-9]+');
-    Route::post('users/{user}/edit', 'AdminUsersController@postEdit')
-        ->where('user', '[0-9]+');
-    Route::get('users/{user}/delete', 'AdminUsersController@getDelete')
-        ->where('user', '[0-9]+');
-    Route::post('users/{user}/delete', 'AdminUsersController@postDelete')
-        ->where('user', '[0-9]+');
-    Route::controller('users', 'AdminUsersController');
+    // Route::get('users/{user}/show', 'AdminUsersController@getShow')
+    //     ->where('user', '[0-9]+');
+    // Route::get('users/{user}/edit', 'AdminUsersController@getEdit')
+    //     ->where('user', '[0-9]+');
+    // Route::post('users/{user}/edit', 'AdminUsersController@postEdit')
+    //     ->where('user', '[0-9]+');
+    // Route::get('users/{user}/delete', 'AdminUsersController@getDelete')
+    //     ->where('user', '[0-9]+');
+    // Route::post('users/{user}/delete', 'AdminUsersController@postDelete')
+    //     ->where('user', '[0-9]+');
+    // Route::controller('users', 'AdminUsersController');
+    Route::get('users/data', 'AdminUsersController@getData');
+    Route::resource('users', 'AdminUsersController');
 
     # User Role Management
     Route::get('roles/{role}/show', 'AdminRolesController@getShow')
