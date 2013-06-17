@@ -6,8 +6,10 @@ use Zizaco\Confide\ConfideEloquentRepository;
 use Zizaco\Entrust\HasRole;
 use Robbo\Presenter\PresentableInterface;
 use Carbon\Carbon;
+use LaravelBook\Ardent\Ardent;
 
-class User extends ConfideUser implements PresentableInterface {
+class User extends ConfideUser {
+
     use HasRole;
 
 	/**
@@ -16,6 +18,38 @@ class User extends ConfideUser implements PresentableInterface {
 	 * @var string
 	 */
 	protected $table = 'users';
+
+    public $autoHydrateEntityFromInput = true;
+
+    protected $fillable = array(
+        'username', 'email', 'password', 'password_confirmation', 'confirmed'
+    );
+
+    /**
+     * Ardent validation rules
+     *
+     * @var array
+     */
+    public static $rules = array(
+        'username' => 'required|alpha_dash|unique:users',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|between:4,11|confirmed',
+        'password_confirmation' => 'between:4,11',
+        'confirmed' => 'accepted',
+    );
+
+    /**
+     * Rules for when updating a user.
+     *
+     * @var array
+     */
+    protected $updateRules = array(
+        'username' => 'required|alpha_dash',
+        'email' => 'required|email',
+        'password' => 'between:4,11|confirmed',
+        'password_confirmation' => 'between:4,11',
+        'confirmed' => 'accepted',
+    );
 
     public function getPresenter()
     {

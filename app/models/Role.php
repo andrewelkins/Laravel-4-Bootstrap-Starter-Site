@@ -5,6 +5,14 @@ use Robbo\Presenter\PresentableInterface;
 
 class Role extends EntrustRole implements PresentableInterface
 {
+    /**
+     * Ardent validation rules
+     *
+     * @var array
+     */
+    public static $rules = array(
+      'name' => 'required|between:4,16'
+    );
 
     /**
      * Same presenter as the user model.

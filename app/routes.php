@@ -57,18 +57,9 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::controller('blogs', 'AdminBlogsController');
 
     # User Management
-    // Route::get('users/{user}/show', 'AdminUsersController@getShow')
-    //     ->where('user', '[0-9]+');
-    // Route::get('users/{user}/edit', 'AdminUsersController@getEdit')
-    //     ->where('user', '[0-9]+');
-    // Route::post('users/{user}/edit', 'AdminUsersController@postEdit')
-    //     ->where('user', '[0-9]+');
-    // Route::get('users/{user}/delete', 'AdminUsersController@getDelete')
-    //     ->where('user', '[0-9]+');
-    // Route::post('users/{user}/delete', 'AdminUsersController@postDelete')
-    //     ->where('user', '[0-9]+');
-    // Route::controller('users', 'AdminUsersController');
-    Route::get('users/data', 'AdminUsersController@getData');
+    Route::get('users/data', 'AdminUsersController@data');
+    Route::get('users/{id}/delete', 'AdminUsersController@delete')
+        ->where('id', '[0-9]+');
     Route::resource('users', 'AdminUsersController');
 
     # User Role Management

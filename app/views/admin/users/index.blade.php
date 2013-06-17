@@ -48,7 +48,14 @@
 		        "bServerSide": true,
 		        "sAjaxSource": "/admin/users/data",
 		        "fnDrawCallback": function ( oSettings ) {
-	           		$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+	           		$(".iframe").colorbox({
+	           			iframe:true,
+	           			width:"80%",
+	           			height:"80%",
+	           			onCleanup: function() {
+             				oTable.fnReloadAjax();
+        				}
+	           		});
 	     		}
 			});
 		});
