@@ -200,4 +200,6 @@ return array(
 
     ),
 
+    'available_language' => array('en', 'pt', 'es'),
+
 );
