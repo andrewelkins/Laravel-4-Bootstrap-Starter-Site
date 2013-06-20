@@ -44,7 +44,7 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "/admin/roles/data",
+		        "sAjaxSource": "{{ URL::to('admin/roles/data') }}",
 		        "fnDrawCallback": function ( oSettings ) {
 	           		$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
 	     		}

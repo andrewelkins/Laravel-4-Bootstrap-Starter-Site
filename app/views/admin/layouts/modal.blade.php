@@ -88,16 +88,10 @@
 			<h3>
 				{{ $title }}
 				<div class="pull-right">
-					<button class="btn btn-small btn-inverse" id="close_popup"><i class="icon-circle-arrow-left icon-white"></i> Back</button>
+					<button class="btn btn-small btn-inverse close_popup"><i class="icon-circle-arrow-left icon-white"></i> Back</button>
 				</div>
 			</h3>
 		</div>
-
-		<!-- Tabs -->
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
-		</ul>
-		<!-- ./ tabs -->
 
 		<!-- Content -->
 		@yield('content')
@@ -117,12 +111,7 @@
 
     <script type="text/javascript">
     	$(document).ready(function(){
-			$('#close_popup').click(function(){
-				parent.oTable.fnReloadAjax();
-				parent.$.colorbox.close();
-				return false;
-			});
-			$('#cancel_popup').click(function(){
+			$('.close_popup').click(function(){
 				parent.oTable.fnReloadAjax();
 				parent.$.colorbox.close();
 				return false;
