@@ -26,11 +26,14 @@ class AdminCommentsController extends AdminController
      */
     public function getIndex()
     {
+        // Title
+        $title = Lang::get('admin/comments/title.comment_management');
+
         // Grab all the comment posts
-        $comments = $this->comment->orderBy('created_at', 'DESC')->paginate(10);
+        $comments = $this->comment;
 
         // Show the page
-        return View::make('admin/comments/index', compact('comments'));
+        return View::make('admin/comments/index', compact('comments', 'title'));
     }
 
     /**
@@ -41,8 +44,11 @@ class AdminCommentsController extends AdminController
      */
 	public function getEdit($comment)
 	{
+        // Title
+        $title = Lang::get('admin/comments/title.comment_update');
+
         // Show the page
-        return View::make('admin/comments/edit', compact('comment'));
+        return View::make('admin/comments/edit', compact('comment', 'title'));
 	}
 
     /**
@@ -66,7 +72,7 @@ class AdminCommentsController extends AdminController
         {
             // Update the comment post data
             $comment->content = Input::get('content');
-            
+
             // Was the comment post updated?
             if($comment->save())
             {
@@ -90,8 +96,11 @@ class AdminCommentsController extends AdminController
      */
 	public function getDelete($comment)
 	{
+        // Title
+        $title = Lang::get('admin/comments/title.comment_delete');
+
         // Show the page
-        return View::make('admin/comments/delete', compact('comment'));
+        return View::make('admin/comments/delete', compact('comment', 'title'));
 	}
 
     /**
@@ -127,5 +136,35 @@ class AdminCommentsController extends AdminController
         // There was a problem deleting the comment post
         return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.delete.error'));
 	}
+
+    /**
+     * Show a list of all the comments formatted for Datatables.
+     *
+     * @return Datatables JSON
+     */
+    public function getData()
+    {
+        $comments = Comment::leftjoin('posts', 'posts.id', '=', 'comments.post_id')
+                        ->leftjoin('users', 'users.id', '=','comments.user_id' )
+                        ->select(array('comments.id as id', 'posts.id as postid','users.id as userid', 'comments.content', 'posts.title as post_name', 'users.username as poster_name', 'comments.created_at'));
+
+        return Datatables::of($comments)
+
+        ->edit_column('content', '<a href="{{{ URL::to(\'admin/comments/\'. $id .\'/edit\') }}}">{{{ Str::limit($content, 40, \'...\') }}}</a>')
+
+        ->edit_column('post_name', '<a href="{{{ URL::to(\'admin/blogs/\'. $postid .\'/edit\') }}}">{{{ Str::limit($post_name, 40, \'...\') }}}</a>')
+
+        ->edit_column('poster_name', '<a href="{{{ URL::to(\'admin/users/\'. $userid .\'/edit\') }}}">{{{ $poster_name }}}</a>')
+
+        ->add_column('actions', '<a href="{{{ URL::to(\'admin/comments/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
+                <a href="{{{ URL::to(\'admin/comments/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-mini btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
+            ')
+
+        ->remove_column('id')
+        ->remove_column('postid')
+        ->remove_column('userid')
+
+        ->make();
+    }
 
 }

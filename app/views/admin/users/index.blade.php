@@ -1,55 +1,56 @@
-@extends('admin/layouts.default')
+@extends('admin.layouts.default')
 
 {{-- Web site Title --}}
 @section('title')
-{{{ Lang::get('admin/user/title.user_management') }}} ::
-@parent
+	{{{ $title }}} :: @parent
 @stop
 
 {{-- Content --}}
 @section('content')
-<div class="page-header">
-	<h3>
-		User Management
+	<div class="page-header">
+		<h3>
+			{{{ $title }}}
 
-		<div class="pull-right">
-			<a href="{{{ URL::to('admin/users/create') }}}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
-		</div>
-	</h3>
-</div>
+			<div class="pull-right">
+				<a href="{{{ URL::to('admin/users/create') }}}" class="btn btn-small btn-info iframe"><i class="icon-plus-sign icon-white"></i> Create</a>
+			</div>
+		</h3>
+	</div>
 
-<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th class="span2">{{{ Lang::get('admin/users/table.username') }}}</th>
-			<th class="span3">{{{ Lang::get('admin/users/table.email') }}}</th>
-			<th class="span3">{{{ Lang::get('admin/users/table.roles') }}}</th>
-			<th class="span2">{{{ Lang::get('admin/users/table.activated') }}}</th>
-			<th class="span2">{{{ Lang::get('admin/users/table.created_at') }}}</th>
-			<th class="span2">{{{ Lang::get('table.actions') }}}</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach ($users as $user)
-		<tr>
-			<td>{{{ $user->username }}}</td>
-			<td>{{{ $user->email }}}</td>
-			<td>@foreach ($user->roles as $u)
-                <div>{{ $u->name }}</div>
-                @endforeach</td>
-			<td>{{{ Lang::get('general.' . ($user->confirmed ? 'yes' : 'no')) }}}</td>
-			<td>{{{ $user->getPresenter()->displayDate() }}}</td>
-			<td>
-				<a href="{{{ URL::to('admin/users/' . $user->id . '/edit') }}}" class="btn btn-mini">{{{ Lang::get('button.edit') }}}</a>
+	<table id="users" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th class="span2">{{{ Lang::get('admin/users/table.username') }}}</th>
+				<th class="span3">{{{ Lang::get('admin/users/table.email') }}}</th>
+				<th class="span3">{{{ Lang::get('admin/users/table.roles') }}}</th>
+				<th class="span2">{{{ Lang::get('admin/users/table.activated') }}}</th>
+				<th class="span2">{{{ Lang::get('admin/users/table.created_at') }}}</th>
+				<th class="span2">{{{ Lang::get('table.actions') }}}</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+@stop
 
-				@if (Auth::user()->id != $user->id )
-				<a href="{{{ URL::to('admin/users/' . $user->id . '/delete') }}}" class="btn btn-mini btn-danger">{{{ Lang::get('button.delete') }}}</a>
-				@endif
-			</td>
-		</tr>
-		@endforeach
-	</tbody>
-</table>
-
-{{ $users->links() }}
+{{-- Scripts --}}
+@section('scripts')
+	<script type="text/javascript">
+		var oTable;
+		$(document).ready(function() {
+				oTable = $('#users').dataTable( {
+				"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+				"sPaginationType": "bootstrap",
+				"oLanguage": {
+					"sLengthMenu": "_MENU_ records per page"
+				},
+				"bProcessing": true,
+		        "bServerSide": true,
+		        "sAjaxSource": "{{ URL::to('admin/users/data') }}",
+		        "fnDrawCallback": function ( oSettings ) {
+	           		$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+	     		}
+			});
+		});
+	</script>
 @stop
