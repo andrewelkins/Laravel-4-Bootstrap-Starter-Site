@@ -93,12 +93,6 @@
 			</h3>
 		</div>
 
-		<!-- Tabs -->
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
-		</ul>
-		<!-- ./ tabs -->
-
 		<!-- Content -->
 		@yield('content')
 		<!-- ./ content -->

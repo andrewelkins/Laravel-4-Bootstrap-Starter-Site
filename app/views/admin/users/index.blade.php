@@ -38,7 +38,7 @@
 	<script type="text/javascript">
 		var oTable;
 		$(document).ready(function() {
-				oTable = $('#users').dataTable( {
+			oTable = $('#users').dataTable( {
 				"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 				"sPaginationType": "bootstrap",
 				"oLanguage": {
@@ -46,15 +46,15 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "/admin/users/data",
+		        "sAjaxSource": "{{ URL::to('admin/users/data') }}",
 		        "fnDrawCallback": function ( oSettings ) {
 	           		$(".iframe").colorbox({
 	           			iframe:true,
 	           			width:"80%",
 	           			height:"80%",
 	           			onCleanup: function() {
-             				oTable.fnReloadAjax();
-        				}
+	         				oTable.fnReloadAjax();
+	    				}
 	           		});
 	     		}
 			});
