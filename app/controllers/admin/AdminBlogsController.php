@@ -47,7 +47,7 @@ class AdminBlogsController extends AdminController {
         $title = Lang::get('admin/blogs/title.create_a_new_blog');
 
         // Show the page
-        return View::make('admin/blogs/create', compact('title'));
+        return View::make('admin/blogs/create_edit', compact('title'));
 	}
 
 	/**
@@ -119,7 +119,7 @@ class AdminBlogsController extends AdminController {
         $title = Lang::get('admin/blogs/title.blog_update');
 
         // Show the page
-        return View::make('admin/blogs/edit', compact('post', 'title'));
+        return View::make('admin/blogs/create_edit', compact('post', 'title'));
 	}
 
     /**
@@ -229,8 +229,8 @@ class AdminBlogsController extends AdminController {
 
         ->edit_column('comments', '{{ DB::table(\'comments\')->where(\'post_id\', \'=\', $id)->count() }}')
 
-        ->add_column('actions', '<a href="{{{ URL::to(\'admin/blogs/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
-                <a href="{{{ URL::to(\'admin/blogs/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-mini btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
+        ->add_column('actions', '<a href="{{{ URL::to(\'admin/blogs/\' . $id . \'/edit\' ) }}}" class="btn btn-mini iframe" >{{{ Lang::get(\'button.edit\') }}}</a>
+                <a href="{{{ URL::to(\'admin/blogs/\' . $id . \'/delete\' ) }}}" class="btn btn-mini btn-danger iframe">{{{ Lang::get(\'button.delete\') }}}</a>
             ')
 
         ->remove_column('id')

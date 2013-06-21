@@ -6,7 +6,7 @@
 @stop
 
 @section('keywords')Blogs administration @stop
-@section('author')Nek @stop
+@section('author')Laravel 4 Bootstrap Starter SIte @stop
 @section('description')Blogs administration index @stop
 
 {{-- Content --}}
