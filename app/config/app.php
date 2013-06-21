@@ -119,6 +119,7 @@ return array(
         'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
         'Basset\BassetServiceProvider', // Better Asset Management
         'Robbo\Presenter\PresenterServiceProvider', // Presenter
+        'Bllim\Datatables\DatatablesServiceProvider', // Datatables
 
         /* Uncomment for use in development */
 //        'Way\Generators\GeneratorsServiceProvider', // Generators
@@ -197,6 +198,7 @@ return array(
         'Basset'          => 'Basset\Facade', // Better Asset Management
         'String'          => 'Andrew13\Helpers\String', // String
         'Carbon'          => 'Carbon\Carbon', // Carbon
+        'Datatables'      => 'Bllim\Datatables\Datatables', // DataTables
 
     ),
 

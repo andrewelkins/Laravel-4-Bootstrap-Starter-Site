@@ -1,0 +1,166 @@
+/*!
+ * Master CSS template for Laravel-4-Bootstrap-Starter-Site
+ *
+ */
+
+/*!
+ * Bootstrap v2.3.2
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+// Comment out those that will not be used
+
+// Core variables and mixins
+@import "../../../../vendor/twitter/bootstrap/less/variables.less";
+@import "variables-custom.less"; // Modify this for custom colors, font-sizes, etc
+
+@import "../../../../vendor/twitter/bootstrap/less/mixins.less";
+
+// CSS Reset
+@import "../../../../vendor/twitter/bootstrap/less/reset.less";
+
+// Grid system and page structure
+@import "../../../../vendor/twitter/bootstrap/less/scaffolding.less";
+@import "../../../../vendor/twitter/bootstrap/less/grid.less";
+@import "../../../../vendor/twitter/bootstrap/less/layouts.less";
+
+// Base CSS
+@import "../../../../vendor/twitter/bootstrap/less/type.less";
+@import "../../../../vendor/twitter/bootstrap/less/code.less";
+@import "../../../../vendor/twitter/bootstrap/less/forms.less";
+@import "../../../../vendor/twitter/bootstrap/less/tables.less";
+
+// Components: common
+@import "../../../../vendor/twitter/bootstrap/less/sprites.less";
+@import "../../../../vendor/twitter/bootstrap/less/dropdowns.less";
+@import "../../../../vendor/twitter/bootstrap/less/wells.less";
+@import "../../../../vendor/twitter/bootstrap/less/component-animations.less";
+@import "../../../../vendor/twitter/bootstrap/less/close.less";
+
+// Components: Buttons & Alerts
+@import "../../../../vendor/twitter/bootstrap/less/buttons.less";
+@import "../../../../vendor/twitter/bootstrap/less/button-groups.less";
+@import "../../../../vendor/twitter/bootstrap/less/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+
+// Components: Nav
+@import "../../../../vendor/twitter/bootstrap/less/navs.less";
+@import "../../../../vendor/twitter/bootstrap/less/navbar.less";
+@import "../../../../vendor/twitter/bootstrap/less/breadcrumbs.less";
+@import "../../../../vendor/twitter/bootstrap/less/pagination.less";
+@import "../../../../vendor/twitter/bootstrap/less/pager.less";
+
+// Components: Popovers
+@import "../../../../vendor/twitter/bootstrap/less/modals.less";
+@import "../../../../vendor/twitter/bootstrap/less/tooltip.less";
+@import "../../../../vendor/twitter/bootstrap/less/popovers.less";
+
+// Components: Misc
+@import "../../../../vendor/twitter/bootstrap/less/thumbnails.less";
+@import "../../../../vendor/twitter/bootstrap/less/media.less";
+@import "../../../../vendor/twitter/bootstrap/less/labels-badges.less";
+@import "../../../../vendor/twitter/bootstrap/less/progress-bars.less";
+@import "../../../../vendor/twitter/bootstrap/less/accordion.less";
+@import "../../../../vendor/twitter/bootstrap/less/carousel.less";
+@import "../../../../vendor/twitter/bootstrap/less/hero-unit.less";
+
+// Utility classes
+@import "../../../../vendor/twitter/bootstrap/less/utilities.less"; // Has to be last to override when necessary
+
+/*!
+ * Bootstrap Responsive v2.3.2
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+
+// Responsive.less
+// For phone and tablet devices
+// -------------------------------------------------------------
+
+// RESPONSIVE CLASSES
+// ------------------
+
+@import "../../../../vendor/twitter/bootstrap/less/responsive-utilities.less";
+
+
+// MEDIA QUERIES
+// ------------------
+
+// Large desktops
+@import "../../../../vendor/twitter/bootstrap/less/responsive-1200px-min.less";
+
+// Tablets to regular desktops
+@import "../../../../vendor/twitter/bootstrap/less/responsive-768px-979px.less";
+
+// Phones to portrait tablets and narrow desktops
+@import "../../../../vendor/twitter/bootstrap/less/responsive-767px-max.less";
+
+
+// RESPONSIVE NAVBAR
+// ------------------
+
+// From 979px and below, show a button to toggle navbar contents
+@import "../../../../vendor/twitter/bootstrap/less/responsive-navbar.less";
+
+// -------------------------------------------------------------
+// -------------------------------------------------------------
+// -------------------------------------------------------------
+// -------------------------------------------------------------
+
+/*!
+ * Custom CSS
+ *
+ */
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+    height: 60px;
+}
+#footer {
+    background-color: #f5f5f5;
+}
+
+
+#wrap > .container {
+    padding-top: 60px;
+}
+.container .credit {
+    margin: 20px 0;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+    #footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/*!
+ * Semantics based on Twitter Bootstrap
+ *
+ */
+
+.btn-cancel {
+	.btn;
+	.btn-warning;
+}
