@@ -241,8 +241,8 @@ To make it build the ide helpers automatically you'll want to modify the post-up
 
 ```
 		"post-update-cmd": [
-			"php artisan optimize",
-            "php artisan ide-helper:generate"
+			"php artisan ide-helper:generate",
+			"php artisan optimize"
 		]
 ```
 
