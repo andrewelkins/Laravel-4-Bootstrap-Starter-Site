@@ -57,9 +57,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::controller('blogs', 'AdminBlogsController');
 
     # User Management
-    Route::get('users/data', 'AdminUsersController@data');
-    Route::get('users/{id}/delete', 'AdminUsersController@delete')
-        ->where('id', '[0-9]+');
+    Route::get('users/data', 'AdminUsersController@data'); // Outputs Datatables json
     Route::resource('users', 'AdminUsersController');
 
     # User Role Management

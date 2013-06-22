@@ -31,13 +31,16 @@
 		<tbody>
 		</tbody>
 	</table>
+
+	@include('admin.layouts.modals.delete')
+
 @stop
 
 {{-- Scripts --}}
 @section('scripts')
 	<script type="text/javascript">
 		var oTable;
-		$(document).ready(function() {
+		$(document).ready(function($) {
 			oTable = $('#users').dataTable( {
 				"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 				"sPaginationType": "bootstrap",
@@ -58,6 +61,14 @@
 	           		});
 	     		}
 			});
+		});
+
+		$(document).on("click", ".delForm", function () {
+		     var idDel = $(this).data('id');
+		     var userDel = $(this).data('username');
+		     $('#delete-modal #modal-title').html("{{ Lang::get('general.delete') }} " + userDel + '?');
+		     $('#delete-modal form#delete-form').attr('action', "{{ URL::to('admin/users/') }}/" + idDel);
+		     $("#delete-modal input[name='id']").val( idDel );
 		});
 	</script>
 @stop

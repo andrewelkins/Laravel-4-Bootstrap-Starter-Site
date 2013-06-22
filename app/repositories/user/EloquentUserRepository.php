@@ -184,7 +184,11 @@ class EloquentUserRepository implements UserRepositoryInterface {
         ->add_column('actions', '<a href="{{{ URL::to(\'admin/users/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
                                 @if($username == \'admin\')
                                 @else
-                                    <a href="{{{ URL::to(\'admin/users/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-mini btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
+                                    <a href="#delete-modal"
+                                        class="delForm btn btn-mini btn-danger"
+                                        data-toggle="modal"
+                                        data-id="{{{ $id }}}"
+                                        data-username="{{{ $username }}}">{{{ Lang::get(\'button.delete\') }}}</a>
                                 @endif
             ')
 
