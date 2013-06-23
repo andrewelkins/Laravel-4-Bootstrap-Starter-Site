@@ -44,7 +44,7 @@
 @section('scripts')
 	<script type="text/javascript">
 		var oTable;
-		$(document).ready(function($) {
+		$(function() {
 			oTable = $('#users').dataTable( {
 				"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 				"sPaginationType": "bootstrap",
