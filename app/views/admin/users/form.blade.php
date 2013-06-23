@@ -83,12 +83,13 @@
 
 </div>
 <!-- ./ tabs content -->
+
 <!-- Form Actions -->
 <div class="control-group">
 	<div class="controls">
 		<element class="btn-cancel close_popup">Cancel</element>
 		{{ Form::reset('Reset', array('class' => 'btn')) }}
-		{{ Form::submit('OK', array('class' => 'btn btn-success')) }}
+		{{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
 	</div>
 </div>
 <!-- ./ form actions -->

@@ -39,7 +39,7 @@ class User extends ConfideUser {
     );
 
     /**
-     * Rules for when updating a user.
+     * Rules when updating a user.
      *
      * @var array
      */

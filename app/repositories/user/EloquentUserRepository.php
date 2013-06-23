@@ -79,7 +79,7 @@ class EloquentUserRepository implements UserRepositoryInterface {
 
         if($validator->fails()) {
             Redirect::to('admin/users/' . $user->id . '/edit')
-                ->with('error', Lang::get('admin/users/messages.edit.failure'))
+                ->with('error', Lang::get('admin/users/messages.update.failure'))
                 ->send();
             exit;
         }
@@ -118,7 +118,7 @@ class EloquentUserRepository implements UserRepositoryInterface {
 
         // Redirect to the newly created user admin edit page.
         Redirect::to('admin/users/' . $user->id . '/edit')
-        	->with('success', Lang::get('admin/users/messages.edit.success'))
+        	->with('success', Lang::get('admin/users/messages.update.success'))
         	->send();
         exit;
 	}
@@ -172,8 +172,8 @@ class EloquentUserRepository implements UserRepositoryInterface {
                     ->leftjoin('roles', 'roles.id', '=', 'assigned_roles.role_id')
                     ->select(array('users.id', 'users.username','users.email', 'roles.name as rolename', 'users.confirmed', 'users.created_at'));
 
-       return Datatables::of($users)
-       // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
+        return Datatables::of($users)
+        // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
 
         ->edit_column('confirmed','@if($confirmed)
                             Yes

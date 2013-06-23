@@ -141,25 +141,7 @@ class AdminUsersController extends AdminController {
     }
 
     /**
-     * Show the form for deleting the specified user.
-     *
-     * @param  int  $id
-     * @return View
-     */
-    public function delete($id)
-    {
-        // Check if we have a user with this $id.
-        $user = $this->users->findById($id);
-
-        // Set the page title.
-        $title = Lang::get('admin/users/title.user_delete');
-
-        // Show the edit form page.
-        return View::make('admin/users/delete', compact('user', 'title'));
-    }
-
-    /**
-     * Show a list of all the users formatted for Datatables.
+     * Show a list of users formatted for Datatables.
      *
      * @return Datatables JSON
      */

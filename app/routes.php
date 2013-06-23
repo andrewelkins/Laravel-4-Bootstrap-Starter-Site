@@ -16,6 +16,7 @@
  *  ------------------------------------------
  */
 App::bind('UserRepositoryInterface', 'EloquentUserRepository');
+App::bind('PostRepositoryInterface', 'EloquentPostRepository');
 
 /** ------------------------------------------
  *  Route model binding
@@ -43,20 +44,11 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->where('comment', '[0-9]+');
     Route::controller('comments', 'AdminCommentsController');
 
-    # Blog Management
-    Route::get('blogs/{post}/show', 'AdminBlogsController@getShow')
-        ->where('post', '[0-9]+');
-    Route::get('blogs/{post}/edit', 'AdminBlogsController@getEdit')
-        ->where('post', '[0-9]+');
-    Route::post('blogs/{post}/edit', 'AdminBlogsController@postEdit')
-        ->where('post', '[0-9]+');
-    Route::get('blogs/{post}/delete', 'AdminBlogsController@getDelete')
-        ->where('post', '[0-9]+');
-    Route::post('blogs/{post}/delete', 'AdminBlogsController@postDelete')
-        ->where('post', '[0-9]+');
-    Route::controller('blogs', 'AdminBlogsController');
+    # Posts Management
+    Route::get('posts/data', 'AdminPostsController@data'); // Outputs Datatables json
+    Route::resource('posts', 'AdminPostsController');
 
-    # User Management
+    # Users Management
     Route::get('users/data', 'AdminUsersController@data'); // Outputs Datatables json
     Route::resource('users', 'AdminUsersController');
 
