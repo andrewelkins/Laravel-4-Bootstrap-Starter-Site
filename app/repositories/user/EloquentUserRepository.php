@@ -74,18 +74,19 @@ class EloquentUserRepository implements UserRepositoryInterface {
         // Find the user.
 		$user = $this->findById($id);
 
+        // Clone the old user to prepare the rules.
+        $oldUser = clone $user;
+
 		// Validate the input.
     	$validator = Validator::make($data, $user->getUpdateRules());
 
         if($validator->fails()) {
             Redirect::to('admin/users/' . $user->id . '/edit')
-                ->with('error', Lang::get('admin/users/messages.update.failure'))
+                ->withInput($data)
+                ->withErrors($validator)
                 ->send();
             exit;
         }
-
-        // Clone the old user to prepare the rules.
-        $oldUser = clone $user;
 
         if(!empty($password)) {
             if($password === $passwordConfirmation) {

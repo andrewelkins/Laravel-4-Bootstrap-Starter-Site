@@ -5,7 +5,7 @@ class AdminUsersController extends AdminController {
     /**
      * User Repository Interface
      *
-     * @var Users
+     * @var User
      */
     protected $users;
 

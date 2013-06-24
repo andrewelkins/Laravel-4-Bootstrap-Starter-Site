@@ -17,6 +17,7 @@
  */
 App::bind('UserRepositoryInterface', 'EloquentUserRepository');
 App::bind('PostRepositoryInterface', 'EloquentPostRepository');
+App::bind('CommentRepositoryInterface', 'EloquentCommentRepository');
 
 /** ------------------------------------------
  *  Route model binding
@@ -34,15 +35,18 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
 
     # Comment Management
-    Route::get('comments/{comment}/edit', 'AdminCommentsController@getEdit')
-        ->where('comment', '[0-9]+');
-    Route::post('comments/{comment}/edit', 'AdminCommentsController@postEdit')
-        ->where('comment', '[0-9]+');
-    Route::get('comments/{comment}/delete', 'AdminCommentsController@getDelete')
-        ->where('comment', '[0-9]+');
-    Route::post('comments/{comment}/delete', 'AdminCommentsController@postDelete')
-        ->where('comment', '[0-9]+');
-    Route::controller('comments', 'AdminCommentsController');
+    // Route::get('comments/{comment}/edit', 'AdminCommentsController@getEdit')
+    //     ->where('comment', '[0-9]+');
+    // Route::post('comments/{comment}/edit', 'AdminCommentsController@postEdit')
+    //     ->where('comment', '[0-9]+');
+    // Route::get('comments/{comment}/delete', 'AdminCommentsController@getDelete')
+    //     ->where('comment', '[0-9]+');
+    // Route::post('comments/{comment}/delete', 'AdminCommentsController@postDelete')
+    //     ->where('comment', '[0-9]+');
+    // Route::controller('comments', 'AdminCommentsController');
+    Route::get('comments/data', 'AdminCommentsController@data'); // Outputs Datatables json
+    Route::resource('comments', 'AdminCommentsController',
+                array('except' => array('create', 'store')));
 
     # Posts Management
     Route::get('posts/data', 'AdminPostsController@data'); // Outputs Datatables json

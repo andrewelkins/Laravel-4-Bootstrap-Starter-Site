@@ -6,7 +6,7 @@ class AdminPostsController extends AdminController {
     /**
      * Post Repository Interface
      *
-     * @var Posts
+     * @var Post
      */
     protected $posts;
 

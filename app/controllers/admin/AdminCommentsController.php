@@ -1,170 +1,126 @@
 <?php
 
-class AdminCommentsController extends AdminController
-{
+class AdminCommentsController extends AdminController {
 
     /**
-     * Comment Model
+     * Comment Repository Interface
+     *
      * @var Comment
      */
-    protected $comment;
+    protected $comments;
 
     /**
      * Inject the models.
-     * @param Comment $comment
+     *
+     * @param CommentRepositoryInterface $comments
+     *
      */
-    public function __construct(Comment $comment)
+    public function __construct(CommentRepositoryInterface $comments)
     {
         parent::__construct();
-        $this->comment = $comment;
+        $this->comments = $comments;
     }
 
     /**
-     * Show a list of all the comment posts.
+     * Display a listing of the comments.
      *
      * @return View
      */
-    public function getIndex()
+    public function index()
     {
-        // Title
+        // Set the page title.
         $title = Lang::get('admin/comments/title.comment_management');
 
-        // Grab all the comment posts
-        $comments = $this->comment;
-
-        // Show the page
-        return View::make('admin/comments/index', compact('comments', 'title'));
+        // There is no need to send any data to the view.
+        // The datatables will be calling the getData method.
+        return View::make('admin.comments.index', compact('title'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for creating a new comment.
      *
-     * @param $comment
-     * @return Response
      */
-	public function getEdit($comment)
-	{
-        // Title
+    public function create()
+    {
+        // This is a frontend only function for now.
+        // No routes will trigger this method.
+    }
+
+    /**
+     * Store a newly created comment in storage.
+     *
+     */
+    public function store()
+    {
+        // This is a frontend only function for now.
+        // No routes will trigger this method.
+    }
+
+    /**
+     * Display the specified comment.
+     *
+     * @param  int  $id
+     * @return Method
+     */
+    public function show($id)
+    {
+        $comment = $this->comments->findById($id);
+
+        return $this->edit($id);
+
+    }
+
+    /**
+     * Show the form for editing the specified comment.
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function edit($id)
+    {
+        // Check if we have a user with this $id.
+        $comment = $this->comments->findById($id);
+
+        // Set the page title.
         $title = Lang::get('admin/comments/title.comment_update');
 
-        // Show the page
+        // Show the edit form page.
         return View::make('admin/comments/edit', compact('comment', 'title'));
-	}
+    }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified comment in storage.
      *
-     * @param $comment
+     * @param  int  $id
      * @return Response
      */
-	public function postEdit($comment)
-	{
-        // Declare the rules for the form validation
-        $rules = array(
-            'content' => 'required|min:3'
-        );
-
-        // Validate the inputs
-        $validator = Validator::make(Input::all(), $rules);
-
-        // Check if the form validates with success
-        if ($validator->passes())
-        {
-            // Update the comment post data
-            $comment->content = Input::get('content');
-
-            // Was the comment post updated?
-            if($comment->save())
-            {
-                // Redirect to the new comment post page
-                return Redirect::to('admin/comments/' . $comment->id . '/edit')->with('success', Lang::get('admin/comments/messages.update.success'));
-            }
-
-            // Redirect to the comments post management page
-            return Redirect::to('admin/comments/' . $comment->id . '/edit')->with('error', Lang::get('admin/comments/messages.update.error'));
-        }
-
-        // Form validation failed
-        return Redirect::to('admin/comments/' . $comment->id . '/edit')->withInput()->withErrors($validator);
-	}
+    public function update($id)
+    {
+        // Update the user with the PUT request data.
+        $this->comments->update($id, Input::all());
+    }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified comment from storage.
      *
-     * @param $comment
+     * @param  int  $id
      * @return Response
      */
-	public function getDelete($comment)
-	{
-        // Title
-        $title = Lang::get('admin/comments/title.comment_delete');
-
-        // Show the page
-        return View::make('admin/comments/delete', compact('comment', 'title'));
-	}
+    public function destroy($id)
+    {
+        // Delete a comment with the corresponding ID.
+        $this->comments->destroy($id);
+    }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param $comment
-     * @return Response
-     */
-	public function postDelete($comment)
-	{
-        // Declare the rules for the form validation
-        $rules = array(
-            'id' => 'required|integer'
-        );
-
-        // Validate the inputs
-        $validator = Validator::make(Input::all(), $rules);
-
-        // Check if the form validates with success
-        if ($validator->passes())
-        {
-            $id = $comment->id;
-            $comment->delete();
-
-            // Was the comment post deleted?
-            $comment = Comment::find($id);
-            if(empty($comment))
-            {
-                // Redirect to the comment posts management page
-                return Redirect::to('admin/comments')->with('success', Lang::get('admin/comments/messages.delete.success'));
-            }
-        }
-        // There was a problem deleting the comment post
-        return Redirect::to('admin/comments')->with('error', Lang::get('admin/comments/messages.delete.error'));
-	}
-
-    /**
-     * Show a list of all the comments formatted for Datatables.
+     * Show a list of comments formatted for Datatables.
      *
      * @return Datatables JSON
      */
-    public function getData()
+    public function data()
     {
-        $comments = Comment::leftjoin('posts', 'posts.id', '=', 'comments.post_id')
-                        ->leftjoin('users', 'users.id', '=','comments.user_id' )
-                        ->select(array('comments.id as id', 'posts.id as postid','users.id as userid', 'comments.content', 'posts.title as post_name', 'users.username as poster_name', 'comments.created_at'));
+        $data = $this->comments->data();
 
-        return Datatables::of($comments)
-
-        ->edit_column('content', '<a href="{{{ URL::to(\'admin/comments/\'. $id .\'/edit\') }}}">{{{ Str::limit($content, 40, \'...\') }}}</a>')
-
-        ->edit_column('post_name', '<a href="{{{ URL::to(\'admin/blogs/\'. $postid .\'/edit\') }}}">{{{ Str::limit($post_name, 40, \'...\') }}}</a>')
-
-        ->edit_column('poster_name', '<a href="{{{ URL::to(\'admin/users/\'. $userid .\'/edit\') }}}">{{{ $poster_name }}}</a>')
-
-        ->add_column('actions', '<a href="{{{ URL::to(\'admin/comments/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
-                <a href="{{{ URL::to(\'admin/comments/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-mini btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
-            ')
-
-        ->remove_column('id')
-        ->remove_column('postid')
-        ->remove_column('userid')
-
-        ->make();
+        return $data;
     }
-
 }

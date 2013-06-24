@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Repository for the User model
+ * Repository for the Post model
  */
 class EloquentPostRepository implements PostRepositoryInterface {
 
@@ -17,7 +17,7 @@ class EloquentPostRepository implements PostRepositoryInterface {
         $post = Post::where('id', $id)->first();
 
         if (!$post) {
-            // No posts found.
+            // No post found.
         	Redirect::to('admin/posts')
                 ->with('error', Lang::get('admin/posts/messages.does_not_exist'))
                 ->send();
@@ -141,13 +141,14 @@ class EloquentPostRepository implements PostRepositoryInterface {
         //->add_column(Lang::get('admin/blogs/table.comments'), '{{ DB::raw('COUNT(posts.id) AS posts') }}')
         ->edit_column('comments', '{{ DB::table(\'comments\')->where(\'post_id\', \'=\', $id)->count() }}')
 
-        ->add_column('actions', '<a href="{{{ URL::to(\'admin/posts/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
+        ->add_column('actions', '<a href="{{{ URL::to(\'admin/posts/\' . $id . \'/edit\' ) }}}"
+                                    class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
                                 <a href="#delete-modal"
                                     class="delForm btn btn-mini btn-danger"
                                     data-toggle="modal"
                                     data-id="{{{ $id }}}"
                                     data-title="{{{ $title }}}">{{{ Lang::get(\'button.delete\') }}}</a>
-            ')
+        ')
 
         ->remove_column('id')
 

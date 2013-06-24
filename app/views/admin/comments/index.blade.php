@@ -5,6 +5,10 @@
 	{{{ $title }}} :: @parent
 @stop
 
+@section('keywords')Comments administration @stop
+@section('author')Author @stop
+@section('description')Comments administration index @stop
+
 {{-- Content --}}
 @section('content')
 	<div class="page-header">
@@ -17,13 +21,16 @@
 		<thead>
 			<tr>
 				<th class="span3">{{{ Lang::get('admin/comments/table.title') }}}</th>
-				<th class="span3">{{{ Lang::get('admin/blogs/table.post_id') }}}</th>
+				<th class="span3">{{{ Lang::get('admin/posts/table.post_id') }}}</th>
 				<th class="span2">{{{ Lang::get('admin/users/table.username') }}}</th>
 				<th class="span2">{{{ Lang::get('admin/comments/table.created_at') }}}</th>
 				<th class="span2">{{{ Lang::get('table.actions') }}}</th>
 			</tr>
 		</thead>
 	</table>
+
+	@include('admin.layouts.modals.delete')
+
 @stop
 
 {{-- Scripts --}}
@@ -41,9 +48,23 @@
 		        "bServerSide": true,
 		        "sAjaxSource": "{{ URL::to('admin/comments/data') }}",
 		        "fnDrawCallback": function ( oSettings ) {
-	           		$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+	           		$(".iframe").colorbox({
+	           			iframe:true,
+	           			width:"80%",
+	           			height:"80%",
+	           			onCleanup: function() {
+	         				oTable.fnReloadAjax();
+	    				}
+	           		});
 	     		}
 			});
+		});
+
+		$(document).on("click", ".delForm", function () {
+		     var idDel = $(this).data('id');
+		     $('#delete-modal #modal-title').html("{{ Lang::get('general.delete') }} comment?");
+		     $('#delete-modal form#delete-form').attr('action', "{{ URL::to('admin/comments/') }}/" + idDel);
+		     $("#delete-modal input[name='id']").val( idDel );
 		});
 	</script>
 @stop
