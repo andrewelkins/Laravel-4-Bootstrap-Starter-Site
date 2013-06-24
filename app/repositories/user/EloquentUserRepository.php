@@ -55,7 +55,7 @@ class EloquentUserRepository implements UserRepositoryInterface {
     	// Save roles.
         $user->saveRoles(Input::get('roles'));
 
-        // Redirect to the admin edit page of the new user.
+        // Redirect to the admin edit page of the user.
         Redirect::to('admin/users/' . $user->id . '/edit')
             ->with('success', Lang::get('admin/users/messages.create.success'))
             ->send();
@@ -189,7 +189,7 @@ class EloquentUserRepository implements UserRepositoryInterface {
                                         class="delForm btn btn-mini btn-danger"
                                         data-toggle="modal"
                                         data-id="{{{ $id }}}"
-                                        data-username="{{{ $username }}}">{{{ Lang::get(\'button.delete\') }}}</a>
+                                        data-title="{{{ $username }}}">{{{ Lang::get(\'button.delete\') }}}</a>
                                 @endif
             ')
 

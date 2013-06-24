@@ -2,55 +2,161 @@
 
 class AdminRolesController extends AdminController {
 
-
     /**
-     * User Model
+     * User Repository Interface
+     *
      * @var User
      */
-    protected $user;
+    protected $users;
 
     /**
-     * Role Model
+     * Role Repository Interface
+     *
      * @var Role
      */
-    protected $role;
+    protected $roles;
 
     /**
      * Permission Model
      * @var Permission
      */
-    protected $permission;
+    protected $permissions;
 
     /**
      * Inject the models.
-     * @param User $user
-     * @param Role $role
-     * @param Permission $permission
+     * @param User $users
+     * @param Role $roles
+     * @param Permission $permissions
      */
-    public function __construct(User $user, Role $role, Permission $permission)
+    public function __construct(UserRepositoryInterface $users, RoleRepositoryInterface $roles, Permission $permissions)
     {
         parent::__construct();
-        $this->user = $user;
-        $this->role = $role;
-        $this->permission = $permission;
+        $this->users = $users;
+        $this->roles = $roles;
+        $this->permissions = $permissions;
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the roles.
      *
-     * @return Response
+     * @return View
      */
-    public function getIndex()
+    public function index()
     {
-        // Title
+        // Set the page title.
         $title = Lang::get('admin/roles/title.role_management');
 
-        // Grab all the groups
-        $roles = $this->role;
-
-        // Show the page
-        return View::make('admin/roles/index', compact('roles', 'title'));
+        // There is no need to send any data to the view.
+        // The datatables will be calling the getData method.
+        return View::make('admin.roles.index', compact('title'));
     }
+
+    /**
+     * Show the form for creating a new role.
+     *
+     * @return View
+     */
+    public function create()
+    {
+        // Get all the available permissions
+        $permissions = $this->permissions->all();
+
+        // Set the page title.
+        $title = Lang::get('admin/roles/title.create_a_new_role');
+
+        // Show the create role form page.
+        return View::make('admin/roles/create', compact('permissions', 'title'));
+    }
+
+    /**
+     * Store a newly created role in storage.
+     *
+     * @return Redirect to the role page or the create method if validation does not pass.
+     */
+    public function store()
+    {
+        // Create a role with the POST request data.
+        $this->roles->store( Input::all() );
+    }
+
+    /**
+     * Display the specified role.
+     *
+     * @param  int  $id
+     * @return Method
+     */
+    public function show($id)
+    {
+        $role = $this->roles->findById($id);
+
+        return $this->edit($id);
+
+    }
+
+    /**
+     * Show the form for editing the specified role.
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function edit($id)
+    {
+        // Check if we have a user with this $id.
+        $role = $this->roles->findById($id);
+
+        // Get all the available permissions
+        $permissions = $this->permissions->all();
+
+        // Set the page title.
+        $title = Lang::get('admin/roles/title.role_update');
+
+        // Show the edit form page.
+        return View::make('admin/roles/edit', compact('role', 'permissions', 'title'));
+    }
+
+    /**
+     * Update the specified role in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        // Update the role with the PUT request data.
+        $this->roles->update($id, Input::all());
+    }
+
+    /**
+     * Remove the specified role from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        // Delete a role with the corresponding ID.
+        $this->roles->destroy($id);
+    }
+
+    /**
+     * Show a list of roles formatted for Datatables.
+     *
+     * @return Datatables JSON
+     */
+    public function data()
+    {
+        $data = $this->roles->data();
+
+        return $data;
+    }
+
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -195,7 +301,7 @@ class AdminRolesController extends AdminController {
 
 
     /**
-     * Remove user page.
+     * Remove role page.
      *
      * @param $role
      * @return Response

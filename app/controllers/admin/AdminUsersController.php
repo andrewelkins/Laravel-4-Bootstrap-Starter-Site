@@ -10,9 +10,9 @@ class AdminUsersController extends AdminController {
     protected $users;
 
     /**
-     * Role Model
+     * Role Repository Interface
      *
-     * @var Roles
+     * @var Role
      */
     protected $roles;
 
@@ -30,7 +30,7 @@ class AdminUsersController extends AdminController {
      * @param Role $roles
      * @param Permission $permissions
      */
-    public function __construct(UserRepositoryInterface $users, Role $roles, Permission $permissions)
+    public function __construct(UserRepositoryInterface $users, RoleRepositoryInterface $roles, Permission $permissions)
     {
         parent::__construct();
         $this->users = $users;
@@ -61,7 +61,7 @@ class AdminUsersController extends AdminController {
     public function create()
     {
         // All possible roles.
-        $roles = $this->roles->all();
+        $roles = $this->roles->findAll();
 
         // Set the page title.
         $title = Lang::get('admin/users/title.create_a_new_user');
@@ -107,7 +107,7 @@ class AdminUsersController extends AdminController {
         $user = $this->users->findById($id);
 
         // All possible roles.
-        $roles = $this->roles->all();
+        $roles = $this->roles->findAll();
 
         // Set the page title.
         $title = Lang::get('admin/users/title.user_update');

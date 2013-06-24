@@ -1,10 +1,14 @@
 <?php
 
 use Zizaco\Entrust\EntrustRole;
-use Robbo\Presenter\PresentableInterface;
 
-class Role extends EntrustRole implements PresentableInterface
-{
+class Role extends EntrustRole {
+    public $autoHydrateEntityFromInput = true;
+
+    protected $fillable = array(
+        'name'
+    );
+
     /**
      * Ardent validation rules
      *

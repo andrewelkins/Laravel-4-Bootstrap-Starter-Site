@@ -58,7 +58,7 @@ class EloquentPostRepository implements PostRepositoryInterface {
         // Save the new post
         $post = Post::create($data);
 
-        // Redirect to the admin edit page of the new post.
+        // Redirect to the admin edit page of the post.
         Redirect::to('admin/posts/' . $post->id . '/edit')
             ->with('success', Lang::get('admin/posts/messages.create.success'))
             ->send();
@@ -133,7 +133,7 @@ class EloquentPostRepository implements PostRepositoryInterface {
      */
     public function data()
     {
-         $posts = Post::leftjoin('comments', 'comments.post_id', '=', 'posts.id')
+        $posts = Post::leftjoin('comments', 'comments.post_id', '=', 'posts.id')
                     ->select(array('posts.id', 'posts.title', 'comments.post_id as comments', 'posts.created_at'));
 
 

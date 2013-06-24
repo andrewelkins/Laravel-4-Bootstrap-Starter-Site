@@ -12,7 +12,7 @@ class Post extends Eloquent {
     );
 
     /**
-     * Validation rules
+     * Ardant Validation rules
      *
      * @var array
      */

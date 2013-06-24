@@ -43,7 +43,6 @@
 {{-- Scripts --}}
 @section('scripts')
 	<script type="text/javascript">
-
 		// global var for callback
 		var oTable;
 
@@ -74,8 +73,8 @@
 		// script to insert resource $id in the delete modal
 		$(document).on("click", ".delForm", function () {
 		     var idDel = $(this).data('id');
-		     var userDel = $(this).data('username');
-		     $('#delete-modal #modal-title').html("{{ Lang::get('general.delete') }} " + userDel + '?');
+		     var titleDel = $(this).data('title');
+		     $('#delete-modal #modal-title').html("{{ Lang::get('general.delete') }} " + titleDel + '?');
 		     $('#delete-modal form#delete-form').attr('action', "{{ URL::to('admin/users/') }}/" + idDel);
 		     $("#delete-modal input[name='id']").val( idDel );
 		});

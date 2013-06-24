@@ -11,7 +11,7 @@ class Comment extends Eloquent {
     );
 
     /**
-     * Validation rules
+     * Ardant Validation rules
      *
      * @var array
      */

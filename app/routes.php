@@ -16,6 +16,7 @@
  *  ------------------------------------------
  */
 App::bind('UserRepositoryInterface', 'EloquentUserRepository');
+App::bind('RoleRepositoryInterface', 'EloquentRoleRepository');
 App::bind('PostRepositoryInterface', 'EloquentPostRepository');
 App::bind('CommentRepositoryInterface', 'EloquentCommentRepository');
 
@@ -33,17 +34,7 @@ Route::model('role', 'Role');
  */
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
-
     # Comment Management
-    // Route::get('comments/{comment}/edit', 'AdminCommentsController@getEdit')
-    //     ->where('comment', '[0-9]+');
-    // Route::post('comments/{comment}/edit', 'AdminCommentsController@postEdit')
-    //     ->where('comment', '[0-9]+');
-    // Route::get('comments/{comment}/delete', 'AdminCommentsController@getDelete')
-    //     ->where('comment', '[0-9]+');
-    // Route::post('comments/{comment}/delete', 'AdminCommentsController@postDelete')
-    //     ->where('comment', '[0-9]+');
-    // Route::controller('comments', 'AdminCommentsController');
     Route::get('comments/data', 'AdminCommentsController@data'); // Outputs Datatables json
     Route::resource('comments', 'AdminCommentsController',
                 array('except' => array('create', 'store')));
@@ -57,17 +48,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::resource('users', 'AdminUsersController');
 
     # User Role Management
-    Route::get('roles/{role}/show', 'AdminRolesController@getShow')
-        ->where('role', '[0-9]+');
-    Route::get('roles/{role}/edit', 'AdminRolesController@getEdit')
-        ->where('role', '[0-9]+');
-    Route::post('roles/{role}/edit', 'AdminRolesController@postEdit')
-        ->where('role', '[0-9]+');
-    Route::get('roles/{role}/delete', 'AdminRolesController@getDelete')
-        ->where('role', '[0-9]+');
-    Route::post('roles/{role}/delete', 'AdminRolesController@postDelete')
-        ->where('role', '[0-9]+');
-    Route::controller('roles', 'AdminRolesController');
+    Route::get('roles/data', 'AdminRolesController@data'); // Outputs Datatables json
+    Route::resource('roles', 'AdminRolesController');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
