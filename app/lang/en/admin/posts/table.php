@@ -2,7 +2,7 @@
 
 return array(
 
-	'title'      => 'Blog Title',
+	'title'      => 'Post Title',
 	'comments'   => '# of Comments',
 	'created_at' => 'Created at',
 	'post_id' => 'Post Id',

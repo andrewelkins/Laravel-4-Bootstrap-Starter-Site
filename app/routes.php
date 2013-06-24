@@ -12,10 +12,18 @@
 */
 
 /** ------------------------------------------
+ *  Interface repository binding
+ *  ------------------------------------------
+ */
+App::bind('UserRepositoryInterface', 'EloquentUserRepository');
+App::bind('RoleRepositoryInterface', 'EloquentRoleRepository');
+App::bind('PostRepositoryInterface', 'EloquentPostRepository');
+App::bind('CommentRepositoryInterface', 'EloquentCommentRepository');
+
+/** ------------------------------------------
  *  Route model binding
  *  ------------------------------------------
  */
-Route::model('user', 'User');
 Route::model('comment', 'Comment');
 Route::model('post', 'Post');
 Route::model('role', 'Role');
@@ -26,56 +34,22 @@ Route::model('role', 'Role');
  */
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
-
     # Comment Management
-    Route::get('comments/{comment}/edit', 'AdminCommentsController@getEdit')
-        ->where('comment', '[0-9]+');
-    Route::post('comments/{comment}/edit', 'AdminCommentsController@postEdit')
-        ->where('comment', '[0-9]+');
-    Route::get('comments/{comment}/delete', 'AdminCommentsController@getDelete')
-        ->where('comment', '[0-9]+');
-    Route::post('comments/{comment}/delete', 'AdminCommentsController@postDelete')
-        ->where('comment', '[0-9]+');
-    Route::controller('comments', 'AdminCommentsController');
+    Route::get('comments/data', 'AdminCommentsController@data'); // Outputs Datatables json
+    Route::resource('comments', 'AdminCommentsController',
+                array('except' => array('create', 'store')));
 
-    # Blog Management
-    Route::get('blogs/{post}/show', 'AdminBlogsController@getShow')
-        ->where('post', '[0-9]+');
-    Route::get('blogs/{post}/edit', 'AdminBlogsController@getEdit')
-        ->where('post', '[0-9]+');
-    Route::post('blogs/{post}/edit', 'AdminBlogsController@postEdit')
-        ->where('post', '[0-9]+');
-    Route::get('blogs/{post}/delete', 'AdminBlogsController@getDelete')
-        ->where('post', '[0-9]+');
-    Route::post('blogs/{post}/delete', 'AdminBlogsController@postDelete')
-        ->where('post', '[0-9]+');
-    Route::controller('blogs', 'AdminBlogsController');
+    # Posts Management
+    Route::get('posts/data', 'AdminPostsController@data'); // Outputs Datatables json
+    Route::resource('posts', 'AdminPostsController');
 
-    # User Management
-    Route::get('users/{user}/show', 'AdminUsersController@getShow')
-        ->where('user', '[0-9]+');
-    Route::get('users/{user}/edit', 'AdminUsersController@getEdit')
-        ->where('user', '[0-9]+');
-    Route::post('users/{user}/edit', 'AdminUsersController@postEdit')
-        ->where('user', '[0-9]+');
-    Route::get('users/{user}/delete', 'AdminUsersController@getDelete')
-        ->where('user', '[0-9]+');
-    Route::post('users/{user}/delete', 'AdminUsersController@postDelete')
-        ->where('user', '[0-9]+');
-    Route::controller('users', 'AdminUsersController');
+    # Users Management
+    Route::get('users/data', 'AdminUsersController@data'); // Outputs Datatables json
+    Route::resource('users', 'AdminUsersController');
 
     # User Role Management
-    Route::get('roles/{role}/show', 'AdminRolesController@getShow')
-        ->where('role', '[0-9]+');
-    Route::get('roles/{role}/edit', 'AdminRolesController@getEdit')
-        ->where('role', '[0-9]+');
-    Route::post('roles/{role}/edit', 'AdminRolesController@postEdit')
-        ->where('role', '[0-9]+');
-    Route::get('roles/{role}/delete', 'AdminRolesController@getDelete')
-        ->where('role', '[0-9]+');
-    Route::post('roles/{role}/delete', 'AdminRolesController@postDelete')
-        ->where('role', '[0-9]+');
-    Route::controller('roles', 'AdminRolesController');
+    Route::get('roles/data', 'AdminRolesController@data'); // Outputs Datatables json
+    Route::resource('roles', 'AdminRolesController');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');

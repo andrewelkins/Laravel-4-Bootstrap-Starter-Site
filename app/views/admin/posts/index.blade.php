@@ -2,12 +2,12 @@
 
 {{-- Web site Title --}}
 @section('title')
-	{{{ $title }}} :: @parent
+{{{ $title }}} :: @parent
 @stop
 
-@section('keywords')Users administration @stop
+@section('keywords')Posts administration @stop
 @section('author')Author @stop
-@section('description')Users administration index @stop
+@section('description')Posts administration index @stop
 
 {{-- Content --}}
 @section('content')
@@ -16,19 +16,17 @@
 			{{{ $title }}}
 
 			<div class="pull-right">
-				<a href="{{{ URL::to('admin/users/create') }}}" class="btn-create iframe"><i class="icon-plus-sign icon-white"></i> Create</a>
+				<a href="{{{ URL::to('admin/posts/create') }}}" class="btn btn-small btn-info iframe"><i class="icon-plus-sign icon-white"></i> Create</a>
 			</div>
 		</h3>
 	</div>
 
-	<table id="users" class="table table-bordered table-hover">
+	<table id="posts" class="table table-bordered table-hover">
 		<thead>
 			<tr>
-				<th class="span2">{{{ Lang::get('admin/users/table.username') }}}</th>
-				<th class="span3">{{{ Lang::get('admin/users/table.email') }}}</th>
-				<th class="span3">{{{ Lang::get('admin/users/table.roles') }}}</th>
-				<th class="span2">{{{ Lang::get('admin/users/table.activated') }}}</th>
-				<th class="span2">{{{ Lang::get('admin/users/table.created_at') }}}</th>
+				<th class="span4">{{{ Lang::get('admin/posts/table.title') }}}</th>
+				<th class="span2">{{{ Lang::get('admin/posts/table.comments') }}}</th>
+				<th class="span2">{{{ Lang::get('admin/posts/table.created_at') }}}</th>
 				<th class="span2">{{{ Lang::get('table.actions') }}}</th>
 			</tr>
 		</thead>
@@ -47,8 +45,8 @@
 		var oTable;
 
 		// on document ready initialize datatables.
-		$(function() {
-			oTable = $('#users').dataTable( {
+		$(document).ready(function() {
+			oTable = $('#posts').dataTable( {
 				"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 				"sPaginationType": "bootstrap",
 				"oLanguage": {
@@ -56,7 +54,7 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "{{ URL::to('admin/users/data') }}",
+		        "sAjaxSource": "{{ URL::to('admin/posts/data') }}",
 		        "fnDrawCallback": function ( oSettings ) {
 	           		$(".iframe").colorbox({
 	           			iframe:true,
@@ -70,12 +68,11 @@
 			});
 		});
 
-		// script to insert resource $id in the delete modal
 		$(document).on("click", ".delForm", function () {
 		     var idDel = $(this).data('id');
 		     var titleDel = $(this).data('title');
 		     $('#delete-modal #modal-title').html("{{ Lang::get('general.delete') }} " + titleDel + '?');
-		     $('#delete-modal form#delete-form').attr('action', "{{ URL::to('admin/users/') }}/" + idDel);
+		     $('#delete-modal form#delete-form').attr('action', "{{ URL::to('admin/posts/') }}/" + idDel);
 		     $("#delete-modal input[name='id']").val( idDel );
 		});
 	</script>

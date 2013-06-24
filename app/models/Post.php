@@ -3,22 +3,26 @@
 use Illuminate\Support\Facades\URL; # not sure why i need this here :c
 use Robbo\Presenter\PresentableInterface;
 
-class Post extends Eloquent implements PresentableInterface {
+class Post extends Eloquent {
 
-	/**
-	 * Deletes a blog post and all
-	 * the associated comments.
-	 *
-	 * @return bool
-	 */
-	public function delete()
-	{
-		// Delete the comments
-		$this->comments()->delete();
+	public $autoHydrateEntityFromInput = true;
 
-		// Delete the blog post
-		return parent::delete();
-	}
+	protected $fillable = array(
+        'title', 'content', 'meta_title', 'meta_description', 'meta_keywords'
+    );
+
+    /**
+     * Ardant Validation rules
+     *
+     * @var array
+     */
+    public static $rules = array(
+        'title' => 'required|unique:posts',
+        'content' => 'required',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+    );
 
 	/**
 	 * Returns a formatted post content entry,

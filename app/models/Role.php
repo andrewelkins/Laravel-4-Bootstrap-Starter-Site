@@ -1,10 +1,22 @@
 <?php
 
 use Zizaco\Entrust\EntrustRole;
-use Robbo\Presenter\PresentableInterface;
 
-class Role extends EntrustRole implements PresentableInterface
-{
+class Role extends EntrustRole {
+    public $autoHydrateEntityFromInput = true;
+
+    protected $fillable = array(
+        'name'
+    );
+
+    /**
+     * Ardent validation rules
+     *
+     * @var array
+     */
+    public static $rules = array(
+      'name' => 'required|between:4,16'
+    );
 
     /**
      * Same presenter as the user model.
