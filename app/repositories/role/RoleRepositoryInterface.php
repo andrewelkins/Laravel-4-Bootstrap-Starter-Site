@@ -7,4 +7,5 @@ interface RoleRepositoryInterface {
 	public function update($id, $data);
 	public function destroy($id);
 	public function data();
+	public function preparePermissionsForSave($permissions);
 }

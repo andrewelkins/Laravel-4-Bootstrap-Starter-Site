@@ -104,8 +104,15 @@ class AdminRolesController extends AdminController {
         // Check if we have a user with this $id.
         $role = $this->roles->findById($id);
 
-        // Get all the available permissions
-        $permissions = $this->permissions->all();
+        if(! empty($role))
+        {
+            $permissions = $this->permissions->preparePermissionsForDisplay($role->perms()->get());
+        }
+        else
+        {
+            // Redirect to the roles management page
+            return Redirect::to('admin/roles')->with('error', Lang::get('admin/roles/messages.does_not_exist'));
+        }
 
         // Set the page title.
         $title = Lang::get('admin/roles/title.role_update');

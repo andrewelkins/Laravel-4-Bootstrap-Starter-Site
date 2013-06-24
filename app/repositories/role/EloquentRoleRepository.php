@@ -162,8 +162,9 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
      * @param $permissions
      * @return array
      */
-    public function preparePermissionsForSave( $permissions )
+    public function preparePermissionsForSave($permissions)
     {
+
         $availablePermissions = Permission::all()->toArray();
         $preparedPermissions = array();
         foreach( $permissions as $permission => $value )
