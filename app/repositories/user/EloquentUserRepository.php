@@ -112,7 +112,9 @@ class EloquentUserRepository implements UserRepositoryInterface {
         $user->prepareRules($oldUser, $user);
 
         // Save if valid.
-        $user->amend();
+        // $user->amend();
+        $user->fill($data);
+        $user->save();
 
         // Save roles. Handles updating.
         $user->saveRoles(Input::get('roles'));

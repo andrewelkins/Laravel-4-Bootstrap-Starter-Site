@@ -86,7 +86,8 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
 
         if($validator->fails()) {
             Redirect::to('admin/roles/' . $role->id . '/edit')
-                ->with('error', Lang::get('admin/roles/messages.update.failure'))
+                ->withInput($data)
+                ->withErrors($validator)
                 ->send();
             exit;
         }

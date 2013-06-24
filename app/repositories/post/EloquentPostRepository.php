@@ -78,11 +78,12 @@ class EloquentPostRepository implements PostRepositoryInterface {
 		$post = $this->findById($id);
 
 		// Validate the input.
-    	$validator = Validator::make($data, Post::$rules);
+    	$validator = Validator::make($data, Post::$updateRules);
 
         if($validator->fails()) {
             Redirect::to('admin/posts/' . $post->id . '/edit')
-                ->with('error', Lang::get('admin/posts/messages.update.failure'))
+                ->withInput($data)
+                ->withErrors($validator)
                 ->send();
             exit;
         }
@@ -134,7 +135,8 @@ class EloquentPostRepository implements PostRepositoryInterface {
     public function data()
     {
         $posts = Post::leftjoin('comments', 'comments.post_id', '=', 'posts.id')
-                    ->select(array('posts.id', 'posts.title', 'comments.post_id as comments', 'posts.created_at'));
+                    ->leftjoin('users', 'users.id', '=' , 'posts.user_id')
+                    ->select(array('posts.id', 'posts.title', 'comments.post_id as comments', 'users.username as poster', 'posts.created_at'));
 
 
         return Datatables::of($posts)

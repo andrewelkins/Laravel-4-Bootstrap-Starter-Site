@@ -78,7 +78,7 @@ class AdminUsersController extends AdminController {
     public function store()
     {
         // Create a user with the POST request data.
-        $this->users->store( Input::all() );
+        $this->users->store(Input::all());
     }
 
     /**

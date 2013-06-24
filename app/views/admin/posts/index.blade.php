@@ -26,6 +26,7 @@
 			<tr>
 				<th class="span4">{{{ Lang::get('admin/posts/table.title') }}}</th>
 				<th class="span2">{{{ Lang::get('admin/posts/table.comments') }}}</th>
+				<th class="span2">Posted by</th>
 				<th class="span2">{{{ Lang::get('admin/posts/table.created_at') }}}</th>
 				<th class="span2">{{{ Lang::get('table.actions') }}}</th>
 			</tr>

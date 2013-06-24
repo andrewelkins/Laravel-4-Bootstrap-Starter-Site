@@ -321,47 +321,4 @@ class AdminRolesController extends AdminController {
         // Show the page
         return View::make('admin/roles/delete', compact('role', 'title'));
     }
-
-    /**
-     * Remove the specified user from storage.
-     *
-     * @param $role
-     * @internal param $id
-     * @return Response
-     */
-    public function postDelete($role)
-    {
-            // Was the role deleted?
-            if($role->delete()) {
-                // Redirect to the role management page
-                return Redirect::to('admin/roles')->with('success', Lang::get('admin/roles/messages.delete.success'));
-            }
-
-            // There was a problem deleting the role
-            return Redirect::to('admin/roles')->with('error', Lang::get('admin/roles/messages.delete.error'));
-    }
-
-    /**
-     * Show a list of all the roles formatted for Datatables.
-     *
-     * @return Datatables JSON
-     */
-    public function getData()
-    {
-        $roles = Role::select(array('roles.id',  'roles.name', 'roles.id as users', 'roles.created_at'));
-
-        return Datatables::of($roles)
-        // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
-        ->edit_column('users', '{{{ DB::table(\'assigned_roles\')->where(\'role_id\', \'=\', $id)->count()  }}}')
-
-
-        ->add_column('actions', '<a href="{{{ URL::to(\'admin/roles/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
-                                <a href="{{{ URL::to(\'admin/roles/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-mini btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
-                    ')
-
-        ->remove_column('id')
-
-        ->make();
-    }
-
 }

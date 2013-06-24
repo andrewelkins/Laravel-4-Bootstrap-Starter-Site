@@ -57,7 +57,8 @@ class EloquentCommentRepository implements CommentRepositoryInterface {
 
         if($validator->fails()) {
             Redirect::to('admin/comments/' . $comment->id . '/edit')
-                ->with('error', Lang::get('admin/comments/messages.update.failure'))
+                ->withInput($data)
+                ->withErrors($validator)
                 ->send();
             exit;
         }

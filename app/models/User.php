@@ -35,6 +35,7 @@ class User extends ConfideUser {
         'email' => 'required|email|unique:users',
         'password' => 'required|between:4,11|confirmed',
         'password_confirmation' => 'between:4,11',
+        'confirmed' => 'required'
     );
 
     /**
@@ -47,6 +48,7 @@ class User extends ConfideUser {
         'email' => 'required|email',
         'password' => 'between:4,11|confirmed',
         'password_confirmation' => 'between:4,11',
+        'confirmed' => 'required'
     );
 
     public function getPresenter()

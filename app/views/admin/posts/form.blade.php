@@ -14,6 +14,18 @@
 		</div>
 		<!-- ./ post title -->
 
+		@if (Request::is('*/edit'))
+			<!-- Post Slug -->
+			<div class="control-group {{{ $errors->has('slug') ? 'error' : '' }}}">
+				{{ Form::label('slug', 'Post Slug', array('class' => 'control-label')) }}
+				<div class="controls">
+					{{ Form::text('slug') }}
+					{{ $errors->first('slug', '<span class="help-inline">:message</span>') }}
+				</div>
+			</div>
+			<!-- ./ post slug -->
+		@endif
+
 		<!-- Content -->
 		<div class="control-group {{{ $errors->has('content') ? 'error' : '' }}}">
 			{{ Form::label('content', 'Content', array('class' => 'control-label')) }}

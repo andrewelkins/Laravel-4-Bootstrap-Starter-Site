@@ -24,6 +24,14 @@ class Post extends Eloquent {
         'meta_keywords' => '',
     );
 
+    public static $updateRules = array(
+        'title' => 'required',
+        'content' => 'required',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+    );
+
 	/**
 	 * Returns a formatted post content entry,
 	 * this ensures that line breaks are returned.
