@@ -2,21 +2,21 @@
 
 return array(
 
-	'does_not_exist' => 'Blog comment does not exist.',
+	'does_not_exist' => 'Comentário no Blog não existe.',
 
 	'create' => array(
-		'error'   => 'Blog comment was not created, please try again.',
-		'success' => 'Blog comment created successfully.'
+		'error'   => 'Comentário no Blog não foi criado, por favor, tente novamente.',
+		'success' => 'Comentário no Blog criado com sucesso.'		
 	),
 
 	'update' => array(
-		'error'   => 'Blog comment was not updated, please try again',
-		'success' => 'Blog comment updated successfully.'
+		'error'   => 'Comentário no Blog não foi atualizado, por favor, tente novamente.',
+		'success' => 'Comentário no Blog foi editado com sucesso.'
 	),
 
 	'delete' => array(
-		'error'   => 'There was an issue deleting the blog comment. Please try again.',
-		'success' => 'The blog comment was deleted successfully.'
+		'error'   => 'Houve um problema ao excluir o comentário no blog. Por favor, tente novamente.',		
+        'success' => 'O comentário no Blog foi excluido com sucesso.'
 	)
 
 );

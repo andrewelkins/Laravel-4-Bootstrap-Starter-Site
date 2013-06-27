@@ -8,8 +8,8 @@ return array(
 	'username'   => 'Nome de Usuário',
 	'email'      => 'Email',
 	'groups'     => 'Grupos',
-	'roles'      => 'Roles',
-	'activated'  => 'Activated',
+	'roles'      => 'Papeis',
+	'activated'  => 'Ativado',
 	'created_at' => 'Criado em',
 
 );
