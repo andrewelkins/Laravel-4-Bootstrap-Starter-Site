@@ -14,6 +14,6 @@ return array(
 	*/
 
 	'contact_us' => 'Fale Conosco',
-        'sign_up' => 'Cadastre-se',
+    'sign_up'    => 'Cadastre-se',
 
 );
