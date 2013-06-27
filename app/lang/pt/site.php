@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'contact_us' => 'Contact Us',
-        'sign_up' => 'Sign Up',
+	'contact_us' => 'Fale Conosco',
+        'sign_up' => 'Cadastre-se',
 
 );
