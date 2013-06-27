@@ -13,10 +13,10 @@ return array(
 	|
 	*/
 
-	"password" => "Passwords must be six characters and match the confirmation.",
+	"password" => "As senhas devem ter seis caracteres e corresponder a confirmação",
 
-	"user"     => "We can't find a user with that e-mail address.",
+	"user" 	   => "Nós não podemos encontrar um usuário com esse endereço de e-mail.",
 
-	"token"    => "This password reset token is invalid.",
+	"token"    => "Esse token de redefinição de senha é inválido.",
 
 );

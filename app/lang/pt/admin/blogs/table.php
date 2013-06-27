@@ -2,9 +2,9 @@
 
 return array(
 
-	'title'      => 'Blog Title',
-	'comments'   => '# of Comments',
-	'created_at' => 'Created at',
-	'post_id' => 'Post Id',
+	'title'      => 'Titulo do Blog',
+	'comments'   => '# de Comentários',
+	'created_at' => 'Criado em',
+	'post_id'    => 'Id do Post',
 
 );
