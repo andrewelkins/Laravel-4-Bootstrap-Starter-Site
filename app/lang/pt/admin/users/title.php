@@ -2,8 +2,8 @@
 
 return array(
 
-	'user_management'    => 'User Management',
-	'user_update'        => 'User Update',
-	'create_a_new_user'  => 'Create a New User',
+	'user_management'    => 'Gerenciamento de usuários',
+	'user_update'        => 'Atualização de usuário',
+	'create_a_new_user'  => 'Criar um novo usuário',
 
 );

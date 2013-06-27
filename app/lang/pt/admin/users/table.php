@@ -2,14 +2,14 @@
 
 return array(
 
-	'first_name' => 'First Name',
-	'last_name'  => 'Last Name',
-	'user_id'  => 'User Id',
-	'username'  => 'Username',
+	'first_name' => 'Primeiro Nome',
+	'last_name'  => 'Último Nome',
+	'user_id'    => 'Id do Usuário',
+	'username'   => 'Nome de Usuário',
 	'email'      => 'Email',
-	'groups'     => 'Groups',
-	'roles'     => 'Roles',
+	'groups'     => 'Grupos',
+	'roles'      => 'Roles',
 	'activated'  => 'Activated',
-	'created_at' => 'Created at',
+	'created_at' => 'Criado em',
 
 );
