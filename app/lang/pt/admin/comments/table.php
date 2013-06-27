@@ -2,8 +2,8 @@
 
 return array(
 
-	'title'      => 'Comment',
-	'user_id'   => '# of Comments',
-	'created_at' => 'Created at',
+	'title'      => 'Comentário',
+	'user_id'   => '# de Comentários',
+	'created_at' => 'Criado em',
 
 );

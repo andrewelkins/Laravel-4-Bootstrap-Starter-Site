@@ -10,15 +10,15 @@ return array(
 	|
 	*/
 
-	'register'              => 'Register',
+	'register'              => 'Registrar',
 	'login'                 => 'Login',
-	'login_first'           => 'Login first',
-	'account'               => 'Account',
-	'forgot_password'       => 'Forgot Password',
-	'settings'              => 'Settings',
-	'profile'               => 'Profile',
-	'user_account_is_not_confirmed'          => 'User Account is not confirmed.',
-	'user_account_updated'          => 'User Account updated.',
-	'user_account_created'          => 'User Account created.',
+	'login_first'           => 'Primeiro Login',
+	'account'               => 'Conta',
+	'forgot_password'       => 'Esqueceu a Senha',
+	'settings'              => 'Configurações',
+	'profile'               => 'Perfil',
+	'user_account_is_not_confirmed'          => 'Conta de usuário não foi confirmada.',
+	'user_account_updated'          => 'Conta de usário atualizada.',
+	'user_account_created'          => 'Conta de usário criada.',
 
 );

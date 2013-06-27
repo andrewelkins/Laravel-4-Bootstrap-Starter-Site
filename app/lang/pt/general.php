@@ -2,8 +2,8 @@
 
 return array(
 
-	'yes' => 'Yes',
-	'no'  => 'No',
-    'must_login' => 'Must be logged in.'
+	'yes' => 'Sim',
+	'no'  => 'N&atilde;o',
+    'must_login' => 'Deve estar conectado.'
 
 );

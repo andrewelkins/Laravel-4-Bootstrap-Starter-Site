@@ -2,8 +2,8 @@
 
 return array(
 
-	'name'       => 'Name',
-	'users'      => '# of Users',
-	'created_at' => 'Created at',
+	'name'       => 'Nome',
+	'users'      => '# de Usuários',
+	'created_at' => 'Criado em',
 
 );
