@@ -122,3 +122,27 @@ Route::filter('detectLang',  function($route, $request, $lang = 'auto')
         App::setLocale($userLang);
     }
 });
+
+/*
+|--------------------------------------------------------------------------
+| Exception handlers
+|--------------------------------------------------------------------------
+|
+| Exceptions formatted for API output.
+|
+*/
+
+App::error(function(PermissionException $e, $code)
+{
+    return Response::json($e->getMessage(), $e->getCode());
+});
+
+App::error(function(ValidationException $e, $code)
+{
+    return Response::json($e->getMessages(), $e->getCode());
+});
+
+App::error(function(NotFoundException $e)
+{
+  return Response::json($e->getMessage(), $e->getCode());
+});
