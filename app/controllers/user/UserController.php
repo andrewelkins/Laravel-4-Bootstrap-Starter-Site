@@ -241,7 +241,7 @@ class UserController extends BaseController {
         if( Confide::forgotPassword( Input::get( 'email' ) ) )
         {
             return Redirect::to('user/login')
-                ->with( 'notice', Lang::get('confide::confide.alerts.password_reset') );
+                ->with( 'notice', Lang::get('confide::confide.alerts.password_forgot') );
         }
         else
         {
@@ -296,7 +296,7 @@ class UserController extends BaseController {
     public function getLogout()
     {
         Confide::logout();
-        
+
         return Redirect::to('/');
     }
 
