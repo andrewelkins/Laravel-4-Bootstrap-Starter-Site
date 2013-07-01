@@ -38,8 +38,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::resource('users', 'admin\UserController');
 
     // User Role Management
-    // Route::get('roles/data', 'AdminRolesController@data'); // Outputs Datatables json
-    // Route::resource('roles', 'AdminRolesController');
+    Route::get('roles/data', 'admin\RoleController@data'); // Outputs Datatables json
+    Route::resource('roles', 'admin\RoleController');
 
     // Admin Home Page
     Route::controller('/', 'admin\HomeController');

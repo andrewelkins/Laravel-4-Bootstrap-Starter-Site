@@ -4,12 +4,6 @@ use Zizaco\Entrust\EntrustRole;
 
 class Role extends EntrustRole {
 
-    public $autoHydrateEntityFromInput = true;
-
-    protected $fillable = array(
-        'name'
-    );
-
     /**
      * Ardent validation rules
      *

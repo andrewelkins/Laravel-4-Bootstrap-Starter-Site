@@ -46,7 +46,10 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
      */
     public function store($data)
     {
-        $this->validate($data, Role::$rules);
+        $validator = $this->validate($data, Role::$rules);
+
+        // Check if validator returned an array with the error code and the message
+        if (is_array($validator)) return $validator;
 
         $role = Role::create($data);
 
@@ -73,7 +76,12 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
 	{
 		$role = $this->findById($id);
 
-		$this->validate($data, Role::$rules);
+		$validator = $this->validate($data, Role::$rules);
+
+        // Check if validator returned an array with the error code and the message
+        if (is_array($validator)) return $validator;
+
+        $role->name = $data['name'];
 
         $role->update($data);
 
@@ -93,13 +101,30 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
     {
         $role = $this->findById($id);
 
+        // Check if we are not trying to delete the admin role.
+        if ($role->id === '1') {
+            $error = array(
+                'code'    => '403',
+                'message' => 'Can Not Delete Admin Role'
+            );
+            return $error;
+        }
+
+        // Clean up.
+        $role->users()->detach();
+        $role->perms()->detach();
+
         $role->delete();
 
         // Check for deletion.
         if (!Role::find($id)) {
-            return $id;
+            return 'success';
         } else {
-            throw new ValidationException($id);
+            $error = array(
+                'code'    => '404',
+                'message' => 'Can Not Delete User'
+            );
+            return $error;
         }
     }
 
@@ -127,7 +152,15 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
     {
         $validator = Validator::make($data, $rules);
 
-        if($validator->fails()) throw new ValidationException($validator);
+        if($validator->fails()) {
+            $message = $validator->messages();
+            $error = array(
+                'code'    => '400',
+                'message' => $message
+            );
+            return $error;
+        }
+
         return true;
     }
 

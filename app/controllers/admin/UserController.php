@@ -112,8 +112,7 @@ class UserController extends BaseController {
                             ->withInput(Input::all());
         } else {
             // Redirect with success message
-            $id = $user->id;
-            return Redirect::action('admin\UserController@edit', array($id))
+            return Redirect::action('admin\UserController@edit', $user->id)
                             ->with('success', Lang::get('admin/users/messages.create.success'));
         }
     }
@@ -151,7 +150,7 @@ class UserController extends BaseController {
         $meta = $this->meta;
         $meta['title'] = Lang::get('admin/users/title.user_update');
 
-        // Show the create user form page.
+        // Show the edit user form page.
         return View::make('admin/users/edit', compact('user', 'roles', 'meta', 'rules'));
     }
 
@@ -170,12 +169,12 @@ class UserController extends BaseController {
         // Handle the repository possible errors
         if(is_array($user)) {
             $errors = $user['message'];
-            return Redirect::action('admin\UserController@edit')
+            return Redirect::action('admin\UserController@edit', $id)
                             ->withErrors($errors)
                             ->withInput(Input::all());
         } else {
-            return Redirect::action('admin\UserController@edit', array($id))
-                            ->with('success', Lang::get('admin/users/messages.edit.success'));
+            return Redirect::action('admin\UserController@edit', $id)
+                            ->with('success', Lang::get('admin/users/messages.update.success'));
         }
     }
 

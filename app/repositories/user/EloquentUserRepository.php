@@ -51,7 +51,7 @@ class EloquentUserRepository implements UserRepositoryInterface {
     {
         $validator = $this->validate($data, User::$rules);
 
-        // Check if it returned an array with the error code and the message
+        // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
 
         // Following is adapted from Confide generated controller.
@@ -105,7 +105,7 @@ class EloquentUserRepository implements UserRepositoryInterface {
 
         $validator = $this->validate($data, $user->getUpdateRules());
 
-        // Check if it returned an array with the error code and the message
+        // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
 
         $oldUser = clone $user;
@@ -150,8 +150,7 @@ class EloquentUserRepository implements UserRepositoryInterface {
 
         // Check if we are not trying to delete ourselves.
         // Need to check if Auth::user() works the same here...
-        if ($user->id === Confide::user()->id)
-        {
+        if ($user->id === Confide::user()->id) {
             $error = array(
                 'code'    => '403',
                 'message' => 'Can Not Delete Yourself'

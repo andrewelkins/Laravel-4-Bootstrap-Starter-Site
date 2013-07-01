@@ -39,31 +39,31 @@ class PermissionsTableSeeder extends Seeder {
 
         $permissions = array(
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 1
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 2
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 3
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 4
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 5
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 6
             ),
             array(
-                'role_id'      => 2,
+                'role_id'      => 1,
                 'permission_id' => 6
             ),
         );
