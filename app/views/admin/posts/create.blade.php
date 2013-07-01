@@ -15,22 +15,21 @@
 	<!-- Tabs -->
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
+        <li><a href="#tab-meta-data" data-toggle="tab">Meta Data</a></li>
 	</ul>
 	<!-- ./ tabs -->
 
-	{{-- Edit a user form --}}
+	{{-- Create a post form --}}
 	<!-- Form -->
 	{{ Former::horizontal_open()
-		->id('edit')
-		->rules($rules)
-		->method('PUT')
-		->action('admin/users/' . $user->id) }}
+		->id('create')
+        ->rules($rules)
+		->method('POST')
+		->action('admin/posts') }}
 
 	{{ Former::token() }}
 
-	{{ Former::populate($user) }}
-
-		@include('admin.users.form')
+		@include('admin.posts.form')
 
 	{{ Former::close() }}
 	<!-- ./ form -->
@@ -39,5 +38,8 @@
 
 {{-- Extra JavaScripts --}}
 @section('scripts')
-<script type="text/javascript"></script>
+<script type="text/javascript">
+	$('.wysihtml5').wysihtml5();
+    $(prettyPrint);
+</script>
 @stop

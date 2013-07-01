@@ -74,7 +74,7 @@ class UserController extends BaseController {
 
         // There is no need to send any data to the view.
         // The datatables will be calling the getData method.
-        return View::make('admin.users.index', compact('meta'));
+        return View::make('admin/users/index', compact('meta'));
     }
 
     /**

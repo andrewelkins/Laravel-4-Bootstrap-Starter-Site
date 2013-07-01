@@ -7,6 +7,7 @@
 */
 App::bind('UserRepositoryInterface', 'EloquentUserRepository');
 App::bind('RoleRepositoryInterface', 'EloquentRoleRepository');
+App::bind('PostRepositoryInterface', 'EloquentPostRepository');
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +20,6 @@ App::bind('RoleRepositoryInterface', 'EloquentRoleRepository');
 |
 */
 
-/** ------------------------------------------
- *  Route model binding
- *  ------------------------------------------
- */
-// Route::model('user', 'User');
-// Route::model('comment', 'Comment');
-// Route::model('post', 'Post');
-// Route::model('role', 'Role');
-
 /**
  * Admin Group
  */
@@ -37,9 +29,13 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('users/data', 'admin\UserController@data'); // Outputs Datatables json
     Route::resource('users', 'admin\UserController');
 
-    // User Role Management
+    // User Roles Management
     Route::get('roles/data', 'admin\RoleController@data'); // Outputs Datatables json
     Route::resource('roles', 'admin\RoleController');
+
+    // Posts Management
+    Route::get('posts/data', 'admin\PostController@data'); // Outputs Datatables json
+    Route::resource('posts', 'admin\PostController');
 
     // Admin Home Page
     Route::controller('/', 'admin\HomeController');

@@ -18,10 +18,11 @@
 	</ul>
 	<!-- ./ tabs -->
 
-	{{-- Create a user form --}}
+	{{-- Edit a role form --}}
 	<!-- Form -->
 	{{ Former::horizontal_open()
 		->id('edit')
+		->rules($rules)
 		->method('PUT')
 		->action('admin/roles/' . $role->id) }}
 
