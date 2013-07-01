@@ -24,9 +24,15 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
 	 */
 	public function findById($id)
     {
-        $role = Role::where('id', $id)->first();
+        $role = Role::find($id);
 
-        if (!$role) throw new NotFoundException('Role Not Found');
+        if (!$role) {
+             $error = array(
+                'code'    => '404',
+                'message' => 'Role Not Found'
+            );
+            return $error;
+        }
 
         return $role;
     }

@@ -1,4 +1,4 @@
-@extends('frontend.user.templates.default')
+@extends('frontend.templates.default')
 
 {{-- Extra CSS styles --}}
 @section('syles')

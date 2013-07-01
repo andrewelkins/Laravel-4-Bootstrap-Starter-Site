@@ -46,9 +46,11 @@ class UserController extends BaseController {
      * Inject the repository interfaces.
      *
      * @param UserRepositoryInterface $users
+     * @param RoleRepositoryInterface $roles
      */
     public function __construct(UserRepositoryInterface $users, RoleRepositoryInterface $roles)
     {
+        parent::__construct();
         $this->users = $users;
         $this->roles = $roles;
         $this->meta = array(
@@ -207,7 +209,7 @@ class UserController extends BaseController {
     /**
      * Show a list of users formatted for Datatables
      *
-     * @return Datatables JSON
+     * @return string JSON for Datatables.
      */
     public function data()
     {

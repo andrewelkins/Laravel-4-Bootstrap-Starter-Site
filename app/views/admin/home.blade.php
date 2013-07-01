@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('admin.templates.default')
 
 {{-- Extra CSS styles --}}
 @section('syles')
