@@ -3,13 +3,12 @@ namespace frontend;
 
 use BaseController;
 use UserRepositoryInterface;
+use User;
 use Auth;
 use Lang;
 use View;
 use Confide;
 use Redirect;
-use API;
-use User;
 use Input;
 use Session;
 
@@ -82,7 +81,6 @@ class UserController extends BaseController {
 
         // Get the data needed for the view.
         $user = $this->users->instance();
-        // $user = API::get('api/v1/user/create');
         $rules = User::$rules;
         $meta = $this->meta;
         $meta['title'] = Lang::get('user/user.register');
@@ -98,23 +96,22 @@ class UserController extends BaseController {
     public function postIndex()
     {
         $user = $this->users->store(Input::all());
-        // $user = API::post('api/v1/user', Input::all());
 
-        // Handle the repository possible errors
-        if(is_array($user)) {
+        // Handle the repository possible errors.
+        if (is_array($user)) {
             $errors = $user['message'];
             return Redirect::action('frontend\UserController@getCreate')
                             ->withErrors($errors)
                             ->withInput(Input::all());
         } else {
-            // Redirect with success message
+            // Redirect with success message.
             return Redirect::action('frontend\UserController@getLogin')
                             ->with('success', Lang::get('user/user.user_account_created'));
         }
     }
 
     /**
-     * Edits the authentified user's account.
+     * Update the authentified user's account.
      *
      * @return Redirect
      */
@@ -124,14 +121,15 @@ class UserController extends BaseController {
         if(Auth::guest()) return Redirect::action('frontend\UserController@getLogin');
 
         $user = $this->users->update(Auth::user()->id, Input::all());
-        // $user = API::put('api/v1/user/' . Auth::user()->id, Input::all());
 
-        // If the repository throws a ValidationException $user will be a JSON string with our errors.
-        if(is_string($user)) {
-            $errors = json_decode($user, true);
+        // Handle the repository possible errors.
+        if (is_array($user)) {
+            $errors = $user['message'];
             return Redirect::action('frontend\UserController@getIndex')
-                            ->withErrors($errors);
+                            ->withErrors($errors)
+                            ->withInput(Input::all());
         } else {
+            // Redirect with success message.
             return Redirect::action('frontend\UserController@getIndex')
                             ->with('success', Lang::get('user/user.user_account_updated'));
         }
@@ -148,6 +146,7 @@ class UserController extends BaseController {
             return Redirect::action('frontend\UserController@getIndex');
         }
 
+        // Get the data needed for the view.
         $meta = $this->meta;
         $meta['title'] = Lang::get('user/user.login');
 
@@ -211,7 +210,7 @@ class UserController extends BaseController {
     /**
      * Attempt to confirm account with code
      *
-     * @param  string  $code
+     * @param string $code
      */
     public function getConfirm( $code )
     {
@@ -232,6 +231,7 @@ class UserController extends BaseController {
     /**
      * Displays the forgot password form
      *
+     * @return View
      */
     public function getForgot()
     {
@@ -241,6 +241,7 @@ class UserController extends BaseController {
     /**
      * Attempt to send change password link to the given email
      *
+     * @return Redirect
      */
     public function postForgot()
     {
@@ -262,6 +263,7 @@ class UserController extends BaseController {
     /**
      * Shows the change password form with the given token
      *
+     * @return View
      */
     public function getReset( $token )
     {
@@ -272,6 +274,7 @@ class UserController extends BaseController {
     /**
      * Attempt change password of the user
      *
+     * @return View
      */
     public function postReset()
     {
@@ -300,6 +303,7 @@ class UserController extends BaseController {
     /**
      * Log the user out of the application.
      *
+     * @return Redirect
      */
     public function getLogout()
     {

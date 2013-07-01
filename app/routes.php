@@ -8,6 +8,7 @@
 App::bind('UserRepositoryInterface', 'EloquentUserRepository');
 App::bind('RoleRepositoryInterface', 'EloquentRoleRepository');
 App::bind('PostRepositoryInterface', 'EloquentPostRepository');
+App::bind('CommentRepositoryInterface', 'EloquentCommentRepository');
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,11 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     // Posts Management
     Route::get('posts/data', 'admin\PostController@data'); // Outputs Datatables json
     Route::resource('posts', 'admin\PostController');
+
+    // Comments Management
+    Route::get('comments/data', 'admin\CommentController@data'); // Outputs Datatables json
+    Route::resource('comments', 'admin\CommentController',
+                array('except' => array('create', 'store')));
 
     // Admin Home Page
     Route::controller('/', 'admin\HomeController');

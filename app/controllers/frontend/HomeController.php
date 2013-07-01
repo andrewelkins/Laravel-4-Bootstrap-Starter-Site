@@ -1,19 +1,21 @@
 <?php
-
 namespace frontend;
 
 use BaseController;
 use Lang;
 use View;
 
+/*
+|--------------------------------------------------------------------------
+| Home Controller
+|--------------------------------------------------------------------------
+*/
+
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	*/
-
+    /**
+     * Create a new controller instance
+     */
 	public function __construct()
     {
         $this->meta = array(
@@ -24,6 +26,11 @@ class HomeController extends BaseController {
         );
     }
 
+    /**
+     * Display the home page
+     *
+     * @return View
+     */
 	public function getIndex()
 	{
         $meta = $this->meta;

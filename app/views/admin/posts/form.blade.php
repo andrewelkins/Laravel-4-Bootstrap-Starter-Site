@@ -17,6 +17,7 @@
 		<!-- Content -->
 		{{ Former::textarea('content')->rows(15)->class('full-width span10 wysihtml5') }}
 		<!-- ./ content -->
+
 	</div>
 	<!-- ./ tab general -->
 

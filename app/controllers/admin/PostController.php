@@ -3,16 +3,11 @@ namespace admin;
 
 use BaseController;
 use PostRepositoryInterface;
-use CommentRepositoryInterface;
-use Auth;
+use Post;
 use Lang;
 use View;
-use Confide;
 use Redirect;
-use API;
-use Post;
 use Input;
-use Session;
 use Datatables;
 
 /*
@@ -71,7 +66,7 @@ class PostController extends BaseController {
     /**
      * Show the form for creating a new post
      *
-     * @return view
+     * @return View
      */
     public function create()
     {
@@ -93,14 +88,14 @@ class PostController extends BaseController {
     {
         $post = $this->posts->store(Input::all());
 
-        // Handle the repository possible errors
+        // Handle the repository possible errors.
         if(is_array($post)) {
             $errors = $post['message'];
             return Redirect::action('admin\PostController@create')
                             ->withErrors($errors)
                             ->withInput(Input::all());
         } else {
-            // Redirect with success message
+            // Redirect with success message.
             return Redirect::action('admin\PostController@edit', $post->id)
                             ->with('success', Lang::get('admin/posts/messages.create.success'));
         }
@@ -125,15 +120,15 @@ class PostController extends BaseController {
      */
     public function edit($id)
     {
-        // Get the data needed for the view.
         $post = $this->posts->findById($id);
 
-        // Handle the repository possible errors
+        // Handle the repository possible errors.
         if(is_array($post)) {
             return Redirect::action('admin\PostController@index')
                             ->with('error', Lang::get('admin/posts/messages.does_not_exist'));
         }
 
+        // Get the data needed for the view.
         $rules = Post::$updateRules;
         $meta = $this->meta;
         $meta['title'] = Lang::get('admin/posts/title.post_update');
@@ -153,13 +148,14 @@ class PostController extends BaseController {
         // Update the post with the PUT request data.
         $post = $this->posts->update($id, Input::all());
 
-        // Handle the repository possible errors
+        // Handle the repository possible errors.
         if(is_array($post)) {
             $errors = $post['message'];
             return Redirect::action('admin\PostController@edit', $id)
                             ->withErrors($errors)
                             ->withInput(Input::all());
         } else {
+            // Redirect with success message.
             return Redirect::action('admin\PostController@edit', $id)
                             ->with('success', Lang::get('admin/posts/messages.update.success'));
         }
@@ -169,6 +165,7 @@ class PostController extends BaseController {
     * Remove the specified post
     *
     * @param int $id
+    *
     * @return Response
     */
     public function destroy($id)
@@ -176,7 +173,7 @@ class PostController extends BaseController {
         // Delete a post with the corresponding ID.
         $post = $this->posts->destroy($id);
 
-        // If the repository throws an exception $post will be a JSON string with our errors.
+        // Handle the repository possible errors.
         if(is_array($post)) {
             $errors = $post['message'];
             if ($post['code'] === '403') {
@@ -187,6 +184,7 @@ class PostController extends BaseController {
             return Redirect::action('admin\PostController@index')
                             ->with('error', $message);
         } else {
+            // Redirect with success message.
             return Redirect::action('admin\PostController@index')
                             ->with('success', Lang::get('admin/posts/messages.delete.success'));
         }

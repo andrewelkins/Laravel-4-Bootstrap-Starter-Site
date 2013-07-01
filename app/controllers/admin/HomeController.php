@@ -5,16 +5,20 @@ use BaseController;
 use Lang;
 use View;
 
+/*
+|--------------------------------------------------------------------------
+| Admin Home Controller
+|--------------------------------------------------------------------------
+*/
+
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Admin Home Controller
-	|--------------------------------------------------------------------------
-	*/
-
+    /**
+     * Create a new controller instance
+     */
 	public function __construct()
     {
+    	parent::__construct();
         $this->meta = array(
             'title' => 'Default',
             'author' => 'Me',
@@ -23,6 +27,11 @@ class HomeController extends BaseController {
         );
     }
 
+    /**
+     * Display the admin home page
+     *
+     * @return View
+     */
 	public function getIndex()
 	{
         $meta = $this->meta;

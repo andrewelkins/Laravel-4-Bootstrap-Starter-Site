@@ -60,7 +60,11 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
             return $role;
         } else {
             // Should not really happen...
-            return false;
+            $error = array(
+                'code'    => '404',
+                'message' => 'Could Not Create Comment'
+            );
+            return $error;
         }
     }
 

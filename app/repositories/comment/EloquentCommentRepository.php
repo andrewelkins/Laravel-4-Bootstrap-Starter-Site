@@ -1,64 +1,63 @@
 <?php
 
 /**
- * Repository for the Post model using Eloquent ORM
+ * Repository for the Comment model using Eloquent ORM
  */
-class EloquentPostRepository implements PostRepositoryInterface {
+class EloquentCommentRepository implements CommentRepositoryInterface {
 
     /**
-     * Return all possible posts
+     * Return all possible comments
      *
-     * @return object All posts.
+     * @return object All comments.
      */
     public function findAll()
     {
-        return Post::get();
-    }
-
-	/**
-	 * Display the specified post
-     *
-	 * @param  int $id ID of the post.
-     *
-	 * @return object Specified post.
-	 */
-	public function findById($id)
-    {
-        $post = Post::find($id);
-
-        if (!$post) {
-             $error = array(
-                'code'    => '404',
-                'message' => 'Post Not Found'
-            );
-            return $error;
-        }
-
-        return $post;
+        return Comment::all();
     }
 
     /**
-     * Store a new post
+     * Display the specified comment
+     *
+     * @param  int $id ID of the comment
+     *
+     * @return object Specified comment.
+     */
+    public function findById($id)
+    {
+        $comment = Comment::find($id);
+
+        if (!$comment) {
+            $error = array(
+                'code'    => '404',
+                'message' => 'Comment Not Found'
+            );
+            return $error;
+        }
+        return $comment;
+    }
+
+    /**
+     * Store a new comment
      *
      * @param  array $data POST data from the request.
      *
-     * @return object Created post.
+     * @return object Created comment.
      */
     public function store($data)
     {
-        $validator = $this->validate($data, Post::$rules);
+        $validator = $this->validate($data, Comment::$rules);
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
 
-        $post = Post::create($data);
+        $comment = Comment::create($data);
 
-        if ($post->id) {
+         if ($comment->id) {
             // Additional data
             $user = Auth::user();
-            $post->user_id = $user->id;
-            $post->slug = Str::slug($data['title']);
-            return $post;
+            $comment->user_id = $user->id;
+            $comment->post_id = $data['post_id'];
+            return $comment;
         } else {
             // Should not really happen...
             $error = array(
@@ -70,65 +69,65 @@ class EloquentPostRepository implements PostRepositoryInterface {
     }
 
     /**
-     * Update the specified post
+     * Update the specified comment
      *
-     * @param  int   $id   ID of the post.
+     * @param  int   $id   ID of the comment.
      * @param  array $data PUT data from the request.
      *
-     * @return object Updated post.
+     * @return object Updated comment.
      */
-	public function update($id, $data)
-	{
-		$post = $this->findById($id);
+    public function update($id, $data)
+    {
+        // Find the comment.
+        $comment = $this->findById($id);
 
-		$validator = $this->validate($data, Post::$rules);
+        $validator = $this->validate($data, Comment::$rules);
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
 
-        $post->update($data);
+        $comment->update($data);
 
-        return $post;
-	}
+        return $comment;
+    }
 
     /**
-     * Delete the specified post
-     *
-     * @param  int $id ID of the post.
-     *
-     * @return int ID of the post.
-     */
+    * Delete the specified comment
+    *
+    * @param  int $id ID of the comment.
+    *
+    * @return
+    */
     public function destroy($id)
     {
-        $post = $this->findById($id);
+        // Find the comment.
+        $comment = $this->findById($id);
 
-        // Clean up.
-        $post->comments()->delete();
+        // Delete the comment.
+        $comment->delete();
 
-        $post->delete();
-
-        // Check for deletion.
-        if (!Post::find($id)) {
+        // Check for deletion and redirect.
+        if (!Comment::find($id)) {
             return 'success';
         } else {
             $error = array(
                 'code'    => '404',
-                'message' => 'Can Not Delete User'
+                'message' => 'Can Not Delete Comment'
             );
             return $error;
         }
     }
 
     /**
-     * Create a new post object
+     * Create a new Confide comment object
      *
-     * @param  array  $data Post data
+     * @param  array  $data Comment data
      *
-     * @return object Post object
+     * @return object Comment object
      */
     public function instance($data = array())
     {
-        return new Post($data);
+        return new Comment($data);
     }
 
     /**

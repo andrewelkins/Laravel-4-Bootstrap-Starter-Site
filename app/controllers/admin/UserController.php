@@ -4,15 +4,11 @@ namespace admin;
 use BaseController;
 use UserRepositoryInterface;
 use RoleRepositoryInterface;
-use Auth;
+use User;
 use Lang;
 use View;
-use Confide;
 use Redirect;
-use API;
-use User;
 use Input;
-use Session;
 use Datatables;
 
 /*
@@ -80,7 +76,7 @@ class UserController extends BaseController {
     /**
      * Show the form for creating a new user
      *
-     * @return view
+     * @return View
      */
     public function create()
     {
@@ -102,16 +98,15 @@ class UserController extends BaseController {
     public function store()
     {
         $user = $this->users->store(Input::all());
-        // $user = API::post('api/v1/user', Input::all());
 
-        // Handle the repository possible errors
+        // Handle the repository possible errors.
         if(is_array($user)) {
             $errors = $user['message'];
             return Redirect::action('admin\UserController@create')
                             ->withErrors($errors)
                             ->withInput(Input::all());
         } else {
-            // Redirect with success message
+            // Redirect with success message.
             return Redirect::action('admin\UserController@edit', $user->id)
                             ->with('success', Lang::get('admin/users/messages.create.success'));
         }
@@ -132,19 +127,18 @@ class UserController extends BaseController {
     /**
      * Show the form for editing a user
      *
-     * @return view
+     * @return View
      */
     public function edit($id)
     {
-        // Get the data needed for the view.
         $user = $this->users->findById($id);
 
-        // Handle the repository possible errors
+        // Handle the repository possible errors.
         if(is_array($user)) {
             return Redirect::action('admin\UserController@index')
                             ->with('error', Lang::get('admin/users/messages.does_not_exist'));
         }
-
+        // Get the data needed for the view.
         $roles = $this->roles->findAll();
         $rules = $user->getUpdateRules();
         $meta = $this->meta;
@@ -158,21 +152,22 @@ class UserController extends BaseController {
     * Update the specified user
     *
     * @param int $id
+    *
     * @return Response
     */
     public function update($id)
     {
         // Update the user with the PUT request data.
         $user = $this->users->update($id, Input::all());
-        // $user = API::put('api/v1/user/' . Auth::user()->id, Input::all());
 
-        // Handle the repository possible errors
+        // Handle the repository possible errors.
         if(is_array($user)) {
             $errors = $user['message'];
             return Redirect::action('admin\UserController@edit', $id)
                             ->withErrors($errors)
                             ->withInput(Input::all());
         } else {
+            // Redirect with success message.
             return Redirect::action('admin\UserController@edit', $id)
                             ->with('success', Lang::get('admin/users/messages.update.success'));
         }
@@ -182,6 +177,7 @@ class UserController extends BaseController {
     * Remove the specified user
     *
     * @param int $id
+    *
     * @return Response
     */
     public function destroy($id)
@@ -189,7 +185,7 @@ class UserController extends BaseController {
         // Delete a user with the corresponding ID.
         $user = $this->users->destroy($id);
 
-        // If the repository throws an exception $user will be a JSON string with our errors.
+        // Handle the repository possible errors.
         if(is_array($user)) {
             $errors = $user['message'];
             if ($user['code'] === '403') {
@@ -200,6 +196,7 @@ class UserController extends BaseController {
             return Redirect::action('admin\UserController@index')
                             ->with('error', $message);
         } else {
+            // Redirect with success message.
             return Redirect::action('admin\UserController@index')
                             ->with('success', Lang::get('admin/users/messages.delete.success'));
         }

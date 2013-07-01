@@ -34,10 +34,6 @@ class EloquentUserRepository implements UserRepositoryInterface {
             return $error;
         }
         return $user;
-
-        // if (!$user) throw new NotFoundException('User Not Found');
-
-        // return $user;
     }
 
     /**
@@ -174,7 +170,6 @@ class EloquentUserRepository implements UserRepositoryInterface {
                 'message' => 'Can Not Delete User'
             );
             return $error;
-            // throw new NotFoundException('Could Not Delete User');
         }
     }
 
@@ -202,8 +197,6 @@ class EloquentUserRepository implements UserRepositoryInterface {
     {
         $validator = Validator::make($data, $rules);
 
-        // if($validator->fails()) throw new ValidationException($validator);
-
         if($validator->fails()) {
             $message = $validator->messages();
             $error = array(
@@ -211,9 +204,6 @@ class EloquentUserRepository implements UserRepositoryInterface {
                 'message' => $message
             );
             return $error;
-            // $response = Response::make($error, 400);
-            // $response->headers->set('Content-Type', 'application/json');
-            // return $response;
         }
 
         return true;

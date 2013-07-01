@@ -2,18 +2,13 @@
 namespace admin;
 
 use BaseController;
-use UserRepositoryInterface;
 use RoleRepositoryInterface;
-use Auth;
-use Lang;
-use View;
-use Confide;
-use Redirect;
-use API;
 use Role;
 use Permission;
+use Lang;
+use View;
+use Redirect;
 use Input;
-use Session;
 use Datatables;
 
 /*
@@ -26,13 +21,6 @@ use Datatables;
 */
 
 class RoleController extends BaseController {
-
-	/**
-	* User Repository Interface
-	*
-	* @var User
-	*/
-    protected $users;
 
     /**
 	* Role Repository Interface
@@ -54,13 +42,11 @@ class RoleController extends BaseController {
 	* @param UserRepositoryInterface $users
 	* @param RoleRepositoryInterface $roles
 	* @param Model $permissions
-	*
 	* @param Permission $permissions
 	*/
-    public function __construct(UserRepositoryInterface $users, RoleRepositoryInterface $roles, Permission $permissions)
+    public function __construct(RoleRepositoryInterface $roles, Permission $permissions)
     {
         parent::__construct();
-        $this->users = $users;
         $this->roles = $roles;
         $this->permissions = $permissions;
         $this->meta = array(
@@ -90,7 +76,7 @@ class RoleController extends BaseController {
     /**
      * Show the form for creating a new role
      *
-     * @return view
+     * @return View
      */
     public function create()
     {
@@ -113,14 +99,14 @@ class RoleController extends BaseController {
     {
         $role = $this->roles->store(Input::all());
 
-        // Handle the repository possible errors
+        // Handle the repository possible errors.
         if(is_array($role)) {
             $errors = $role['message'];
             return Redirect::action('admin\RoleController@create')
                             ->withErrors($errors)
                             ->withInput(Input::all());
         } else {
-            // Redirect with success message
+            // Redirect with success message.
             return Redirect::action('admin\RoleController@edit', $role->id)
                             ->with('success', Lang::get('admin/roles/messages.create.success'));
         }
@@ -141,19 +127,20 @@ class RoleController extends BaseController {
     /**
      * Show the form for editing a role
      *
-     * @return view
+     * @return View
      */
     public function edit($id)
     {
-        // Get the data needed for the view.
+
         $role = $this->roles->findById($id);
 
-        // Handle the repository possible errors
+        // Handle the repository possible errors.
         if(is_array($role)) {
             return Redirect::action('admin\RoleController@index')
                             ->with('error', Lang::get('admin/roles/messages.does_not_exist'));
         }
 
+        // Get the data needed for the view.
         $permissions = $this->permissions->preparePermissionsForDisplay($role->perms()->get());
         $rules = Role::$rules;
         $meta = $this->meta;
@@ -167,6 +154,7 @@ class RoleController extends BaseController {
     * Update the specified role
     *
     * @param int $id
+    *
     * @return Response
     */
     public function update($id)
@@ -174,13 +162,14 @@ class RoleController extends BaseController {
         // Update the role with the PUT request data.
         $role = $this->roles->update($id, Input::all());
 
-        // Handle the repository possible errors
+        // Handle the repository possible errors.
         if(is_array($role)) {
             $errors = $role['message'];
             return Redirect::action('admin\RoleController@edit', $id)
                             ->withErrors($errors)
                             ->withInput(Input::all());
         } else {
+            // Redirect with success message.
             return Redirect::action('admin\RoleController@edit', $id)
                             ->with('success', Lang::get('admin/roles/messages.update.success'));
         }
@@ -190,6 +179,7 @@ class RoleController extends BaseController {
     * Remove the specified role
     *
     * @param int $id
+    *
     * @return Response
     */
     public function destroy($id)
@@ -197,7 +187,7 @@ class RoleController extends BaseController {
         // Delete a role with the corresponding ID.
         $role = $this->roles->destroy($id);
 
-        // If the repository throws an exception $role will be a JSON string with our errors.
+        // Handle the repository possible errors.
         if(is_array($role)) {
             $errors = $role['message'];
             if ($role['code'] === '403') {
@@ -208,6 +198,7 @@ class RoleController extends BaseController {
             return Redirect::action('admin\RoleController@index')
                             ->with('error', $message);
         } else {
+            // Redirect with success message.
             return Redirect::action('admin\RoleController@index')
                             ->with('success', Lang::get('admin/roles/messages.delete.success'));
         }
