@@ -6,6 +6,7 @@ Laravel 4 Bootstrap Starter Site is a sample application for beginning developme
 
 It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
 
+[README](https://github.com/marcelod/Laravel-4-Bootstrap-Starter-Site/blob/master/readme.md) file in Portuguese.
 
 ## Features
 
@@ -335,6 +336,7 @@ $howOldAmI = Carbon::createFromDate(1975, 5, 21)->age;
 $noonTodayLondonTime = Carbon::createFromTime(12, 0, 0, 'Europe/London');
 
 $worldWillEnd = Carbon::createFromDate(2012, 12, 21, 'GMT');
+?>
 ```
 
 For full usage see [Carbon](https://github.com/briannesbitt/Carbon)
