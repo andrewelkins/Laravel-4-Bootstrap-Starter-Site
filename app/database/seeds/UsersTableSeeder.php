@@ -6,7 +6,6 @@ class UsersTableSeeder extends Seeder {
     {
         DB::table('users')->delete();
 
-
         $users = array(
             array(
                 'username'      => 'admin',

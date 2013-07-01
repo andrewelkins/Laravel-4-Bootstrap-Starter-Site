@@ -1,45 +1,49 @@
-@extends('admin/layouts/modal')
+@extends('admin.templates.modal')
+
+{{-- Extra CSS styles --}}
+@section('syles')
+<style type="text/css"></style>
+@stop
 
 {{-- Content --}}
 @section('content')
+
+	<div class="page-header">
+		<h3>{{ $meta['title'] }}</h3>
+	</div>
+
 	<!-- Tabs -->
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
-		</ul>
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
+	</ul>
 	<!-- ./ tabs -->
-	{{-- Edit Blog Comment Form --}}
-	<form class="form-horizontal" method="post" action="" autocomplete="off">
-		<!-- CSRF Token -->
-		<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-		<!-- ./ csrf token -->
 
-		<!-- Tabs Content -->
-		<div class="tab-content">
-			<!-- General tab -->
-			<div class="tab-pane active" id="tab-general">
+	{{-- Edit a comment form --}}
+	<!-- Form -->
+	{{ Former::horizontal_open()
+		->id('edit')
+		->rules($rules)
+		->method('PUT')
+		->action('admin/comments/' . $comment->id) }}
 
-				<!-- Content -->
-				<div class="control-group {{{ $errors->has('content') ? 'error' : '' }}}">
-					<label class="control-label" for="content">Content</label>
-					<div class="controls">
-						<textarea class="full-width span10 wysihtml5" name="content" value="content" rows="10">{{{ Input::old('content', $comment->content) }}}</textarea>
-						{{{ $errors->first('content', '<span class="help-inline">:message</span>') }}}
-					</div>
-				</div>
-				<!-- ./ content -->
-			</div>
-			<!-- ./ general tab -->
-		</div>
-		<!-- ./ tabs content -->
+	{{ Former::token() }}
 
-		<!-- Form Actions -->
-		<div class="control-group">
-			<div class="controls">
-				<element class="btn-cancel close_popup">Cancel</element>
-				<button type="reset" class="btn">Reset</button>
-				<button type="submit" class="btn btn-success">Update</button>
-			</div>
-		</div>
-		<!-- ./ form actions -->
-	</form>
+	{{-- For some weird reason "Former::populate($comment)" does not work here!! No clue why need to look into --}}
+
+	{{-- Dirty Fix: --}}
+	{{ Former::populateField('content', $comment->content) }}
+
+		@include('admin.comments.form')
+
+	{{ Former::close() }}
+	<!-- ./ form -->
+
+@stop
+
+{{-- Extra JavaScripts --}}
+@section('scripts')
+<script type="text/javascript">
+	$('.wysihtml5').wysihtml5();
+    $(prettyPrint);
+</script>
 @stop
