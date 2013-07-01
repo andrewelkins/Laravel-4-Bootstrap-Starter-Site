@@ -120,7 +120,6 @@ return array(
         'Basset\BassetServiceProvider', // Better Asset Management
         'Robbo\Presenter\PresenterServiceProvider', // Presenter
         'Bllim\Datatables\DatatablesServiceProvider', // Datatables
-        'Teepluss\Api\ApiServiceProvider', // API service
 		'Former\FormerServiceProvider', // Former
 
         /* Uncomment for use in development */
@@ -201,7 +200,6 @@ return array(
         'String'          => 'Andrew13\Helpers\String', // String
         'Carbon'          => 'Carbon\Carbon', // Carbon
         'Datatables'      => 'Bllim\Datatables\Datatables', // DataTables
-        'API' 			  => 'Teepluss\Api\Facades\Api', // API service
 		'Former' 		  => 'Former\Facades\Illuminate', // Former
     ),
 
