@@ -29,14 +29,6 @@ App::bind('RoleRepositoryInterface', 'EloquentRoleRepository');
 // Route::model('role', 'Role');
 
 /**
- * API Group
- */
-Route::group(array('prefix' => 'api/v1'), function()
-{
-    Route::resource('user', 'api\v1\UserController');
-});
-
-/**
  * Admin Group
  */
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
