@@ -74,6 +74,7 @@ class UserController extends ApiController {
 	 * Response to a GET request to api/v1/user/$id
 	 *
 	 * @param  int  $id
+	 *
 	 * @return Response
 	 */
 	public function show($id)
@@ -85,6 +86,7 @@ class UserController extends ApiController {
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id
+	 *
 	 * @return Response
 	 */
 	public function edit($id)
@@ -93,9 +95,10 @@ class UserController extends ApiController {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified user
 	 *
 	 * @param  int  $id
+	 *
 	 * @return Object
 	 */
 	public function update($id)
@@ -104,9 +107,10 @@ class UserController extends ApiController {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified user
 	 *
 	 * @param  int  $id
+	 *
 	 * @return Response
 	 */
 	public function destroy($id)

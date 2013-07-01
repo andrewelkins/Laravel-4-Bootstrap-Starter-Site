@@ -1,4 +1,4 @@
-@extends('frontend.user.template')
+@extends('frontend.user.templates.default')
 
 {{-- Extra CSS styles --}}
 @section('syles')
@@ -8,7 +8,7 @@
 {{-- Content --}}
 @section('content')
 	<div class="page-header">
-		<h3>Login</h3>
+		<h3>{{ $meta['title'] }}</h3>
 	</div>
 
 	{{-- Login form --}}

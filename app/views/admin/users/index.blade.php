@@ -1,4 +1,4 @@
-@extends('admin.users.template')
+@extends('admin.users.templates.default')
 
 {{-- Extra CSS styles --}}
 @section('syles')
@@ -7,6 +7,7 @@
 
 {{-- Content --}}
 @section('content')
+
 	<div class="page-header">
 		<h3>
 			{{{ $meta['title'] }}}

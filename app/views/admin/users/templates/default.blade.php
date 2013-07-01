@@ -2,7 +2,7 @@
 
 {{-- Main CSS Files --}}
 @section('css')
-	{{ Basset::show('public.css') }}
+	{{ Basset::show('admin.css') }}
 @stop
 
 {{-- Extra CSS styles --}}
@@ -28,16 +28,17 @@
 
 {{-- Navigation Bar --}}
 @section('navbar')
-	@include('layouts.nav')
+	@include('admin.layouts.nav')
 @stop
 
+{{-- Footer --}}
 @section('footer')
 	@include('layouts.footer')
 @stop
 
 {{-- Main Javascript Files --}}
 @section('js')
-	{{ Basset::show('public.js') }}
+	{{ Basset::show('admin.js') }}
 @stop
 
 {{-- Extra JavaScripts --}}

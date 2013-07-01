@@ -28,9 +28,10 @@
 
 {{-- Navigation Bar --}}
 @section('navbar')
-	@include('layouts.nav-admin')
+	@include('admin.layouts.nav')
 @stop
 
+{{-- Footer --}}
 @section('footer')
 	@include('layouts.footer')
 @stop

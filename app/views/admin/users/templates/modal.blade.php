@@ -26,15 +26,6 @@
 	{{{ $meta['description'] }}}
 @stop
 
-{{-- Navigation Bar --}}
-@section('navbar')
-	@include('layouts.nav-admin')
-@stop
-
-@section('footer')
-	@include('layouts.footer')
-@stop
-
 {{-- Main Javascript Files --}}
 @section('js')
 	{{ Basset::show('admin.js') }}

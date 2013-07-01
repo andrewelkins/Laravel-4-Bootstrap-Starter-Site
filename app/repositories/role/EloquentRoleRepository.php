@@ -12,7 +12,7 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
      */
     public function findAll()
     {
-        return Role::all();
+        return Role::get();
     }
 
 	/**

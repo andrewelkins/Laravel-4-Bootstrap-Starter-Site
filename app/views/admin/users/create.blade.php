@@ -1,12 +1,13 @@
-@extends('frontend.user.templates.default')
+@extends('admin.users.templates.modal')
 
 {{-- Extra CSS styles --}}
 @section('syles')
-	<style type="text/css"></style>
+<style type="text/css"></style>
 @stop
 
 {{-- Content --}}
 @section('content')
+
 	<div class="page-header">
 		<h3>{{ $meta['title'] }}</h3>
 	</div>
@@ -17,25 +18,24 @@
 	</ul>
 	<!-- ./ tabs -->
 
-	{{-- Edit a profile form --}}
+	{{-- Create a user form --}}
 	<!-- Form -->
 	{{ Former::horizontal_open()
-		->id('edit')
+		->id('create')
 		->rules($rules)
 		->method('POST')
-		->action('user/edit') }}
+		->action('admin/users') }}
 
 	{{ Former::token() }}
 
-	{{ Former::populate($user) }}
+		@include('admin.users.form')
 
-		@include('frontend.user.form')
-
-	{{ Form::close() }}
+	{{ Former::close() }}
 	<!-- ./ form -->
+
 @stop
 
 {{-- Extra JavaScripts --}}
 @section('scripts')
-	<script type="text/javascript"></script>
+<script type="text/javascript"></script>
 @stop

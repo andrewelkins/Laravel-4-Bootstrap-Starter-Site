@@ -65,7 +65,7 @@ class UserController extends BaseController {
         $user = Auth::user();
         $rules = $user->getUpdateRules();
         $meta = $this->meta;
-        $meta['title'] = Lang::get('user/title.user_management');
+        $meta['title'] = Lang::get('user/user.profile');
 
         return View::make('frontend/user/index', compact('user','rules', 'meta'));
     }
@@ -85,7 +85,7 @@ class UserController extends BaseController {
         // $user = API::get('api/v1/user/create');
         $rules = User::$rules;
         $meta = $this->meta;
-        $meta['title'] = Lang::get('user/title.create_a_new_user');
+        $meta['title'] = Lang::get('user/user.register');
 
         return View::make('frontend/user/create', compact('user', 'rules', 'meta'));
     }
@@ -100,15 +100,16 @@ class UserController extends BaseController {
         $user = $this->users->store(Input::all());
         // $user = API::post('api/v1/user', Input::all());
 
-        // If the API throws a ValidationException $user will be a JSON string with our errors.
-        if(is_string($user)) {
-            $errors = json_decode($user, true);
+        // Handle the repository possible errors
+        if(is_array($user)) {
+            $errors = $user['message'];
             return Redirect::action('frontend\UserController@getCreate')
-                            ->withErrors($errors);
+                            ->withErrors($errors)
+                            ->withInput(Input::all());
         } else {
             // Redirect with success message
             return Redirect::action('frontend\UserController@getLogin')
-                            ->with('success', Lang::get('confide::confide.alerts.account_created'));
+                            ->with('success', Lang::get('user/user.user_account_created'));
         }
     }
 
@@ -122,17 +123,17 @@ class UserController extends BaseController {
         // If we are not authentified, redirect to the login page.
         if(Auth::guest()) return Redirect::action('frontend\UserController@getLogin');
 
-        $user = $this->users->edit(Auth::user()->id, Input::all());
+        $user = $this->users->update(Auth::user()->id, Input::all());
         // $user = API::put('api/v1/user/' . Auth::user()->id, Input::all());
 
-        // If the API throws a ValidationException $user will be a JSON string with our errors.
+        // If the repository throws a ValidationException $user will be a JSON string with our errors.
         if(is_string($user)) {
             $errors = json_decode($user, true);
             return Redirect::action('frontend\UserController@getIndex')
                             ->withErrors($errors);
         } else {
             return Redirect::action('frontend\UserController@getIndex')
-                            ->with('success', 'Profile edited!');
+                            ->with('success', Lang::get('user/user.user_account_updated'));
         }
     }
 
@@ -148,7 +149,7 @@ class UserController extends BaseController {
         }
 
         $meta = $this->meta;
-        $meta['title'] = 'login';
+        $meta['title'] = Lang::get('user/user.login');
 
         return View::make('frontend/user/login', compact('title', 'meta'));
     }

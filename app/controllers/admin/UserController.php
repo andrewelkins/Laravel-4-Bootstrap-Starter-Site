@@ -64,7 +64,7 @@ class UserController extends BaseController {
      *
      * @return View
      */
-    public function getIndex()
+    public function index()
     {
         // Get the data needed for the view.
         $meta = $this->meta;
@@ -78,18 +78,130 @@ class UserController extends BaseController {
     /**
      * Show the form for creating a new user
      *
-     * @return View
+     * @return view
      */
-    public function getCreate()
+    public function create()
     {
-        // All possible roles.
+        // Get the data needed for the view.
         $roles = $this->roles->findAll();
-
-        // Set the page title.
-        $title = Lang::get('admin/users/title.create_a_new_user');
+        $rules = User::$rules;
+        $meta = $this->meta;
+        $meta['title'] = Lang::get('admin/users/title.create_a_new_user');
 
         // Show the create user form page.
-        return View::make('admin/users/create', compact('roles', 'title'));
+        return View::make('admin/users/create', compact('roles', 'meta', 'rules'));
+    }
+
+    /**
+     * Stores a new user account
+     *
+     * @return Redirect
+     */
+    public function store()
+    {
+        $user = $this->users->store(Input::all());
+        // $user = API::post('api/v1/user', Input::all());
+
+        // Handle the repository possible errors
+        if(is_array($user)) {
+            $errors = $user['message'];
+            return Redirect::action('admin\UserController@create')
+                            ->withErrors($errors)
+                            ->withInput(Input::all());
+        } else {
+            // Redirect with success message
+            $id = $user->id;
+            return Redirect::action('admin\UserController@edit', array($id))
+                            ->with('success', Lang::get('admin/users/messages.create.success'));
+        }
+    }
+
+    /**
+    * Display the specified user
+    *
+    * @param  int $id
+    *
+    * @return method We only want to edit users in the administration.
+    */
+    public function show($id)
+    {
+        return $this->edit($id);
+    }
+
+    /**
+     * Show the form for editing a user
+     *
+     * @return view
+     */
+    public function edit($id)
+    {
+        // Get the data needed for the view.
+        $user = $this->users->findById($id);
+
+        // Handle the repository possible errors
+        if(is_array($user)) {
+            return Redirect::action('admin\UserController@index')
+                            ->with('error', Lang::get('admin/users/messages.does_not_exist'));
+        }
+
+        $roles = $this->roles->findAll();
+        $rules = $user->getUpdateRules();
+        $meta = $this->meta;
+        $meta['title'] = Lang::get('admin/users/title.user_update');
+
+        // Show the create user form page.
+        return View::make('admin/users/edit', compact('user', 'roles', 'meta', 'rules'));
+    }
+
+    /**
+    * Update the specified user
+    *
+    * @param int $id
+    * @return Response
+    */
+    public function update($id)
+    {
+        // Update the user with the PUT request data.
+        $user = $this->users->update($id, Input::all());
+        // $user = API::put('api/v1/user/' . Auth::user()->id, Input::all());
+
+        // Handle the repository possible errors
+        if(is_array($user)) {
+            $errors = $user['message'];
+            return Redirect::action('admin\UserController@edit')
+                            ->withErrors($errors)
+                            ->withInput(Input::all());
+        } else {
+            return Redirect::action('admin\UserController@edit', array($id))
+                            ->with('success', Lang::get('admin/users/messages.edit.success'));
+        }
+    }
+
+    /**
+    * Remove the specified user
+    *
+    * @param int $id
+    * @return Response
+    */
+    public function destroy($id)
+    {
+        // Delete a user with the corresponding ID.
+        $user = $this->users->destroy($id);
+
+        // If the repository throws an exception $user will be a JSON string with our errors.
+        if(is_array($user)) {
+            $errors = $user['message'];
+            if ($user['code'] === '403') {
+                $message = Lang::get('admin/users/messages.delete.impossible');
+            } else {
+                $message = Lang::get('admin/users/messages.delete.error');
+            }
+            return Redirect::action('admin\UserController@index')
+                            ->with('error', $message);
+        } else {
+            return Redirect::action('admin\UserController@index')
+                            ->with('success', Lang::get('admin/users/messages.delete.success'));
+        }
     }
 
     /**
@@ -97,7 +209,7 @@ class UserController extends BaseController {
      *
      * @return Datatables JSON
      */
-    public function getData()
+    public function data()
     {
         $users = User::leftjoin('assigned_roles', 'assigned_roles.user_id', '=', 'users.id')
                     ->leftjoin('roles', 'roles.id', '=', 'assigned_roles.role_id')
