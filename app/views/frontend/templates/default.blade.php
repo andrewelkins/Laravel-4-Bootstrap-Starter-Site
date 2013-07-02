@@ -17,13 +17,13 @@
 
 {{-- Meta Information --}}
 @section('keywords')
-	{{{ $meta['keywords'] }}}
+{{{ $meta['keywords'] }}}
 @stop
 @section('author')
-	{{{ $meta['author'] }}}
+{{{ $meta['author'] }}}
 @stop
 @section('description')
-	{{{ $meta['description'] }}}
+{{{ $meta['description'] }}}
 @stop
 
 {{-- Navigation Bar --}}

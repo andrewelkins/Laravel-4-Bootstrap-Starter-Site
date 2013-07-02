@@ -35,9 +35,9 @@
 	{{ Former::populateField('title', $post->title) }}
 	{{ Former::populateField('slug', $post->slug) }}
 	{{ Former::populateField('content', $post->content) }}
-	{{ Former::populateField('meta-title', $post->meta_title) }}
-	{{ Former::populateField('meta-description', $post->meta_description) }}
-	{{ Former::populateField('meta-keywords', $post->meta_keywords) }}
+	{{ Former::populateField('meta_title', $post->meta_title) }}
+	{{ Former::populateField('meta_description', $post->meta_description) }}
+	{{ Former::populateField('meta_keywords', $post->meta_keywords) }}
 
 
 		@include('admin.posts.form')

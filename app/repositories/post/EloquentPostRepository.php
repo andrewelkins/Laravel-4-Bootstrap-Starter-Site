@@ -116,6 +116,8 @@ class EloquentPostRepository implements PostRepositoryInterface {
 	{
 		$post = $this->findById($id);
 
+//        var_dump($data);die();
+unset($data['meta_title']);
 		$validator = $this->validate($data, Post::$updateRules);
 
         // Check if validator returned an array with the error code and the message

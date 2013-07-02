@@ -24,15 +24,15 @@
 	<!-- Meta Data tab -->
 	<div class="tab-pane" id="tab-meta-data">
 		<!-- Meta Title -->
-		{{ Former::text('meta-title') }}
+		{{ Former::text('meta_title')->label('Meta Title') }}
 		<!-- ./ meta title -->
 
 		<!-- Meta Description -->
-		{{ Former::text('meta-description') }}
+		{{ Former::text('meta_description')->label('Meta Description') }}
 		<!-- ./ meta description -->
 
 		<!-- Meta Keywords -->
-		{{ Former::text('meta-keywords') }}
+		{{ Former::text('meta_keywords')->label('Meta Keywords') }}
 		<!-- ./ meta keywords -->
 
 	</div>

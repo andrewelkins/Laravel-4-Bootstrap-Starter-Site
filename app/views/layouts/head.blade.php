@@ -20,7 +20,7 @@
 	<meta name="google-site-verification" content="">
 
 	<!-- Dublin Core Metadata : http://dublincore.org/ -->
-	<meta name="DC.title" content="Project Name">
+	<meta name="DC.title" content="Laravel 4 Bootstrap Starter Site">
 	<meta name="DC.subject" content="@yield('description')">
 	<meta name="DC.creator" content="@yield('author')">
 
