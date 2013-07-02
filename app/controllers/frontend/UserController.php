@@ -161,12 +161,12 @@ class UserController extends BaseController {
     public function postLogin()
     {
         $input = array(
-            'email'    => Input::get( 'email' ), // May be the username too
-            'username' => Input::get( 'email' ), // so we have to pass both
+            'email'    => Input::get( 'username' ), // May be the username too
+            'username' => Input::get( 'username' ), // so we have to pass both
             'password' => Input::get( 'password' ),
             'remember' => Input::get( 'remember' ),
         );
-
+        
         // If you wish to only allow login from confirmed users, call logAttempt
         // with the second parameter as true.
         // logAttempt will check if the 'email' perhaps is the username.

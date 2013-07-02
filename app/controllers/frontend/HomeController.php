@@ -139,7 +139,7 @@ class HomeController extends BaseController {
         } else {
             // Redirect with success message.
             return Redirect::action('frontend\HomeController@getView', $post->slug)
-                            ->with('success', Lang::get('home/comments/messages.create.success'));
+                            ->with('success', Lang::get('admin/comments/messages.create.success'));
         }
     }
 

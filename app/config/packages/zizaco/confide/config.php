@@ -12,7 +12,7 @@ return array(
     |
     */
 
-    'throttle_limit' => 5,
+    'throttle_limit' => 50,
 
     /*
     |--------------------------------------------------------------------------
@@ -60,5 +60,21 @@ return array(
 
     'email_reset_password' =>       'confide::emails.passwordreset', // with $user and $token.
     'email_account_confirmation' => 'confide::emails.confirm', // with $user
+
+    /*
+    |--------------------------------------------------------------------------
+    | Signup (create) Cache
+    |--------------------------------------------------------------------------
+    |
+    | By default you will only can only register once every 2 hours
+    | (120 minutes) because you are not able to receive a registration
+    | email more often then that.
+    |
+    | You can adjust that limitation here, set to 0 for no caching.
+    | Time is in minutes.
+    |
+    |
+    */
+    'signup_cache' => 0,
 
 );

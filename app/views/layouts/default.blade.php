@@ -21,13 +21,13 @@
 		@yield('content')
 		<!-- ./ content -->
 
-		<!-- Footer -->
-		@yield('footer')
-		<!-- ./ Footer -->
 
 	</div>
 	<!-- ./ container -->
 
+    <!-- Footer -->
+    @yield('footer')
+    <!-- ./ Footer -->
 	<!-- Javascripts -->
 	{{-- Main Javascript Files --}}
 	@yield('js')
