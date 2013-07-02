@@ -116,7 +116,7 @@ class EloquentPostRepository implements PostRepositoryInterface {
 	{
 		$post = $this->findById($id);
 
-		$validator = $this->validate($data, Post::$rules);
+		$validator = $this->validate($data, Post::$updateRules);
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
