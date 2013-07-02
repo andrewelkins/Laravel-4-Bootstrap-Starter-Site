@@ -12,12 +12,14 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 		"twitter/bootstrap": "dev-master",
+		"fortawesome/font-awesome": "3.2.*@dev",
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
 		"jasonlewis/basset": "dev-master",
 		"robclancy/presenter": "1.0.*",
         "j20/php-uuid": "dev-master",
-        "bllim/datatables": "*"
+        "bllim/datatables": "*",
+		"anahkiasen/former": "dev-agnostic"
 	},
 	"require-dev": {
         "way/generators": "dev-master",
@@ -26,7 +28,7 @@
         "barryvdh/laravel-ide-helper": "dev-master",
         "leafo/lessphp": "v0.3.9",
         "natxet/CssMin": "dev-master",
-        "lmammino/jsmin4assetic": "1.0.*"
+        "mrclay/minify": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -36,6 +38,7 @@
             "app/library",
 			"app/models",
 			"app/presenters",
+			"app/repositories",
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/library"

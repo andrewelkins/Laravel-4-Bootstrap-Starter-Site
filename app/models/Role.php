@@ -1,23 +1,23 @@
 <?php
 
 use Zizaco\Entrust\EntrustRole;
-use Robbo\Presenter\PresentableInterface;
 
-class Role extends EntrustRole implements PresentableInterface
-{
+class Role extends EntrustRole {
 
     /**
-     * Same presenter as the user model.
-     * @return Robbo\Presenter\Presenter|UserPresenter
+     * Ardent validation rules
+     *
+     * @var array
      */
-    public function getPresenter()
-    {
-        return new UserPresenter($this);
-    }
+    public static $rules = array(
+      'name' => 'required|between:4,16'
+    );
 
     /**
-     * Provide an array of strings that map to valid roles.
+     * Provide an array of strings that map to valid roles
+     *
      * @param array $roles
+     *
      * @return stdClass
      */
     public function validateRoles( array $roles )
@@ -31,4 +31,5 @@ class Role extends EntrustRole implements PresentableInterface
         }
         return $roleValidation;
     }
+
 }
