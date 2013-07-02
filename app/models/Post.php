@@ -5,20 +5,36 @@ use Robbo\Presenter\PresentableInterface;
 
 class Post extends Eloquent implements PresentableInterface {
 
-	/**
-	 * Deletes a blog post and all
-	 * the associated comments.
-	 *
-	 * @return bool
-	 */
-	public function delete()
-	{
-		// Delete the comments
-		$this->comments()->delete();
+	public $autoHydrateEntityFromInput = true;
 
-		// Delete the blog post
-		return parent::delete();
-	}
+	protected $fillable = array(
+	        'title',
+	        'content',
+	        'meta_title',
+	        'meta_description',
+	        'meta_keywords'
+	    );
+
+	/**
+	* Ardant Validation rules
+	*
+	* @var array
+	*/
+	    public static $rules = array(
+	        'title' => 'required|unique:posts',
+	        'content' => 'required',
+	        'meta_title' => 'max:255',
+	        'meta_description' => 'max:255',
+	        'meta_keywords' => 'max:512',
+	    );
+
+	    public static $updateRules = array(
+	        'title' => 'required',
+	        'content' => 'required',
+            'meta_title' => 'max:255',
+            'meta_description' => 'max:255',
+            'meta_keywords' => 'max:512',
+	    );
 
 	/**
 	 * Returns a formatted post content entry,

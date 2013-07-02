@@ -2,8 +2,14 @@
 
 use Zizaco\Entrust\EntrustPermission;
 
-class Permission extends EntrustPermission
-{
+class Permission extends EntrustPermission {
+
+    /**
+     * Provide an array of strings that map to valid permissions
+     *
+     * @param  array $permissions Available persmissions.
+     * @return array Prepared permissions.
+     */
     public function preparePermissionsForDisplay($permissions)
     {
         // Get all the available permissions
@@ -20,9 +26,11 @@ class Permission extends EntrustPermission
     }
 
     /**
-     * Convert from input array to savable array.
-     * @param $permissions
-     * @return array
+     * Prepares permission input array for save
+     *
+     * @param  array $permissions Selected permissions.
+     *
+     * @return array Prepared permissions.
      */
     public function preparePermissionsForSave( $permissions )
     {

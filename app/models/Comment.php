@@ -2,7 +2,22 @@
 
 use Robbo\Presenter\PresentableInterface;
 
-class Comment extends Eloquent implements PresentableInterface{
+class Comment extends Eloquent implements PresentableInterface {
+
+    public $autoHydrateEntityFromInput = true;
+
+    protected $fillable = array(
+        'content'
+    );
+
+    /**
+    * Ardant Validation rules
+    *
+    * @var array
+    */
+    public static $rules = array(
+        'content' => 'required|min:3'
+    );
 
 	/**
 	 * Get the comment's content.

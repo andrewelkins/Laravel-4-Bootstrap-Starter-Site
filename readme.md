@@ -6,15 +6,15 @@ Laravel 4 Bootstrap Starter Site is a sample application for beginning developme
 
 It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
 
-
+<a name="features"></a>
 ## Features
 
 * Twitter Bootstrap 2.3.0
+* Font Awesome 3.2
 * Custom Error Pages
 	* 403 for forbidden page accesses
 	* 404 for not found pages
 	* 500 for internal server errors
-* [Confide](#confide) for Authentication and Authorization
 * Back-end
 	* User and Role management
 	* Manage blog posts and comments
@@ -26,12 +26,14 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 	* User account area
 	* Simple Blog functionality
 * Packages included:
-	* [Confide](#confide)
-	* [Entrust](#entrust)
-	* [Ardent](#ardent)
-	* [Carbon](#carbon)
-	* [Basset](#basset)
+    * [Confide](#confide) for Authentication and Authorization
+    * [Entrust](#entrust) for Roles and Permissions
+	* [Ardent](#ardent) for Validation
+	* [Carbon](#carbon) for Human Readable Time
+    * [Former](#former) for Awesome Forms
+	* [Basset](#basset) for Asset Management
 	* [Presenter](#presenter)
+* Development packages included:
 	* [Generators](#generators)
 
 ## Issues
@@ -108,13 +110,6 @@ You will now be copying the initial configuration file inside this folder before
 
         'key' => 'YourSecretKey!!!',
 
-        'providers' => array(
-        /* Uncomment for use in development */
-            'Way\Generators\GeneratorsServiceProvider', // Generators
-            'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
-
-        ),
-
     );
 
 ### Step 4: Configure Database
@@ -168,7 +163,7 @@ Should work, if not try
 
 ### Step 9: Build Assets
 
-If you have setup your environments, basset will know you are in development and will build the assets automatically and will not apply certain filters such as minification or combination to keep the code readable. You will need to make the folder where the assets are built writable:
+If you have setup your environments, basset will know you are in development and will build the assets automatically and will not apply certain filters such as minification or combination to keep the code readable. You will need to make the folder where the assets are built writable if you run into any `mkdir()` errors:
 
 If permissions are set correctly:
 
@@ -210,11 +205,18 @@ Navigate to /admin
     password: admin
 
 -----
-## Application Structure
+## Troubleshooting
 
-The structure of this starter site is the same as default Laravel 4 with one exception.
-This starter site adds a `library` folder. Which, houses application specific library files.
-The files within library could also be handled within a composer package, but is included here as an example.
+### Styles are not displaying
+
+You may need to recompile the assets for basset. This is easy to with one command.
+
+```
+php artisan basset:build
+```
+
+-----
+## Application Environments
 
 ### Development
 
@@ -265,15 +267,34 @@ By default debugging is enabled. Before you go to production you should disable 
     'debug' => false,
 ```
 
-## Troubleshooting
+-----
+## Application Structure
 
-### Styles are not displaying
+The structure of this starter site is an extention of the default Laravel 4.
 
-You may need to recompile the assets for basset. This is easy to with one command.
+### Models
 
-```
-php artisan basset:build
-```
+They all have a repository in charge of handling all the Eloquent ORM queries.
+
+### Views
+
+Views are split into 3 main parts:
+
+* The main layout blade file which will in turn include a head layout file and yield sections to the template and final view.
+* The template blade file is extending this layout and is in charge of setting various things:
+    * The main Basset CSS and JS collections to use.
+    * The meta information: title, keywords, author and description. Needed for good SEO.
+    * The navigation and footer layouts to be used.
+* The actual blade view called by the controller. It will fill the content section and extend a template.
+
+It is important to keep as much logic out of the views as possible. But any logic related to the layout of the data itself still has a place in the views.
+
+All of the needed data has to be sent by the controllers. Their job is to gather data from the models, or repositories in our case, and format it all to be displayed nicely by the views.
+
+### Controllers
+
+Controllers are namespaced according to their use. You will see two folders, admin and frontend.
+Each will have similar controllers that will be the link between our routes, repositories and views.
 
 -----
 ## Included Package Information
@@ -290,7 +311,8 @@ Used for the user auth and registration. In general for user controllers you'll 
 
     }
 
-For full usage see [Zizaco/Confide Documentation](https://github.com/zizaco/confide)
+* For full usage see [Zizaco/Confide Documentation](https://github.com/zizaco/confide)
+* Go back to [features list](#features).
 
 <a name="entrust"></a>
 ## Entrust Role Solution
@@ -306,14 +328,16 @@ Entrust provides a flexible way to add Role-based Permissions to Laravel4.
 
     }
 
-For full usage see [Zizaco/Entrust Documentation](https://github.com/zizaco/entrust)
+* For full usage see [Zizaco/Entrust Documentation](https://github.com/zizaco/entrust)
+* Go back to [features list](#features).
 
 <a name="ardent"></a>
 ## Ardent - Used for handling repetitive validation tasks.
 
 Self-validating, secure and smart models for Laravel 4's Eloquent ORM
 
-For full usage see [Ardent Documentation](https://github.com/laravelbook/ardent)
+* For full usage see [Ardent Documentation](https://github.com/laravelbook/ardent)
+* Go back to [features list](#features).
 
 <a name="carbon"></a>
 ## Carbon
@@ -321,7 +345,6 @@ For full usage see [Ardent Documentation](https://github.com/laravelbook/ardent)
 A fluent extension to PHPs DateTime class.
 
 ```php
-<?php
 printf("Right now is %s", Carbon::now()->toDateTimeString());
 printf("Right now in Vancouver is %s", Carbon::now('America/Vancouver'));  //implicit __toString()
 $tomorrow = Carbon::now()->addDay();
@@ -337,7 +360,39 @@ $noonTodayLondonTime = Carbon::createFromTime(12, 0, 0, 'Europe/London');
 $worldWillEnd = Carbon::createFromDate(2012, 12, 21, 'GMT');
 ```
 
-For full usage see [Carbon](https://github.com/briannesbitt/Carbon)
+* For full usage see [Carbon](https://github.com/briannesbitt/Carbon)
+* Go back to [features list](#features).
+
+<a name="former"></a>
+## Former
+
+Former aims to re-laravelize form creation by transforming each field into its own model, with its own methods and attributes. This means that you can do this sort of stuff :
+
+```php
+Former::horizontal_open()
+  ->id('MyForm')
+  ->secure()
+  ->rules(array( 'name' => 'required' ))
+  ->method('GET')
+
+  Former::xlarge_text('name')
+    ->class('myclass')
+    ->value('Joseph')
+    ->required();
+
+  Former::textarea('comments')
+    ->rows(10)->columns(20)
+    ->autofocus();
+
+  Former::actions()
+    ->large_primary_submit('Submit'),
+    ->large_inverse_reset('Reset')
+
+Former::close()
+```
+
+* For full usage see [Anahkiasen/former Documentation](https://github.com/Anahkiasen/former)
+* Go back to [features list](#features).
 
 <a name="basset"></a>
 ## Basset
@@ -361,7 +416,8 @@ Compiling assets
 
 I would recommend using development collections for development instead of compiling .
 
-For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basset/4.0)
+* For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basset/4.0)
+* Go back to [features list](#features).
 
 <a name="presenter"></a>
 ## Presenter
@@ -373,7 +429,8 @@ The core idea is the relationship between two classes: your model full of data a
 For instance, if you have a `User` object you might have a `UserPresenter` presenter to go with it. To use it all you do is `$userObject = new UserPresenter($userObject);`.
 The `$userObject` will function the same unless a method is called that is a member of the `UserPresenter`. Another way to think of it is that any call that doesn't exist in the `UserPresenter` falls through to the original object.
 
-For full usage see [Presenter Readme](https://github.com/robclancy/presenter)
+* For full usage see [Presenter Readme](https://github.com/robclancy/presenter)
+* Go back to [features list](#features).
 
 <a name="generators"></a>
 ## Laravel 4 Generators
@@ -390,7 +447,8 @@ Laravel 4 Generators package provides a variety of generators to speed up your d
 - `generate:form`
 - `generate:test`
 
-For full usage see [Laravel 4 Generators Readme](https://github.com/JeffreyWay/Laravel-4-Generators/blob/master/readme.md)
+* For full usage see [Laravel 4 Generators Readme](https://github.com/JeffreyWay/Laravel-4-Generators/blob/master/readme.md)
+* * Go back to [features list](#features).
 
 
 -----

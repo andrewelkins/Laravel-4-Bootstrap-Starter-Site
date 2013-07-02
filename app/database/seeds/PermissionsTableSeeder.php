@@ -6,31 +6,30 @@ class PermissionsTableSeeder extends Seeder {
     {
         DB::table('permissions')->delete();
 
-
         $permissions = array(
             array(
-                'name'      => 'manage_blogs',
-                'display_name'      => 'manage blogs'
+                'name'          => 'manage_users',
+                'display_name'  => 'manage users'
             ),
             array(
-                'name'      => 'manage_posts',
-                'display_name'      => 'manage posts'
+                'name'          => 'manage_permissions',
+                'display_name'  => 'Manage permissions'
             ),
             array(
-                'name'      => 'manage_comments',
-                'display_name'      => 'manage comments'
+                'name'          => 'manage_roles',
+                'display_name'  => 'manage roles'
             ),
             array(
-                'name'      => 'manage_users',
-                'display_name'      => 'manage users'
+                'name'          => 'manage_posts',
+                'display_name'  => 'manage posts'
             ),
             array(
-                'name'      => 'manage_roles',
-                'display_name'      => 'manage roles'
+                'name'          => 'manage_comments',
+                'display_name'  => 'manage comments'
             ),
             array(
-                'name'      => 'post_comment',
-                'display_name'      => 'post comment'
+                'name'          => 'post_comment',
+                'display_name'  => 'post comment'
             ),
         );
 
@@ -40,31 +39,31 @@ class PermissionsTableSeeder extends Seeder {
 
         $permissions = array(
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 1
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 2
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 3
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 4
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 5
             ),
             array(
-                'role_id'      => 1,
+                'role_id'      => 2,
                 'permission_id' => 6
             ),
             array(
-                'role_id'      => 2,
+                'role_id'      => 1,
                 'permission_id' => 6
             ),
         );

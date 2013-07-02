@@ -13,7 +13,7 @@ return array(
 		'success' => 'Usuário criado com sucesso.'
 	),
 
-    'edit' => array(
+    'update' => array(
         'impossible' => 'Você não pode se editar.',
         'error'      => 'Houve um problema ao editar o usuário. Por favor, tente novamente.',
         'success'    => 'O usuário foi editado com sucesso.'

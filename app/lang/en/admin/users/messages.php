@@ -13,7 +13,7 @@ return array(
 		'success' => 'User created successfully.'
 	),
 
-    'edit' => array(
+    'update' => array(
         'impossible' => 'You cannot edit yourself.',
         'error'      => 'There was an issue editing the user. Please try again.',
         'success'    => 'The user was edited successfully.'
