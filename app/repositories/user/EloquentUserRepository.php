@@ -108,7 +108,8 @@ class EloquentUserRepository implements UserRepositoryInterface {
         $user->username = $data['username'];
         $user->email = $data['email'];
 
-        if(array_key_exists('password', $data)) {
+        // Make sure the field is not empty. We assume if its empty they are updating another field.
+        if(array_key_exists('password', $data) && !empty($data['password'])) {
             $user->password = $data['password'];
             // The password confirmation will be removed from model
             // before saving.
