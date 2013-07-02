@@ -118,6 +118,10 @@ class EloquentUserRepository implements UserRepositoryInterface {
             unset($user->password_confirmation);
         }
 
+        if (array_key_exists('confirmed', $data)) {
+            $user->confirmed = $data['confirmed'];
+        }
+
         $user->prepareRules($oldUser, $user);
 
         // Save if valid. Password field will be hashed before save

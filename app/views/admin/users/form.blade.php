@@ -23,10 +23,8 @@
 		<!-- ./ password confirm -->
 
 		<!-- Activation Status -->
-		{{ Former::checkbox('confirmed')
-					->label('Confirmed?')
-				  	->text('what is this?')
-				  	->check() }}
+		{{ Former::select('confirmed')
+				  	->options(array('0' => Lang::get('general.no'), '1' => Lang::get('general.yes') )) }}
 		<!-- ./ activation status -->
 
 		{{-- Former::select('roles')->fromQuery($roles, 'name', 'id') --}}
