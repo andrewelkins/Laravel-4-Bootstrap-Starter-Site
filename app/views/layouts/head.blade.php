@@ -7,7 +7,7 @@
 
 	<title>
 		@section('title')
-			Project Name
+			Laravel 4 Bootstrap Starter Site
 		@show
 	</title>
 
