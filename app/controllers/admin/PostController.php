@@ -4,6 +4,7 @@ namespace admin;
 use BaseController;
 use PostRepositoryInterface;
 use Post;
+use Comment;
 use Lang;
 use View;
 use Redirect;
@@ -198,15 +199,11 @@ class PostController extends BaseController {
 	*/
     public function data()
     {
-        $posts = Post::leftjoin('comments', 'comments.post_id', '=', 'posts.id')
-                    ->leftjoin('users', 'users.id', '=' , 'posts.user_id')
-                    ->select(array('posts.id', 'posts.title', 'comments.post_id as comments', 'users.username as poster', 'posts.created_at'));
-
+        $posts = Post::leftjoin('users', 'users.id', '=' , 'posts.user_id')
+                    ->select(array('posts.id', 'posts.title', 'posts.title as comments', 'users.username as poster', 'posts.created_at'));
 
         return Datatables::of($posts)
-        //->add_column(Lang::get('admin/blogs/table.comments'), '{{ DB::raw('COUNT(posts.id) AS posts') }}')
-        ->edit_column('comments', '{{ DB::table(\'comments\')->where(\'post_id\', \'=\', $id)->count() }}')
-
+        ->edit_column('comments', '{{ Comment::where(\'post_id\', $id)->count() }}')
         ->add_column('actions', '<a href="{{{ URL::to(\'admin/posts/\' . $id . \'/edit\' ) }}}"
 									class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
 									<a href="#delete-modal"
@@ -215,9 +212,7 @@ class PostController extends BaseController {
 									data-id="{{{ $id }}}"
 									data-title="{{{ $title }}}">{{{ Lang::get(\'button.delete\') }}}</a>
 					')
-
         ->remove_column('id')
-
         ->make();
     }
 
