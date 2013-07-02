@@ -10,6 +10,7 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 ## Features
 
 * Twitter Bootstrap 2.3.0
+* Font Awesome 3.2
 * Custom Error Pages
 	* 403 for forbidden page accesses
 	* 404 for not found pages
@@ -29,8 +30,10 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
     * [Entrust](#entrust) for Roles and Permissions
 	* [Ardent](#ardent) for Validation
 	* [Carbon](#carbon) for Human Readable Time
+    * [Former](#former) for Awesome Forms
 	* [Basset](#basset) for Asset Management
 	* [Presenter](#presenter)
+* Development packages included:
 	* [Generators](#generators)
 
 ## Issues
@@ -107,13 +110,6 @@ You will now be copying the initial configuration file inside this folder before
 
         'key' => 'YourSecretKey!!!',
 
-        'providers' => array(
-        /* Uncomment for use in development */
-            'Way\Generators\GeneratorsServiceProvider', // Generators
-            'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
-
-        ),
-
     );
 
 ### Step 4: Configure Database
@@ -167,7 +163,7 @@ Should work, if not try
 
 ### Step 9: Build Assets
 
-If you have setup your environments, basset will know you are in development and will build the assets automatically and will not apply certain filters such as minification or combination to keep the code readable. You will need to make the folder where the assets are built writable:
+If you have setup your environments, basset will know you are in development and will build the assets automatically and will not apply certain filters such as minification or combination to keep the code readable. You will need to make the folder where the assets are built writable if you run into any `mkdir()` errors:
 
 If permissions are set correctly:
 
@@ -365,6 +361,37 @@ $worldWillEnd = Carbon::createFromDate(2012, 12, 21, 'GMT');
 ```
 
 * For full usage see [Carbon](https://github.com/briannesbitt/Carbon)
+* Go back to [features list](#features).
+
+<a name="former"></a>
+## Former
+
+Former aims to re-laravelize form creation by transforming each field into its own model, with its own methods and attributes. This means that you can do this sort of stuff :
+
+```php
+Former::horizontal_open()
+  ->id('MyForm')
+  ->secure()
+  ->rules(array( 'name' => 'required' ))
+  ->method('GET')
+
+  Former::xlarge_text('name')
+    ->class('myclass')
+    ->value('Joseph')
+    ->required();
+
+  Former::textarea('comments')
+    ->rows(10)->columns(20)
+    ->autofocus();
+
+  Former::actions()
+    ->large_primary_submit('Submit'),
+    ->large_inverse_reset('Reset')
+
+Former::close()
+```
+
+* For full usage see [Anahkiasen/former Documentation](https://github.com/Anahkiasen/former)
 * Go back to [features list](#features).
 
 <a name="basset"></a>

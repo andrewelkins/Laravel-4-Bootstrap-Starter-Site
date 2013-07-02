@@ -6,17 +6,29 @@
 class EloquentPostRepository implements PostRepositoryInterface {
 
     /**
-     * Return all possible posts
+     * All possible posts
      *
      * @return object All posts.
      */
     public function findAll()
     {
-        return Post::get();
+        return Post::get(); // Use get or all ?
+    }
+
+    /**
+     * Paginated posts by descending creation date
+     *
+     * @param  int    $pagination Number of items to return.
+     *
+     * @return object Selected posts
+     */
+    public function paginateAllDesc($pagination)
+    {
+        return Post::orderBy('created_at', 'DESC')->paginate($pagination);
     }
 
 	/**
-	 * Display the specified post
+	 * Specified post by id
      *
 	 * @param  int $id ID of the post.
      *
@@ -25,6 +37,28 @@ class EloquentPostRepository implements PostRepositoryInterface {
 	public function findById($id)
     {
         $post = Post::find($id);
+
+        if (!$post) {
+             $error = array(
+                'code'    => '404',
+                'message' => 'Post Not Found'
+            );
+            return $error;
+        }
+
+        return $post;
+    }
+
+    /**
+     * Specified post by slug
+     *
+     * @param  string $slug Slug of the post.
+     *
+     * @return object Specified post.
+     */
+    public function findBySlug($slug)
+    {
+        $post = Post::where('slug', '=', $slug)->first();
 
         if (!$post) {
              $error = array(
@@ -58,6 +92,7 @@ class EloquentPostRepository implements PostRepositoryInterface {
             $user = Auth::user();
             $post->user_id = $user->id;
             $post->slug = Str::slug($data['title']);
+            $post->save();
             return $post;
         } else {
             // Should not really happen...

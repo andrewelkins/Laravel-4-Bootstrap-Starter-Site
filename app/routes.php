@@ -61,7 +61,9 @@ Route::group(array('prefix' => 'user'), function()
 });
 
 // Home Page
-Route::controller( '/', 'frontend\HomeController');
+Route::get('{postSlug}', 'frontend\HomeController@getView');
+Route::post('{postSlug}', 'frontend\HomeController@postView');
+Route::get('/', array('before' => 'detectLang','uses' => 'frontend\HomeController@getIndex'));
 
 //:: Application Routes ::
 

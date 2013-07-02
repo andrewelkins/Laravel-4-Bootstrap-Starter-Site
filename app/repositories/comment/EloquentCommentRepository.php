@@ -6,7 +6,7 @@
 class EloquentCommentRepository implements CommentRepositoryInterface {
 
     /**
-     * Return all possible comments
+     * All comments
      *
      * @return object All comments.
      */
@@ -16,7 +16,17 @@ class EloquentCommentRepository implements CommentRepositoryInterface {
     }
 
     /**
-     * Display the specified comment
+     * All Comments by descending creation date
+     *
+     * @return object All comments.
+     */
+    public function findByPostDesc($postId)
+    {
+        return Comment::where('post_id', '=', $postId)->orderBy('created_at', 'ASC')->get();
+    }
+
+    /**
+     * Specified comment by id
      *
      * @param  int $id ID of the comment
      *
@@ -43,7 +53,7 @@ class EloquentCommentRepository implements CommentRepositoryInterface {
      *
      * @return object Created comment.
      */
-    public function store($data)
+    public function store($postId, $data)
     {
         $validator = $this->validate($data, Comment::$rules);
 
@@ -56,7 +66,8 @@ class EloquentCommentRepository implements CommentRepositoryInterface {
             // Additional data
             $user = Auth::user();
             $comment->user_id = $user->id;
-            $comment->post_id = $data['post_id'];
+            $comment->post_id = $postId;
+            $comment->save();
             return $comment;
         } else {
             // Should not really happen...

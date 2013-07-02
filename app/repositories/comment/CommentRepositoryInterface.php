@@ -7,9 +7,11 @@ interface CommentRepositoryInterface {
 
 	public function findAll();
 
+	public function findByPostDesc($postId);
+
 	public function findById($id);
 
-	public function store($data);
+	public function store($postId, $data);
 
 	public function update($id, $data);
 

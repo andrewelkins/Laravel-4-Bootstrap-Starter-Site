@@ -16,7 +16,7 @@ class Comment extends Eloquent implements PresentableInterface {
     * @var array
     */
     public static $rules = array(
-        'content' => 'required'
+        'content' => 'required|min:3'
     );
 
 	/**

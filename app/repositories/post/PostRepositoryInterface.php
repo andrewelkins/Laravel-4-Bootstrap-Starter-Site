@@ -7,7 +7,11 @@ interface PostRepositoryInterface {
 
 	public function findAll();
 
+	public function paginateAllDesc($pagination);
+
 	public function findById($id);
+
+    public function findBySlug($slug);
 
 	public function store($data);
 
