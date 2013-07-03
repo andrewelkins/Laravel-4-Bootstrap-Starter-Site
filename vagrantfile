@@ -1,0 +1,89 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Configure this Vagrant Virtual Machine for Laravel 4
+#
+# This Vagrant VM assumes a 'vagrant' environment and various defaults.
+# Feel free to change them in the vagrantstrap file.
+#
+# First make sure the VM hostname matches the environment:
+#
+# bootstrap/start.php:
+#   $env = $app->detectEnvironment(array(
+#           'vagrant' => array('vagrant-laravel4')
+#           ));
+#
+# To use this VM with it's defaults ensure these 3 files exist:
+#
+# app/config/vagrant/app.php:
+#   <?php
+#   return array(
+#       'debug' => true,
+#       'url' => 'http://localhost',
+#       'timezone' => 'UTC',
+#       'key' => 'A8GcqzTd8Pt2EqspPbrQoGnfpbTCUPFq'
+#   );
+#
+# app/config/vagrant/database.php:
+#   <?php
+#   return array(
+#       'fetch' => PDO::FETCH_CLASS,
+#       'default' => 'mysql',
+#       'connections' => array(
+#           'mysql' => array(
+#               'driver'    => 'mysql',
+#               'host'      => 'localhost',
+#               'database'  => 'vagrant',
+#               'username'  => 'vagrant',
+#               'password'  => 'vagrant',
+#               'charset'   => 'utf8',
+#               'collation' => 'utf8_unicode_ci',
+#               'prefix'    => '',
+#           ),
+#       ),
+#   );
+#
+# app/config/vagrant/mail.php:
+#   <?php
+#   return array(
+#       'driver' => 'smtp',
+#       'host' => 'localhost',
+#       'port' => 25,
+#       'from' => array(
+#           'address' => 'info@startersite.com',
+#           'name' => 'Larvel 4 Starter Site'
+#       ),
+#   );
+#
+# To use the built in dev smtp start a new ssh session with:
+#
+#   vagrant ssh
+#
+# Start the smtp catchall server with the alias command:
+#
+#   vsmtp
+#
+# Sent emails will be displayed in the ssh terminal session.
+#
+
+# Configurable variables
+$hostname  = "vagrant-laravel4"
+$http_port = 8080
+
+Vagrant.configure("2") do |config|
+    # Basics.
+    config.vm.box     = "precise32"
+    config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+
+    # Networking.
+    config.vm.hostname = $hostname
+    config.vm.network :forwarded_port, guest: 80, host: $http_port,
+        auto_correct: true
+
+    # Provisioning.
+    config.vm.provision :shell, :path => "vagrantstrap.sh"
+
+    # Set the ownership for Laravel 4.
+    config.vm.synced_folder "app/storage", "/vagrant/app/storage", :owner => 'www-data', :group => 'www-data'
+    config.vm.synced_folder "public/assets/compiled", "/vagrant/public/assets/compiled", :owner => 'www-data', :group => 'www-data'
+end
