@@ -12,6 +12,8 @@ a:hover{
 	color: #5eb2d9;
 }
 
+.navbar a.brand.color { color: #5eb2d9; }
+
 .button a, .button a:visited{
 background:#5eb2d9;
 border-bottom:2px solid #4f99bc;

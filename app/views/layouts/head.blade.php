@@ -45,11 +45,6 @@
 
 	{{-- Extra CSS styles --}}
 	@section('styles')
-		<style type="text/css">
-			body {
-				padding: 60px 0;
-			}
-		</style>
 	@show
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->

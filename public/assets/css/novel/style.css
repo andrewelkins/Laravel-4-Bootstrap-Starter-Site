@@ -65,7 +65,7 @@ ul li{
 
 .sep{
 	height: 5px;
-	background: url("../img/sep.png") repeat;
+	background: url("../../img/novel/sep.png") repeat;
 }
 
 hr{
@@ -79,7 +79,7 @@ height:0px;
 .bor{
 height:5px;
 margin:10px 0px 10px 0px;
-background:url('../img/sep.png') repeat-x;
+background:url('../../img/novel/sep.png') repeat-x;
 }
 
 .center{
@@ -119,7 +119,7 @@ form{
 
 form input, form button, form textarea{
 font-size:12px !important;
-margin:5px 0px;
+margin:0px;
 }
 
 form label{
@@ -140,15 +140,15 @@ font-size:12px;
 }
 
 .form-horizontal .control-label {
-width: 80px;
+width: 120px;
 }
 
 .form-horizontal .controls {
-margin-left: 100px;
+margin-left: 150px;
 }
 
 .form-horizontal .controls:first-child {
-*padding-left: 100px;
+*padding-left: 150px;
 }
 
 .form-horizontal .form-actions {
@@ -342,8 +342,8 @@ text-decoration:none;
 /* Header */
 
 header{
-	padding: 10px 0px 25px 0px;
-	background: #fafafa url("../img/cream.png") repeat;
+	padding: 0px 0px 10px 0px;
+	background: #fafafa url("../../img/novel/cream.png") repeat;
 }
 
 header .logo{
@@ -392,7 +392,6 @@ font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 .navbar{
 	border-top: 0px !important;
 	border-bottom: 0px !important;
-	margin-top: 10px;
 	margin-bottom: 0px;
 }
 
@@ -420,11 +419,13 @@ font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
 .navbar a, .navbar a:visited{
-	color:#666 !important;
+	color:#666;
 }
 
+.navbar .brand { padding: 14px 20px 10px; }
+
 .navbar .nav > li > a, .navbar .nav > li > a:visited{
-	color: #666 !important;
+	color: #666;
 	padding:15px 15px 15px;
 	filter: none !important;
 	-webkit-transition:color 1s ease;
@@ -611,7 +612,7 @@ line-height:40px;
 
 .slider-features{
 	padding: 20px 0px;
-	background: #fafafa url("../img/cream.png") repeat;
+	background: #fafafa url("../../img/novel/cream.png") repeat;
 	border-bottom: 1px solid #ddd;
 }
 
@@ -660,7 +661,7 @@ line-height:40px;
 /* CTA */
 
 .cta .container{
-	background: #eee url("../img/cream.png") repeat;
+	background: #eee url("../../img/novel/cream.png") repeat;
 	padding: 12px 0px;
 	border-radius: 10px;
 	box-shadow: inset 0px 0px 1px #aaa;
@@ -705,7 +706,7 @@ line-height:40px;
 
 .features-two .feat-inner{
 	padding: 20px 10px 10px 10px;
-	background: #fafafa url("../img/cream.png") repeat;
+	background: #fafafa url("../../img/novel/cream.png") repeat;
 	border-radius: 10px;
 	box-shadow: inset 0px 0px 5px #ccc;
 	margin-bottom: 20px;
@@ -1049,7 +1050,7 @@ padding:4px 8px;
 color:#888;
 text-transform:uppercase;
 font-size:11px;
-background:#eee url('../img/cream.png') repeat;
+background:#eee url('../../img/novel/cream.png') repeat;
 }
 
 .blog .meta a, .blog .meta a:visited{
@@ -2032,26 +2033,40 @@ color:#fff;
 
 /* Footer */
 
-footer{
-	background: #65605c url("../img/footer.png") repeat;
-	padding-top: 20px;
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -230px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+    height: 220px;
+}
+
+#footer{
+	background: #65605c url("../../img/novel/footer.png") repeat;
+	padding-top: 5px;
 	padding-bottom: 0px;
-	margin-top: 20px;
 	color: #aaa;
 	font-size: 12px;
 	box-shadow: inset 0px 0px 10px #000;
 }
 
-footer a, footer a:visited{
+#footer a, #footer a:visited{
 	color: #ddd;
 }
 
-footer a:hover{
+#footer a:hover{
 	color: #ccc;
 	text-decoration: underline;
 }
 
-footer hr{
+#footer hr{
 	height: 0px;
 	padding: 0px;
 	margin: 5px 0px;
@@ -2059,28 +2074,28 @@ footer hr{
 	border-bottom: 1px solid #222;
 }
 
-footer h5{
+#footer h5{
 	color: #fff;
 }
 
-footer h6{
+#footer h6{
 	color: #fff;
 }
 
-footer ul{
+#footer ul{
 	margin-left: 0px;
 }
 
-footer ul li{
+#footer ul li{
 	list-style-type: none;
 	margin-bottom: 5px;
 }
 
-footer .widget{
+#footer .widget{
 	margin-bottom: 10px;
 }
 
-footer .copy{
+#footer .copy{
 	margin-bottom: 5px;
 	font-size: 11px;
 }
