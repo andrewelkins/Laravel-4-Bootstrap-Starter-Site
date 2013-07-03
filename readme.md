@@ -54,7 +54,7 @@ See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-
 
 ### Vagrant, or one setup to rule them all.
 
-First get the right tools, [Vagrant v1.2.2](http://downloads.vagrantup.com/tags/v1.2.2) and [VirtualBox 4.2.12](https://www.virtualbox.org/wiki/Download_Old_Builds_4_2). You want these precise versions.
+First get the right tools, [Vagrant v1.2.2](http://downloads.vagrantup.com/tags/v1.2.2) and [VirtualBox v4.2.12](https://www.virtualbox.org/wiki/Download_Old_Builds_4_2). You want these precious versions.
 This project comes with a Vagrant configuration file along with it's bootstrap script to get things up and running. This allows to get this project up and running really fast:
 
     git clone git://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git laravel
