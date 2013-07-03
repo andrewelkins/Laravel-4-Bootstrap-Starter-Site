@@ -7,10 +7,6 @@
 
 {{-- Content --}}
 @section('content')
-	<div class="page-header">
-		<h1>Welcome to the NovelCMS</h1>
-	</div>
-
 <!-- Flex Slider starts -->
 
 <div class="container flex-main">
@@ -20,42 +16,27 @@
             <div class="flex-image flexslider">
                 <ul class="slides">
                     <!-- Each slide should be enclosed inside li tag. -->
-
-                    <!-- Slide #1 -->
                     <li>
-                        <!-- Image -->
-                        <img src="assets/img/novel/photos/l1.jpg" alt="" />
-                        <!-- Caption -->
+                        <img src="http://placehold.it/940x350" alt="" />
                         <div class="flex-caption">
-                            <!-- Title -->
-                            <h3>God's Own Theme</h3>
-                            <!-- Para -->
-                            <p>Ut commodo ullamcorper risus nec mattis. Fusce imperdiet ornare dignissim. Donec aliquet convallis tortor, et placerat quam posuere posuere. Morbi tincidunt posuere turpis eu laoreet. </p>
-                        </div>
-                    </li>
-
-                    <!-- Slide #2 -->
-                    <li>
-                        <img src="assets/img/novel/photos/l2.jpg" alt="" />
-                        <div class="flex-caption">
-                            <h3>Powerful and Professional</h3>
-                            <p>Ut commodo ullamcorper risus nec mattis. Fusce imperdiet ornare dignissim. Donec aliquet convallis tortor, et placerat quam posuere posuere. Morbi tincidunt posuere turpis eu laoreet. </p>
+                            <h3>NovelCMS</h3>
+                            <p>Laravel 4 based CMS. Perfect introduction in to Laravel 4 development.</p>
                         </div>
                     </li>
 
                     <li>
-                        <img src="assets/img/novel/photos/l3.jpg" alt="" />
+                        <img src="http://placehold.it/940x350" alt="" />
                         <div class="flex-caption">
-                            <h3>Its a Revolution</h3>
-                            <p>Ut commodo ullamcorper risus nec mattis. Fusce imperdiet ornare dignissim. Donec aliquet convallis tortor, et placerat quam posuere posuere. Morbi tincidunt posuere turpis eu laoreet. </p>
+                            <h3>Easy</h3>
+                            <p>Laravel 4 is an elegant PHP framework. Download NovelCMS to get busy working with it.</p>
                         </div>
                     </li>
 
                     <li>
-                        <img src="assets/img/novel/photos/l4.jpg" alt="" />
+                        <img src="http://placehold.it/940x350" alt="" />
                         <div class="flex-caption">
-                            <h3>Lowest Price in Market</h3>
-                            <p>Ut commodo ullamcorper risus nec mattis. Fusce imperdiet ornare dignissim. Donec aliquet convallis tortor, et placerat quam posuere posuere. Morbi tincidunt posuere turpis eu laoreet. </p>
+                            <h3>Speed</h3>
+                            <p>NovelCMS enhances your development workflow by taking care of tedious CRUD actions.</p>
                         </div>
                     </li>
 
@@ -75,26 +56,28 @@
         <div class="row">
             <div class="span5">
                 <div class="ctas">
-                    <!-- Title and Para -->
-                    <h5>Professional Product Ever Made in Internet</h5>
-                    <p>Sed diam nisi, pulvinar vitae molestie vitae molestie hendreri hendrerit, venenatis eget mauris.</p>
+                    <h5>NovelCMS is the easiest way to get started with Laravel</h5>
+                    <p>
+                        It provides a perfect starting application for Laravel 4.
+                        It is a fully functioning application, providing your application a solid foundation.
+                    </p>
                 </div>
             </div>
             <div class="span4">
                 <div class="ctas">
                     <!-- List -->
                     <ul>
-                        <li>Very Cheap in Market. Check it today.</li>
-                        <li>Professional and Powerful. Don't miss it.</li>
-                        <li>1000% Guanrantee. No Worries. No Probs.</li>
+                        <li>Laravel 4</li>
+                        <li>Built with professional developers in mind.</li>
+                        <li>Use when speed, quality, and ease of use are important.</li>
                     </ul>
                 </div>
             </div>
             <div class="span3">
                 <div class="ctas">
                     <!-- Button -->
-                    <div class="button"><a href="#">Buy it Today for $99</a></div>
-                    <p>limited period offer</p>
+                    <div class="button"><a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/archive/master.zip">Download it Today - FREE</a></div>
+                    <p>Follow the project on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a></p>
                 </div>
             </div>
         </div>
