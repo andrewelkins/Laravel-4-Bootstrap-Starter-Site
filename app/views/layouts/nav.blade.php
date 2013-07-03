@@ -15,6 +15,7 @@
 
                     <ul class="nav">
                         <li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
+                        <li {{ (Request::is('blog') ? ' class="active"' : '') }}><a href="{{{ URL::to('blog') }}}">Blog</a></li>
                     </ul>
 
                     <ul class="nav pull-right">

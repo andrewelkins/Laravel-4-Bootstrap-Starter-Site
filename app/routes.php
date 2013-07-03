@@ -50,6 +50,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 /**
  * Frontend Group
  */
+// :: User Routes ::
 Route::group(array('prefix' => 'user'), function()
 {
     Route::get('confirm/{code}', 'frontend\UserController@getConfirm');
@@ -60,26 +61,19 @@ Route::group(array('prefix' => 'user'), function()
     Route::controller( '/', 'frontend\UserController');
 });
 
-// Home Page
-Route::get('{postSlug}', 'frontend\HomeController@getView');
-Route::post('{postSlug}', 'frontend\HomeController@postView');
-Route::get('/', array('before' => 'detectLang','uses' => 'frontend\HomeController@getIndex'));
-
-//:: Application Routes ::
-
-// # Filter for detect language
-// Route::when('contact-us','detectLang');
-
+//:: Static Page Routes ::
 // # Contact Us Static Page
-// Route::get('contact-us', function()
+// Route::get('contact-us', array('before' => 'detectLang', function()
 // {
 //     // Return about us page
 //     return View::make('site/contact-us');
-// });
+// }));
 
-// # Posts - Second to last set, match slug
-// Route::get('{postSlug}', 'BlogController@getView');
-// Route::post('{postSlug}', 'BlogController@postView');
+// :: Blog Routes ::
+Route::get('blog', array('before' => 'detectLang','uses' => 'frontend\HomeController@getBlogIndex'));
+// Posts - Second to last set, match slug
+Route::get('{postSlug}', 'frontend\HomeController@getView');
+Route::post('{postSlug}', 'frontend\HomeController@postView');
 
-// # Index Page - Last route, no matches
-// Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+// Home Page - Last route, no matches
+Route::get('/', array('before' => 'detectLang','uses' => 'frontend\HomeController@getIndex'));
