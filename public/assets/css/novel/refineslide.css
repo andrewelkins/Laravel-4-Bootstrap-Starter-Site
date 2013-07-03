@@ -1,0 +1,164 @@
+/* 
+ * jQuery RefineSlide plugin v0.3
+ * Copyright 2012, Alex Dunphy
+ * MIT License (http://www.opensource.org/licenses/mit-license.php)
+ *
+ * Base styles
+ */
+
+.rs-wrap:after,
+.rs-slider:after,
+.rs-thumbwrap:after,
+.rs-arrows:after,
+.rs-caption:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    line-height: 0;
+    visibility: hidden;
+}
+
+/* ===[ Slider ]=== */
+
+.rs-wrap {
+    position: relative;
+    max-width: 100%;
+}
+
+.rs-slide-bg { *zoom: 1 }
+
+.rs-slider > li > a { display: block }
+
+.rs-slider > li {
+    list-style: none;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 -100% 0 0;
+    padding: 0;
+    float: left;
+    position: relative;
+}
+
+    .rs-slider > li > a {
+        padding: 0;
+        background: none;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+
+    .rs-slider > li img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        -ms-interpolation-mode: bicubic;
+    }
+
+/* ===[ Thumbnails ]=== */
+
+.rs-thumb-wrap { *zoom: 1 }
+
+    .rs-thumb-wrap > a {
+        display: block;
+        float: left;
+        position: relative;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+        .rs-thumb-wrap > a > img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            -ms-interpolation-mode: bicubic;
+        }
+
+.rs-thumbwrap > a:first-child { margin-left: 0!important }
+
+/* ===[ Arrows ]=== */
+
+.rs-arrows .rs-next,
+.rs-arrows .rs-prev { z-index: 1 }
+
+.rs-arrows:hover .rs-next,
+.rs-arrows:hover .rs-prev { z-index: 2 }
+
+/* ===[ Captions ]=== */
+
+.rs-caption {
+    position: absolute;
+    max-height: 100%;
+    overflow: auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    bottom: 0;
+    left: 0;
+}
+
+.rs-caption.rs-top-left {
+    top: 0;
+    bottom: auto;
+}
+
+.rs-caption.rs-top-right {
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+}
+
+.rs-caption.rs-bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.rs-caption.rs-bottom-right {
+    right: 0;
+    left: auto;
+    border-bottom: none;
+    border-right: none;
+}
+
+.rs-caption.rs-top {
+    top: 0;
+    bottom: auto;
+    width: 100%!important;
+}
+
+.rs-caption.rs-bottom { width: 100%!important }
+
+.rs-caption.rs-left {
+    top: 0;
+    height: 100%;
+}
+
+.rs-caption.rs-right {
+    top: 0;
+    left: auto;
+    right: 0;
+    height: 100%;
+}
+
+/* ===[ Grid ]=== */
+
+.rs-grid {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.rs-gridlet {
+    position: absolute;
+    opacity: 1;
+}
+
+@media screen and (max-width: 480px) { 
+	.rs-caption { opacity: 0!important }
+}
