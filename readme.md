@@ -484,13 +484,15 @@ Laravel 4 Generators package provides a variety of generators to speed up your d
 
 This project comes with a Vagrant development environment already setup.
 
+Install [Vagrant v1.2.2](http://downloads.vagrantup.com/tags/v1.2.2) and [VirtualBox v4.2.12](https://www.virtualbox.org/wiki/Download_Old_Builds_4_2). You want these specific versions.
+
 After Step 1 of the installation of the project you have the option to use Vagrant instead of setting up a web server on your computer. Simply navigate to your project home and run:
 
     vagrant up
 
 When you run it for the first time it will download a default image of Ubuntu 12.04, this box file is roughly 200MB so it may take a little on the first run. Let it do it's thing (disregard the error messages) and you will have a virtual machine running Ubuntu 12.04, Apache 2, PHP 5.4 and MySQL among other things needed for a Laravel 4 project to run.
 
-Your project folder is synced to the /vagrant folder in the Vagrant virtual machine.
+Your project folder is synced to the /vagrant folder in the Vagrant VM. This means changes work both way, inside and outside the VM, you manipulate the same files.
 
 Everything will already be configured, you only need to issue a few more commands. You have two options for doing so.
 
@@ -502,19 +504,19 @@ Another option is to pass commands directly via Vagrant like so:
 
 The VM will already have the environment, databases and file permissions set.
 
+There is a script you can run with `install-laravel` that will run composer install --dev and then php artisan migrate and db:seed for you to set it all up in one command.
+
+On the host OS navigate to http://127.0.0.1:8080 to see your site! You can change the port in the `vagrantfile` at the root of the project, you can also checkout `vagrantstrap.sh` to see that nothing shady was installed in that VM :)
+
 Here is a trick to test mail in this environment. Open a new vagrant ssh sessions and run `pysmtpd` which is a script that starts this command:
 
     sudo python -m smtpd -n -c DebuggingServer localhost:25
 
 If you did not change the configurations in the ***app/config/vagrant*** folder when your application tries to send a email it will be displayed in this ssh session!
 
-There is another script you can run with `install-laravel` that will run composer install --dev and then php artisan migrate and db:seed for you to set it all up in one command.
+When you are done simply exit the ssh session and `vagrant suspend` to suspend the VM in it's current state until you need it again with `vagrant resume`
 
-On the host OS navigate to http://127.0.0.1:8080 to see your site! You can change the port in the `vagrantfile` at the root of the project, you can also checkout `vagrantstrap.sh` to see that nothing shady was installed in that VM ^^
-
-When you are done simply `vagrant suspend` to suspend the VM in it's current state until you need it again with `vagrant resume`
-
-You can of course use this Vagrant configuration in other projects! See the two Vagrant files for configuration options.
+You can of course use this Vagrant configuration in other projects. See the two Vagrant files for configuration options.
 
 * For full usage see [Vagrant Documentation](http://http://docs.vagrantup.com/v2/)
 * Go back to [features list](#features).
