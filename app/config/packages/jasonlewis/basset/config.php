@@ -44,16 +44,16 @@ return array(
             $collection->directory('assets/js', function($collection)
             {
                 $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
-                $collection->requireDirectory('../../../vendor/twitter/bootstrap/js');
-                $collection->requireDirectory('//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.js');
-                $collection->requireDirectory('//cdn.jsdelivr.net/prettyphoto/3.1.5/css/prettyPhoto.css');
-                $collection->requireDirectory('novel/filter.js');
-                $collection->requireDirectory('jquery/jquery.flexslider-min.js');
-                $collection->requireDirectory('jquery/jquery.cslider.js');
-                $collection->requireDirectory('jquery/modernizr.custom.28468.js');
-                $collection->requireDirectory('//cdnjs.cloudflare.com/ajax/libs/jquery.caroufredsel/6.1.0/jquery.carouFredSel.packed.js');
-                $collection->requireDirectory('jquery/jquery.refineslide.min.js');
-                $collection->requireDirectory('novel/custom.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js');
+                $collection->add('//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.js');
+                $collection->add('jquery/jquery.prettyPhoto.js');
+                $collection->add('novel/filter.js');
+                $collection->add('jquery/jquery.flexslider-min.js');
+                $collection->add('jquery/jquery.cslider.js');
+                $collection->add('jquery/modernizr.custom.28468.js');
+                $collection->add('//cdnjs.cloudflare.com/ajax/libs/jquery.caroufredsel/6.1.0/jquery.carouFredSel.packed.js');
+                $collection->add('jquery/jquery.refineslide.min.js');
+                $collection->add('novel/custom.js');
             })->apply('JsMin');
         },
 

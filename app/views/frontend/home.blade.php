@@ -127,6 +127,7 @@
 <div class="container">
     <div class="row">
         <div class="span12">
+            <h4 class="title">Happy NovelCMS installations</h4>
             <!-- Clients images -->
             <div class="clients">
                 <img src="http://placehold.it/150x55" alt="" />
