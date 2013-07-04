@@ -2,7 +2,7 @@
 <div id="delete-modal" class="modal hide fade in" style="display: none; ">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3><div id="modal-title"><div></h3>
+		<h3><div id="modal-title"></div></h3>
 	</div>
 	<div class="modal-body">
 		{{-- Delete Resource Form --}}
