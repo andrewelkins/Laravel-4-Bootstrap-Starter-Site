@@ -1,7 +1,7 @@
 @extends('admin.templates.modal')
 
 {{-- Extra CSS styles --}}
-@section('syles')
+@section('styles')
 <style type="text/css"></style>
 @stop
 

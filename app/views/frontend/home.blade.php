@@ -1,7 +1,7 @@
 @extends('frontend.templates.default')
 
 {{-- Extra CSS styles --}}
-@section('syles')
+@section('styles')
 	<style type="text/css"></style>
 @stop
 
