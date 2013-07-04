@@ -15,6 +15,7 @@ echo ''
 echo 'Created for Laravel 4 Starter Site'
 echo ''
 echo 'github.com/andrew13/Laravel-4-Bootstrap-Starter-Site'
+echo ''
 # ---------------
 #  Various fixes
 # ---------------
@@ -161,8 +162,10 @@ echo '...done'
 # -------------
 #  Final setup
 # -------------
+
 # Add aliases
 sed -i '$a alias art="php artisan"' /home/vagrant/.bashrc
+
 # Create script for python smtpd
 SMTPD=$(cat <<EOF
 #!/usr/bin/env bash
@@ -203,3 +206,84 @@ chmod +x /usr/local/bin/install-laravel
 echo "CREATE DATABASE IF NOT EXISTS $database" | mysql
 echo "CREATE USER '$username'@'localhost' IDENTIFIED BY '$password'" | mysql
 echo "GRANT ALL PRIVILEGES ON $database.* TO '$username'@'localhost' IDENTIFIED BY '$password'" | mysql
+
+# Create default Laravel 4 app/config/vagrant folder template
+mkdir /home/vagrant/templates
+mkdir /home/vagrant/templates/vagrant
+
+# Create app.php
+APP=$(cat <<EOF
+<?php
+   return array(
+       'debug' => true,
+       'url' => 'http://localhost',
+       'timezone' => 'UTC',
+       'key' => 'A8GcqzTd8Pt2EqspPbrQoGnfpbTCUPFq'
+   );
+EOF
+)
+echo "${APP}" > /home/vagrant/templates/vagrant/app.php
+
+# Create database.php
+DATABASE=$(cat <<EOF
+<?php
+   return array(
+       'fetch' => PDO::FETCH_CLASS,
+       'default' => 'mysql',
+       'connections' => array(
+           'mysql' => array(
+               'driver'    => 'mysql',
+               'host'      => 'localhost',
+               'database'  => 'vagrant',
+               'username'  => 'vagrant',
+               'password'  => 'vagrant',
+               'charset'   => 'utf8',
+               'collation' => 'utf8_unicode_ci',
+               'prefix'    => '',
+           ),
+       ),
+   );
+EOF
+)
+echo "${DATABASE}" > /home/vagrant/templates/vagrant/database.php
+
+# Create mail.php
+MAIL=$(cat <<EOF
+<?php
+   return array(
+       'driver' => 'smtp',
+       'host' => 'localhost',
+       'port' => 25,
+       'from' => array(
+           'address' => 'info@startersite.com',
+           'name' => 'Larvel 4 Starter Site'
+       ),
+   );
+EOF
+)
+echo "${MAIL}" > /home/vagrant/templates/vagrant/mail.php
+
+echo ''
+echo ' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '                 Bootstrapping done!'
+echo ' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo ''
+echo ' If you cloned the laravel 4 stater site from'
+echo ''
+echo 'github.com/andrew13/Laravel-4-Bootstrap-Starter-Site'
+echo ''
+echo ' Your next steps are:'
+echo ' $ vagrant ssh'
+echo ' vagrant@vagrant-laravel4:~$ install-laravel'
+echo ' vagrant@vagrant-laravel4:~$ pysmtpd'
+echo ''
+echo ' Open http://127.0.0.1:8080 in your host OS'
+echo ''
+echo 'emails sent will open in the session running pysmtpd'
+echo ''
+echo ' Enjoy your new Laravel 4 ready virtual machine!'
+echo ''
+echo ' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo ''
+echo 'For more information to setup other projects just as fast check the vagrantfile'
+echo ''
