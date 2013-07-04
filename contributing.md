@@ -10,11 +10,11 @@ We are doing this starter site project for the community and it can only grow so
 
 ## Make Your Changes
 
-* Create a feature/featurename or a hotfix/hotfixname branch on your fork.
+* Create a feature/featurename or a hotfix/versionnumber branch on your fork.
 	* ***Features*** branch off ***develop***.
 	* ***Hotfixes*** branch off ***master***.
 	* Ask in your issue ticket before targeting a ***release*** branch.
-	* Quick way to start your feature branch, `git branch feature/myfeature master` then `git checkout feature/myfeature`.
+	* Quick way to start your feature branch, `git branch feature/myfeature develop` then `git checkout feature/myfeature`.
 * Commit often and in logical units.
 * We are moving to [Codeception](http://codeception.com/) for our testing suite. Add tests to your changes. Only refactoring and documentation changes require no new tests. (This will be edited once the tests are refactored into Codeception suite)
 * These tests must fail without your code, and pass with it.
@@ -23,12 +23,12 @@ We are doing this starter site project for the community and it can only grow so
 ## Submit Your Changes
 
 * Push the branch you worked on to your fork.
-* Submit a pull request on the right branch. Develop for features, Master for hotfixes. Make sure to reference the initial issue you opened with `closes #xxx` in your pull request message.
+* Submit a pull request on the right branch. Develop for features, master for hotfixes. Make sure to reference the initial issue you opened with `closes #xxx` in your pull request message.
 * That's it, the pull request will be discussed and merged.
 
 # Contributing with Git flow
 
-These guidelines will be for official contributors to the project, as a cheat sheet reference.
+These guidelines will be for official contributors to the project, as a cheat sheet reference. But you can also use those tools when you work on your fork. Make sure to add an upstream remote towards our repository so you can fetch and merge changes made to the develop or master branch. Same goes if you are working on an existing feature or hotfix from our repository.
 
 ## Get The Tools
 
@@ -43,15 +43,15 @@ Clone the project:
 	cd project
 	git flow init -d
 
-This will initialize git flow on your machine for the current project with sensible defaults.
+This will initialize git flow tools on your machine for the current project with sensible defaults.
 
 `git branch -a` will give you an idea of what features or hotfixes are already being worked on.
 
 ## Feature Branches
 
-# New Feature
+### New Feature
 
-As with regular pull request, start with by making an [issue](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues/new) for your contribution.
+As with regular pull request, start by making an [issue](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues/new) for your contribution.
 
 Start a new feature on your local repository.
 
@@ -74,11 +74,11 @@ After each commit you make you might want to push your changes as others might a
 
 	git push origin feature/MyFeature
 
-Once you feel your feature is ready do not use the git flow feature finish command! Instead create a pull request from your feature branch to the develop branch. It will then be discussed, corrected and merged. It is better if the feature is merged by someone else that you assigned to the pull request.
+Once you feel your feature is ready do not use the git flow feature finish command! Instead create a pull request from your feature branch to the develop branch referencing the initial issue #xxx. It will then be discussed, corrected and merged. It is better if the feature is merged by someone else that you assigned to the pull request.
 
-# Existing feature
+### Existing feature
 
-When you `git branch -a` there might be a feature already beign worked on that you would like to checkout and work on as well.
+When you `git branch -a` there might be a feature already being worked on that you would like to checkout and contribute to.
 
 	git flow feature pull SomeFeature
 
@@ -97,7 +97,7 @@ Keep pushing commits, usually the maker of the feature should be the one creatin
 
 These are handled in the same manner as feature branches. Only differences are that you will be working on the master branch and hotfixes are named after version numbers.
 
-# New Hotfix
+#### New Hotfix
 
 	git checkout master
 	git pull origin master
