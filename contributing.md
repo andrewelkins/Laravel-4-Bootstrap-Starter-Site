@@ -63,7 +63,7 @@ This creates a new branch called feature/MyFeature, off of the latest develop br
 
 Once you feel the feature is ready to be shared and discussed, publish it.
 
-	git flow publish feature MyFeature
+	git flow feature publish MyFeature
 
 This will create the feature branch on the GitHub repository and track it. Now everytime you go back to working on your feature branch locally, make sure it is up to date as others could now be working on it as well.
 
