@@ -109,7 +109,7 @@ I'll first go into the tools I think you really need to be efficient [Git-Flow](
 
 There are a TON of aliases and shortcuts built in these tools and with autocompletion there is no need to clutter our brain with all those aliases.... but a few still are worth it.
 
-There is only one Git custom alias I add to my shell initialization script, `.zshrc` in our case with zsh.
+There are no good git fetch aliases so I added one to my shell initialization script, `.zshrc` in my case with zsh.
 
 `alias gfo="git fetch origin -v"`
 
@@ -153,8 +153,22 @@ Looking good, another option is `glg` => `git log --stat --max-count=5`
 
 `ggpush` <=> `git push origin feature/featurename`
 
-What will then happen with the pull request of this feature being merged is a `git merge --no-ff feature/featurename` on the develop branch.
+What will then happen with the pull request of this feature being merged on GitHub is a `git merge --no-ff feature/featurename` on the develop branch. Which is exactly what you would do using the Git Flow model.
 
 Most of these aliases are initials of the commands and very easy to remember.
 
-Please comment on this page with your own workflows, we will be happy to add them here!
+The cheat sheet I like to have on a sticky until I commit the commands to memory:
+
+	gfo <=> fetch origin
+	gco name <=> checkout branch
+	ggpur <=> pull with rebase current branch
+	gst <=> status
+	ga -u <=> stage all but untracked (git add -u)
+	gca <=> commit
+	grbi <=> rebase commits before push
+	glo <=> log one line
+	glg <=> log 5 commits
+	ggpush <=> push up
+
+
+Do not hesitate to send us a pull request with your own workflow added here, we will be happy to share it!
