@@ -120,7 +120,7 @@ class UserController extends BaseController {
         // If we are not authentified, redirect to the login page.
         if(Auth::guest()) return Redirect::action('frontend\UserController@getLogin');
 
-        $user = $this->users->update(Auth::user()->id, Input::all());
+        $user = $this->users->find(Auth::user()->id)->update(Input::all());
 
         // Handle the repository possible errors.
         if (is_array($user)) {

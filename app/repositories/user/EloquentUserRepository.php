@@ -3,7 +3,15 @@
 /**
  * Repository for the User model using Eloquent ORM
  */
-class EloquentUserRepository implements UserRepositoryInterface {
+class EloquentUserRepository extends Eloquent implements UserRepositoryInterface
+{
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
     /**
      * Return all possible users
@@ -89,52 +97,48 @@ class EloquentUserRepository implements UserRepositoryInterface {
     /**
      * Update the specified user
      *
-     * @param  int   $id   ID of the user.
      * @param  array $data PUT data from the request.
      *
      * @return object Updated user.
      */
-    public function update($id, $data)
+    public function update(array $data = array())
     {
-        // Find the user.
-        $user = $this->findById($id);
-
-        $validator = $this->validate($data, $user->getUpdateRules());
+        $validator = $this->validate($data, $this->getUpdateRules());
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
 
-        $oldUser = clone $user;
-        $user->username = $data['username'];
-        $user->email = $data['email'];
+        $oldUser = clone $this;
+        $this->username = $data['username'];
+        $this->email = $data['email'];
 
         // Make sure the field is not empty. We assume if its empty they are updating another field.
         if(array_key_exists('password', $data) && !empty($data['password'])) {
-            $user->password = $data['password'];
+            $this->password = $data['password'];
             // The password confirmation will be removed from model
             // before saving.
-            $user->password_confirmation = $data['password_confirmation'];
+            $this->password_confirmation = $data['password_confirmation'];
         } else {
-            unset($user->password);
-            unset($user->password_confirmation);
+            unset($this->password);
+            unset($this->password_confirmation);
         }
 
         if (array_key_exists('confirmed', $data)) {
-            $user->confirmed = $data['confirmed'];
+            $this->confirmed = $data['confirmed'];
         }
 
-        $user->prepareRules($oldUser, $user);
+        $this->prepareRules($oldUser, $this);
 
         // Save if valid. Password field will be hashed before save
-        $user->amend();
+        $this->amend();
 
         if (array_key_exists('roles', $data)) {
-                $user->roles()->sync($data['roles']);
+                $this->roles()->sync($data['roles']);
             } else {
-                $user->roles()->sync(array(1)); // Assign default role.
+                $this->roles()->sync(array(1)); // Assign default role.
             }
 
-        return $user;
+        return $this;
     }
 
     /**
@@ -144,10 +148,10 @@ class EloquentUserRepository implements UserRepositoryInterface {
     *
     * @return
     */
-    public function destroy($id)
+    public static function destroy($id)
     {
         // Find the user.
-        $user = $this->findById($id);
+        $user = self::findById($id);
 
         // Check if we are not trying to delete ourselves.
         // Need to check if Auth::user() works the same here...

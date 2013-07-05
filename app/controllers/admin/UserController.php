@@ -158,7 +158,7 @@ class UserController extends BaseController {
     public function update($id)
     {
         // Update the user with the PUT request data.
-        $user = $this->users->update($id, Input::all());
+        $user = $this->users->find($id)->update(Input::all());
 
         // Handle the repository possible errors.
         if(is_array($user)) {

@@ -46,6 +46,7 @@
                 <!-- Sidebar -->
                 <div class="sidebar">
                     <!-- Widget -->
+                    <!--git co
                     <div class="widget">
                         <h4>Search</h4>
                         <form method="get" id="searchform" action="#" class="form-search">
@@ -53,17 +54,34 @@
                             <button type="submit" class="btn">Search</button>
                         </form>
                     </div>
+                    -->
                     <div class="widget">
                         <h4>Recent Posts</h4>
                         <ul>
-                            @foreach ($recentPosts as $post)
-                            <li><a href="{{ $post->url() }}">{{ Str::limit(String::title($post->title), 50) }}</a></li>
-                            @endforeach
+                            @if ($recentPosts->first() == null)
+                                @foreach ($posts as $post)
+                                <li><a href="{{ $post->url() }}">{{ Str::limit(String::title($post->title), 50) }}</a></li>
+                                @endforeach
+                            @else
+                                @foreach ($recentPosts as $post)
+                                <li><a href="{{ $post->url() }}">{{ Str::limit(String::title($post->title), 50) }}</a></li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                     <div class="widget">
                         <h4>About</h4>
-                        <p>Nulla facilisi. Sed justo dui, id erat. Morbi auctor adipiscing tempor. Phasellus condimentum rutrum aliquet. Quisque eu consectetur erat. Proin rutrum, erat eget posuere semper, <em>arcu mauris posuere tortor</em>,velit at <a href="#">magna sollicitudin cursus</a> ac ultrices magna. Aliquam consequat, purus vitae auctor ullamcorper, sem velit convallis quam, a pharetra justo nunc et mauris. </p>
+                        <p>
+                            <a href="http://www.novelcms.com">NovelCMS</a> is a starter application for Laravel 4.
+                            It is the <em>best</em> way to get started with Laravel 4.
+                            The application provides a solid foundation on which to build an amazing application.
+                        </p>
+                        <p>
+                            <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a> - The project is an open source release.
+                        </p>
+                        <p>
+                            <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/archive/master.zip">Download</a> - To get started, download it.
+                        </p>
                     </div>
                 </div>
             </div>

@@ -109,7 +109,7 @@ class CommentController extends BaseController {
     public function update($id)
     {
         // Update the comment with the PUT request data.
-        $comment = $this->comments->update($id, Input::all());
+        $comment = $this->comments->find($id)->update(Input::all());
 
         // Handle the repository possible errors.
         if(is_array($comment)) {

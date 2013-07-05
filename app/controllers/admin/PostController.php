@@ -147,7 +147,7 @@ class PostController extends BaseController {
     public function update($id)
     {
         // Update the post with the PUT request data.
-        $post = $this->posts->update($id, Input::all());
+        $post = $this->posts->find($id)->update(Input::all());
 
         // Handle the repository possible errors.
         if(is_array($post)) {

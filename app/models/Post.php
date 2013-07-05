@@ -64,7 +64,7 @@ class Post extends Eloquent implements PresentableInterface {
 	 */
 	public function comments()
 	{
-		return $this->hasMany('Comment');
+		return $this->hasMany('Comment', 'post_id');
 	}
 
     /**
