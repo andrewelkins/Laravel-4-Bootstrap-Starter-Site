@@ -3,7 +3,7 @@
 /**
  * Repository for the Comment model using Eloquent ORM
  */
-class EloquentCommentRepository extends Eloquent implements CommentRepositoryInterface
+class EloquentCommentRepository extends Comment implements CommentRepositoryInterface
 {
 
     /**

@@ -3,7 +3,7 @@
 /**
  * Repository for the Role model using Eloquent ORM
  */
-class EloquentRoleRepository extends Eloquent implements RoleRepositoryInterface
+class EloquentRoleRepository extends Role implements RoleRepositoryInterface
 {
 
     /**
@@ -146,7 +146,7 @@ class EloquentRoleRepository extends Eloquent implements RoleRepositoryInterface
      */
     public function instance($data = array())
     {
-        return new Post($data);
+        return new Role($data);
     }
 
     /**

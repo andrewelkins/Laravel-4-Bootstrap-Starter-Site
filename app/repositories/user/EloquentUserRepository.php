@@ -3,7 +3,7 @@
 /**
  * Repository for the User model using Eloquent ORM
  */
-class EloquentUserRepository extends Eloquent implements UserRepositoryInterface
+class EloquentUserRepository extends User implements UserRepositoryInterface
 {
 
     /**
@@ -101,7 +101,7 @@ class EloquentUserRepository extends Eloquent implements UserRepositoryInterface
      *
      * @return object Updated user.
      */
-    public function update(array $data = array())
+    public function updateAndValidate(array $data = array())
     {
         $validator = $this->validate($data, $this->getUpdateRules());
 
@@ -202,7 +202,7 @@ class EloquentUserRepository extends Eloquent implements UserRepositoryInterface
      *
      * @return boot Always true if it returns.
      */
-    public function validate($data, $rules)
+    public function validateOrError($data, $rules)
     {
         $validator = Validator::make($data, $rules);
 

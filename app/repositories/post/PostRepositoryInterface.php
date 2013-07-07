@@ -10,4 +10,6 @@ interface PostRepositoryInterface extends BaseRepositoryInterface
 
 	public function store($data);
 
+    public function validate($data, $rules);
+
 }

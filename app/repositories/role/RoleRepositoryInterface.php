@@ -10,4 +10,6 @@ interface RoleRepositoryInterface extends BaseRepositoryInterface
 
 	public function preparePermissionsForSave($permissions);
 
+    public function validate($data, $rules);
+
 }

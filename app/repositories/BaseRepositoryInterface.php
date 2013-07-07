@@ -13,6 +13,4 @@ interface BaseRepositoryInterface
     public static function destroy($id);
 
     public function instance($data);
-
-    public function validate($data, $rules);
 }
