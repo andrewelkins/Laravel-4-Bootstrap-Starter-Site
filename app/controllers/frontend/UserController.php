@@ -80,8 +80,8 @@ class UserController extends BaseController {
         if(Auth::user()) return Redirect::action('frontend\UserController@getIndex');
 
         // Get the data needed for the view.
-        $user = $this->users->instance();
-        $rules = User::$rules;
+        $user = $this->users;
+        $rules = $user::$rules;
         $meta = $this->meta;
         $meta['title'] = Lang::get('user/user.register');
 
@@ -120,7 +120,7 @@ class UserController extends BaseController {
         // If we are not authentified, redirect to the login page.
         if(Auth::guest()) return Redirect::action('frontend\UserController@getLogin');
 
-        $user = $this->users->update(Auth::user()->id, Input::all());
+        $user = $this->users->find(Auth::user()->id)->updateAndValidate(Input::all());
 
         // Handle the repository possible errors.
         if (is_array($user)) {

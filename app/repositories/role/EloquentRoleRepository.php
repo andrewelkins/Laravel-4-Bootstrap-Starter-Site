@@ -3,7 +3,15 @@
 /**
  * Repository for the Role model using Eloquent ORM
  */
-class EloquentRoleRepository implements RoleRepositoryInterface {
+class EloquentRoleRepository extends Role implements RoleRepositoryInterface
+{
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'roles';
 
     /**
      * Return all possible roles
@@ -71,27 +79,24 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
     /**
      * Update the specified role
      *
-     * @param  int   $id   ID of the role.
      * @param  array $data PUT data from the request.
      *
      * @return object Updated role.
      */
-	public function update($id, $data)
+	public function update(array $data = array())
 	{
-		$role = $this->findById($id);
-
 		$validator = $this->validate($data, Role::$rules);
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
 
-        $role->name = $data['name'];
+        $this->name = $data['name'];
 
-        $role->update($data);
+        $this->update($data);
 
-        $role->perms()->sync($this->preparePermissionsForSave($data['permissions']));
+        $this->perms()->sync($this->preparePermissionsForSave($data['permissions']));
 
-        return $role;
+        return $this;
 	}
 
     /**
@@ -101,9 +106,9 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
      *
      * @return int ID of the role.
      */
-    public function destroy($id)
+    public static function destroy($id)
     {
-        $role = $this->findById($id);
+        $role = self::findById($id);
 
         // Check if we are not trying to delete the admin role.
         if ($role->id === '1') {
@@ -141,7 +146,7 @@ class EloquentRoleRepository implements RoleRepositoryInterface {
      */
     public function instance($data = array())
     {
-        return new Post($data);
+        return new Role($data);
     }
 
     /**

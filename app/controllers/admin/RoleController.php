@@ -160,7 +160,7 @@ class RoleController extends BaseController {
     public function update($id)
     {
         // Update the role with the PUT request data.
-        $role = $this->roles->update($id, Input::all());
+        $role = $this->roles->find($id)->update(Input::all());
 
         // Handle the repository possible errors.
         if(is_array($role)) {

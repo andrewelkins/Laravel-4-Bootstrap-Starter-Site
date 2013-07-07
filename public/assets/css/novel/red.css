@@ -1,0 +1,229 @@
+/* Red Color */
+
+a, a:visited{
+	color: #ff5d5e;
+}
+
+a:hover{
+	color: #df4c4d;
+}
+
+.color{
+	color: #ff5d5e;
+}
+
+.button a, .button a:visited{
+background:#ff5d5e;
+border-bottom:2px solid #df4c4d;
+}
+
+.button a:hover{
+background:#df4c4d;
+}
+
+/* Navigation */
+
+.navbar .nav > li > a:hover{
+	color: #ff5d5e !important;
+	-webkit-transition:color 1s ease;
+	-moz-transition:color 1s ease;
+	-o-transition:color 1s ease;
+	transition:color 1s ease;	
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+	color: #ff5d5e !important;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.active > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
+	border-top-color:#ff5d5e !important;
+	border-bottom-color:#ff5d5e !important;
+}
+
+.dropdown-menu{
+	border-top: 2px solid #ff5d5e !important;
+}
+
+/* Title */
+
+.title i{
+	color: #ff5d5e;
+}
+
+/* Service #2 */
+
+.aserv-img i:hover{
+	background: #ff5d5e;
+}
+
+/* Flex Slider */
+
+.flex-caption h3 {
+	background: #ff5d5e;
+}
+
+/* Slider */
+
+.da-slide h2 span{
+	background: #ff5d5e;
+}
+
+.da-slide p{
+	border-left: 3px solid #ff5d5e;
+}
+
+.da-slide .da-link{
+	border-left:3px solid #ff5d5e;
+}
+
+/* Slider features */
+
+.slider-features i{
+	background: #ff5d5e;
+}
+
+.slider-features h5 a:hover{
+	color: #ff5d5e;
+}
+
+/* Blog */
+
+.posts .tags a{
+background:#ff5d5e;
+border:1px solid #df4c4d;
+border-bottom:3px solid #df4c4d;
+}
+
+.posts .tags a:hover{
+border-bottom:3px solid #ff5d5e;
+background:#df4c4d;
+border:1px solid #df4c4d;
+}
+
+.paging a:hover{
+background: #ff5d5e;
+border:1px solid #df4c4d;
+}
+
+.paging .current{
+background: #ff5d5e;
+border:1px solid #df4c4d;
+}
+
+/* Sidebar */
+
+.sidebar .widget{
+	border-top: 1px solid #ff5d5e;
+}
+
+/* Events */
+
+.events .accordion-heading .accordion-toggle {
+	background: #ff5d5e;
+}
+
+/* Testimonial */
+
+.test{
+border-bottom:2px solid #ff5d5e;
+}
+
+.test-arrow{
+border-top-color: #ff5d5e;
+}
+
+/* Service style #2 */
+
+.service-two h5 i{
+	color: #ff5d5e;
+}
+
+/* Process */
+
+.process .process-meta{
+	background: #ff5d5e;
+}
+
+/* Features #1 */
+
+.features-one .feat i{
+	color: #ff5d5e;
+}
+
+/* Features #2 */
+
+.features-two i{
+	color: #ff5d5e;	
+}
+
+/* About #2 */
+
+.about-two .asocial i{
+	background:#ff5d5e;
+}
+
+/* Pricing table #1 */
+
+.pricel .phead-top{
+	background: #ff5d5e;
+}
+
+/* Pricing table #2 */
+
+.phead-round{
+	background: #ff5d5e;
+}
+
+.phead-round:hover{
+	background: #df4c4d;
+}
+
+/* Flex slider */
+
+.flexslider .flex-control-nav a:hover{
+	background: #ff5d5e !important;
+}
+
+.flexslider a.flex-active{
+	background: #ff5d5e !important;
+}
+
+/* Recent posts */
+
+.recent-posts .carousel_nav i{
+	background: #ff5d5e;
+}
+
+.recent-posts .carousel_nav i:hover{
+	background: #df4c4d;
+}
+
+.recent-posts .rp-item:hover{
+	border-bottom: 2px solid #ff5d5e;
+}	
+
+/* Career */
+
+.nav-tabs > li > a:hover{
+	background: #ff5d5e;
+}
+
+/* Back to top */
+
+.totop a, .totop a:visited{
+	background: #ff5d5e;
+}
+
+.totop a:hover{
+	background: #df4c4d;
+}
+
+/* Footer */
+
+footer{
+	border-top: 4px solid #ff5d5e;
+}

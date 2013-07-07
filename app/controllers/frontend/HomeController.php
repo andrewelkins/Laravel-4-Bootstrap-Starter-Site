@@ -66,7 +66,31 @@ class HomeController extends BaseController {
         $meta['title'] = 'Home Page';
 
         // Show the posts index.
-		return View::make('frontend/post/index', compact('posts', 'meta'));
+		return View::make('frontend/home', compact('posts', 'meta'));
+	}
+
+    /**
+     * Display a list of 10 posts in the home page
+     *
+     * @return View
+     */
+	public function getBlogIndex()
+	{
+        // Get the data needed for the view.
+        $posts = $this->posts->paginateAllDesc(10);
+        $meta = $this->meta;
+        $meta['title'] = 'Blog Index Page';
+
+        // There's got to be a better way to do this with eloquent
+        $postIds = array();
+        foreach( $posts as $post ) {
+            $postIds[] = $post->id;
+        }
+
+        $recentPosts = $this->posts->where('id', 'NOT IN', $postIds);
+
+        // Show the posts index.
+		return View::make('frontend/post/index', compact('posts', 'meta', 'recentPosts'));
 	}
 
     /**

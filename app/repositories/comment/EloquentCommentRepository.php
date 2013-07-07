@@ -3,7 +3,15 @@
 /**
  * Repository for the Comment model using Eloquent ORM
  */
-class EloquentCommentRepository implements CommentRepositoryInterface {
+class EloquentCommentRepository extends Comment implements CommentRepositoryInterface
+{
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'comments';
 
     /**
      * All comments
@@ -82,24 +90,20 @@ class EloquentCommentRepository implements CommentRepositoryInterface {
     /**
      * Update the specified comment
      *
-     * @param  int   $id   ID of the comment.
      * @param  array $data PUT data from the request.
      *
      * @return object Updated comment.
      */
-    public function update($id, $data)
+    public function update(array $data = array())
     {
-        // Find the comment.
-        $comment = $this->findById($id);
-
         $validator = $this->validate($data, Comment::$rules);
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
 
-        $comment->update($data);
+        $this->update($data);
 
-        return $comment;
+        return $this;
     }
 
     /**
@@ -109,10 +113,10 @@ class EloquentCommentRepository implements CommentRepositoryInterface {
     *
     * @return
     */
-    public function destroy($id)
+    public static function destroy($id)
     {
         // Find the comment.
-        $comment = $this->findById($id);
+        $comment = self::findById($id);
 
         // Delete the comment.
         $comment->delete();

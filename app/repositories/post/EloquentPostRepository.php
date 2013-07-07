@@ -3,7 +3,15 @@
 /**
  * Repository for the Post model using Eloquent ORM
  */
-class EloquentPostRepository implements PostRepositoryInterface {
+class EloquentPostRepository extends Post implements PostRepositoryInterface
+{
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'posts';
 
     /**
      * All possible posts
@@ -107,25 +115,20 @@ class EloquentPostRepository implements PostRepositoryInterface {
     /**
      * Update the specified post
      *
-     * @param  int   $id   ID of the post.
      * @param  array $data PUT data from the request.
      *
      * @return object Updated post.
      */
-	public function update($id, $data)
+	public function update(array $data = array())
 	{
-		$post = $this->findById($id);
-
-//        var_dump($data);die();
-unset($data['meta_title']);
 		$validator = $this->validate($data, Post::$updateRules);
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
 
-        $post->update($data);
+        $this->update($data);
 
-        return $post;
+        return $this;
 	}
 
     /**
@@ -135,9 +138,9 @@ unset($data['meta_title']);
      *
      * @return int ID of the post.
      */
-    public function destroy($id)
+    public static function destroy($id)
     {
-        $post = $this->findById($id);
+        $post = self::findById($id);
 
         // Clean up.
         $post->comments()->delete();

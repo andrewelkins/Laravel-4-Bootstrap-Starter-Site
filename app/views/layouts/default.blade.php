@@ -5,26 +5,27 @@
 @include('layouts.head')
 
 <body>
+    <div id="wrap">
+        <!-- Navbar -->
+        @yield('navbar')
+        <!-- ./ navbar -->
 
-	<!-- Navbar -->
-	@yield('navbar')
-	<!-- ./ navbar -->
+        <!-- Container -->
+        <div class="container">
 
-	<!-- Container -->
-	<div class="container">
+            <!-- Notifications -->
+            @include('layouts.notifications')
+            <!-- ./ notifications -->
 
-		<!-- Notifications -->
-		@include('layouts.notifications')
-		<!-- ./ notifications -->
-
-		<!-- Content -->
-		@yield('content')
-		<!-- ./ content -->
+            <!-- Content -->
+            @yield('content')
+            <!-- ./ content -->
 
 
-	</div>
-	<!-- ./ container -->
-
+        </div>
+        <!-- ./ container -->
+        <div id="push"></div>
+    </div>
     <!-- Footer -->
     @yield('footer')
     <!-- ./ Footer -->

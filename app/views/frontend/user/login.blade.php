@@ -11,6 +11,8 @@
 		<h3>{{ $meta['title'] }}</h3>
 	</div>
 
+<div class="span6">
+    <div class="formy well">
 	{{-- Login form --}}
 	<!-- Form -->
 	{{ Former::horizontal_open()
@@ -35,6 +37,8 @@
 		<!-- ./ form actions -->
 
 	{{ Former::close() }}
+    </div>
+</div>
 @stop
 
 {{-- Extra JavaScripts --}}
