@@ -55,8 +55,8 @@ a:hover,a:active,a:focus {
 }
 
 ul li{
-	list-style-type: circle;
-	padding: 1px 0px;
+    list-style-type: circle;
+    padding: 1px 0px;
 }
 
 .bold{
@@ -954,7 +954,7 @@ margin-right:3px;
 	margin: 0px;
 }
 
-.tabs ul li{
+.tabs ul li, ul.nav-tabs li{
 	list-style-type: none;
 }
 
