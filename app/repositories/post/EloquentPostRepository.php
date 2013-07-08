@@ -126,7 +126,7 @@ class EloquentPostRepository extends Post implements PostRepositoryInterface
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
 
-        $this->update($data);
+        parent::update($data);
 
         return $this;
 	}

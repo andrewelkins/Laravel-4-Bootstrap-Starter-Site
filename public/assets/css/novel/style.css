@@ -422,11 +422,11 @@ font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	color:#666;
 }
 
-.navbar .brand { padding: 14px 20px 10px; }
+.navbar .brand { padding: 10px 20px 10px; }
 
 .navbar .nav > li > a, .navbar .nav > li > a:visited{
-	color: #666;
-	padding:15px 15px 15px;
+	color: #afafaf;
+	padding:10px 15px;
 	filter: none !important;
 	-webkit-transition:color 1s ease;
 	-moz-transition:color 1s ease;
@@ -2098,6 +2098,45 @@ color:#fff;
 #footer .copy{
 	margin-bottom: 5px;
 	font-size: 11px;
+}
+
+
+#editor {
+    max-height: 250px;
+    height: 250px;
+    background-color: white;
+    border-collapse: separate;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 4px;
+    box-sizing: content-box;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px; border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px; border-top-left-radius: 3px;
+    overflow: scroll;
+}
+#voiceBtn {
+    width: 20px;
+    color: transparent;
+    background-color: transparent;
+    transform: scale(2.0, 2.0);
+    -webkit-transform: scale(2.0, 2.0);
+    -moz-transform: scale(2.0, 2.0);
+    border: transparent;
+    cursor: pointer;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+div[data-role="editor-toolbar"] {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dropdown-menu a {
+    cursor: pointer;
 }
 
 /* Responsive */
