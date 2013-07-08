@@ -4,8 +4,6 @@
 
 Laravel 4 Bootstrap Starter Site is a sample application for beginning development with Larvel 4.
 
-It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
-
 <a name="features"></a>
 ## Features
 
@@ -528,6 +526,7 @@ This is free software distributed under the terms of the MIT license
 
 ## Additional information
 
-Inspired by and based on [laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit)
+It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit). 
+We thank the contributors of that project for their contributions to the Laravel community.
 
 Any questions, feel free to [contact me](http://twitter.com/andrewelkins).
