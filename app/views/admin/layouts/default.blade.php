@@ -33,7 +33,7 @@
 
 {{-- Footer --}}
 @section('footer')
-	@include('layouts.footer')
+	@include('admin.templates.footer')
 @stop
 
 {{-- Main Javascript Files --}}
