@@ -1,4 +1,4 @@
-@extends('admin.templates.modal')
+@extends('admin.layouts.modal')
 
 {{-- Extra CSS styles --}}
 @section('syles')
@@ -38,8 +38,5 @@
 
 {{-- Extra JavaScripts --}}
 @section('scripts')
-<script type="text/javascript">
-	$('.wysihtml5').wysihtml5();
-    $(prettyPrint);
-</script>
+@include('admin.templates.wysiwyg')
 @stop

@@ -39,3 +39,5 @@
     ->large_primary_submit('Submit')
     ->large_inverse_reset('Reset') }}
 <!-- ./ form actions -->
+
+<textarea type="hidden" id="content" name="content" style="display:none;"></textarea>

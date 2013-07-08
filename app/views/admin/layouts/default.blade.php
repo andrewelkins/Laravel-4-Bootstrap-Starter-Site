@@ -28,7 +28,7 @@
 
 {{-- Navigation Bar --}}
 @section('navbar')
-	@include('admin.layouts.nav')
+	@include('admin.templates.nav')
 @stop
 
 {{-- Footer --}}

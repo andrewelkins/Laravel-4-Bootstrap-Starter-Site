@@ -1,4 +1,4 @@
-@extends('admin.templates.modal')
+@extends('admin.layouts.modal')
 
 {{-- Extra CSS styles --}}
 @section('syles')
