@@ -53,7 +53,7 @@ class EloquentUserRepository extends User implements UserRepositoryInterface
      */
     public function store($data)
     {
-        $validator = $this->validate($data, User::$rules);
+        $validator = $this->validateOrError($data, User::$rules);
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
@@ -103,7 +103,7 @@ class EloquentUserRepository extends User implements UserRepositoryInterface
      */
     public function updateAndValidate(array $data = array())
     {
-        $validator = $this->validate($data, $this->getUpdateRules());
+        $validator = $this->validateOrError($data, $this->getUpdateRules());
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;

@@ -54,7 +54,7 @@ class EloquentRoleRepository extends Role implements RoleRepositoryInterface
      */
     public function store($data)
     {
-        $validator = $this->validate($data, Role::$rules);
+        $validator = $this->validateOrError($data, Role::$rules);
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
@@ -83,9 +83,9 @@ class EloquentRoleRepository extends Role implements RoleRepositoryInterface
      *
      * @return object Updated role.
      */
-	public function update(array $data = array())
+	public function updateAndValidate(array $data = array())
 	{
-		$validator = $this->validate($data, Role::$rules);
+		$validator = $this->validateOrError($data, Role::$rules);
 
         // Check if validator returned an array with the error code and the message
         if (is_array($validator)) return $validator;
@@ -157,7 +157,7 @@ class EloquentRoleRepository extends Role implements RoleRepositoryInterface
      *
      * @return boot Always true if it returns.
      */
-    public function validate($data, $rules)
+    public function validateOrError($data, $rules)
     {
         $validator = Validator::make($data, $rules);
 

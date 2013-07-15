@@ -38,6 +38,6 @@
         window.prettyPrint && prettyPrint();
 
         // Put div content into a text input.
-        $('#form-actions .btn-primary').click(function (e) { $('#content').html($('#editor').html()); });
+        $('#form-actions .btn-primary').click(function (e) { $('#content').val($('#editor').html()); });
     });
 </script>

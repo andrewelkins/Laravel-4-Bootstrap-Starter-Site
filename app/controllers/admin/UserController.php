@@ -158,7 +158,7 @@ class UserController extends BaseController {
     public function update($id)
     {
         // Update the user with the PUT request data.
-        $user = $this->users->find($id)->update(Input::all());
+        $user = $this->users->find($id)->updateAndValidate(Input::all());
 
         // Handle the repository possible errors.
         if(is_array($user)) {
@@ -187,7 +187,6 @@ class UserController extends BaseController {
 
         // Handle the repository possible errors.
         if(is_array($user)) {
-            $errors = $user['message'];
             if ($user['code'] === '403') {
                 $message = Lang::get('admin/users/messages.delete.impossible');
             } else {

@@ -63,7 +63,7 @@
                 <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
                 <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
             </div>
-            <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
+            <!--<input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">-->
         </div>
 
         <div id="editor">
@@ -108,6 +108,7 @@
 
 </div>
 <!-- ./ tabs content -->
+<input type="hidden" id="content" name="content"/>
 
 <!-- Form Actions -->
 {{ Former::actions()

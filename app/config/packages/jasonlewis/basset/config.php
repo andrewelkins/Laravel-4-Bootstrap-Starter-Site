@@ -65,8 +65,8 @@ return array(
                 $collection->add('prettify.css');
                 $collection->add('datatables-bootstrap.css');
                 $collection->add('colorbox.css');
-                $collection->add('novel/style.css');
-                $collection->add('novel/blue.css'); // Several colors available
+//                $collection->add('novel/style.css');
+//                $collection->add('novel/blue.css'); // Several colors available
             })->apply('UriRewriteFilter')->apply('CssMin');
 
             $collection->directory('assets/js', function($collection)

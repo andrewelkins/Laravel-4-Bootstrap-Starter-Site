@@ -8,6 +8,6 @@ interface UserRepositoryInterface extends BaseRepositoryInterface
 
     public function store($data);
 
-    public function validate( array $rules = array(), array $customMessages = array());
+    public function validate( array $rules = array(), array $customMessages = array() );
 
 }
