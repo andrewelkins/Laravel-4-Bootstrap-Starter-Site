@@ -53,16 +53,19 @@ See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-
 ### Vagrant, or one setup to rule them all.
 
 First get the right tools, [Vagrant v1.2.2](http://downloads.vagrantup.com/tags/v1.2.2) and [VirtualBox v4.2.12](https://www.virtualbox.org/wiki/Download_Old_Builds_4_2). You want these precious versions.
-This project comes with a Vagrant configuration file along with it's bootstrap script to get things up and running. This allows to get this project up and running really fast:
+This project comes with an environement in `/bootstrap/start.php` configured for a Vagrant box that you can find [here](https://github.com/nekwebdev/vagrant-laravel4).
 
-    git clone git://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git laravel
-    cd laravel
+Here is the quick start for those that want to see the starter site running fast!
+
+    git clone https://github.com/nekwebdev/vagrant-laravel4.git laravel-starter
+    cd laravel-starter
+    git clone https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git www
     vagrant up
     *** this may take a while, go grab a coffee, or two... ***
     vagrant ssh
-    install-laravel
+    ./boot-starter.sh
 
-Go to http://127.0.0.1:8080 and enjoy your new laravel starter site running in a freshly setup Ubuntu 12.04 environment with everything needed for Laravel 4!
+Go to http://192.168.168.160 and enjoy your new laravel starter site running in a freshly setup Debian 7.0 RC1 environment with everything needed for Laravel 4!
 
 Want to test registration email functionality?
 
@@ -484,11 +487,20 @@ This project comes with a Vagrant development environment already setup.
 
 Install [Vagrant v1.2.2](http://downloads.vagrantup.com/tags/v1.2.2) and [VirtualBox v4.2.12](https://www.virtualbox.org/wiki/Download_Old_Builds_4_2). You want these specific versions.
 
-After Step 1 of the installation of the project you have the option to use Vagrant instead of setting up a web server on your computer. Simply navigate to your project home and run:
+You have the option to use Vagrant instead of setting up a web server on your computer. First clone the Vagrant Laravel 4 project:
+
+    git clone https://github.com/nekwebdev/vagrant-laravel4.git laravel-starter
+    cd laravel-starter
+
+Then clone the starter site project in the www folder.
+
+    git clone https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git www
+
+Start the Vagrant Virtual Machine.
 
     vagrant up
 
-When you run it for the first time it will download a default image of Ubuntu 12.04, this box file is roughly 200MB so it may take a little on the first run. Let it do it's thing (disregard the error messages) and you will have a virtual machine running Ubuntu 12.04, Apache 2, PHP 5.4 and MySQL among other things needed for a Laravel 4 project to run.
+When you run it for the first time it will download a Debian 7.0 RC1 already bootstrapped for Puppet by the guys at PuppetLabs. Let it do it's thing (disregard the error messages) and you will have a virtual machine running Debian 7 RC1, Apache 2, PHP 5.4 and MySQL among other things needed for a Laravel 4 project to run.
 
 Your project folder is synced to the /vagrant folder in the Vagrant VM. This means changes work both way, inside and outside the VM, you manipulate the same files.
 
@@ -502,19 +514,19 @@ Another option is to pass commands directly via Vagrant like so:
 
 The VM will already have the environment, databases and file permissions set.
 
-There is a script you can run with `install-laravel` that will run composer install --dev and then php artisan migrate and db:seed for you to set it all up in one command.
+There is a script you can run with `./boot-starter` from your home folder that will run composer install --dev and then php artisan migrate and db:seed for you to set it all up in one command.
 
-On the host OS navigate to http://127.0.0.1:8080 to see your site! You can change the port in the `vagrantfile` at the root of the project, you can also checkout `vagrantstrap.sh` to see that nothing shady was installed in that VM :)
+On the host OS navigate to http://192.168.168.160 to see your site!
 
 Here is a trick to test mail in this environment. Open a new vagrant ssh sessions and run `pysmtpd` which is a script that starts this command:
 
     sudo python -m smtpd -n -c DebuggingServer localhost:25
 
-If you did not change the configurations in the ***app/config/vagrant*** folder when your application tries to send a email it will be displayed in this ssh session!
+If you did not change the configurations in the ***app/config/vagrant*** folder created by Vagrant, when your application tries to send a email it will be displayed in this ssh session!
 
 When you are done simply exit the ssh session and `vagrant suspend` to suspend the VM in it's current state until you need it again with `vagrant resume`
 
-You can of course use this Vagrant configuration in other projects. See the two Vagrant files for configuration options.
+You can of course use this Vagrant Virtual Machine in other projects.
 
 * For full usage see [Vagrant Documentation](http://http://docs.vagrantup.com/v2/)
 * Go back to [features list](#features).
