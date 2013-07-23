@@ -82,7 +82,7 @@ class AdminRolesController extends AdminController {
 
         // Declare the rules for the form validation
         $rules = array(
-            'name' => 'required'
+            'name' => 'required|min:4|max:16|unique:roles'
         );
 
         // Validate the inputs
@@ -96,21 +96,19 @@ class AdminRolesController extends AdminController {
             $this->role->name = $inputs['name'];
             $this->role->save();
 
-            // Save permissions
-            $this->role->perms()->sync($this->permission->preparePermissionsForSave($inputs['permissions']));
-
             // Was the role created?
             if ($this->role->id)
             {
+                // Save permissions
+                $this->role->perms()->sync($this->permission->preparePermissionsForSave($inputs['permissions']));
+
                 // Redirect to the new role page
                 return Redirect::to('admin/roles/' . $this->role->id . '/edit')->with('success', Lang::get('admin/roles/messages.create.success'));
             }
 
             // Redirect to the new role page
-            return Redirect::to('admin/roles/create')->with('error', Lang::get('admin/roles/messages.create.error'));
+            return Redirect::to('admin/roles/create')->withInput()->with('error', Lang::get('admin/roles/messages.create.error'));
 
-            // Redirect to the role create page
-            return Redirect::to('admin/roles/create')->withInput()->with('error', Lang::get('admin/roles/messages.' . $error));
         }
 
         // Form validation failed
@@ -163,7 +161,7 @@ class AdminRolesController extends AdminController {
     {
         // Declare the rules for the form validation
         $rules = array(
-            'name' => 'required'
+            'name' => 'required|min:4|max:16|unique:roles,name,' . $role->id,
         );
 
         // Validate the inputs
