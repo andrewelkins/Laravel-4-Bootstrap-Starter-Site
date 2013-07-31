@@ -121,6 +121,7 @@ return array(
         'Robbo\Presenter\PresenterServiceProvider', // Presenter
         'Bllim\Datatables\DatatablesServiceProvider', // Datatables
 		'Former\FormerServiceProvider', // Former
+        'Andrew13\Cabinet\CabinetServiceProvider', // Cabinet
 
         /* Uncomment for use in development */
 //        'Way\Generators\GeneratorsServiceProvider', // Generators
@@ -200,7 +201,8 @@ return array(
         'String'          => 'Andrew13\Helpers\String', // String
         'Carbon'          => 'Carbon\Carbon', // Carbon
         'Datatables'      => 'Bllim\Datatables\Datatables', // DataTables
-		'Former' 		  => 'Former\Facades\Illuminate', // Former
+		'Former' 		  => 'Former\Facades\Former', // Former
+        'Cabinet'    => 'Andrew13\Cabinet\CabinetFacade', // Cabinet
     ),
 
     'available_language' => array('en', 'pt', 'es'),

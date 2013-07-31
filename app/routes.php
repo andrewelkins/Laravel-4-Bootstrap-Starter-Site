@@ -43,6 +43,11 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::resource('comments', 'admin\CommentController',
                 array('except' => array('create', 'store')));
 
+    // Uploads Management
+    Route::get('upload/data', 'UploadController@data');
+    Route::resource( 'upload', 'UploadController',
+        array('except' => array('show', 'edit', 'update', 'destroy')));
+
     // Admin Home Page
     Route::controller('/', 'admin\HomeController');
 });
@@ -83,3 +88,6 @@ Route::get('/', array('before' => 'detectLang','uses' => 'frontend\HomeControlle
 
 // # Index Page - Last route, no matches
 // Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+// I would recommend adding auth checks for the upload functionality.// I would recommend adding auth checks for the upload functionality.
+// I would recommend adding auth checks for the upload functionality.
+// I would recommend adding auth checks for the upload functionality.

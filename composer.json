@@ -19,10 +19,11 @@
 		"robclancy/presenter": "1.0.*",
         "j20/php-uuid": "dev-master",
         "bllim/datatables": "*",
-		"anahkiasen/former": "dev-agnostic"
+		"anahkiasen/former": "3.0.0",
+        "andrew13/cabinet": "0.1.x"
 	},
 	"require-dev": {
-        "way/generators": "dev-master",
+        "way/generators": "1.0",
         "mockery/mockery": "dev-master@dev",
         "summerstreet/woodling": "0.1.*",
         "barryvdh/laravel-ide-helper": "dev-master",
