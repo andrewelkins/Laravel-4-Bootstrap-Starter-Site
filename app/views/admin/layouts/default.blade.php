@@ -102,6 +102,16 @@
 									<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/roles') }}}"><i class="icon-user"></i> Roles</a></li>
 								</ul>
 							</li>
+							<li{{ (Request::is('admin/pages*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/pages') }}}"><i class="icon-list-alt icon-white"></i> Pages</a></li>
+							<li class="dropdown{{ (Request::is('admin/navigation*|admin/navigation/groups*') ? ' active' : '') }}">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/navigation') }}}">
+									<i class="icon-list-alt icon-white"></i> Navigation <span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/navigation') }}}"><i class="icon-user"></i> Navigation</a></li>
+									<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/navigation/groups') }}}"><i class="icon-user"></i> Navigation Groups</a></li>
+								</ul>
+							</li>
 						</ul>
 						<ul class="nav pull-right">
 							<li><a href="{{{ URL::to('/') }}}">View Homepage</a></li>
