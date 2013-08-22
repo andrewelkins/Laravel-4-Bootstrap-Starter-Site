@@ -110,8 +110,8 @@ You will now be copying the initial configuration file inside this folder before
 
         'providers' => array(
         /* Uncomment for use in development */
-            'Way\Generators\GeneratorsServiceProvider', // Generators
-            'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
+    //     'Way\Generators\GeneratorsServiceProvider', // Generators
+    //     'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
 
         ),
 
