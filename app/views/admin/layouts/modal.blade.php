@@ -47,8 +47,8 @@
     {{ Basset::show('admin.css') }}
 
 	<style>
-	body {
-		padding: 60px 0;
+	.tab-pane {
+		padding-top: 20px;
 	}
 	</style>
 

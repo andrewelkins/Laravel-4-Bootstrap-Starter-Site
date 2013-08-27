@@ -17,13 +17,13 @@
 		</h3>
 	</div>
 
-	<table id="roles" class="table table-bordered table-hover">
+	<table id="roles" class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th class="span6">{{{ Lang::get('admin/roles/table.name') }}}</th>
-				<th class="span2">{{{ Lang::get('admin/roles/table.users') }}}</th>
-				<th class="span2">{{{ Lang::get('admin/roles/table.created_at') }}}</th>
-				<th class="span2">{{{ Lang::get('table.actions') }}}</th>
+				<th class="col-md-6">{{{ Lang::get('admin/roles/table.name') }}}</th>
+				<th class="col-md-2">{{{ Lang::get('admin/roles/table.users') }}}</th>
+				<th class="col-md-2">{{{ Lang::get('admin/roles/table.created_at') }}}</th>
+				<th class="col-md-2">{{{ Lang::get('table.actions') }}}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,7 +37,7 @@
 		var oTable;
 		$(document).ready(function() {
 				oTable = $('#roles').dataTable( {
-				"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+				"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 				"sPaginationType": "bootstrap",
 				"oLanguage": {
 					"sLengthMenu": "_MENU_ records per page"
