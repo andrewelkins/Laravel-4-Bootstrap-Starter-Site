@@ -15,21 +15,21 @@
 
 		<!-- Post Content -->
 		<div class="row">
-			<div class="span2">
+			<div class="col-md-2">
 				<a href="{{{ $post->url() }}}" class="thumbnail"><img src="http://placehold.it/260x180" alt=""></a>
 			</div>
-			<div class="span6">
+			<div class="col-md-6">
 				<p>
 					{{ String::tidy(Str::limit($post->content, 200)) }}
 				</p>
-				<p><a class="btn btn-mini" href="{{{ $post->url() }}}">Read more</a></p>
+				<p><a class="btn btn-mini btn-default" href="{{{ $post->url() }}}">Read more</a></p>
 			</div>
 		</div>
 		<!-- ./ post content -->
 
 		<!-- Post Footer -->
 		<div class="row">
-			<div class="span8">
+			<div class="col-md-8">
 				<p></p>
 				<p>
 					<i class="icon-user"></i> by <span class="muted">{{{ $post->author->username }}}</span>

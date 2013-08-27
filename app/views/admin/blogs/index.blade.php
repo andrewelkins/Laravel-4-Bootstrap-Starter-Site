@@ -21,13 +21,13 @@
 		</h3>
 	</div>
 
-	<table id="blogs" class="table table-bordered table-hover">
+	<table id="blogs" class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th class="span4">{{{ Lang::get('admin/blogs/table.title') }}}</th>
-				<th class="span2">{{{ Lang::get('admin/blogs/table.comments') }}}</th>
-				<th class="span2">{{{ Lang::get('admin/blogs/table.created_at') }}}</th>
-				<th class="span2">{{{ Lang::get('table.actions') }}}</th>
+				<th class="col-md-4">{{{ Lang::get('admin/blogs/table.title') }}}</th>
+				<th class="col-md-2">{{{ Lang::get('admin/blogs/table.comments') }}}</th>
+				<th class="col-md-2">{{{ Lang::get('admin/blogs/table.created_at') }}}</th>
+				<th class="col-md-2">{{{ Lang::get('table.actions') }}}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -41,7 +41,7 @@
 		var oTable;
 		$(document).ready(function() {
 			oTable = $('#blogs').dataTable( {
-				"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+				"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 				"sPaginationType": "bootstrap",
 				"oLanguage": {
 					"sLengthMenu": "_MENU_ records per page"

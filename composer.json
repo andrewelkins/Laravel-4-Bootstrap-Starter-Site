@@ -11,7 +11,7 @@
     ],
 	"require": {
 		"laravel/framework": "4.0.*",
-		"twbs/bootstrap": "2.3.2",
+		"twbs/bootstrap": "dev-master",
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
 		"jasonlewis/basset": "dev-master",
@@ -24,7 +24,7 @@
         "mockery/mockery": "dev-master@dev",
         "summerstreet/woodling": "0.1.*",
         "barryvdh/laravel-ide-helper": "dev-master",
-        "leafo/lessphp": "v0.3.9",
+        "leafo/lessphp": "v0.4.0",
         "natxet/CssMin": "dev-master",
         "lmammino/jsmin4assetic": "1.0.*"
 	},

@@ -19,10 +19,10 @@
 			<div class="tab-pane active" id="tab-general">
 
 				<!-- Content -->
-				<div class="control-group {{{ $errors->has('content') ? 'error' : '' }}}">
-					<label class="control-label" for="content">Content</label>
-					<div class="controls">
-						<textarea class="full-width span10 wysihtml5" name="content" value="content" rows="10">{{{ Input::old('content', $comment->content) }}}</textarea>
+				<div class="form-group {{{ $errors->has('content') ? 'error' : '' }}}">
+					<div class="col-lg-12">
+                        <label class="control-label" for="content">Content</label>
+						<textarea class="form-control full-width span10 wysihtml5" name="content" value="content" rows="10">{{{ Input::old('content', $comment->content) }}}</textarea>
 						{{{ $errors->first('content', '<span class="help-inline">:message</span>') }}}
 					</div>
 				</div>
@@ -33,8 +33,8 @@
 		<!-- ./ tabs content -->
 
 		<!-- Form Actions -->
-		<div class="control-group">
-			<div class="controls">
+		<div class="form-group">
+			<div class="col-lg-12">
 				<element class="btn-cancel close_popup">Cancel</element>
 				<button type="reset" class="btn">Reset</button>
 				<button type="submit" class="btn btn-success">Update</button>
