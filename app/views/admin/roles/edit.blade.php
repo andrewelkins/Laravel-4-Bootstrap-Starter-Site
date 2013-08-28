@@ -21,8 +21,8 @@
 			<div class="tab-pane active" id="tab-general">
 				<!-- Name -->
 				<div class="form-group {{{ $errors->has('name') ? 'error' : '' }}}">
-					<label class="col-lg-2 control-label" for="name">Name</label>
-					<div class="col-lg-10">
+					<label class="col-md-2 control-label" for="name">Name</label>
+					<div class="col-md-10">
 						<input class="form-control" type="text" name="name" id="name" value="{{{ Input::old('name', $role->name) }}}" />
 						{{{ $errors->first('name', '<span class="help-inline">:message</span>') }}}
 					</div>
@@ -49,9 +49,9 @@
 
 		<!-- Form Actions -->
 		<div class="form-group">
-			<div class="col-lg-offset-2 col-lg-10">
+			<div class="col-md-offset-2 col-md-10">
 				<element class="btn-cancel close_popup">Cancel</element>
-				<button type="reset" class="btn">Reset</button>
+				<button type="reset" class="btn btn-default">Reset</button>
 				<button type="submit" class="btn btn-success">Update Role</button>
 			</div>
 		</div>
