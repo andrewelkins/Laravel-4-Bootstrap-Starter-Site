@@ -110,8 +110,8 @@ You will now be copying the initial configuration file inside this folder before
 
         'providers' => array(
         /* Uncomment for use in development */
-            'Way\Generators\GeneratorsServiceProvider', // Generators
-            'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
+    //     'Way\Generators\GeneratorsServiceProvider', // Generators
+    //     'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
 
         ),
 
@@ -273,6 +273,32 @@ You may need to recompile the assets for basset. This is easy to with one comman
 
 ```
 php artisan basset:build
+```
+
+### Site loading very slow
+
+Are you running Windows??
+
+Please try adjusting the basset configuration as show in this [comment](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues/148#issuecomment-22995288)
+
+In app/config/packages/jasonlewis/basset/config.php:
+
+```
+ $collection->directory('assets/js', function($collection)
+            {
+                $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
+                //$collection->add('bootstrap/bootstrap.js');
+                $collection->requireDirectory('../../../vendor/twbs/bootstrap/js');
+            })->apply('JsMin');
+```
+to:
+```
+ $collection->directory('assets/js', function($collection)
+            {
+                $collection->javascript('http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
+                $collection->add('bootstrap/bootstrap.js');
+                $collection->requireDirectory('../../../vendor/twbs/bootstrap/js');
+            })->apply('JsMin');
 ```
 
 -----
