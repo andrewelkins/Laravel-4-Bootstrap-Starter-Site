@@ -4,10 +4,10 @@
 @section('content')
 @foreach ($posts as $post)
 <div class="row">
-	<div class="col-mid-8">
+	<div class="col-md-8">
 		<!-- Post Title -->
 		<div class="row">
-			<div class="col-mid-8">
+			<div class="col-md-8">
 				<h4><strong><a href="{{{ $post->url() }}}">{{ String::title($post->title) }}</a></strong></h4>
 			</div>
 		</div>
