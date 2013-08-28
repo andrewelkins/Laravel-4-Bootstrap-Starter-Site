@@ -182,8 +182,8 @@ class AdminNavigationGroupsController extends AdminController {
 
         return Datatables::of($navs)
 
-        ->add_column('actions', '<a href="{{{ URL::to(\'admin/navigation/groups/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-mini">{{{ Lang::get(\'button.edit\') }}}</a>
-                               <a href="{{{ URL::to(\'admin/navigation/groups/\' . $id . \'/delete\' ) }}}" class="btn btn-mini btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
+        ->add_column('actions', '<a href="{{{ URL::to(\'admin/navigation/groups/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-warning btn-sm">{{{ Lang::get(\'button.edit\') }}}</a>
+                               <a href="{{{ URL::to(\'admin/navigation/groups/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
                                
             ')
 
