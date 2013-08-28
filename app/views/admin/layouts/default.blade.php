@@ -94,6 +94,7 @@
     				<ul class="nav navbar-nav">
     					<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin') }}}"><i class="icon-home icon-white"></i> Home</a></li>
     					<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/blogs') }}}"><i class="icon-list-alt icon-white"></i> Blog</a></li>
+    					<li{{ (Request::is('admin/pages*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/pages') }}}"><i class="icon-list-alt icon-white"></i> Pages</a></li>
     					<li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/comments') }}}"><i class="icon-bullhorn icon-white"></i> Comments</a></li>
     					<li class="dropdown{{ (Request::is('admin/users*|admin/roles*') ? ' active' : '') }}">
     						<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/users') }}}">
@@ -102,6 +103,15 @@
     						<ul class="dropdown-menu">
     							<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/users') }}}"><i class="icon-user"></i> Users</a></li>
     							<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/roles') }}}"><i class="icon-user"></i> Roles</a></li>
+    						</ul>
+    					</li>
+    					<li class="dropdown{{ (Request::is('admin/users*|admin/navigation*') ? ' active' : '') }}">
+    						<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/navigation') }}}">
+    							<i class="icon-user icon-white"></i> Navigation <span class="caret"></span>
+    						</a>
+    						<ul class="dropdown-menu">
+    							<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/navigation') }}}"><i class="icon-user"></i> Navigation</a></li>
+    							<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/navigation/groups') }}}"><i class="icon-user"></i> Navigation Groups</a></li>
     						</ul>
     					</li>
     				</ul>
