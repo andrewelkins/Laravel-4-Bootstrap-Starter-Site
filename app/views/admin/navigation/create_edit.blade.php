@@ -43,6 +43,7 @@ $(function(){
 					<label class="control-label col-lg-2" for="parent">{{{ Lang::get('admin/navigation/table.parent') }}}</label>
 					<div class="col-lg-6">
 						{{ Form::select('parent', array('' => 'Select Page') + $pageList, isset($navigation) ? $navigation->parent  : '', array('class' => 'form-control input-sm')) }}
+						<span class="help-inline">Do not select if this navigation is not under other navigation.</span>
 						<span class="help-inline">{{{ $errors->first('parent', ':message') }}}</span>
 					</div>
 				</div>
@@ -113,6 +114,7 @@ $(function(){
 					<label class="control-label col-lg-2" for="class">{{{ Lang::get('admin/navigation/table.class') }}}</label>
 					<div class="col-lg-6">
 						{{ Form::text('class', Input::old('class', isset($navigation) ? $navigation->class : null), array('class' => 'form-control input-sm')) }}
+						<span class="help-inline">The class will be appended on navigation class attribute</span>
 						<span class="help-inline">{{{ $errors->first('class', ':message') }}}</span>
 					</div>
 				</div>

@@ -77,6 +77,19 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->where('role', '[0-9]+');
     Route::controller('roles', 'AdminRolesController');
 
+    # Navigation Management
+    Route::get('pages/{nav}/show', 'AdminPagesController@getShow')
+        ->where('group', '[0-9]+');
+    Route::get('pages/{nav}/edit', 'AdminPagesController@getEdit')
+        ->where('group', '[0-9]+');
+    Route::post('pages/{nav}/edit', 'AdminPagesController@postEdit')
+        ->where('group', '[0-9]+');
+    Route::get('pages/{nav}/delete', 'AdminPagesController@getDelete')
+        ->where('group', '[0-9]+');
+    Route::post('pages/{nav}/delete', 'AdminPagesController@postDelete')
+        ->where('group', '[0-9]+');
+    Route::controller('pages', 'AdminPagesController');
+    
     # Navigation Group Management
     Route::get('navigation/groups/{group}/show', 'AdminNavigationGroupsController@getShow')
         ->where('group', '[0-9]+');

@@ -98,15 +98,15 @@ class AdminPagesController extends AdminController {
      * @param $page
      * @return Response
      */
-    public function getEdit($page)
+    public function getEdit($id)
     {
-        if ( $page->id )
+        if ( $id )
         {
             // Title
             $title = Lang::get('admin/pages/title.page_update');
             // mode
             $mode = 'edit';
-
+            $page = Page::find($id);
             return View::make('admin/pages/create_edit', compact('page', 'title', 'mode'));
         }
         else
@@ -121,7 +121,7 @@ class AdminPagesController extends AdminController {
      * @param $page
      * @return Response
      */
-    public function postEdit($page)
+    public function postEdit($id)
     {
         // Declare the rules for the form validation
         $rules = array(
@@ -132,11 +132,15 @@ class AdminPagesController extends AdminController {
         // Validate the inputs
         $validator = Validator::make(Input::all(), $rules);
 
+        $page = Page::find($id);
+
+        $inputs = Input::all();
+
         // Check if the form validates with success
         if ($validator->passes())
         {
             // Was the page updated?
-            if ($page->save())
+            if ($page->update($inputs))
             {
                 // Redirect to the page page
                 return Redirect::to('admin/pages/' . $page->id . '/edit')->with('success', Lang::get('admin/pages/messages.update.success'));
@@ -159,10 +163,10 @@ class AdminPagesController extends AdminController {
      * @internal param $id
      * @return Response
      */
-    public function getDelete($page)
+    public function getDelete($id)
     {
         //echo $pageId;exit;
-        //$page = Page::find($pageId);
+        $page = Page::find($id);
             // Was the role deleted?
             if($page->delete()) {
                 // Redirect to the role management page
