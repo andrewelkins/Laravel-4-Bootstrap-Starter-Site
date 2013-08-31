@@ -27,8 +27,8 @@ body {
     <div class="tab-pane active" id="tab-general">
         <!-- username -->
         <div class="form-group {{{ $errors->has('username') ? 'error' : '' }}}">
-            <label class="col-lg-2 control-label" for="username">Username</label>
-            <div class="col-lg-10">
+            <label class="col-md-2 control-label" for="username">Username</label>
+            <div class="col-md-10">
                 <input class="form-control" type="text" name="username" id="username" value="{{{ Input::old('username', $user->username) }}}" />
                 {{{ $errors->first('username', '<span class="help-inline">:message</span>') }}}
             </div>
@@ -37,8 +37,8 @@ body {
 
         <!-- Email -->
         <div class="form-group {{{ $errors->has('email') ? 'error' : '' }}}">
-            <label class="col-lg-2 control-label" for="email">Email</label>
-            <div class="col-lg-10">
+            <label class="col-md-2 control-label" for="email">Email</label>
+            <div class="col-md-10">
                 <input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', $user->email) }}}" />
                 {{{ $errors->first('email', '<span class="help-inline">:message</span>') }}}
             </div>
@@ -47,8 +47,8 @@ body {
 
         <!-- Password -->
         <div class="form-group {{{ $errors->has('password') ? 'error' : '' }}}">
-            <label class="col-lg-2 control-label" for="password">Password</label>
-            <div class="col-lg-10">
+            <label class="col-md-2 control-label" for="password">Password</label>
+            <div class="col-md-10">
                 <input class="form-control" type="password" name="password" id="password" value="" />
                 {{{ $errors->first('password', '<span class="help-inline">:message</span>') }}}
             </div>
@@ -57,8 +57,8 @@ body {
 
         <!-- Password Confirm -->
         <div class="form-group {{{ $errors->has('password_confirmation') ? 'error' : '' }}}">
-            <label class="col-lg-2 control-label" for="password_confirmation">Password Confirm</label>
-            <div class="col-lg-10">
+            <label class="col-md-2 control-label" for="password_confirmation">Password Confirm</label>
+            <div class="col-md-10">
                 <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" value="" />
                 {{{ $errors->first('password_confirmation', '<span class="help-inline">:message</span>') }}}
             </div>
@@ -69,7 +69,7 @@ body {
 
     <!-- Form Actions -->
     <div class="form-group">
-        <div class="col-lg-offset-2 col-lg-10">
+        <div class="col-md-offset-2 col-md-10">
             <button type="submit" class="btn btn-success">Update</button>
         </div>
     </div>

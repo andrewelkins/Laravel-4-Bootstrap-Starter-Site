@@ -4,10 +4,10 @@
 @section('content')
 @foreach ($posts as $post)
 <div class="row">
-	<div class="span8">
+	<div class="col-md-8">
 		<!-- Post Title -->
 		<div class="row">
-			<div class="span8">
+			<div class="col-md-8">
 				<h4><strong><a href="{{{ $post->url() }}}">{{ String::title($post->title) }}</a></strong></h4>
 			</div>
 		</div>
@@ -32,9 +32,9 @@
 			<div class="col-md-8">
 				<p></p>
 				<p>
-					<i class="icon-user"></i> by <span class="muted">{{{ $post->author->username }}}</span>
-					| <i class="icon-calendar"></i> <!--Sept 16th, 2012-->{{{ $post->date() }}}
-					| <i class="icon-comment"></i> <a href="{{{ $post->url() }}}#comments">{{$post->comments()->count()}} {{ \Illuminate\Support\Pluralizer::plural('Comment', $post->comments()->count()) }}</a>
+					<i class="glyphicon glyphicon-user"></i> by <span class="muted">{{{ $post->author->username }}}</span>
+					| <i class="glyphicon glyphicon-calendar"></i> <!--Sept 16th, 2012-->{{{ $post->date() }}}
+					| <i class="glyphicon glyphicon-comment"></i> <a href="{{{ $post->url() }}}#comments">{{$post->comments()->count()}} {{ \Illuminate\Support\Pluralizer::plural('Comment', $post->comments()->count()) }}</a>
 				</p>
 			</div>
 		</div>

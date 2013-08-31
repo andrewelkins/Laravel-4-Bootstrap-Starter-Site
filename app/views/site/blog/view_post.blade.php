@@ -82,8 +82,8 @@ You don't have the correct permissions to add comments.
 	<textarea class="col-md-12 input-block-level" rows="4" name="comment" id="comment">{{{ Request::old('comment') }}}</textarea>
 
 	<div class="form-group">
-		<div class="col-lg-12">
-			<input type="submit" class="btn" id="submit" value="Submit" />
+		<div class="col-md-12">
+			<input type="submit" class="btn btn-default" id="submit" value="Submit" />
 		</div>
 	</div>
 </form>
