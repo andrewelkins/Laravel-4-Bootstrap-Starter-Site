@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://laravelstarter.local',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'g7qhCl9DgxptMYE56Me3s7DcMAlg0eBu',
 
 	/*
 	|--------------------------------------------------------------------------

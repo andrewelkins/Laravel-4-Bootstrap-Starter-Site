@@ -95,6 +95,8 @@
     					<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin') }}}"><i class="glyphicon glyphicon-home"></i> Home</a></li>
     					<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/blogs') }}}"><i class="glyphicon glyphicon-list-alt"></i> Blog</a></li>
     					<li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/comments') }}}"><i class="glyphicon glyphicon-bullhorn"></i> Comments</a></li>
+    					<li{{ (Request::is('admin/pages*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/pages') }}}"><i class="glyphicon glyphicon-list-alt"></i> Pages</a></li>
+
     					<li class="dropdown{{ (Request::is('admin/users*|admin/roles*') ? ' active' : '') }}">
     						<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/users') }}}">
     							<i class="glyphicon glyphicon-user"></i> Users <span class="caret"></span>
@@ -102,6 +104,15 @@
     						<ul class="dropdown-menu">
     							<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/users') }}}"><i class="icon-user"></i> Users</a></li>
     							<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/roles') }}}"><i class="icon-user"></i> Roles</a></li>
+    						</ul>
+    					</li>
+    					<li class="dropdown{{ (Request::is('admin/navigation*|admin/navigation*') ? ' active' : '') }}">
+    						<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/navigation') }}}">
+    							<i class="glyphicon glyphicon-list-alt"></i> Navigation <span class="caret"></span>
+    						</a>
+    						<ul class="dropdown-menu">
+    							<li{{ (Request::is('admin/navigation') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/navigation') }}}"><i class="icon-user"></i> Navigation</a></li>
+    							<li{{ (Request::is('admin/navigation/groups*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/navigation/groups') }}}"><i class="icon-user"></i> Navigation Group</a></li>
     						</ul>
     					</li>
     				</ul>
