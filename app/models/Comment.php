@@ -35,7 +35,7 @@ class Comment extends Eloquent implements PresentableInterface{
 	}
 
     /**
-     * Get the post's author.
+     * Get the comment's author.
      *
      * @return User
      */
@@ -45,7 +45,7 @@ class Comment extends Eloquent implements PresentableInterface{
     }
 
     /**
-     * Get the date the post was created.
+     * Get the date the comment was created.
      *
      * @param \Carbon|null $date
      * @return string
@@ -60,7 +60,7 @@ class Comment extends Eloquent implements PresentableInterface{
     }
 
     /**
-     * Returns the date of the blog post creation,
+     * Returns the date of the comment creation,
      * on a good and more readable format :)
      *
      * @return string
@@ -71,7 +71,7 @@ class Comment extends Eloquent implements PresentableInterface{
     }
 
     /**
-     * Returns the date of the blog post last update,
+     * Returns the date of the comment last update,
      * on a good and more readable format :)
      *
      * @return string
