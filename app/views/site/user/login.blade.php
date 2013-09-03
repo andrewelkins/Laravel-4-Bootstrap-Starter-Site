@@ -12,13 +12,15 @@
 <div class="page-header">
 	<h1>Login into your account</h1>
 </div>
-
+	
 <div class="row">
 
     <div class="container col-md-6">
 
         <div class="container">
+        
         <form class="form-horizontal" method="POST" action="{{ URL::to('user/login') }}" accept-charset="UTF-8">
+        
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <fieldset>
                 <div class="form-group">
