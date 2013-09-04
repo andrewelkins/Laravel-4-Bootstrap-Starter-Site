@@ -109,6 +109,9 @@ You will now be copying the initial configuration file inside this folder before
         'key' => 'YourSecretKey!!!',
 
         'providers' => array(
+        
+        [... Removed ...]
+        
         /* Uncomment for use in development */
     //     'Way\Generators\GeneratorsServiceProvider', // Generators
     //     'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
