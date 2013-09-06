@@ -9,7 +9,7 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 
 ## Features
 
-* Twitter Bootstrap 2.3.0
+* Twitter Bootstrap 3.0.0
 * Custom Error Pages
 	* 403 for forbidden page accesses
 	* 404 for not found pages
