@@ -75,6 +75,17 @@ Click <a href="{{{ URL::to('user/login') }}}">here</a> to login into your accoun
 @elseif ( ! $canComment )
 You don't have the correct permissions to add comments.
 @else
+
+@if($errors->has())
+<div class="alert alert-danger alert-block">
+<ul>
+@foreach ($errors->all() as $error)
+	<li>{{ $error }}</li>
+@endforeach
+</ul>
+</div>
+@endif
+
 <h4>Add a Comment</h4>
 <form  method="post" action="{{{ URL::to($post->slug) }}}">
 	<input type="hidden" name="_token" value="{{{ Session::getToken() }}}" />
