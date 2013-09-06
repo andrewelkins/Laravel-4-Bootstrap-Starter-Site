@@ -12,7 +12,7 @@
 			Role Management
 
 			<div class="pull-right">
-				<a href="{{{ URL::to('admin/roles/create') }}}" class="btn btn-small btn-info iframe"><i class="glyphicon glyphicon-plus-sign"></i> Create</a>
+				<a href="{{{ URL::to('admin/roles/create') }}}" class="btn btn-small btn-info iframe"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
 			</div>
 		</h3>
 	</div>

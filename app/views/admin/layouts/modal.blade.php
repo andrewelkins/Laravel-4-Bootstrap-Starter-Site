@@ -88,7 +88,7 @@
 			<h3>
 				{{ $title }}
 				<div class="pull-right">
-					<button class="btn btn-default btn-small btn-inverse close_popup"><i class="icon-circle-arrow-left icon-white"></i> Back</button>
+					<button class="btn btn-default btn-small btn-inverse close_popup"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</button>
 				</div>
 			</h3>
 		</div>
