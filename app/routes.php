@@ -115,6 +115,33 @@ Route::get('contact-us', function()
     return View::make('site/contact-us');
 });
 
+# Feed RSS
+Route::get('feed', function(){
+
+    // creating rss feed with our most recent 20 posts
+    $posts = DB::table('posts')->orderBy('created_at', 'desc')->take(20)->get();
+
+    $feed = Feed::make();
+
+    // set your feed's title, description, link, pubdate and language
+    $feed->title = 'Your title';
+    $feed->description = 'Your description';
+    $feed->logo = 'http://yoursite.tld/logo.jpg';
+    $feed->link = URL::to('feed');
+    $feed->pubdate = $posts[0]->created;
+    $feed->lang = 'en';
+
+    foreach ($posts as $post)
+    {
+        // set item's title, author, url, pubdate and description
+        $feed->add($post->title, $post->author, URL::to($post->slug), $post->created, $post->description);
+    }
+
+    // show your feed (options: 'atom' (recommended) or 'rss')
+    return $feed->render('atom');
+
+});
+
 # Posts - Second to last set, match slug
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');

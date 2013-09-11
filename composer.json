@@ -17,7 +17,8 @@
 		"jasonlewis/basset": "dev-master",
 		"robclancy/presenter": "1.0.*",
         "j20/php-uuid": "dev-master",
-        "bllim/datatables": "*"
+        "bllim/datatables": "*",
+        "roumen/feed": "dev-master"
 	},
 	"require-dev": {
         "way/generators": "dev-master",
