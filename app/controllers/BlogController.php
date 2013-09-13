@@ -135,9 +135,9 @@ class BlogController extends BaseController {
 	    $feed = Feed::make();
 
 	    // set your feed's title, description, link, pubdate and language
-	    $feed->title = 'Your title';
-	    $feed->description = 'Your description';
-	    $feed->logo = 'http://yoursite.tld/logo.jpg';
+	    //$feed->title = 'Your title';
+	    //$feed->description = 'Your description';
+	    //$feed->logo = 'http://yoursite.tld/logo.jpg';
 	    $feed->link = URL::to('feed');
 	    $feed->pubdate = $posts[0]->created_at;
 	    $feed->lang = 'en';
