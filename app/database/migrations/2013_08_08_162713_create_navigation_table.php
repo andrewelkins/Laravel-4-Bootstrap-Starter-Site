@@ -23,9 +23,9 @@ class CreateNavigationTable extends Migration {
 		Schema::create('navigation_links', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('title', 100)->unique();
-			$table->unsignedInteger('parent')->references('id')->on('navigation_links');
+			$table->unsignedInteger('parent');
 			$table->enum('link_type', array('url','uri','page'))->default('page');
-			$table->unsignedInteger('page_id')->references('id')->on('pages');
+			$table->unsignedInteger('page_id');
 			$table->string('url');
 			$table->string('uri');
 			$table->unsignedInteger('navigation_group_id')->references('id')->on('navigation_groups');
@@ -34,6 +34,9 @@ class CreateNavigationTable extends Migration {
 			$table->string('restricted_to');
 			$table->string('class', 50);
 			$table->timestamps();
+
+			$table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
+			$table->foreign('parent')->references('id')->on('navigation_links')->onDelete('cascade');
 		});
 
 	}
