@@ -25,6 +25,7 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 	* User login, registration, forgot password
 	* User account area
 	* Simple Blog functionality
+    * Feed Atom and RSS
 * Packages included:
 	* [Confide](#confide)
 	* [Entrust](#entrust)
