@@ -197,6 +197,10 @@ class AdminUsersController extends AdminController {
                 unset($user->password);
                 unset($user->password_confirmation);
             }
+            
+            if($user->confirmed == null) {
+                $user->confirmed = $oldUser->confirmed;
+            }
 
             $user->prepareRules($oldUser, $user);
 
