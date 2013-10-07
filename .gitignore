@@ -20,4 +20,4 @@ composer.lock
 .idea/
 
 # Packages
-app/_ide_helpers.php
+_ide_helpers.php
