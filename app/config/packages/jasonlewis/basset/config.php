@@ -58,7 +58,18 @@ return array(
             {
                 $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
                 //$collection->add('bootstrap/bootstrap.js');
-                $collection->requireDirectory('../../../vendor/twbs/bootstrap/js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-affix.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-alert.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-button.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-carousel.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-collapse.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-dropdown.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-model.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-tooltip.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-popover.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-tab.js');
+                $collection->add('../../../vendor/twitter/bootstrap/js/bootstrap-transition.js');
                 $collection->add('wysihtml5/wysihtml5-0.3.0.js');
                 $collection->add('wysihtml5/bootstrap-wysihtml5.js');
                 $collection->javascript('http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js');
