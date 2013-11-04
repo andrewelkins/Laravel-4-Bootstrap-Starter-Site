@@ -11,7 +11,7 @@
     ],
 	"require": {
 		"laravel/framework": "4.0.*",
-		"twbs/bootstrap":  "3.0.*",
+		"twbs/bootstrap":  "3.0.0",
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
 		"jasonlewis/basset": "dev-master",
