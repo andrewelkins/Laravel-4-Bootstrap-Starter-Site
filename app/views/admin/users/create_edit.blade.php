@@ -19,7 +19,7 @@
 			<!-- General tab -->
 			<div class="tab-pane active" id="tab-general">
 				<!-- username -->
-				<div class="form-group {{{ $errors->has('username') ? 'error' : '' }}}">
+				<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
 					<label class="col-md-2 control-label" for="username">Username</label>
 					<div class="col-md-10">
 						<input class="form-control" type="text" name="username" id="username" value="{{{ Input::old('username', isset($user) ? $user->username : null) }}}" />
@@ -29,7 +29,7 @@
 				<!-- ./ username -->
 
 				<!-- Email -->
-				<div class="form-group {{{ $errors->has('email') ? 'error' : '' }}}">
+				<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 					<label class="col-md-2 control-label" for="email">Email</label>
 					<div class="col-md-10">
 						<input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', isset($user) ? $user->email : null) }}}" />
@@ -39,7 +39,7 @@
 				<!-- ./ email -->
 
 				<!-- Password -->
-				<div class="form-group {{{ $errors->has('password') ? 'error' : '' }}}">
+				<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 					<label class="col-md-2 control-label" for="password">Password</label>
 					<div class="col-md-10">
 						<input class="form-control" type="password" name="password" id="password" value="" />
@@ -49,7 +49,7 @@
 				<!-- ./ password -->
 
 				<!-- Password Confirm -->
-				<div class="form-group {{{ $errors->has('password_confirmation') ? 'error' : '' }}}">
+				<div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
 					<label class="col-md-2 control-label" for="password_confirmation">Password Confirm</label>
 					<div class="col-md-10">
 						<input class="form-control" type="password" name="password_confirmation" id="password_confirmation" value="" />
@@ -59,7 +59,7 @@
 				<!-- ./ password confirm -->
 
 				<!-- Activation Status -->
-				<div class="form-group {{{ $errors->has('activated') || $errors->has('confirm') ? 'error' : '' }}}">
+				<div class="form-group{{ $errors->has('activated') || $errors->has('confirm') ? ' has-error' : '' }}">
 					<label class="col-md-2 control-label" for="confirm">Activate User?</label>
 					<div class="col-md-6">
 						@if ($mode == 'create')
@@ -79,23 +79,23 @@
 				<!-- ./ activation status -->
 
 				<!-- Groups -->
-				<div class="form-group {{{ $errors->has('roles') ? 'error' : '' }}}">
-	                <label class="col-md-2 control-label" for="roles">Roles</label>
-	                <div class="col-md-6">
-		                <select class="form-control" name="roles[]" id="roles[]" multiple>
-		                        @foreach ($roles as $role)
-									@if ($mode == 'create')
-		                        		<option value="{{{ $role->id }}}"{{{ ( in_array($role->id, $selectedRoles) ? ' selected="selected"' : '') }}}>{{{ $role->name }}}</option>
-		                        	@else
-										<option value="{{{ $role->id }}}"{{{ ( array_search($role->id, $user->currentRoleIds()) !== false && array_search($role->id, $user->currentRoleIds()) >= 0 ? ' selected="selected"' : '') }}}>{{{ $role->name }}}</option>
-									@endif
-		                        @endforeach
+				<div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
+					<label class="col-md-2 control-label" for="roles">Roles</label>
+					<div class="col-md-6">
+						<select class="form-control" name="roles[]" id="roles[]" multiple>
+							@foreach ($roles as $role)
+								@if ($mode == 'create')
+									<option value="{{{ $role->id }}}"{{{ ( in_array($role->id, $selectedRoles) ? ' selected="selected"' : '') }}}>{{{ $role->name }}}</option>
+								@else
+									<option value="{{{ $role->id }}}"{{{ ( array_search($role->id, $user->currentRoleIds()) !== false && array_search($role->id, $user->currentRoleIds()) >= 0 ? ' selected="selected"' : '') }}}>{{{ $role->name }}}</option>
+								@endif
+							@endforeach
 						</select>
 
 						<span class="help-block">
 							Select a group to assign to the user, remember that a user takes on the permissions of the group they are assigned.
 						</span>
-	            	</div>
+					</div>
 				</div>
 				<!-- ./ groups -->
 			</div>
