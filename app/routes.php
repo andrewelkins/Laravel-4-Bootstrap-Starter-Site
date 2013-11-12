@@ -115,9 +115,6 @@ Route::get('contact-us', function()
     return View::make('site/contact-us');
 });
 
-# Feed RSS
-Route::get('feed/{type?}', 'BlogController@getFeed');
-
 # Posts - Second to last set, match slug
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
