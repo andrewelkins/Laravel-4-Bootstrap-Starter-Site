@@ -209,6 +209,8 @@ class AdminUsersController extends AdminController {
 
             // Save roles. Handles updating.
             $user->saveRoles(Input::get( 'roles' ));
+        } else {
+            return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.edit.error'));
         }
 
         // Get validation errors (see Ardent package)
@@ -218,7 +220,7 @@ class AdminUsersController extends AdminController {
             // Redirect to the new user page
             return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.edit.success'));
         } else {
-            return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.edit.failure'));
+            return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.edit.error'));
         }
     }
 
