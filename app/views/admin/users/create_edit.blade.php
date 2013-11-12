@@ -23,7 +23,7 @@
 					<label class="col-md-2 control-label" for="username">Username</label>
 					<div class="col-md-10">
 						<input class="form-control" type="text" name="username" id="username" value="{{{ Input::old('username', isset($user) ? $user->username : null) }}}" />
-						{{{ $errors->first('username', '<span class="help-inline">:message</span>') }}}
+						{{ $errors->first('username', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
 				<!-- ./ username -->
@@ -33,7 +33,7 @@
 					<label class="col-md-2 control-label" for="email">Email</label>
 					<div class="col-md-10">
 						<input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', isset($user) ? $user->email : null) }}}" />
-						{{{ $errors->first('email', '<span class="help-inline">:message</span>') }}}
+						{{ $errors->first('email', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
 				<!-- ./ email -->
@@ -43,7 +43,7 @@
 					<label class="col-md-2 control-label" for="password">Password</label>
 					<div class="col-md-10">
 						<input class="form-control" type="password" name="password" id="password" value="" />
-						{{{ $errors->first('password', '<span class="help-inline">:message</span>') }}}
+						{{ $errors->first('password', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
 				<!-- ./ password -->
@@ -53,7 +53,7 @@
 					<label class="col-md-2 control-label" for="password_confirmation">Password Confirm</label>
 					<div class="col-md-10">
 						<input class="form-control" type="password" name="password_confirmation" id="password_confirmation" value="" />
-						{{{ $errors->first('password_confirmation', '<span class="help-inline">:message</span>') }}}
+						{{ $errors->first('password_confirmation', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
 				<!-- ./ password confirm -->
@@ -73,7 +73,7 @@
 								<option value="0"{{{ ( ! $user->confirmed ? ' selected="selected"' : '') }}}>{{{ Lang::get('general.no') }}}</option>
 							</select>
 						@endif
-						{{{ $errors->first('confirm', '<span class="help-inline">:message</span>') }}}
+						{{ $errors->first('confirm', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
 				<!-- ./ activation status -->
