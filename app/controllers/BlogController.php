@@ -126,4 +126,28 @@ class BlogController extends BaseController {
 		// Redirect to this blog post page
 		return Redirect::to($slug)->withInput()->withErrors($validator);
 	}
+
+	/** RSS **/
+	public function getFeed($type = 'atom')
+	{
+	    // creating rss feed with our most recent 20 posts
+	    $posts = Post::orderBy('created_at', 'desc')->take(20)->get();
+	    $feed = Feed::make();
+
+	    // set your feed's title, description, link, pubdate and language
+	    //$feed->title = 'Your title';
+	    //$feed->description = 'Your description';
+	    //$feed->logo = 'http://yoursite.tld/logo.jpg';
+	    $feed->link = URL::to('feed');
+	    $feed->pubdate = $posts[0]->created_at;
+	    $feed->lang = 'en';
+
+	    foreach ($posts as $post)
+	        $feed->add($post->title, $post->author->username, URL::to($post->slug), $post->created_at, $post->content);
+
+	    if ($type == 'rss')
+	    	return $feed->render('rss');
+	    else
+	    	return $feed->render('atom');
+	}
 }

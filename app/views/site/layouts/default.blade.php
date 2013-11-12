@@ -97,7 +97,10 @@
 
 	    <div id="footer">
 	      <div class="container">
-	        <p class="muted credit">Laravel 4 Starter Site on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.</p>
+	        <p class="muted credit">
+	        	Laravel 4 Starter Site on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.
+	        	<a href="{{{ URL::to('feed') }}}">RSS Feed</a>
+	        </p>
 	      </div>
 	    </div>
 
