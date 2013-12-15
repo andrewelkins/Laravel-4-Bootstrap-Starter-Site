@@ -11,28 +11,28 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 
 * Twitter Bootstrap 3.0.0
 * Custom Error Pages
-	* 403 for forbidden page accesses
-	* 404 for not found pages
-	* 500 for internal server errors
+    * 403 for forbidden page accesses
+    * 404 for not found pages
+    * 500 for internal server errors
 * [Confide](#confide) for Authentication and Authorization
 * Back-end
-	* User and Role management
-	* Manage blog posts and comments
-	* WYSIWYG editor for post creation and editing.
+    * User and Role management
+    * Manage blog posts and comments
+    * WYSIWYG editor for post creation and editing.
     * DataTables dynamic table sorting and filtering.
     * Colorbox Lightbox jQuery modal popup.
 * Front-end
-	* User login, registration, forgot password
-	* User account area
-	* Simple Blog functionality
+    * User login, registration, forgot password
+    * User account area
+    * Simple Blog functionality
 * Packages included:
-	* [Confide](#confide)
-	* [Entrust](#entrust)
-	* [Ardent](#ardent)
-	* [Carbon](#carbon)
-	* [Basset](#basset)
-	* [Presenter](#presenter)
-	* [Generators](#generators)
+    * [Confide](#confide)
+    * [Entrust](#entrust)
+    * [Ardent](#ardent)
+    * [Carbon](#carbon)
+    * [Basset](#basset)
+    * [Presenter](#presenter)
+    * [Generators](#generators)
 
 ## Issues
 See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
@@ -44,14 +44,14 @@ See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-
 
 ##Requirements
 
-	PHP >= 5.4.0 (Entrust requires 5.4, this is an increase over Laravel's 5.3.7 requirement)
-	MCrypt PHP Extension
+    PHP >= 5.4.0 (Entrust requires 5.4, this is an increase over Laravel's 5.3.7 requirement)
+    MCrypt PHP Extension
 
 ##How to install
 ### Step 1: Get the code
 #### Option 1: Git Clone
 
-	git clone git://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git laravel
+    git clone git://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git laravel
 
 #### Option 2: Download the repository
 
@@ -61,12 +61,12 @@ See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-
 #### Option 1: Composer is not installed globally
 
     cd laravel
-	curl -s http://getcomposer.org/installer | php
-	php composer.phar install --dev
+    curl -s http://getcomposer.org/installer | php
+    php composer.phar install --dev
 #### Option 2: Composer is installed globally
 
     cd laravel
-	composer install --dev
+    composer install --dev
 
 If you haven't already, you might want to make [composer be installed globally](http://andrewelkins.com/programming/php/setting-up-composer-globally-for-laravel-4/) for future ease of use.
 
@@ -132,8 +132,8 @@ If you don't set that registration will fail because it cannot send the confirma
 ### Step 6: Populate Database
 Run these commands to create and populate Users table:
 
-	php artisan migrate
-	php artisan db:seed
+    php artisan migrate
+    php artisan db:seed
 
 ### Step 7: Set Encryption Key
 ***In app/config/app.php***
@@ -151,7 +151,7 @@ Run these commands to create and populate Users table:
 */
 ```
 
-	'key' => 'YourSecretKey!!!',
+    'key' => 'YourSecretKey!!!',
 
 You can use artisan to do this
 
@@ -243,10 +243,10 @@ This adds the generators and ide helpers.
 To make it build the ide helpers automatically you'll want to modify the post-update-cmd in `composer.json`
 
 ```
-		"post-update-cmd": [
-			"php artisan ide-helper:generate",
-			"php artisan optimize"
-		]
+        "post-update-cmd": [
+            "php artisan ide-helper:generate",
+            "php artisan optimize"
+        ]
 ```
 
 ### Production Launch
