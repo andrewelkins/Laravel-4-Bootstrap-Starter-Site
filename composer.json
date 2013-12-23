@@ -10,7 +10,7 @@
         }
     ],
 	"require": {
-		"laravel/framework": "4.0.*",
+		"laravel/framework": "4.1.*",
 		"twbs/bootstrap":  "3.0.0",
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
