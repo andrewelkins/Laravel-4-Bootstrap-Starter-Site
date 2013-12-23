@@ -31,6 +31,8 @@ return array(
 
 	'lifetime' => 120,
 
+	'expire_on_close' => false,
+
 	/*
 	|--------------------------------------------------------------------------
 	| Session File Location
@@ -124,15 +126,15 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Session Payload Cookie Name
+	| HTTPS Only Cookies
 	|--------------------------------------------------------------------------
 	|
-	| When using the "cookie" session driver, you may configure the name of
-	| the cookie used as the session "payload". This cookie actually has
-	| the encrypted session data stored within it for the application.
+	| By setting this option to true, session cookies will only be sent back
+	| to the server if the browser has a HTTPS connection. This will keep
+	| the cookie from being sent to you if it can not be done securely.
 	|
 	*/
 
-	'payload' => 'laravel_payload',
+	'secure' => false,
 
 );
