@@ -109,17 +109,30 @@
 	<!-- Javascripts -->
     {{ Basset::show('admin.js') }}
 
-    <script type="text/javascript">
-    	$(document).ready(function(){
-			$('.close_popup').click(function(){
-				parent.oTable.fnReloadAjax();
-				parent.$.colorbox.close();
-				return false;
-			});
-		});
-		$('.wysihtml5').wysihtml5();
-       	$(prettyPrint)
-    </script>
+ <script type="text/javascript">
+$(document).ready(function(){
+$('.close_popup').click(function(){
+parent.oTable.fnReloadAjax();
+parent.jQuery.fn.colorbox.close();
+return false;
+});
+$('#deleteForm').submit(function(event) {
+var form = $(this);
+$.ajax({
+type: form.attr('method'),
+url: form.attr('action'),
+data: form.serialize()
+}).done(function() {
+parent.jQuery.colorbox.close();
+parent.oTable.fnReloadAjax();
+}).fail(function() {
+});
+event.preventDefault();
+});
+});
+$('.wysihtml5').wysihtml5();
+$(prettyPrint)
+</script>
 
     @yield('scripts')
 
