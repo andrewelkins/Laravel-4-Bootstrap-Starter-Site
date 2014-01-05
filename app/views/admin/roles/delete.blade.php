@@ -13,14 +13,14 @@
         
         <!-- CSRF Token -->
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-        <input type="hidden" name="id" value="{{ $post->id }}" />
+        <input type="hidden" name="id" value="{{ $role->id }}" />
         <!-- <input type="hidden" name="_method" value="DELETE" /> -->
         <!-- ./ csrf token -->
 
         <!-- Form Actions -->
         <div class="control-group">
             <div class="controls">
-                Delete Post
+                Delete Role
                 <element class="btn-cancel close_popup">Cancel</element>
                 <button type="submit" class="btn btn-danger">Delete</button>
             </div>
