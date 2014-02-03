@@ -9,6 +9,12 @@
             "homepage": "http://www.andrewelkins.com"
         }
     ],
+        "repositories": [
+            {
+                "type": "vcs",
+                "url": "https://github.com/Zizaco/ardent.git"
+            }
+        ],
 	"require": {
 		"laravel/framework": "4.1.*",
 		"twbs/bootstrap":  "3.0.0",
