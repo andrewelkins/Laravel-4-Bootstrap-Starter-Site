@@ -9,7 +9,7 @@
     <!-- ./ tabs -->
 
     {{-- Delete User Form --}}
-    <form class="form-horizontal" method="post" action="" autocomplete="off">
+    <form id="deleteForm" class="form-horizontal" method="post" action="@if (isset($user)){{ URL::to('admin/users/' . $user->id . '/delete') }}@endif" autocomplete="off">
         <!-- CSRF Token -->
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
         <input type="hidden" name="id" value="{{ $user->id }}" />
@@ -19,7 +19,7 @@
         <div class="control-group">
             <div class="controls">
                 <element class="btn-cancel close_popup">Cancel</element>
-                <button type="submit" class="btn btn-danger close_popup">Delete</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
             </div>
         </div>
         <!-- ./ form actions -->
