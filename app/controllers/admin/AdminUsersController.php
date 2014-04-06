@@ -210,17 +210,24 @@ class AdminUsersController extends AdminController {
             // Save roles. Handles updating.
             $user->saveRoles(Input::get( 'roles' ));
         } else {
-            return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.edit.error'));
+            $error = $validator->errors()->all();
+            $error_provider = $validator;
         }
 
         // Get validation errors (see Ardent package)
-        $error = $user->errors()->all();
-
-        if(empty($error)) {
+        if (empty($error)) {
+            $error = $user->errors()->all();
+            $error_provider = $user;
+        }
+        
+        if (empty($error)) {
             // Redirect to the new user page
-            return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.edit.success'));
+            return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', 'The user was saved successfully.');
         } else {
-            return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.edit.error'));
+            // Redirect to user edit page and flash the error messages and form values to the session
+            return Redirect::to('admin/users/' . $user->id . '/edit')
+                ->withInput(Input::except('password'))
+                ->withErrors($error_provider);
         }
     }
 
