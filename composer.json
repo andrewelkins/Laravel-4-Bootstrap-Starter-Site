@@ -20,7 +20,7 @@
 		"twbs/bootstrap":  "3.0.0",
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
-		"jasonlewis/basset": "dev-master",
+        "etrepat/basset": "dev-master",
 		"robclancy/presenter": "1.2.*",
         "j20/php-uuid": "dev-master",
         "bllim/datatables": "*"
