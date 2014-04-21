@@ -6,31 +6,30 @@ class PermissionsTableSeeder extends Seeder {
     {
         DB::table('permissions')->delete();
 
-
         $permissions = array(
-            array(
-                'name'      => 'manage_blogs',
-                'display_name'      => 'manage blogs'
+            array( // 1
+                'name'         => 'manage_blogs',
+                'display_name' => 'manage blogs'
             ),
-            array(
-                'name'      => 'manage_posts',
-                'display_name'      => 'manage posts'
+            array( // 2
+                'name'         => 'manage_posts',
+                'display_name' => 'manage posts'
             ),
-            array(
-                'name'      => 'manage_comments',
-                'display_name'      => 'manage comments'
+            array( // 3
+                'name'         => 'manage_comments',
+                'display_name' => 'manage comments'
             ),
-            array(
-                'name'      => 'manage_users',
-                'display_name'      => 'manage users'
+            array( // 4
+                'name'         => 'manage_users',
+                'display_name' => 'manage users'
             ),
-            array(
-                'name'      => 'manage_roles',
-                'display_name'      => 'manage roles'
+            array( // 5
+                'name'         => 'manage_roles',
+                'display_name' => 'manage roles'
             ),
-            array(
-                'name'      => 'post_comment',
-                'display_name'      => 'post comment'
+            array( // 6
+                'name'         => 'post_comment',
+                'display_name' => 'post comment'
             ),
         );
 
@@ -38,34 +37,38 @@ class PermissionsTableSeeder extends Seeder {
 
         DB::table('permission_role')->delete();
 
+        $role_id_admin = Role::where('name', '=', 'admin')->first()->id;
+        $role_id_comment = Role::where('name', '=', 'comment')->first()->id;
+        $permission_base = (int)DB::table('permissions')->first()->id - 1;
+
         $permissions = array(
             array(
-                'role_id'      => 1,
-                'permission_id' => 1
+                'role_id'       => $role_id_admin,
+                'permission_id' => $permission_base + 1
             ),
             array(
-                'role_id'      => 1,
-                'permission_id' => 2
+                'role_id'       => $role_id_admin,
+                'permission_id' => $permission_base + 2
             ),
             array(
-                'role_id'      => 1,
-                'permission_id' => 3
+                'role_id'       => $role_id_admin,
+                'permission_id' => $permission_base + 3
             ),
             array(
-                'role_id'      => 1,
-                'permission_id' => 4
+                'role_id'       => $role_id_admin,
+                'permission_id' => $permission_base + 4
             ),
             array(
-                'role_id'      => 1,
-                'permission_id' => 5
+                'role_id'       => $role_id_admin,
+                'permission_id' => $permission_base + 5
             ),
             array(
-                'role_id'      => 1,
-                'permission_id' => 6
+                'role_id'       => $role_id_admin,
+                'permission_id' => $permission_base + 6
             ),
             array(
-                'role_id'      => 2,
-                'permission_id' => 6
+                'role_id'       => $role_id_comment,
+                'permission_id' => $permission_base + 6
             ),
         );
 
