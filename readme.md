@@ -35,6 +35,8 @@ See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-
 ## Recommendations
 I recommend that you use Grunt to compile and minify your assets. See this [article](http://blog.elenakolevska.com/using-grunt-with-laravel-and-bootstrap) for details.
 
+Also I recommend using [Former](http://anahkiasen.github.io/former/) for your forms. It's an excellent library.
+
 -----
 
 ##Requirements

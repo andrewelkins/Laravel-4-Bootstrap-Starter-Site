@@ -121,5 +121,7 @@
         <script src="{{asset('bootstrap/js/tab.js')}}"></script>
         <script src="{{asset('bootstrap/js/tooltip.js')}}"></script>
         <script src="{{asset('bootstrap/js/transition.js')}}"></script>
+
+        @yield('scripts')
 	</body>
 </html>
