@@ -11,9 +11,10 @@
     ],
     "require": {
         "laravel/framework": "~4.1.28",
-        "zizaco/confide": "~1.2",
-        "zizaco/entrust": "~3.2",
-        "bllim/datatables": "~1.3"
+        "zizaco/confide": "~3.2",
+        "zizaco/entrust": "~1.2",
+        "bllim/datatables": "~1.3",
+	"laravelbook/ardent": "dev-master"
     },
     "require-dev": {
         "way/generators": "~2.6",
