@@ -18,7 +18,7 @@
         <!-- ./ csrf token -->
 
         <!-- Form Actions -->
-        <div class="control-group">
+        <div class="form-group">
             <div class="controls">
                 Delete Post
                 <element class="btn-cancel close_popup">Cancel</element>

@@ -275,40 +275,11 @@ By default debugging is enabled. Before you go to production you should disable 
 
 ## Troubleshooting
 
-### Styles are not displaying
+## Composer asking for login / password
 
-You may need to recompile the assets for basset. This is easy to with one command.
+Try using this with doing the install instead.
 
-```
-php artisan basset:build
-```
-
-### Site loading very slow
-
-Are you running Windows??
-
-Please try adjusting the basset configuration as show in this [comment](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues/148#issuecomment-22995288)
-
-In app/config/packages/jasonlewis/basset/config.php:
-
-```
- $collection->directory('assets/js', function($collection)
-            {
-                $collection->javascript('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
-                //$collection->add('bootstrap/bootstrap.js');
-                $collection->requireDirectory('../../../vendor/twbs/bootstrap/js');
-            })->apply('JsMin');
-```
-to:
-```
- $collection->directory('assets/js', function($collection)
-            {
-                $collection->javascript('http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js');
-                $collection->add('bootstrap/bootstrap.js');
-                $collection->requireDirectory('../../../vendor/twbs/bootstrap/js');
-            })->apply('JsMin');
-```
-
+    composer install --dev --prefer-source --no-interaction
 
 -----
 ## License
