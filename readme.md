@@ -214,6 +214,13 @@ The structure of this starter site is the same as default Laravel 4 with one exc
 This starter site adds a `library` folder. Which, houses application specific library files.
 The files within library could also be handled within a composer package, but is included here as an example.
 
+## Detect Language
+
+If you want to detect teh language on all pages you'll want to add the following to your routes.php at the top.
+
+    Route::when('*','detectLang');
+    
+
 ### Development
 
 For ease of development you'll want to enable a couple useful packages. This requires editing the `app/config/app.php` file.
