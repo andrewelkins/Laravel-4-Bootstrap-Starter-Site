@@ -191,7 +191,7 @@ php artisan basset:build -p admin
 
 This will build the production assets in ***public/assets/compiled*** which will be versioned in git and should be uploaded to your production server.
 
-### Step 10: Start Page
+### Step 10: Start Page (Three options for proceeding)
 
 ### User login with commenting permission
 Navigate to your Laravel 4 website and login at /user/login:
@@ -199,6 +199,7 @@ Navigate to your Laravel 4 website and login at /user/login:
     username : user
     password : user
 
+## Create a new user
 Create a new user at /user/create
 
 ### Admin login
@@ -219,7 +220,7 @@ The files within library could also be handled within a composer package, but is
 If you want to detect teh language on all pages you'll want to add the following to your routes.php at the top.
 
     Route::when('*','detectLang');
-    
+
 
 ### Development
 
