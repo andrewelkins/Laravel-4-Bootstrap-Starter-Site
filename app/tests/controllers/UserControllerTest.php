@@ -37,6 +37,9 @@ class UserControllerTest extends BaseControllerTestCase {
         $this->assertRedirection( URL::action('UserController@getLogin') );
     }
 
+    /**
+     * @expectedException  TokenMismatchException
+     */
     public function testShouldNotDoLoginWhenTokenWrong()
     {
         $credentials = array(
@@ -45,16 +48,8 @@ class UserControllerTest extends BaseControllerTestCase {
             'csrf_token' => ''
         );
 
-        try {
-            $this->withInput( $credentials )
-                ->requestAction('POST', 'UserController@postLogin');
-
-        } catch (TokenMismatchException $e) {
-            // threw an exception when token doesn't match.
-            return true;
-        }
-
-        return false;
+        $this->withInput( $credentials )
+            ->requestAction('POST', 'UserController@postLogin');
     }
 
     /**
