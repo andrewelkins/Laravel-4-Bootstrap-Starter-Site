@@ -1,21 +1,18 @@
 #Laravel 4 Bootstrap Starter Site
-`Version: 1.2.1 Stable` [![ProjectStatus](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site)
+`Version: 1.3.0 Stable` [![ProjectStatus](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site)
 [![Build Status](https://api.travis-ci.org/andrew13/Laravel-4-Bootstrap-Starter-Site.png)](https://travis-ci.org/andrew13/Laravel-4-Bootstrap-Starter-Site)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/andrew13/laravel-4-bootstrap-starter-site/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Laravel 4 Bootstrap Starter Site is a sample application for beginning development with Laravel 4.
 
-It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/laravel4-starter-kit) taking the starter kit changing the included modules and adding a few as well.
-
-
 ## Features
 
-* Bootstrap 3.0.0
+* Bootstrap 3.x
 * Custom Error Pages
 	* 403 for forbidden page accesses
 	* 404 for not found pages
 	* 500 for internal server errors
-* [Confide](#confide) for Authentication and Authorization
+* Confide for Authentication and Authorization
 * Back-end
 	* User and Role management
 	* Manage blog posts and comments
@@ -27,19 +24,13 @@ It began as a fork of [laravel4-starter-kit](https://github.com/brunogaspar/lara
 	* User account area
 	* Simple Blog functionality
 * Packages included:
-	* [Confide](#confide)
-	* [Entrust](#entrust)
-	* [Ardent](#ardent)
-	* [Carbon](#carbon)
-	* [Basset](#basset)
-	* [Presenter](#presenter)
-	* [Generators](#generators)
+	* [Confide](https://github.com/zizaco/confide)
+	* [Entrust](https://github.com/zizaco/entrust)
+	* [Ardent](https://github.com/laravelbook/ardent)
+	* [Generators](https://github.com/JeffreyWay/Laravel-4-Generators/blob/master/readme.md)
 
 ## Issues
 See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
-
-## Wiki
-[Roadmap](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/wiki/Roadmap)
 
 -----
 
@@ -304,123 +295,6 @@ to:
                 $collection->requireDirectory('../../../vendor/twbs/bootstrap/js');
             })->apply('JsMin');
 ```
-
------
-## Included Package Information
-<a name="confide"></a>
-## Confide Authentication Solution
-
-Used for the user auth and registration. In general for user controllers you'll want to use something like the following:
-
-    <?php
-
-    use Zizaco\Confide\ConfideUser;
-
-    class User extends ConfideUser {
-
-    }
-
-For full usage see [Zizaco/Confide Documentation](https://github.com/zizaco/confide)
-
-<a name="entrust"></a>
-## Entrust Role Solution
-
-Entrust provides a flexible way to add Role-based Permissions to Laravel4.
-
-    <?php
-
-    use Zizaco\Entrust\EntrustRole;
-
-    class Role extends EntrustRole
-    {
-
-    }
-
-For full usage see [Zizaco/Entrust Documentation](https://github.com/zizaco/entrust)
-
-<a name="ardent"></a>
-## Ardent - Used for handling repetitive validation tasks.
-
-Self-validating, secure and smart models for Laravel 4's Eloquent ORM
-
-For full usage see [Ardent Documentation](https://github.com/laravelbook/ardent)
-
-<a name="carbon"></a>
-## Carbon
-
-A fluent extension to PHPs DateTime class.
-
-```php
-<?php
-printf("Right now is %s", Carbon::now()->toDateTimeString());
-printf("Right now in Vancouver is %s", Carbon::now('America/Vancouver'));  //implicit __toString()
-$tomorrow = Carbon::now()->addDay();
-$lastWeek = Carbon::now()->subWeek();
-$nextSummerOlympics = Carbon::createFromDate(2012)->addYears(4);
-
-$officialDate = Carbon::now()->toRFC2822String();
-
-$howOldAmI = Carbon::createFromDate(1975, 5, 21)->age;
-
-$noonTodayLondonTime = Carbon::createFromTime(12, 0, 0, 'Europe/London');
-
-$worldWillEnd = Carbon::createFromDate(2012, 12, 21, 'GMT');
-```
-
-For full usage see [Carbon](https://github.com/briannesbitt/Carbon)
-
-<a name="basset"></a>
-## Basset
-
-A Better Asset Management package for Laravel.
-
-Adding assets in the configuration file `config/packages/jasonlewis/basset/config.php`
-```php
-'collections' => array(
-        'public-css' => function($collection)
-        {
-            $collection->add('assets/css/bootstrap.min.css');
-            $collection->add('assets/css/bootstrap-responsive.min.css');
-        },
-    ),
-```
-
-Compiling assets
-
-    $ php artisan basset:build
-
-I would recommend using development collections for development instead of compiling .
-
-For full usage see [Using Basset by Jason Lewis](http://jasonlewis.me/code/basset/4.0)
-
-<a name="presenter"></a>
-## Presenter
-
-Simple presenter to wrap and render objects. Think of it of a way to modify an asset for the view layer only.
-Control the presentation in the presentation layer not in the model.
-
-The core idea is the relationship between two classes: your model full of data and a presenter which works as a sort of wrapper to help with your views.
-For instance, if you have a `User` object you might have a `UserPresenter` presenter to go with it. To use it all you do is `$userObject = new UserPresenter($userObject);`.
-The `$userObject` will function the same unless a method is called that is a member of the `UserPresenter`. Another way to think of it is that any call that doesn't exist in the `UserPresenter` falls through to the original object.
-
-For full usage see [Presenter Readme](https://github.com/robclancy/presenter)
-
-<a name="generators"></a>
-## Laravel 4 Generators
-
-Laravel 4 Generators package provides a variety of generators to speed up your development process. These generators include:
-
-- `generate:model`
-- `generate:seed`
-- `generate:test`
-- `generate:view`
-- `generate:migration`
-- `generate:resource`
-- `generate:scaffold`
-- `generate:form`
-- `generate:test`
-
-For full usage see [Laravel 4 Generators Readme](https://github.com/JeffreyWay/Laravel-4-Generators/blob/master/readme.md)
 
 
 -----

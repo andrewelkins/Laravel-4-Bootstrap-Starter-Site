@@ -19,9 +19,13 @@
 
 		<!-- CSS
 		================================================== -->
-        {{ Basset::show('public.css') }}
+        <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
 
 		<style>
+        body {
+            padding: 60px 0;
+        }
 		@section('styles')
 		@show
 		</style>
@@ -103,6 +107,19 @@
 
 		<!-- Javascripts
 		================================================== -->
-        {{ Basset::show('public.js') }}
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('bootstrap/js/affix.js')}}"></script>
+        <script src="{{asset('bootstrap/js/alert.js')}}"></script>
+        <script src="{{asset('bootstrap/js/button.js')}}"></script>
+        <script src="{{asset('bootstrap/js/carousel.js')}}"></script>
+        <script src="{{asset('bootstrap/js/collapse.js')}}"></script>
+        <script src="{{asset('bootstrap/js/dropdown.js')}}"></script>
+        <script src="{{asset('bootstrap/js/modal.js')}}"></script>
+        <script src="{{asset('bootstrap/js/popover.js')}}"></script>
+        <script src="{{asset('bootstrap/js/scrollspy.js')}}"></script>
+        <script src="{{asset('bootstrap/js/tab.js')}}"></script>
+        <script src="{{asset('bootstrap/js/tooltip.js')}}"></script>
+        <script src="{{asset('bootstrap/js/transition.js')}}"></script>
 	</body>
 </html>
