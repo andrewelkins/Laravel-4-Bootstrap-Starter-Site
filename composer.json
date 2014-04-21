@@ -15,15 +15,15 @@
 		"zizaco/confide": "dev-master",
 		"zizaco/entrust": "dev-master",
 		"robclancy/presenter": "1.2.*",
-        "j20/php-uuid": "dev-master",
-        "bllim/datatables": "*"
+		"j20/php-uuid": "dev-master",
+        	"bllim/datatables": "*"
 	},
 	"require-dev": {
         "way/generators": "dev-master",
         "mockery/mockery": "dev-master@dev",
         "summerstreet/woodling": "0.1.*",
         "barryvdh/laravel-ide-helper": "dev-master",
-        "leafo/lessphp": "v0.4.0",
+        "oyejorge/less.php": "~1.5",
         "natxet/CssMin": "dev-master",
         "lmammino/jsmin4assetic": "1.0.*"
 	},
@@ -31,7 +31,7 @@
 		"classmap": [
 			"app/commands",
 			"app/controllers",
-            "app/library",
+            		"app/library",
 			"app/models",
 			"app/presenters",
 			"app/database/migrations",
