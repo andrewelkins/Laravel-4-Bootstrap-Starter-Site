@@ -1,7 +1,7 @@
 {
     "name": "andrew13/Laravel-4-Bootstrap-Starter-Site",
     "description": "Laravel 4 Starter Site",
-    "keywords": ["laravel","Starter Site"],
+    "keywords": ["laravel", "Starter Site"],
     "license": "MIT",
     "authors": [
         {
@@ -9,49 +9,42 @@
             "homepage": "http://www.andrewelkins.com"
         }
     ],
-	"require": {
-		"laravel/framework": "4.1.*",
-		"twbs/bootstrap":  "3.0.0",
-		"zizaco/confide": "dev-master",
-		"zizaco/entrust": "dev-master",
-		"robclancy/presenter": "1.2.*",
-        "j20/php-uuid": "dev-master",
+    "require": {
+        "laravel/framework": "4.1.*",
+        "zizaco/confide": "dev-master",
+        "zizaco/entrust": "dev-master",
         "bllim/datatables": "*"
-	},
-	"require-dev": {
+    },
+    "require-dev": {
         "way/generators": "dev-master",
         "mockery/mockery": "dev-master@dev",
         "summerstreet/woodling": "0.1.*",
-        "barryvdh/laravel-ide-helper": "dev-master",
-        "leafo/lessphp": "v0.4.0",
-        "natxet/CssMin": "dev-master",
-        "lmammino/jsmin4assetic": "1.0.*"
-	},
-	"autoload": {
-		"classmap": [
-			"app/commands",
-			"app/controllers",
+        "barryvdh/laravel-ide-helper": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "app/commands",
+            "app/controllers",
             "app/library",
-			"app/models",
-			"app/presenters",
-			"app/database/migrations",
-			"app/database/seeds",
-			"app/tests/library"
-		]
-	},
-	"scripts": {
-		"pre-update-cmd": [
-			"php artisan clear-compiled"
-		],
-		"post-install-cmd": [
-			"php artisan optimize"
-		],
-		"post-update-cmd": [
-			"php artisan optimize"
-		]
-	},
-	"config": {
-		"preferred-install": "dist"
-	},
-	"minimum-stability": "dev"
+            "app/models",
+            "app/database/migrations",
+            "app/database/seeds",
+            "app/tests/library"
+        ]
+    },
+    "scripts": {
+        "pre-update-cmd": [
+            "php artisan clear-compiled"
+        ],
+        "post-install-cmd": [
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "php artisan optimize"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev"
 }

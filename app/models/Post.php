@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\URL; # not sure why i need this here :c
-use Robbo\Presenter\PresentableInterface;
+use Illuminate\Support\Facades\URL;
 
-class Post extends Eloquent implements PresentableInterface {
+class Post extends Eloquent {
 
 	/**
 	 * Deletes a blog post and all
@@ -97,10 +96,5 @@ class Post extends Eloquent implements PresentableInterface {
 	{
         return $this->date($this->updated_at);
 	}
-
-    public function getPresenter()
-    {
-        return new PostPresenter($this);
-    }
 
 }

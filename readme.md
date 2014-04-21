@@ -32,6 +32,9 @@ Laravel 4 Bootstrap Starter Site is a sample application for beginning developme
 ## Issues
 See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
 
+## Recommendations
+I recommend that you use Grunt to compile and minify your assets. See this [article](http://blog.elenakolevska.com/using-grunt-with-laravel-and-bootstrap) for details.
+
 -----
 
 ##Requirements

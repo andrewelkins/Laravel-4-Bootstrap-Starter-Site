@@ -1,19 +1,8 @@
 <?php
 
 use Zizaco\Entrust\EntrustRole;
-use Robbo\Presenter\PresentableInterface;
 
-class Role extends EntrustRole implements PresentableInterface
-{
-
-    /**
-     * Same presenter as the user model.
-     * @return Robbo\Presenter\Presenter|UserPresenter
-     */
-    public function getPresenter()
-    {
-        return new UserPresenter($this);
-    }
+class Role extends EntrustRole {
 
     /**
      * Provide an array of strings that map to valid roles.

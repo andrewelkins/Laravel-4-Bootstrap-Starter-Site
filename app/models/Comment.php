@@ -1,8 +1,6 @@
 <?php
 
-use Robbo\Presenter\PresentableInterface;
-
-class Comment extends Eloquent implements PresentableInterface{
+class Comment extends Eloquent {
 
 	/**
 	 * Get the comment's content.
@@ -79,10 +77,5 @@ class Comment extends Eloquent implements PresentableInterface{
     public function updated_at()
     {
         return $this->date($this->updated_at);
-    }
-
-    public function getPresenter()
-    {
-        return new CommentPresenter($this);
     }
 }
