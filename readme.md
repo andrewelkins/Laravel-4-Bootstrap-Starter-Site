@@ -41,7 +41,7 @@ Also I recommend using [Former](http://anahkiasen.github.io/former/) for your fo
 
 ##Requirements
 
-	PHP >= 5.4.0 (Entrust requires 5.4, this is an increase over Laravel's 5.3.7 requirement)
+	PHP >= 5.4.0
 	MCrypt PHP Extension
 
 ##How to install
@@ -78,8 +78,6 @@ This will skip the development packages and ensure the version of the packages i
 NEVER run `php composer.phar update` on your production server.
 
 ### Step 3: Configure Environments
-
-Laravel 4 will load configuration files depending on your environment. Basset will also build collections depending on this environment setting.
 
 Open ***bootstrap/start.php*** and edit the following lines to match your settings. You want to be using your machine name in Windows and your hostname in OS X and Linux (type `hostname` in terminal). Using the machine name will allow the `php artisan` command to use the right configuration files as well.
 
@@ -166,34 +164,7 @@ Should work, if not try
 
     chmod -R 777 app/storage
 
-### Step 9: Build Assets
-
-If you have setup your environments, basset will know you are in development and will build the assets automatically and will not apply certain filters such as minification or combination to keep the code readable. You will need to make the folder where the assets are built writable:
-
-If permissions are set correctly:
-
-    chmod -R 775 public/assets/compiled
-
-Should work, if not try
-
-    chmod -R 777 public/assets/compiled
-
-To force a build of the dev collection use:
-
-```
-php artisan basset:build
-```
-
-The starter site uses two asset collections, ***public*** and ***admin***. While in development, assets will be built in two folders, ***public*** and ***admin***, inside of ***public/assets/compiled***. These are ignored by git as you do not want them on your production server. Once you are ready to push or upload the code to production run:
-
-```
-php artisan basset:build -p public
-php artisan basset:build -p admin
-```
-
-This will build the production assets in ***public/assets/compiled*** which will be versioned in git and should be uploaded to your production server.
-
-### Step 10: Start Page (Three options for proceeding)
+### Step 9: Start Page (Three options for proceeding)
 
 ### User login with commenting permission
 Navigate to your Laravel 4 website and login at /user/login:
@@ -281,7 +252,6 @@ Try using this with doing the install instead.
 
     composer install --dev --prefer-source --no-interaction
 
------
 ## License
 
 This is free software distributed under the terms of the MIT license
