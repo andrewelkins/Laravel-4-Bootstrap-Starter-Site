@@ -24,7 +24,7 @@
 					<label class="col-md-2 control-label" for="name">Name</label>
                     <div class="col-md-10">
     					<input class="form-control" type="text" name="name" id="name" value="{{{ Input::old('name') }}}" />
-    					{{{ $errors->first('name', '<span class="help-inline">:message</span>') }}}
+    					{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
                     </div>
 				</div>
 				<!-- ./ name -->
