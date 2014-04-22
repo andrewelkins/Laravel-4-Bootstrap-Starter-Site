@@ -5,8 +5,10 @@ use Zizaco\Confide\Confide;
 use Zizaco\Confide\ConfideEloquentRepository;
 use Zizaco\Entrust\HasRole;
 use Carbon\Carbon;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends ConfideUser {
+class User extends ConfideUser implements UserInterface, RemindableInterface{
     use HasRole;
 
     /**
@@ -92,6 +94,14 @@ class User extends ConfideUser {
         return (new Confide(new ConfideEloquentRepository()))->user();
     }
 
-
+    /**
+     * Get the e-mail address where password reminders are sent.
+     *
+     * @return string
+     */
+    public function getReminderEmail()
+    {
+        return $this->email;
+    }
 
 }
