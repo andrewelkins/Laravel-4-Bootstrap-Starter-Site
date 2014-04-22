@@ -109,18 +109,6 @@
 		================================================== -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('bootstrap/js/affix.js')}}"></script>
-        <script src="{{asset('bootstrap/js/alert.js')}}"></script>
-        <script src="{{asset('bootstrap/js/button.js')}}"></script>
-        <script src="{{asset('bootstrap/js/carousel.js')}}"></script>
-        <script src="{{asset('bootstrap/js/collapse.js')}}"></script>
-        <script src="{{asset('bootstrap/js/dropdown.js')}}"></script>
-        <script src="{{asset('bootstrap/js/modal.js')}}"></script>
-        <script src="{{asset('bootstrap/js/popover.js')}}"></script>
-        <script src="{{asset('bootstrap/js/scrollspy.js')}}"></script>
-        <script src="{{asset('bootstrap/js/tab.js')}}"></script>
-        <script src="{{asset('bootstrap/js/tooltip.js')}}"></script>
-        <script src="{{asset('bootstrap/js/transition.js')}}"></script>
 
         @yield('scripts')
 	</body>
