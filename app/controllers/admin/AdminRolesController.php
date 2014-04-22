@@ -22,13 +22,6 @@ class AdminRolesController extends AdminController {
     protected $permission;
 
     /**
-     * Protected Roles
-     */
-	private $protected_roles=array('admin','client');
-
-
-
-    /**
      * Inject the models.
      * @param User $user
      * @param Role $role
@@ -97,11 +90,7 @@ class AdminRolesController extends AdminController {
         // Check if the form validates with success
         if ($validator->passes())
         {
-  			// Error if role name is protected
-  			if(in_array(Input::get('name'), $this->protected_roles)) 
-				return Redirect::to('admin/roles/create')->with('error', Lang::get('admin/roles/messages.create.error'));
-
-             // Get the inputs, with some exceptions
+  	    // Get the inputs, with some exceptions
             $inputs = Input::except('csrf_token');
 
             $this->role->name = $inputs['name'];
@@ -183,12 +172,6 @@ class AdminRolesController extends AdminController {
         // Check if the form validates with success
         if ($validator->passes())
         {
-            
-            
-      		// Error if role name is protected
-     		if((in_array(Input::old('name', $role->name), $this->protected_roles) &&Input::old('name', $role->name) != Input::get('name'))||( in_array(Input::get('name'), $this->protected_roles)  && Input::old('name', $role->name) != Input::get('name'))) 
-    			return Redirect::to('admin/roles/' . $role->id . '/edit')->with('error', Lang::get('admin/roles/messages.update.error'));
-                 
             // Update the role data
             $role->name        = Input::get('name');
             $role->perms()->sync($this->permission->preparePermissionsForSave(Input::get('permissions')));
