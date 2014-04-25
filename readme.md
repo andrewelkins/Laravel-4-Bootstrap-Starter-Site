@@ -200,15 +200,14 @@ If you want to detect teh language on all pages you'll want to add the following
 For ease of development you'll want to enable a couple useful packages. This requires editing the `app/config/app.php` file.
 
 ```
-    'providers' => array(
+    'providers' => append_config(array(
 
-        [...]
 
         /* Uncomment for use in development */
 //        'Way\Generators\GeneratorsServiceProvider', // Generators
 //        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
 
-    ),
+    )),
 ```
 Uncomment the Generators and IDE Helpers. Then you'll want to run a composer update with the dev flag.
 
