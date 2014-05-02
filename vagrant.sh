@@ -7,6 +7,21 @@
 # License: MIT
 
 # ----------------
+# Ubuntu Repositories
+# ----------------
+# echo '- We are in Singapore...'
+# sed -i.backup 's/us.archive.ubuntu.com/sg.archive.ubuntu.com/g' /etc/apt/sources.list
+
+
+# ----------------
+# Python properties
+# ----------------
+echo '- Installing python properties...'
+apt-get update
+apt-get install python-software-properties -y --force-yes
+echo '...done'
+
+# ----------------
 # Configure and Update the box
 # ----------------
 # Adds Repositories and then updates
@@ -25,8 +40,8 @@ echo '...done'
 # ----------------
 # Install Screen & Vim
 # ----------------
-echo '- Installing screen vim unzip curl wget build-essential...'
-apt-get install screen vim unzip curl wget build-essential -y --force-yes
+echo '- Installing screen tmux vim unzip curl wget build-essential...'
+apt-get install screen tmux vim unzip curl wget build-essential -y --force-yes
 echo '...done'
 
 # ----------------
@@ -37,27 +52,17 @@ apt-get install git-core -y --force-yes
 echo '...done'
 
 # ----------------
-# Python properties
-# ----------------
-echo '- Installing python properties...'
-apt-get install python-software-properties -y --force-yes
-echo '...done'
-
-# ----------------
 # Nginx
 # ----------------
 echo '- Installing nginx...'
 # Install
 apt-get install nginx -y --force-yes
-# Symlink /vagrant to /var/www
-mkdir /var/www
-ln -fs /vagrant /var/www/laravel
 # Setup hosts file
 VHOST=$(cat <<EOF
 server {
     listen 80 default_server;
 
-    root /vagrant/public;
+    root /var/www/laravel/public;
     index index.html index.htm index.php;
 
     server_name laravel.local localhost;
@@ -100,10 +105,8 @@ service nginx reload
 echo '...done'
 
 # ----------------
-# PHP 5.4
+# PHP 5.x
 # ----------------
-# Add add-apt-repository binary
-apt-get install -y python-software-properties --force-yes
 
 echo '- Installing php...'
 # PHP-FPM
@@ -166,7 +169,7 @@ easy_install pip >/dev/null
 echo '...done'
 echo '- Installing HTTPie...'
 pip install --upgrade httpie >/dev/null
-rm distribute-0.6.48.tar.gz
+rm -f distribute-*.tar.gz
 echo '...done'
 
 # ----------------
@@ -182,10 +185,9 @@ echo '...done'
 # Install PHPUnit
 # ----------------
 echo 'Installing PHPUnit...'
-pear channel-discover pear.phpunit.de
-pear channel-discover components.ez.no
-pear channel-discover pear.symfony-project.com
-pear install phpunit/PHPUnit
+wget -q https://phar.phpunit.de/phpunit.phar
+chmod +x phpunit.phar
+mv phpunit.phar /usr/local/bin/phpunit
 echo '...done'
 
 # ----------------
@@ -209,17 +211,13 @@ php artisan key:generate --env=local
 # ----------------
 # Finalize
 # ----------------
-# Set permissions
-echo '- Set permissions...'
-chgrp -R www-data /vagrant
-chmod -R 777 /vagrant/app/storage
-echo '...done'
 
 # Notify
 echo ''
 echo ''
 echo '----------------------------------------------'
 echo ' Navigate to http://192.168.50.5 on host OS'
+echo ' Navigate to http://localhost:8181 on host OS'
 echo '----------------------------------------------'
 echo ''
 echo ' Emails sent will be written to the application logs.'

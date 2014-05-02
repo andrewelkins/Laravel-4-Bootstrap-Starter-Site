@@ -25,6 +25,4 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
   end
 
-  config.vm.provision :shell, :path => "vagrant.sh"
-
 end
