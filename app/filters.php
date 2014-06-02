@@ -35,10 +35,10 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) {
-        Session::put('loginRedirect', Request::url());
-        return Redirect::to('user/login/');
-    }
+	if ( Auth::guest() ) // If the user is not logged in
+	{
+        	return Redirect::guest('user/login');
+	}
 });
 
 Route::filter('auth.basic', function()
