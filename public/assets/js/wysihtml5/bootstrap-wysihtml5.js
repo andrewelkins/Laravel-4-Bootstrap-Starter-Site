@@ -450,7 +450,7 @@
                 "pre": 1
             }
         },
-        stylesheets: ["./lib/css/wysiwyg-color.css"], // (path_to_project/lib/css/wysiwyg-color.css)
+        stylesheets: [], //CSS stylesheets to load - (path_to_project/lib/css/wysiwyg-color.css)
         locale: "en"
     };
 
