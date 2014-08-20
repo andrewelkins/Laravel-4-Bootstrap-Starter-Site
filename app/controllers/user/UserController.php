@@ -69,7 +69,7 @@ class UserController extends BaseController {
         {
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
             return Redirect::to('user/login')
-                ->with( 'notice', Lang::get('user/user.user_account_created') );
+                ->with( 'success', Lang::get('user/user.user_account_created') );
         }
         else
         {
