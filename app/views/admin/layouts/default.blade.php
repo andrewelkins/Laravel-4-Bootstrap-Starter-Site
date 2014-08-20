@@ -2,7 +2,7 @@
 
 <html lang="en">
 
-<head id="Starter-Site">
+<head>
 
 	<meta charset="UTF-8">
 
