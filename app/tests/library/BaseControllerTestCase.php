@@ -27,6 +27,9 @@ class BaseControllerTestCase extends TestCase
     {
         parent::setUp();
 
+        // Enable session
+        Session::start();
+
         // Enable filters
         Route::enableFilters();
     }

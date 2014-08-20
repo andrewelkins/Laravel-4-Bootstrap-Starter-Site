@@ -1,7 +1,5 @@
 <?php
 
-use \Illuminate\Session\TokenMismatchException;
-
 class UserControllerTest extends BaseControllerTestCase {
 
     public function testShouldLogin()
@@ -38,7 +36,7 @@ class UserControllerTest extends BaseControllerTestCase {
     }
 
     /**
-     * @expectedException  TokenMismatchException
+     * @expectedException  \Illuminate\Session\TokenMismatchException
      */
     public function testShouldNotDoLoginWhenTokenWrong()
     {
