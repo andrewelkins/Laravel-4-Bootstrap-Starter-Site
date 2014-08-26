@@ -14,14 +14,18 @@
 
 {{-- Update the Meta Description --}}
 @section('meta_description')
-@parent
+<meta name="description" content="{{{ $post->meta_description() }}}" />
 
 @stop
 
 {{-- Update the Meta Keywords --}}
 @section('meta_keywords')
-@parent
+<meta name="keywords" content="{{{ $post->meta_keywords() }}}" />
 
+@stop
+
+@section('meta_author')
+<meta name="author" content="{{{ $post->author->username }}}" />
 @stop
 
 {{-- Content --}}
