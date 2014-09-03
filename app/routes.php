@@ -20,6 +20,8 @@ Route::model('comment', 'Comment');
 Route::model('post', 'Post');
 Route::model('role', 'Role');
 
+Route::model('account', 'Account');
+
 /** ------------------------------------------
  *  Route constraint patterns
  *  ------------------------------------------
@@ -29,6 +31,8 @@ Route::pattern('post', '[0-9]+');
 Route::pattern('user', '[0-9]+');
 Route::pattern('role', '[0-9]+');
 Route::pattern('token', '[0-9a-z]+');
+
+Route::pattern('account', '[0-9]+');
 
 /** ------------------------------------------
  *  Admin Routes
@@ -87,6 +91,8 @@ Route::post('user/{user}/edit', 'UserController@postEdit');
 
 //:: User Account Routes ::
 Route::post('user/login', 'UserController@postLogin');
+
+
 
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
