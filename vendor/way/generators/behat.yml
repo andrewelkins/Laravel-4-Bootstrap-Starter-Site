@@ -1,0 +1,9 @@
+default:
+    paths:
+        features: tests/features
+        bootstrap: %behat.paths.features%/bootstrap
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://localhost:8000
+            goutte: ~
+            selenium2: ~

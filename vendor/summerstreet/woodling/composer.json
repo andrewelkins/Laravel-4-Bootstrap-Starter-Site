@@ -1,0 +1,28 @@
+{
+    "name": "summerstreet/woodling",
+    "description": "Easy fixtures for your models",
+    "keywords": ["woodling", "factories", "fixtures", "testing"],
+    "homepage": "https://github.com/summerstreet/woodling",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mindaugas Bujanauskas"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev":
+    {
+        "phpunit/phpunit": "3.7.*",
+        "mikey179/vfsStream": "v1.1.0",
+        "apigen/apigen": "2.8.*"
+    },
+    "autoload":
+    {
+        "psr-0": {
+            "Woodling": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

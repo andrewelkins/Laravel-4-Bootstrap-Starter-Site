@@ -1,0 +1,11 @@
+<phpunit bootstrap="./vendor/autoload.php" colors="true">
+    <testsuite name="Default">
+        <directory suffix=".test.php">./tests/</directory>
+    </testsuite>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/Woodling/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
