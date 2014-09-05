@@ -10,7 +10,7 @@ return array(
 	|
 	*/
 
-	'cP_amazon_aws'              => 'Amazon AWS',
+	'cp_amazon_aws'              => 'Amazon AWS',
 	'account_updated'          => 'Account updated.',
 	'account_created'          => 'Account created.',
 

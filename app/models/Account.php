@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\URL;
 class Account extends Eloquent {
 
 	/**
-	 * Deletes a blog post and all
+	 * Deletes a account
 	 * the associated comments.
 	 *
 	 * @return bool
