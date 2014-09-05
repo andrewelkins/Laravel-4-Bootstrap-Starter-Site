@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "14b3132b31e329f63d4dd1a295dc72b3",
+    "hash": "23a2f82a87c6d3be9e0c9d1754af7119",
     "packages": [
         {
             "name": "bllim/datatables",
-            "version": "v1.4.2",
+            "version": "v1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bllim/laravel4-datatables-package.git",
-                "reference": "9465ef994c7f6bfa2359fc8b7da23da154a5cb2b"
+                "reference": "93bba1836b1fa5039137aa3dab4049c7f1c09d4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bllim/laravel4-datatables-package/zipball/9465ef994c7f6bfa2359fc8b7da23da154a5cb2b",
-                "reference": "9465ef994c7f6bfa2359fc8b7da23da154a5cb2b",
+                "url": "https://api.github.com/repos/bllim/laravel4-datatables-package/zipball/93bba1836b1fa5039137aa3dab4049c7f1c09d4d",
+                "reference": "93bba1836b1fa5039137aa3dab4049c7f1c09d4d",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                 "laravel",
                 "laravel4"
             ],
-            "time": "2014-07-25 20:22:03"
+            "time": "2014-09-05 07:55:04"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -3002,18 +3002,10 @@
             "time": "2014-05-27 14:21:26"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
     "prefer-stable": false,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "platform": [],
+    "platform-dev": []
 }

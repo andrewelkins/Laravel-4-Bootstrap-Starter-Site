@@ -1921,63 +1921,6 @@
         ]
     },
     {
-        "name": "bllim/datatables",
-        "version": "v1.4.2",
-        "version_normalized": "1.4.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/bllim/laravel4-datatables-package.git",
-            "reference": "9465ef994c7f6bfa2359fc8b7da23da154a5cb2b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/bllim/laravel4-datatables-package/zipball/9465ef994c7f6bfa2359fc8b7da23da154a5cb2b",
-            "reference": "9465ef994c7f6bfa2359fc8b7da23da154a5cb2b",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/database": ">=4.0.0",
-            "illuminate/filesystem": ">=4.0.0",
-            "illuminate/support": ">=4.0.0",
-            "illuminate/view": ">=4.0.0",
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "laravel/laravel": ">=4.0.0",
-            "mockery/mockery": "0.7.2",
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2014-07-25 20:22:03",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "src/migrations"
-            ],
-            "psr-0": {
-                "Bllim\\Datatables": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Bilal Gultekin",
-                "email": "bilal@bilal.im"
-            }
-        ],
-        "description": "Server-side handler of DataTables Jquery Plugin for Laravel 4",
-        "keywords": [
-            "datatable",
-            "datatables",
-            "datatables jquery plugin",
-            "laravel",
-            "laravel4"
-        ]
-    },
-    {
         "name": "way/generators",
         "version": "2.6.1",
         "version_normalized": "2.6.1.0",
@@ -3098,6 +3041,63 @@
             "phpdoc",
             "phpstorm",
             "sublime"
+        ]
+    },
+    {
+        "name": "bllim/datatables",
+        "version": "v1.4.4",
+        "version_normalized": "1.4.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bllim/laravel4-datatables-package.git",
+            "reference": "93bba1836b1fa5039137aa3dab4049c7f1c09d4d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/bllim/laravel4-datatables-package/zipball/93bba1836b1fa5039137aa3dab4049c7f1c09d4d",
+            "reference": "93bba1836b1fa5039137aa3dab4049c7f1c09d4d",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/database": ">=4.0.0",
+            "illuminate/filesystem": ">=4.0.0",
+            "illuminate/support": ">=4.0.0",
+            "illuminate/view": ">=4.0.0",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "laravel/laravel": ">=4.0.0",
+            "mockery/mockery": "0.7.2",
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2014-09-05 07:55:04",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/migrations"
+            ],
+            "psr-0": {
+                "Bllim\\Datatables": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Bilal Gultekin",
+                "email": "bilal@bilal.im"
+            }
+        ],
+        "description": "Server-side handler of DataTables Jquery Plugin for Laravel 4",
+        "keywords": [
+            "datatable",
+            "datatables",
+            "datatables jquery plugin",
+            "laravel",
+            "laravel4"
         ]
     }
 ]
