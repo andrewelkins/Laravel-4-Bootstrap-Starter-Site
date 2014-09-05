@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Account' => $baseDir . '/app/models/Account.php',
-    'AccountController' => $baseDir . '/app/controllers/AccountController.php',
+    'AccountController' => $baseDir . '/app/controllers/account/AccountController.php',
     'AdminBlogsController' => $baseDir . '/app/controllers/admin/AdminBlogsController.php',
     'AdminCommentsController' => $baseDir . '/app/controllers/admin/AdminCommentsController.php',
     'AdminController' => $baseDir . '/app/controllers/AdminController.php',
