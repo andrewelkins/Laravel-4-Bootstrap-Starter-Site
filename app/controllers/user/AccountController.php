@@ -44,6 +44,16 @@ class AccountController extends BaseController {
 		return View::make('site/account/index', compact('accounts'));
 	}
 	
+	/**
+     * Displays the form for user creation
+     *
+     */
+    public function getCreate()
+    {
+        return View::make('site/account/create');
+    }
+	
+	
 	public function getFields()
 	{
 		$ret = '';
