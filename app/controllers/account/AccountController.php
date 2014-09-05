@@ -3,8 +3,8 @@
 class AccountController extends BaseController {
 
     /**
-     * Post Model
-     * @var Post
+     * Account Model
+     * @var Account
      */
     protected $account;
 
