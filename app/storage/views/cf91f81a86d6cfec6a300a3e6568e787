@@ -68,6 +68,7 @@
                         <?php if(Auth::user()->hasRole('admin')): ?>
                         <li><a href="<?php echo e(URL::to('admin')); ?>">Admin Panel</a></li>
                         <?php endif; ?>
+                        <li><a href="<?php echo e(URL::to('account')); ?>">Accounts</a></li>
                         <li><a href="<?php echo e(URL::to('user')); ?>">Logged in as <?php echo e(Auth::user()->username); ?></a></li>
                         <li><a href="<?php echo e(URL::to('user/logout')); ?>">Logout</a></li>
                         <?php else: ?>
