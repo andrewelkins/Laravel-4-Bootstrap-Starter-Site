@@ -93,11 +93,14 @@ Route::post('user/{user}/edit', 'UserController@postEdit');
 Route::post('user/login', 'UserController@postLogin');
 
 Route::post('account/', 'AccountController@getIndex');
+//:: User Account Routes ::
+Route::post('account/{account}/edit', 'AccountController@postEdit');
 
 
 
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
+Route::controller('account', 'AccountController');
 
 //:: Application Routes ::
 
