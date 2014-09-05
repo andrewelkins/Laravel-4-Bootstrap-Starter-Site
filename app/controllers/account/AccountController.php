@@ -52,7 +52,7 @@ class AccountController extends BaseController {
      */
     public function getCreate()
     {
-        return View::make('site/account/create');
+        return View::make('site/account/create_edit');
     }
 	
 	/**
