@@ -22,12 +22,7 @@
 				<!-- cloudProvider -->
 				<div class="form-group {{{ $errors->has('email') ? 'error' : '' }}}">
 					<label class="col-md-2 control-label" for="email">Cloud Provider</label>
-					<!--
-					<div class="col-md-10">
-						<input class="form-control" type="text" name="cloudProvider" id="email" value="{{{ Input::old('cloudProvider', isset($account) ? $account->cloudProvider : null) }}}" />
-						{{ $errors->first('cloudProvider', '<span class="help-inline">:message</span>') }}
-					</div>
-					-->
+					
 					<div class="col-md-6">
 						@if ($mode == 'create')
 							<select class="form-control" name="cloudProvider" id="cloudProvider">
