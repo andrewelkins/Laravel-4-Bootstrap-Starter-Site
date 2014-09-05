@@ -27,7 +27,7 @@
 						@if ($mode == 'create')
 							<select class="form-control" name="cloudProvider" id="cloudProvider">
 								<option value="">Select </option>
-								<option value="Amazon AWS"{{{ (Input::old('cloudProvider', isset($account->cloudProvider) ? 'selected="selected"' : '') }}}>{{{ Lang::get('account.account.cP_amazon_aws.yes') }}}</option>
+								<option value="Amazon AWS" {{{ (Input::old('cloudProvider', isset($account->cloudProvider) ? 'selected="selected"' : '') }}}>{{{ Lang::get('account.account.cp_amazon_aws.yes') }}}</option>
 							</select>
 						
 						@endif
