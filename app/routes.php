@@ -93,6 +93,7 @@ Route::post('user/{user}/edit', 'UserController@postEdit');
 Route::post('user/login', 'UserController@postLogin');
 
 Route::post('account/', 'AccountController@getIndex');
+Route::post('account/create', 'AccountController@getCreate');
 //:: User Account Routes ::
 Route::post('account/{account}/edit', 'AccountController@postEdit');
 
