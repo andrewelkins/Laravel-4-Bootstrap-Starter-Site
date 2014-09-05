@@ -102,13 +102,13 @@
 
 	    <div id="footer">
 	      <div class="container">
-	        <p class="muted credit">Laravel 4 Starter Site on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.</p>
+	        <p class="muted credit">xDocker : Test drive Docker images on any infrastructure. <a href="https://github.com/Xervmon/laravelcp">Github</a>.</p>
 	      </div>
 	    </div>
 
 		<!-- Javascripts
 		================================================== -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
 
         @yield('scripts')
