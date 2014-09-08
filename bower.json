@@ -5,7 +5,7 @@
   "authors": [
     "Doers' Guild <mail@doersguild.com>"
   ],
-  "description": "xDocker deploys your dockers to the cloud",
+  "description": "xDocker : Test drive Docker images on any infrastructure.",
   "main": "public/index.php",
   "keywords": [
     "xDocker",
