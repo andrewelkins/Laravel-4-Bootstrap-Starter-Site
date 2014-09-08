@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3e85c77ed979099248d34da15760dbae",
+    "hash": "5a92c691c3a5673c73e8e132746afe42",
     "packages": [
         {
             "name": "bllim/datatables",

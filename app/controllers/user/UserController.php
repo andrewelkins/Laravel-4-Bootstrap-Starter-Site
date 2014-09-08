@@ -206,21 +206,27 @@ class UserController extends BaseController {
             // Log the user in
             $email = isset($userProfile->emailVerified) ? $userProfile->emailVerified : $userProfile->email;
             
-            $user = User::where('email', $email)->first();
-            if (empty($user)) {
+            $user = User::where('email', $email)->get()->first();
+            if (empty($user) || $user->isEmpty()) {
                 // Register
                 $user = new User;
                 $user->email = $email;
-                $user->name = substr($email, 0, strpos($email, '@'));
+                // Generate a username from the email for compatiability with Confide's schema
+                $user->username = preg_replace('/[\s\W]+/', '_', $email);
                 // Assign a random password for compatiablity with Confide's Auth
-                $randomPass = md5(uniqid(mt_rand() , true));
+                $randomPass = Hash::make(uniqid(mt_rand() , true));
                 $user->password = $randomPass;
                 $user->password_confirmation = $randomPass;
                 $user->confirmation_code = md5(uniqid(mt_rand() , true));
-                $user->save();
+                // Set as confirmed by default since we have social proof
+                $user->confirmed = 1;
+                // var_dump('created', $user->save() , $user->errors());
+                if(!$user->save()) {
+                    throw new Exception($user->errors());
+                }
             }
-            // Auth::loginUsingId($user->id);
-            Confide::logAttempt($user, true);
+            Auth::loginUsingId($user->id);
+            // Confide::logAttempt((array) $user);
             return Redirect::intended('/');
         }
         catch(Exception $e) {
@@ -229,6 +235,7 @@ class UserController extends BaseController {
             try {
                 // Logout older providers - clear expired connections
                 $socialAuth->logoutAllProviders();
+                return Redirect::intended('/');
             }
             catch(Exception $err) {
                 var_dump($err);
