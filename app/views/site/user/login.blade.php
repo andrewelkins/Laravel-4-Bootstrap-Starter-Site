@@ -57,6 +57,7 @@
         
         <a href="{{URL::to('user/social')}}?provider=Facebook">Sign up with Facebook</a>
         <a href="{{URL::to('user/social')}}?provider=Google">Sign-in with Google</a><br /> 
+        <a href="{{URL::to('user/social')}}?provider=LinkedIn">Sign-in with LinkedIn</a><br /> 
     </fieldset>
 </form>
 
