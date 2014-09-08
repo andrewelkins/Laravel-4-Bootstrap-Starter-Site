@@ -1,12 +1,12 @@
 <?php
 /**
-* Class and Function List:
-* Function list:
-* - (()
-* - (()
-* - (()
-* Classes list:
-*/
+ * Class and Function List:
+ * Function list:
+ * - (()
+ * - (()
+ * - (()
+ * Classes list:
+ */
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -90,9 +90,9 @@ Route::post('user/{user}/edit', 'UserController@postEdit');
 Route::post('user/login', 'UserController@postLogin');
 
 Route::any('user/social/{action?}', array(
-	"as" => "hybridauth",
+    "as" => "hybridauth",
     'uses' => 'UserController@socialLogin'
-)); 
+));
 
 Route::post('account/', 'AccountController@getIndex');
 Route::post('account/create', 'AccountController@getCreate');
@@ -118,3 +118,13 @@ Route::get('/', array(
     'before' => 'detectLang',
     'uses' => 'BlogController@getIndex'
 ));
+/** ------------------------------------------
+ *  Authenticated User Routes
+ *  ------------------------------------------
+ */
+Route::group(array(
+    'before' => 'auth'
+) , function () {
+    # Resource route for the cloud account API crendentials
+    Route::resource('CloudAccounts', 'CloudAccountsController');
+});
