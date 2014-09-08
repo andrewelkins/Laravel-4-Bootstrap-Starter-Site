@@ -1,5 +1,12 @@
 <?php
-
+/**
+* Class and Function List:
+* Function list:
+* - (()
+* - (()
+* - (()
+* Classes list:
+*/
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,7 +17,6 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 /** ------------------------------------------
  *  Route model binding
  *  ------------------------------------------
@@ -21,7 +27,6 @@ Route::model('post', 'Post');
 Route::model('role', 'Role');
 
 Route::model('account', 'Account');
-
 /** ------------------------------------------
  *  Route constraint patterns
  *  ------------------------------------------
@@ -33,21 +38,20 @@ Route::pattern('role', '[0-9]+');
 Route::pattern('token', '[0-9a-z]+');
 
 Route::pattern('account', '[0-9]+');
-
 /** ------------------------------------------
  *  Admin Routes
  *  ------------------------------------------
  */
-Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
-{
-
+Route::group(array(
+    'prefix' => 'admin',
+    'before' => 'auth'
+) , function () {
     # Comment Management
     Route::get('comments/{comment}/edit', 'AdminCommentsController@getEdit');
     Route::post('comments/{comment}/edit', 'AdminCommentsController@postEdit');
     Route::get('comments/{comment}/delete', 'AdminCommentsController@getDelete');
     Route::post('comments/{comment}/delete', 'AdminCommentsController@postDelete');
     Route::controller('comments', 'AdminCommentsController');
-
     # Blog Management
     Route::get('blogs/{post}/show', 'AdminBlogsController@getShow');
     Route::get('blogs/{post}/edit', 'AdminBlogsController@getEdit');
@@ -55,7 +59,6 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('blogs/{post}/delete', 'AdminBlogsController@getDelete');
     Route::post('blogs/{post}/delete', 'AdminBlogsController@postDelete');
     Route::controller('blogs', 'AdminBlogsController');
-
     # User Management
     Route::get('users/{user}/show', 'AdminUsersController@getShow');
     Route::get('users/{user}/edit', 'AdminUsersController@getEdit');
@@ -63,7 +66,6 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('users/{user}/delete', 'AdminUsersController@getDelete');
     Route::post('users/{user}/delete', 'AdminUsersController@postDelete');
     Route::controller('users', 'AdminUsersController');
-
     # User Role Management
     Route::get('roles/{role}/show', 'AdminRolesController@getShow');
     Route::get('roles/{role}/edit', 'AdminRolesController@getEdit');
@@ -71,53 +73,86 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('roles/{role}/delete', 'AdminRolesController@getDelete');
     Route::post('roles/{role}/delete', 'AdminRolesController@postDelete');
     Route::controller('roles', 'AdminRolesController');
-
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
 });
-
-
 /** ------------------------------------------
  *  Frontend Routes
  *  ------------------------------------------
  */
-
 // User reset routes
 Route::get('user/reset/{token}', 'UserController@getReset');
 // User password reset
 Route::post('user/reset/{token}', 'UserController@postReset');
 //:: User Account Routes ::
 Route::post('user/{user}/edit', 'UserController@postEdit');
-
 //:: User Account Routes ::
 Route::post('user/login', 'UserController@postLogin');
+
+Route::any('user/social/{action?}', array(
+    "as" => "hybridauth",
+    function ($action = "") {
+        // check URL segment
+        if ($action == "auth") {
+            // process authentication
+            try {
+                Hybrid_Endpoint::process();
+            }
+            catch(Exception $e) {
+                // redirect back to http://URL/social/
+                return Redirect::route('hybridauth');
+            }
+            return;
+        }
+        try {
+            // create a HybridAuth object
+            $socialAuth = new Hybrid_Auth(app_path() . '/config/hybridauth.php');
+            // authenticate with Facebook
+            $provider = $socialAuth->authenticate(strtolower(Input::get('provider')));
+            // fetch user profile
+            $userProfile = $provider->getUserProfile();
+        }
+        catch(Exception $e) {
+            // exception codes can be found on HybBridAuth's web site
+            try {
+                // Logout older providers - clear expired connections
+                $socialAuth->logoutAllProviders();
+            }
+            catch(Exception $err) {
+            }
+            return Redirect::to('/');
+        }
+        return Redirect::to('/dashboard');
+        // access user profile data
+        /* echo "Connected with: <b>{$provider->id}</b><br />";
+        echo "As: <b>{$userProfile->displayName}</b><br />";
+        echo "<pre>" . print_r( $userProfile, true ) . "</pre><br />"; */
+        // logout
+        /* $provider->logout(); */
+    }
+));
 
 Route::post('account/', 'AccountController@getIndex');
 Route::post('account/create', 'AccountController@getCreate');
 //:: User Account Routes ::
 Route::post('account/{account}/edit', 'AccountController@postEdit');
-
-
-
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
 Route::controller('account', 'AccountController');
-
 //:: Application Routes ::
 
 # Filter for detect language
-Route::when('contact-us','detectLang');
-
+Route::when('contact-us', 'detectLang');
 # Contact Us Static Page
-Route::get('contact-us', function()
-{
+Route::get('contact-us', function () {
     // Return about us page
     return View::make('site/contact-us');
 });
-
 # Posts - Second to last set, match slug
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
-
 # Index Page - Last route, no matches
-Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+Route::get('/', array(
+    'before' => 'detectLang',
+    'uses' => 'BlogController@getIndex'
+));

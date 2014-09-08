@@ -54,6 +54,9 @@
                 <a class="btn btn-default" href="forgot">{{ Lang::get('confide::confide.login.forgot_password') }}</a>
             </div>
         </div>
+        
+        <a href="{{URL::to('user/social')}}?provider=Facebook">Sign up with Facebook</a>
+        <a href="{{URL::to('user/social')}}?provider=Google">Sign-in with Google</a><br /> 
     </fieldset>
 </form>
 
