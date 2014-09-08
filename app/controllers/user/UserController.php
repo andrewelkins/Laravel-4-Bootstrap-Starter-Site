@@ -198,6 +198,55 @@ class UserController extends BaseController {
         }
     }
 
+	public function socialLogin($action = "") {
+		// check URL segment
+		if ($action == "auth") {
+			// process authentication
+		    try {
+		    	Hybrid_Endpoint::process();
+			}
+		    catch(Exception $e) {
+		    // redirect back to http://URL/social/
+		    	return Redirect::route('hybridauth');
+			}
+	        return;
+		}
+		try {
+			// create a HybridAuth object
+		    $socialAuth = new Hybrid_Auth(app_path() . '/config/hybridauth.php');
+		    // authenticate with Facebook
+		    $provider = $socialAuth->authenticate(strtolower(Input::get('provider')));
+		    // fetch user profile
+		    $userProfile = $provider->getUserProfile();
+			 // Log the user in
+            $email = isset($userProfile -> emailVerified) ? $userProfile -> emailVerified : $userProfile -> email;
+
+            $user = User::where('email', $email)->first();
+			if (empty($user)) {
+            // Register
+		        $contact = new User;
+        		$contact -> email = $email;
+                $contact -> name = substr($email, 0, strpos($email, '@'));
+                $contact -> save();
+                $user = User::where('email', $email)->first();
+            }
+			Auth::loginUsingId($user->id, true);
+            Session::put('user', $user);
+			return Redirect::to('/user/dashboard');
+		}
+		catch(Exception $e) {
+		// exception codes can be found on HybBridAuth's web site
+			try {
+		    // Logout older providers - clear expired connections
+		    	$socialAuth->logoutAllProviders();
+		    }
+		    catch(Exception $err) {
+		    }
+		}
+
+	}
+
+
     /**
      * Attempt to confirm account with code
      *
