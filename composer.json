@@ -1,12 +1,12 @@
 {
-    "name": "andrew13/Laravel-4-Bootstrap-Starter-Site",
-    "description": "Laravel 4 Starter Site",
-    "keywords": ["laravel", "Starter Site"],
-    "license": "MIT",
+    "name": "xDocker",
+    "description": "xDocker deploys your dockers to the cloud",
+    "keywords": ["xDocker"],
+    "license": "",
     "authors": [
         {
-            "name": "Andrew Elkins",
-            "homepage": "http://www.andrewelkins.com"
+            "name": "DoersGuild",
+            "homepage": "http://www.doersguild.com"
         }
     ],
     "require": {
