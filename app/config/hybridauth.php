@@ -22,7 +22,7 @@ return array(
             "enabled" => true,
             "keys" => array(
                 "id" => "1031333276894-29163rbahnkl7mq210ujnj64g2viraoh.apps.googleusercontent.com",
-                "secret" => "bcSS5IzBG-bRyC-H0M98qx06"
+                "secret" => "2ucUzhWErni0PsrCD_HbAA_n"
             ) ,
         ) ,
         "Facebook" => array(
