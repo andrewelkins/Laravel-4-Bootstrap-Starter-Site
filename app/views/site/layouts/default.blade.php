@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('assets/bower_components/flat-ui/dist/css/flat-ui.css')}}">
         <link rel="stylesheet" href="{{asset('assets/bower_components/font-awesome/css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/custom.css')}}">
 		<style>
         body {
             padding: 60px 0;
@@ -102,7 +103,7 @@
 
 	    <div id="footer">
 	      <div class="container">
-	        <p class="muted credit">xDocker : Test drive Docker images on any infrastructure. <a href="https://github.com/Xervmon/laravelcp">Github</a>.</p>
+	        <p class="muted credit text-center">xDocker : Test drive Docker images on any infrastructure. <a href="https://github.com/Xervmon/laravelcp">Github</a>.</p>
 	      </div>
 	    </div>
 
