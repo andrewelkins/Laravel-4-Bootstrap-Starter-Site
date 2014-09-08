@@ -35,9 +35,9 @@ return array(
         "LinkedIn" => array(
             "enabled" => true,
             "keys" => array(
-                "key" => "ID",
-                "secret" => "SECRET"
-            )
+                "key" => "75e87jrvaewyzk",
+                "secret" => "ug1qoqjc3BvdV2q6"
+            ) ,
         )
     ) ,
 );
