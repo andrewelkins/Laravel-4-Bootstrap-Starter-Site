@@ -19,9 +19,10 @@
 
 		<!-- CSS
 		================================================== -->
-        <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
-
+        <link rel="stylesheet" href="{{asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/bower_components/flat-ui/dist/css/flat-ui.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/bower_components/font-awesome/css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/custom.css')}}">
 		<style>
         body {
             padding: 60px 0;
@@ -99,17 +100,18 @@
 		</div>
 		<!-- ./wrap -->
 
-
+		<hr>
 	    <div id="footer">
 	      <div class="container">
-	        <p class="muted credit">xDocker : Test drive Docker images on any infrastructure. <a href="https://github.com/Xervmon/laravelcp">Github</a>.</p>
+	        <p class="muted credit text-center">xDocker : Test drive Docker images on any infrastructure. <a href="https://github.com/Xervmon/laravelcp">Github</a>.</p>
 	      </div>
 	    </div>
 
 		<!-- Javascripts
 		================================================== -->
         <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/bower_components/flat-ui/dist/js/flat-ui.min.js')}}"></script>
 
         @yield('scripts')
 	</body>

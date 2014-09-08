@@ -43,6 +43,8 @@
  */
 
 use Instantiator\Instantiator;
+use Instantiator\Exception\InvalidArgumentException as InstantiatorInvalidArgumentException;
+use Instantiator\Exception\UnexpectedValueException as InstantiatorUnexpectedValueException;
 
 if (!function_exists('trait_exists')) {
     function trait_exists($traitname, $autoload = true)
@@ -289,8 +291,22 @@ class PHPUnit_Framework_MockObject_Generator
                 $object = $class->newInstanceArgs($arguments);
             }
         } else {
-            $instantiator = new Instantiator;
-            $object       = $instantiator->instantiate($className);
+            try {
+                $instantiator = new Instantiator;
+                $object       = $instantiator->instantiate($className);
+            } catch (InstantiatorUnexpectedValueException $exception) {
+                if($exception->getPrevious()) {
+                    $exception = $exception->getPrevious();
+                }
+
+                throw new PHPUnit_Framework_MockObject_RuntimeException(
+                  $exception->getMessage()
+                );
+            } catch (InstantiatorInvalidArgumentException $exception) {
+                throw new PHPUnit_Framework_MockObject_RuntimeException(
+                  $exception->getMessage()
+                );
+            }
         }
 
         if ($callOriginalMethods) {
@@ -1043,6 +1059,14 @@ class PHPUnit_Framework_MockObject_Generator
                 $name = '$arg' . $i;
             }
 
+            if ($this->isVariadic($parameter)) {
+                if ($forCall) {
+                    continue;
+                } else {
+                    $name = '...' . $name;
+                }
+            }
+
             $default   = '';
             $reference = '';
             $typeHint  = '';
@@ -1074,11 +1098,13 @@ class PHPUnit_Framework_MockObject_Generator
                     }
                 }
 
-                if ($parameter->isDefaultValueAvailable()) {
-                    $value   = $parameter->getDefaultValue();
-                    $default = ' = ' . var_export($value, TRUE);
-                } elseif ($parameter->isOptional()) {
-                    $default = ' = null';
+                if (!$this->isVariadic($parameter)) {
+                    if ($parameter->isDefaultValueAvailable()) {
+                        $value = $parameter->getDefaultValue();
+                        $default = ' = ' . var_export($value, TRUE);
+                    } elseif ($parameter->isOptional()) {
+                        $default = ' = null';
+                    }
                 }
             }
 
@@ -1093,20 +1119,12 @@ class PHPUnit_Framework_MockObject_Generator
     }
 
     /**
-     * @param  ReflectionClass $class
+     * @param  ReflectionParameter $parameter
      * @return boolean
-     * @since  Method available since Release 2.0.8
+     * @since  Method available since Release 2.2.1
      */
-    private function isInternalClass(ReflectionClass $class)
+    private function isVariadic(ReflectionParameter $parameter)
     {
-        while ($class) {
-            if ($class->isInternal()) {
-                return true;
-            }
-
-            $class = $class->getParentClass();
-        }
-
-        return false;
+        return method_exists('ReflectionParameter', 'isVariadic') && $parameter->isVariadic();
     }
 }
