@@ -126,5 +126,6 @@ Route::group(array(
     'before' => 'auth'
 ) , function () {
     # Resource route for the cloud account API crendentials
-    Route::resource('CloudAccounts', 'CloudAccountsController');
+    
 });
+Route::resource('cloudaccounts', 'CloudAccountsController');
