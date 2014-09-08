@@ -100,7 +100,7 @@
 		</div>
 		<!-- ./wrap -->
 
-
+		<hr>
 	    <div id="footer">
 	      <div class="container">
 	        <p class="muted credit text-center">xDocker : Test drive Docker images on any infrastructure. <a href="https://github.com/Xervmon/laravelcp">Github</a>.</p>
