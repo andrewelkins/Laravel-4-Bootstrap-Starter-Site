@@ -20,8 +20,7 @@
 		<!-- CSS
 		================================================== -->
         <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
-
+        <link rel="stylesheet" href="{{asset('Flat-UI-master/css/flat-ui.css')}}">
 		<style>
         body {
             padding: 60px 0;
@@ -110,6 +109,8 @@
 		================================================== -->
         <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('Flat-UI-master/js/flatui-checkbox.js')}}"></script>
+        <script src="{{asset('Flat-UI-master/js/flatui-radio.js')}}"></script>
 
         @yield('scripts')
 	</body>

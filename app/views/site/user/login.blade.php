@@ -54,10 +54,14 @@
                 <a class="btn btn-default" href="forgot">{{ Lang::get('confide::confide.login.forgot_password') }}</a>
             </div>
         </div>
-        
-        <a href="{{URL::to('user/social')}}?provider=Facebook">Sign up with Facebook</a>
-        <a href="{{URL::to('user/social')}}?provider=Google">Sign-in with Google</a><br /> 
-        <a href="{{URL::to('user/social')}}?provider=LinkedIn">Sign-in with LinkedIn</a><br /> 
+
+		<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href="{{URL::to('user/social')}}?provider=Facebook"><span class="fui-fb"></span></a>
+		        <a href="{{URL::to('user/social')}}?provider=Google"><span class="fui-facebook"></span></a> 
+		        <a href="{{URL::to('user/social')}}?provider=LinkedIn"><span class="fui-arrow-right"></span>
+            </div>
+        </div>        
     </fieldset>
 </form>
 
