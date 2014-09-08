@@ -206,8 +206,8 @@ class UserController extends BaseController {
             // Log the user in
             $email = isset($userProfile->emailVerified) ? $userProfile->emailVerified : $userProfile->email;
             
-            $user = User::where('email', $email)->get()->first();
-            if (empty($user) || $user->isEmpty()) {
+            $user = User::where('email', $email)->first();
+            if (empty($user)) {
                 // Register
                 $user = new User;
                 $user->email = $email;
@@ -221,7 +221,7 @@ class UserController extends BaseController {
                 // Set as confirmed by default since we have social proof
                 $user->confirmed = 1;
                 // var_dump('created', $user->save() , $user->errors());
-                if(!$user->save()) {
+                if (!$user->save()) {
                     throw new Exception($user->errors());
                 }
             }
@@ -235,7 +235,8 @@ class UserController extends BaseController {
             try {
                 // Logout older providers - clear expired connections
                 $socialAuth->logoutAllProviders();
-                return Redirect::intended('/');
+                // return Redirect::intended('/');
+                
             }
             catch(Exception $err) {
                 var_dump($err);
@@ -303,6 +304,15 @@ class UserController extends BaseController {
      */
     public function getLogout() {
         Confide::logout();
+        
+        try {
+            // Logout all providers
+            $socialAuth = new Hybrid_Auth(app_path() . '/config/hybridauth.php');
+            $socialAuth->logoutAllProviders();
+        }
+        catch(Exception $err) {
+            var_dump($err);
+        }
         
         return Redirect::to('/');
     }
