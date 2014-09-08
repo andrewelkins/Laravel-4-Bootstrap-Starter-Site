@@ -46,7 +46,7 @@
 	        @endif
 	
 	        <div class="form-group">
-	            <button tabindex="3" type="submit" class="btn btn-primary">{{ Lang::get('confide::confide.login.submit') }}</button>
+	            <button tabindex="3" type="submit" class="btn btn-success">{{ Lang::get('confide::confide.login.submit') }}</button>
 	            <div class="checkbox login-checkbox">
 				    <label>
 				      <input type="hidden" name="remember" value="0">
