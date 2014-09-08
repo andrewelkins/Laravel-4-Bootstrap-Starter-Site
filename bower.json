@@ -1,0 +1,30 @@
+{
+  "name": "xDocker",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Xervmon/laravelcp",
+  "authors": [
+    "Doers' Guild <mail@doersguild.com>"
+  ],
+  "description": "xDocker deploys your dockers to the cloud",
+  "main": "public/index.php",
+  "keywords": [
+    "xDocker",
+    "docker",
+    "AWS",
+    "cloud"
+  ],
+  "license": "All rights reserved",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "font-awesome": "~4.2.0",
+    "flat-ui": "~2.2.0"
+  }
+}

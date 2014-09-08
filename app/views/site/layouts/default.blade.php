@@ -19,8 +19,9 @@
 
 		<!-- CSS
 		================================================== -->
-        <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('Flat-UI-master/css/flat-ui.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/bower_components/flat-ui/dist/css/flat-ui.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/bower_components/font-awesome/css/font-awesome.min.css')}}">
 		<style>
         body {
             padding: 60px 0;
@@ -108,9 +109,9 @@
 		<!-- Javascripts
 		================================================== -->
         <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('Flat-UI-master/js/flatui-checkbox.js')}}"></script>
-        <script src="{{asset('Flat-UI-master/js/flatui-radio.js')}}"></script>
+        <script src="{{asset('assets/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/bower_components/flat-ui/dist/js/flatui-checkbox.js')}}"></script>
+        <script src="{{asset('assets/bower_components/flat-ui/dist/js/flatui-radio.js')}}"></script>
 
         @yield('scripts')
 	</body>
