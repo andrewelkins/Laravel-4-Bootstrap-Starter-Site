@@ -21,8 +21,8 @@ return array(
         "Google" => array(
             "enabled" => true,
             "keys" => array(
-                "id" => "14213997120-1d5i7v2akm8qrhrkr727mmc14gr4ubkl.apps.googleusercontent.com",
-                "secret" => "x37zYK1JR3HJrMUVCYyG8wOt"
+                "id" => "1031333276894-29163rbahnkl7mq210ujnj64g2viraoh.apps.googleusercontent.com",
+                "secret" => "bcSS5IzBG-bRyC-H0M98qx06"
             ) ,
         ) ,
         "Facebook" => array(
