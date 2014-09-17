@@ -1,0 +1,107 @@
+<?php
+
+class $NAME$ extends \BaseController {
+
+	/**
+	 * Display a listing of $COLLECTION$
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		$$COLLECTION$ = $MODEL$::all();
+
+		return View::make('$COLLECTION$.index', compact('$COLLECTION$'));
+	}
+
+	/**
+	 * Show the form for creating a new $RESOURCE$
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		return View::make('$COLLECTION$.create');
+	}
+
+	/**
+	 * Store a newly created $RESOURCE$ in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		$validator = Validator::make($data = Input::all(), $MODEL$::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$MODEL$::create($data);
+
+		return Redirect::route('$COLLECTION$.index');
+	}
+
+	/**
+	 * Display the specified $RESOURCE$.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$$RESOURCE$ = $MODEL$::findOrFail($id);
+
+		return View::make('$COLLECTION$.show', compact('$RESOURCE$'));
+	}
+
+	/**
+	 * Show the form for editing the specified $RESOURCE$.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		$$RESOURCE$ = $MODEL$::find($id);
+
+		return View::make('$COLLECTION$.edit', compact('$RESOURCE$'));
+	}
+
+	/**
+	 * Update the specified $RESOURCE$ in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		$$RESOURCE$ = $MODEL$::findOrFail($id);
+
+		$validator = Validator::make($data = Input::all(), $MODEL$::$rules);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$$RESOURCE$->update($data);
+
+		return Redirect::route('$COLLECTION$.index');
+	}
+
+	/**
+	 * Remove the specified $RESOURCE$ from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		$MODEL$::destroy($id);
+
+		return Redirect::route('$COLLECTION$.index');
+	}
+
+}

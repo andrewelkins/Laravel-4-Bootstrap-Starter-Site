@@ -1,0 +1,1 @@
+C:\Users\admin\Desktop\Sathvik\xDocker\app/views/CloudAccounts/edit.blade.php

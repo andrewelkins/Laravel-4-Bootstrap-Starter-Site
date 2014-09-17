@@ -1,0 +1,44 @@
+{
+  "name": "flat-ui",
+  "version": "2.2.0",
+  "description": "Flat UI Free is a beautiful theme for Bootstrap. We have redesigned many of its components to look flat in every pixel",
+  "author": "Designmodo, Inc.",
+  "license": "CC BY 3.0 and MIT",
+  "homepage": "http://designmodo.github.io/Flat-UI/",
+  "keywords": [
+    "ui",
+    "flat",
+    "bootstrap"
+  ],
+  "style": "dist/css/flat-ui.css",
+  "less": "less/flat-ui.less",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/designmodo/Flat-UI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/designmodo/Flat-UI/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-autoprefixer": "~1.0.1",
+    "grunt-banner": "~0.2.3",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-connect": "~0.8.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-csslint": "^0.2.0",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-less": "~0.11.4",
+    "grunt-contrib-uglify": "~0.5.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-csscomb": "~3.0.0",
+    "grunt-jscs": "~0.7.1",
+    "load-grunt-tasks": "~0.6.0",
+    "time-grunt": "~1.0.0"
+  },
+  "engines": {
+    "node": "~0.10.31"
+  }
+}
