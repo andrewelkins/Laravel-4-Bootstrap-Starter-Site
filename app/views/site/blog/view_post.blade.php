@@ -37,7 +37,7 @@
 <hr />
 
 <a id="comments"></a>
-<h4>{{{ $comments->count() }}} Comments</h4>
+<h4>{{ $comments->count() }} {{ \Illuminate\Support\Pluralizer::plural('Comment', $comments->count()) }}</h4>
 
 @if ($comments->count())
 @foreach ($comments as $comment)
