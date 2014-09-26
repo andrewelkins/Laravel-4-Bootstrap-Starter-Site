@@ -24,9 +24,10 @@
 
 		<!-- CSS
 		================================================== -->
-        <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
-
+        <link rel="stylesheet" href="{{asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/bower_components/flat-ui/dist/css/flat-ui.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/bower_components/font-awesome/css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/custom.css')}}">
 		<style>
         body {
             padding: 60px 0;
@@ -73,6 +74,7 @@
                         @if (Auth::user()->hasRole('admin'))
                         <li><a href="{{{ URL::to('admin') }}}">Admin Panel</a></li>
                         @endif
+                        <li><a href="{{{ URL::to('account') }}}">Accounts</a></li>
                         <li><a href="{{{ URL::to('user') }}}">Logged in as {{{ Auth::user()->username }}}</a></li>
                         <li><a href="{{{ URL::to('user/logout') }}}">Logout</a></li>
                         @else
@@ -103,17 +105,18 @@
 		</div>
 		<!-- ./wrap -->
 
-
+		<hr>
 	    <div id="footer">
 	      <div class="container">
-	        <p class="muted credit">Laravel 4 Starter Site on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.</p>
+	        <p class="muted credit text-center">xDocker : Test drive Docker images on any infrastructure. <a href="https://github.com/Xervmon/laravelcp">Github</a>.</p>
 	      </div>
 	    </div>
 
 		<!-- Javascripts
 		================================================== -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="{{asset('assets/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/bower_components/flat-ui/dist/js/flat-ui.min.js')}}"></script>
 
         @yield('scripts')
 	</body>

@@ -1,0 +1,37 @@
+October 17, 2013 - v0.1.6
+
+This release fixes a bug where sequences could not be overridden by supplied attributes. From now on Woodling is only initialized on first usage (for example, when you do Woodling::retrieve()) and you can set a custom persist method name.
+
+* Allows attribute overrides to override default sequences [patch by Tommy Sullivan]
+* Initialize only on first usage
+* Fix PHP 5.3 typehinting issue [thanks to Stephen Sugden for reporting]
+* Introduced Woodling::core() to replace Woodling::getCore() and Woodling::setCore()
+* Possibility to choose a different persist method name
+* Added Woodling::factory() to the facade
+
+June 15, 2013 - v0.1.4
+
+* Fix a huge mistake in docs regarding retrieving one-to-one relationships
+
+March 15, 2013 - v0.1.3
+
+* Possibility to make lists
+
+March 6, 2013 - v0.1.2
+
+* Instructions on retrieving models with associations
+* Typo fix in "Free tip" section
+
+February 17, 2013 - v0.1.1
+
+* Possibility to load blueprint definitions automagically
+
+February 10, 2013 - v0.1.0
+
+* Possibility to create a blueprint with basic attributes
+* Possibility to set lazy attributes
+* Possibility to set sequences
+* Possibility to create a blueprint with a different class name
+* Possibility to retrieve an instance of your object from a blueprint
+* Possibility to retrieve a saved instance of your object from a blueprint
+* Possibility to override attributes when making instances

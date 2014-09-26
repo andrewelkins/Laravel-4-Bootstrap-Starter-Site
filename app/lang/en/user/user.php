@@ -21,4 +21,6 @@ return array(
 	'user_account_updated'          => 'User Account updated.',
 	'user_account_created'          => 'User Account created.',
 
+	'signup_social' => 'Signup with these instead:'
+
 );

@@ -1,0 +1,29 @@
+{
+    "name": "way/generators",
+    "description": "Rapidly generate resources, migrations, models, and much more.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeffrey Way",
+            "email": "jeffrey@jeffrey-way.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~4.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0",
+        "behat/behat": "~2.5.1",
+        "behat/mink": "~1.5.0",
+        "behat/mink-extension": "~1.2.0",
+        "behat/mink-goutte-driver": "~1.0.9",
+        "behat/mink-selenium2-driver": "~1.1.1",
+        "phpunit/phpunit": "~3.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "Way\\Generators": "src/"
+        }
+    }
+}
