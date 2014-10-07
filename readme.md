@@ -1,7 +1,6 @@
 #Laravel 4 Bootstrap Starter Site
-`Version: 1.4.0 Stable` [![ProjectStatus](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site)
+`Version: 1.4.0 Stable` [![ProjectStatus](http://stillmaintained.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site)
 [![Build Status](https://api.travis-ci.org/andrewelkins/Laravel-4-Bootstrap-Starter-Site.png)](https://travis-ci.org/andrewelkins/Laravel-4-Bootstrap-Starter-Site)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/andrew13/laravel-4-bootstrap-starter-site/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Laravel 4 Bootstrap Starter Site is a sample application for beginning development with Laravel 4.
 
@@ -30,7 +29,7 @@ Laravel 4 Bootstrap Starter Site is a sample application for beginning developme
 	* [Generators](https://github.com/JeffreyWay/Laravel-4-Generators/blob/master/readme.md)
 
 ## Issues
-See [github issue list](https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
+See [github issue list](https://github.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
 
 ## Recommendations
 I recommend that you use Grunt to compile and minify your assets. See this [article](http://blog.elenakolevska.com/using-grunt-with-laravel-and-bootstrap) for details.
@@ -49,12 +48,12 @@ Also I recommend using [Former](http://anahkiasen.github.io/former/) for your fo
 #### Option 1: Git Clone
 
 ```bash
-$ git clone git://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git laravel
+$ git clone git://github.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site.git laravel
 ```
 
 #### Option 2: Download the repository
 
-    https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site/archive/master.zip
+    https://github.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site/archive/master.zip
 
 ### Step 2: Use Composer to install dependencies
 #### Option 1: Composer is not installed globally
