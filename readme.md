@@ -1,6 +1,6 @@
 #Laravel 4 Bootstrap Starter Site
 `Version: 1.4.0 Stable` [![ProjectStatus](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrew13/Laravel-4-Bootstrap-Starter-Site)
-[![Build Status](https://api.travis-ci.org/andrew13/Laravel-4-Bootstrap-Starter-Site.png)](https://travis-ci.org/andrew13/Laravel-4-Bootstrap-Starter-Site)
+[![Build Status](https://api.travis-ci.org/andrewelkins/Laravel-4-Bootstrap-Starter-Site.png)](https://travis-ci.org/andrewelkins/Laravel-4-Bootstrap-Starter-Site)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/andrew13/laravel-4-bootstrap-starter-site/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Laravel 4 Bootstrap Starter Site is a sample application for beginning development with Laravel 4.
@@ -48,7 +48,9 @@ Also I recommend using [Former](http://anahkiasen.github.io/former/) for your fo
 ### Step 1: Get the code
 #### Option 1: Git Clone
 
-	git clone git://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git laravel
+```bash
+$ git clone git://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site.git laravel
+```
 
 #### Option 2: Download the repository
 
@@ -57,13 +59,18 @@ Also I recommend using [Former](http://anahkiasen.github.io/former/) for your fo
 ### Step 2: Use Composer to install dependencies
 #### Option 1: Composer is not installed globally
 
-    cd laravel
-	curl -s http://getcomposer.org/installer | php
-	php composer.phar install --dev
+```bash
+$ cd laravel
+$ curl -s http://getcomposer.org/installer | php
+$ php composer.phar install --dev
+```
+
 #### Option 2: Composer is installed globally
 
-    cd laravel
-	composer install --dev
+```bash
+$ cd laravel
+$ composer install --dev
+```
 
 If you haven't already, you might want to make [composer be installed globally](http://andrewelkins.com/programming/php/setting-up-composer-globally-for-laravel-4/) for future ease of use.
 
@@ -81,39 +88,42 @@ NEVER run `php composer.phar update` on your production server.
 
 Open ***bootstrap/start.php*** and edit the following lines to match your settings. You want to be using your machine name in Windows and your hostname in OS X and Linux (type `hostname` in terminal). Using the machine name will allow the `php artisan` command to use the right configuration files as well.
 
-    $env = $app->detectEnvironment(array(
+```php
+$env = $app->detectEnvironment(array(
 
-        'local' => array('your-local-machine-name'),
-        'staging' => array('your-staging-machine-name'),
-        'production' => array('your-production-machine-name'),
-
-    ));
+    'local' => array('your-local-machine-name'),
+    'staging' => array('your-staging-machine-name'),
+    'production' => array('your-production-machine-name'),
+));
+```
 
 Now create the folder inside ***app/config*** that corresponds to the environment the code is deployed in. This will most likely be ***local*** when you first start a project.
 
 You will now be copying the initial configuration file inside this folder before editing it. Let's start with ***app/config/app.php***. So ***app/config/local/app.php*** will probably look something like this, as the rest of the configuration can be left to their defaults from the initial config file:
 
-    <?php
+```php
+<?php
 
-    return array(
+return array(
 
-        'url' => 'http://myproject.local',
+    'url' => 'http://myproject.local',
 
-        'timezone' => 'UTC',
+    'timezone' => 'UTC',
 
-        'key' => 'YourSecretKey!!!',
+    'key' => 'YourSecretKey!!!',
 
-        'providers' => array(
-        
-        [... Removed ...]
-        
-        /* Uncomment for use in development */
-    //     'Way\Generators\GeneratorsServiceProvider', // Generators
-    //     'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
+    'providers' => array(
+    
+    [... Removed ...]
+    
+    /* Uncomment for use in development */
+//     'Way\Generators\GeneratorsServiceProvider', // Generators
+//     'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
 
-        ),
+    ),
 
-    );
+);
+```
 
 ### Step 4: Configure Database
 
@@ -127,8 +137,10 @@ If you don't set that registration will fail because it cannot send the confirma
 ### Step 6: Populate Database
 Run these commands to create and populate Users table:
 
-	php artisan migrate
-	php artisan db:seed
+```bash
+$ php artisan migrate
+$ php artisan db:seed
+```
 
 ### Step 7: Set Encryption Key
 ***In app/config/app.php***
@@ -146,11 +158,15 @@ Run these commands to create and populate Users table:
 */
 ```
 
-	'key' => 'YourSecretKey!!!',
+```php
+'key' => 'YourSecretKey!!!',
+```
 
 You can use artisan to do this
 
-    php artisan key:generate --env=local
+```bash
+$ php artisan key:generate --env=local
+```
 
 The `--env` option allows defining which environment you would like to apply the key generation. In our case, artisan generates your key in ***app/config/local/app.php*** and leaves ***'YourSecretKey!!!'*** in ***app/config/app.php***. Now it can be generated again when you move the project to another environment.
 
@@ -158,11 +174,15 @@ The `--env` option allows defining which environment you would like to apply the
 
 If permissions are set correctly:
 
-    chmod -R 775 app/storage
+```bash
+$ chmod -R 775 app/storage
+```
 
 Should work, if not try
 
-    chmod -R 777 app/storage
+```bash
+$ chmod -R 777 app/storage
+```
 
 ### Step 9: Start Page (Three options for proceeding)
 
@@ -192,37 +212,35 @@ The files within library could also be handled within a composer package, but is
 
 If you want to detect teh language on all pages you'll want to add the following to your routes.php at the top.
 
-    Route::when('*','detectLang');
-
+```php
+Route::when('*','detectLang');
+```
 
 ### Development
 
 For ease of development you'll want to enable a couple useful packages. This requires editing the `app/config/app.php` file.
 
-```
-    'providers' => array(
-
-        [...]
-
-        /* Uncomment for use in development */
-//        'Way\Generators\GeneratorsServiceProvider', // Generators
-//        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
-
-    ),
+```php
+'providers' => array(
+    [...]
+    /* Uncomment for use in development */
+//  'Way\Generators\GeneratorsServiceProvider', // Generators
+//  'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
+),
 ```
 Uncomment the Generators and IDE Helpers. Then you'll want to run a composer update with the dev flag.
 
-```
-php composer.phar update
+```bash
+$ php composer.phar update
 ```
 This adds the generators and ide helpers.
 To make it build the ide helpers automatically you'll want to modify the post-update-cmd in `composer.json`
 
-```
-		"post-update-cmd": [
-			"php artisan ide-helper:generate",
-			"php artisan optimize"
-		]
+```json
+"post-update-cmd": [
+	"php artisan ide-helper:generate",
+	"php artisan optimize"
+]
 ```
 
 ### Production Launch
@@ -250,7 +268,9 @@ By default debugging is enabled. Before you go to production you should disable 
 
 Try using this with doing the install instead.
 
-    composer install --dev --prefer-source --no-interaction
+```bash
+$ composer install --dev --prefer-source --no-interaction
+```
 
 ## License
 
