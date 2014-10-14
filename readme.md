@@ -111,14 +111,13 @@ return array(
 
     'key' => 'YourSecretKey!!!',
 
-    'providers' => array(
-    
-    [... Removed ...]
-    
-    /* Uncomment for use in development */
-//     'Way\Generators\GeneratorsServiceProvider', // Generators
-//     'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
+    'providers' => append_config( array(
 
+        /* Uncomment for use in development */
+        //'Way\Generators\GeneratorsServiceProvider', // Generators
+        //'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
+
+        )
     ),
 
 );
