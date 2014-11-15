@@ -2,20 +2,20 @@
     {{ Form::token()  }}
     <fieldset>
         <div class="form-group">
-            <label for="username">{{{ Lang::get('confide::confide.username') }}}</label>
-            <input class="form-control" placeholder="{{{ Lang::get('confide::confide.username') }}}" type="text" name="username" id="username" value="{{{ Input::old('username') }}}">
+            {{ Form::label('username',Lang::get('user/user.username'),array('id'=>'','class'=>'' )) }}
+            {{ Form::text('username','',array('id'=>'username','class'=>'form-control','placeholder'=>Lang::get('user/user.username'))) }}
         </div>
         <div class="form-group">
-            <label for="email">{{{ Lang::get('confide::confide.e_mail') }}} <small>{{ Lang::get('confide::confide.signup.confirmation_required') }}</small></label>
-            <input class="form-control" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
+            {{ Form::label('email',Lang::get('user/user.email'),array('id'=>'','class'=>'' )) }}
+            {{ Form::text('email','',array('id'=>'email','class'=>'form-control','placeholder'=>Lang::get('user/user.email'))) }}
         </div>
         <div class="form-group">
-            <label for="password">{{{ Lang::get('confide::confide.password') }}}</label>
-            <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password') }}}" type="password" name="password" id="password">
+            {{ Form::label('password',Lang::get('user/user.password'),array('id'=>'','class'=>'' )) }}
+            {{ Form::password('password',array('maxlength'=>25,'id'=>'password','class'=>'form-control','placeholder'=>Lang::get('user/user.password'),'title'=>Lang::get('user/user.password')));  }}
         </div>
         <div class="form-group">
-            <label for="password_confirmation">{{{ Lang::get('confide::confide.password_confirmation') }}}</label>
-            <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" type="password" name="password_confirmation" id="password_confirmation">
+            {{ Form::label('password_confirmation',Lang::get('user/user.password_confirmation'),array('id'=>'','class'=>'' )) }}
+            {{ Form::password('password_confirmation',array('maxlength'=>25,'id'=>'password_confirmation','class'=>'form-control','placeholder'=>Lang::get('user/user.password_confirmation'),'title'=>Lang::get('user/user.password_confirmation')));  }}
         </div>
 
         <h3>{{{ Lang::get('user/user.form_field_meta')  }}}</h3>

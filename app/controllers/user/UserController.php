@@ -155,7 +155,7 @@ class UserController extends BaseController {
         }
 
         // Get validation errors (see Ardent package)
-        $error = $user->errors()->all();
+        $error = $validator->messages()->all();
 
         if(empty($error)) {
             return Redirect::to('user')

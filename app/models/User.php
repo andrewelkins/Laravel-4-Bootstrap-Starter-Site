@@ -109,6 +109,6 @@ class User extends ConfideUser implements UserInterface, RemindableInterface{
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function meta(){
-        return $this->hasOne('user_metas');
+        return $this->hasOne('UserMeta');
     }
 }
