@@ -1,5 +1,7 @@
 <?php
 
+use Zizaco\Confide\ConfideUser;
+
 class UserController extends BaseController {
 
     /**
@@ -9,13 +11,20 @@ class UserController extends BaseController {
     protected $user;
 
     /**
+     * UserMeta model
+     * @var UserMeta
+     */
+    protected $meta;
+
+    /**
      * Inject the models.
      * @param User $user
      */
-    public function __construct(User $user)
+    public function __construct(User $user, UserMeta $userMeta)
     {
         parent::__construct();
         $this->user = $user;
+        $this->meta = $userMeta;
     }
 
     /**
@@ -38,47 +47,69 @@ class UserController extends BaseController {
      */
     public function postIndex()
     {
-        $this->user->username = Input::get( 'username' );
-        $this->user->email = Input::get( 'email' );
+        $rules = array_merge(ConfideUser::$rules,UserMeta::$rules);
+        $rules['recaptcha_response_field'] = 'required|recaptcha';
+        $validator = Validator::make(Input::all(), $rules);
 
-        $password = Input::get( 'password' );
-        $passwordConfirmation = Input::get( 'password_confirmation' );
+        if ($validator->passes()) {
+            $this->user->username = Input::get('username');
+            $this->user->email = Input::get('email');
 
-        if(!empty($password)) {
-            if($password === $passwordConfirmation) {
-                $this->user->password = $password;
-                // The password confirmation will be removed from model
-                // before saving. This field will be used in Ardent's
-                // auto validation.
-                $this->user->password_confirmation = $passwordConfirmation;
+            $password = Input::get('password');
+            $passwordConfirmation = Input::get('password_confirmation');
+
+            if (!empty($password)) {
+                if ($password === $passwordConfirmation) {
+                    $this->user->password = $password;
+                    // The password confirmation will be removed from model
+                    // before saving. This field will be used in Ardent's
+                    // auto validation.
+                    $this->user->password_confirmation = $passwordConfirmation;
+                } else {
+                    // Redirect to the new user page
+                    return Redirect::to('user/create')
+                        ->withInput(Input::except('password', 'password_confirmation'))
+                        ->with('error', Lang::get('admin/users/messages.password_does_not_match'));
+                }
             } else {
-                // Redirect to the new user page
-                return Redirect::to('user/create')
-                    ->withInput(Input::except('password','password_confirmation'))
-                    ->with('error', Lang::get('admin/users/messages.password_does_not_match'));
+                unset($this->user->password);
+                unset($this->user->password_confirmation);
             }
-        } else {
-            unset($this->user->password);
-            unset($this->user->password_confirmation);
-        }
 
-        // Save if valid. Password field will be hashed before save
-        $this->user->save();
+            // Save if valid. Password field will be hashed before save
+            $this->user->save();
 
-        if ( $this->user->id )
-        {
-            // Redirect with success message, You may replace "Lang::get(..." for your custom message.
-            return Redirect::to('user/login')
-                ->with( 'success', Lang::get('user/user.user_account_created') );
+            if ($this->user->id) {
+                $userMeta = new UserMeta;
+                $userMeta->id_number = Input::get('id_number');
+                $userMeta->first_name = Input::get('first_name');
+                $userMeta->last_name = Input::get('last_name');
+                $userMeta->legal_name = Input::get('legal_name');
+                $userMeta->address = Input::get('address');
+                $userMeta->birthday = new DateTime(Input::get('birthday'));
+                $userMeta->phone = Input::get('phone');
+                $userMeta->note = "";
+
+                $this->user->meta()->save($userMeta);
+                // Redirect with success message, You may replace "Lang::get(..." for your custom message.
+                return Redirect::to('user/login')
+                    ->with('success', Lang::get('user/user.user_account_created'));
+            } else {
+                // Get validation errors (see Ardent package)
+                $error = $this->user->errors()->all();
+
+                return Redirect::to('user/create')
+                    ->withInput(Input::except('password'))
+                    ->with('error', $error);
+            }
         }
-        else
-        {
+        else{
             // Get validation errors (see Ardent package)
-            $error = $this->user->errors()->all();
+            $messages = $validator->messages();
 
             return Redirect::to('user/create')
                 ->withInput(Input::except('password'))
-                ->with( 'error', $error );
+                ->with('error', $messages->first());
         }
     }
 
