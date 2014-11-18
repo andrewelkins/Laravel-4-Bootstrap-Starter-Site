@@ -62,7 +62,7 @@
 			</div>
 
 			<div class="col-md-11">
-				{{{ $comment->content() }}}
+				{{ nl2br(e($comment->content())) }}
 			</div>
 		</div>
 	</div>
