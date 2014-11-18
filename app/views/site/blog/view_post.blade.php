@@ -73,34 +73,6 @@
 <hr />
 @endif
 
-@if ( ! Auth::check())
-You need to be logged in to add comments.<br /><br />
-Click <a href="{{{ URL::to('user/login') }}}">here</a> to login into your account.
-@elseif ( ! $canComment )
-You don't have the correct permissions to add comments.
-@else
+{{ $commentForm }}
 
-@if($errors->has())
-<div class="alert alert-danger alert-block">
-<ul>
-@foreach ($errors->all() as $error)
-	<li>{{ $error }}</li>
-@endforeach
-</ul>
-</div>
-@endif
-
-<h4>Add a Comment</h4>
-<form  method="post" action="{{{ URL::to($post->slug) }}}">
-	<input type="hidden" name="_token" value="{{{ Session::getToken() }}}" />
-
-	<textarea class="col-md-12 input-block-level" rows="4" name="comment" id="comment">{{{ Request::old('comment') }}}</textarea>
-
-	<div class="form-group">
-		<div class="col-md-12">
-			<input type="submit" class="btn btn-default" id="submit" value="Submit" />
-		</div>
-	</div>
-</form>
-@endif
 @stop

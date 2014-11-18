@@ -31,7 +31,10 @@
             "app/database/migrations",
             "app/database/seeds",
             "app/tests/library"
-        ]
+        ],
+        "psr-0": {
+            "Acme": "app/"
+        }
     },
     "scripts": {
         "pre-update-cmd": [
