@@ -86,7 +86,7 @@ class UserController extends BaseController {
      * Edits a user
      *
      */
- public function postEdit($user)
+    public function postEdit($user)
     {
         // Validate the inputs
         $rules = array(
@@ -97,16 +97,16 @@ class UserController extends BaseController {
         );
         $user->setUpdateRules($rules);
         $validator = Validator::make(Input::all(), $user->getUpdateRules());
-
+    
         if ($validator->passes())
         {
             $oldUser = clone $user;
             $user->username = Input::get( 'username' );
             $user->email = Input::get( 'email' );
-
+    
             $password = Input::get( 'password' );
             $passwordConfirmation = Input::get( 'password_confirmation' );
-
+    
             if(!empty($password)) {
                 if($password === $passwordConfirmation) {
                     $user->password = $password;
@@ -122,14 +122,13 @@ class UserController extends BaseController {
                 unset($user->password);
                 unset($user->password_confirmation);
             }
-
+    
             $user->prepareRules($oldUser, $user);
-
+    
             // Save if valid. Password field will be hashed before save
             $user->amend();
         }
         // Get validation errors (see Ardent package)
-        $error = $validator->messages()->all();
         if($validator->passes()) {
             return Redirect::to('user')
             ->with( 'success', Lang::get('user/user.user_account_updated') );
