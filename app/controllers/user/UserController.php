@@ -86,11 +86,17 @@ class UserController extends BaseController {
      * Edits a user
      *
      */
-    public function postEdit($user)
+ public function postEdit($user)
     {
         // Validate the inputs
+        $rules = array(
+            'username' => 'required|alpha_dash|unique:users,username,'.$user->id,
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'password' => 'required|min:4|confirmed',
+            'password_confirmation' => 'min:4',
+        );
+        $user->setUpdateRules($rules);
         $validator = Validator::make(Input::all(), $user->getUpdateRules());
-
 
         if ($validator->passes())
         {
@@ -121,17 +127,19 @@ class UserController extends BaseController {
 
             // Save if valid. Password field will be hashed before save
             $user->amend();
-
-            return Redirect::to('user')
-                ->with( 'success', Lang::get('user/user.user_account_updated') );
         }
-
-        else {
+        // Get validation errors (see Ardent package)
+        $error = $validator->messages()->all();
+        if($validator->passes()) {
             return Redirect::to('user')
-                ->withInput(Input::except('password','password_confirmation'))
-                ->withErrors($validator);
+            ->with( 'success', Lang::get('user/user.user_account_updated') );
+        } else {
+            return Redirect::to('user/edit')
+            ->withInput(Input::except('password','password_confirmation'))
+            ->withErrors($validator);
         }
     }
+
 
     /**
      * Displays the form for user creation
