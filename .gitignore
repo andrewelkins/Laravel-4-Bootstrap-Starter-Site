@@ -18,4 +18,4 @@ vagrant
 .vagrant
 
 # Packages
-_ide_helpers.php
+_ide_helper.php
