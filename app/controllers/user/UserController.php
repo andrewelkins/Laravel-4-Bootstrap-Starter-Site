@@ -89,18 +89,24 @@ class UserController extends BaseController {
     public function postEdit($user)
     {
         // Validate the inputs
+        $rules = array(
+            'username' => 'required|alpha_dash|unique:users,username,'.$user->id,
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'password' => 'required|min:4|confirmed',
+            'password_confirmation' => 'min:4',
+        );
+        $user->setUpdateRules($rules);
         $validator = Validator::make(Input::all(), $user->getUpdateRules());
-
-
+    
         if ($validator->passes())
         {
             $oldUser = clone $user;
             $user->username = Input::get( 'username' );
             $user->email = Input::get( 'email' );
-
+    
             $password = Input::get( 'password' );
             $passwordConfirmation = Input::get( 'password_confirmation' );
-
+    
             if(!empty($password)) {
                 if($password === $passwordConfirmation) {
                     $user->password = $password;
@@ -116,25 +122,23 @@ class UserController extends BaseController {
                 unset($user->password);
                 unset($user->password_confirmation);
             }
-
+    
             $user->prepareRules($oldUser, $user);
-
+    
             // Save if valid. Password field will be hashed before save
             $user->amend();
         }
-
         // Get validation errors (see Ardent package)
-        $error = $user->errors()->all();
-
-        if(empty($error)) {
+        if($validator->passes()) {
             return Redirect::to('user')
-                ->with( 'success', Lang::get('user/user.user_account_updated') );
+            ->with( 'success', Lang::get('user/user.user_account_updated') );
         } else {
-            return Redirect::to('user')
-                ->withInput(Input::except('password','password_confirmation'))
-                ->with( 'error', $error );
+            return Redirect::to('user/edit')
+            ->withInput(Input::except('password','password_confirmation'))
+            ->withErrors($validator);
         }
     }
+
 
     /**
      * Displays the form for user creation
