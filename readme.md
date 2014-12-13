@@ -208,7 +208,7 @@ The files within library could also be handled within a composer package, but is
 
 ## Detect Language
 
-If you want to detect teh language on all pages you'll want to add the following to your routes.php at the top.
+If you want to detect the language on all pages you'll want to add the following to your routes.php at the top.
 
 ```php
 Route::when('*','detectLang');
