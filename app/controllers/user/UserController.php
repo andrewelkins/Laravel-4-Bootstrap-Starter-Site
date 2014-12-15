@@ -9,13 +9,20 @@ class UserController extends BaseController {
     protected $user;
 
     /**
+     * @var UserRepository
+     */
+    protected $userRepo;
+
+    /**
      * Inject the models.
      * @param User $user
+     * @param UserRepository $userRepo
      */
-    public function __construct(User $user)
+    public function __construct(User $user, UserRepository $userRepo)
     {
         parent::__construct();
         $this->user = $user;
+        $this->userRepo = $userRepo;
     }
 
     /**
@@ -38,8 +45,7 @@ class UserController extends BaseController {
      */
     public function postIndex()
     {
-        $repo = App::make('UserRepository');
-        $user = $repo->signup(Input::all());
+        $user = $this->userRepo->signup(Input::all());
 
         if ($user->id) {
             if (Config::get('confide::signup_email')) {
@@ -94,10 +100,7 @@ class UserController extends BaseController {
             }
         }
 
-        /* @var UserRepository */
-        $repo = App::make('UserRepository');
-
-        if ($repo->save($user)) {
+        if ($this->userRepo->save($user)) {
             return Redirect::to('user')
                 ->with( 'success', Lang::get('user/user.user_account_updated') );
         } else {
@@ -142,12 +145,12 @@ class UserController extends BaseController {
         $repo = App::make('UserRepository');
         $input = Input::all();
 
-        if ($repo->login($input)) {
+        if ($this->userRepo->login($input)) {
             return Redirect::intended('/');
         } else {
-            if ($repo->isThrottled($input)) {
+            if ($this->userRepo->isThrottled($input)) {
                 $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
-            } elseif ($repo->existsButNotConfirmed($input)) {
+            } elseif ($this->userRepo->existsButNotConfirmed($input)) {
                 $err_msg = Lang::get('confide::confide.alerts.not_confirmed');
             } else {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
@@ -166,7 +169,7 @@ class UserController extends BaseController {
      * @param  string $code
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function getConfirm( $code )
+    public function getConfirm($code)
     {
         if ( Confide::confirm( $code ) )
         {
@@ -226,7 +229,6 @@ class UserController extends BaseController {
     public function postReset()
     {
 
-        $repo = App::make('UserRepository');
         $input = array(
             'token'                 =>Input::get('token'),
             'password'              =>Input::get('password'),
@@ -234,7 +236,7 @@ class UserController extends BaseController {
         );
 
         // By passing an array with the token, password and confirmation
-        if ($repo->resetPassword($input)) {
+        if ($this->userRepo->resetPassword($input)) {
             $notice_msg = Lang::get('confide::confide.alerts.password_reset');
             return Redirect::to('user/login')
                 ->with('notice', $notice_msg);
