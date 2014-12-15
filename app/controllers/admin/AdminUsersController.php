@@ -96,7 +96,13 @@ class AdminUsersController extends AdminController {
         // before saving. This field will be used in Ardent's
         // auto validation.
         $this->user->password_confirmation = Input::get( 'password_confirmation' );
-        $this->user->confirmed = Input::get( 'confirm' );
+
+        // Generate a random confirmation code
+        $this->user->confirmation_code = md5(uniqid(mt_rand(), true));
+
+        if (Input::get('confirm')) {
+            $this->user->confirmed = Input::get('confirm');
+        }
 
         // Permissions are currently tied to roles. Can't do this yet.
         //$user->permissions = $user->roles()->preparePermissionsForSave(Input::get( 'permissions' ));
@@ -104,16 +110,30 @@ class AdminUsersController extends AdminController {
         // Save if valid. Password field will be hashed before save
         $this->user->save();
 
-        if ( $this->user->id )
-        {
+        if ( $this->user->id ) {
             // Save roles. Handles updating.
             $this->user->saveRoles(Input::get( 'roles' ));
 
+            if (Config::get('confide::signup_email')) {
+                $user = $this->user;
+                Mail::queueOn(
+                    Config::get('confide::email_queue'),
+                    Config::get('confide::email_account_confirmation'),
+                    compact('user'),
+                    function ($message) use ($user) {
+                        $message
+                            ->to($user->email, $user->username)
+                            ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
+                    }
+                );
+            }
+
             // Redirect to the new user page
-            return Redirect::to('admin/users/' . $this->user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
-        }
-        else
-        {
+            return Redirect::to('admin/users/' . $this->user->id . '/edit')
+                ->with('success', Lang::get('admin/users/messages.create.success'));
+
+        } else {
+
             // Get validation errors (see Ardent package)
             $error = $this->user->errors()->all();
 
@@ -163,54 +183,42 @@ class AdminUsersController extends AdminController {
     /**
      * Update the specified resource in storage.
      *
-     * @param $user
+     * @param User $user
      * @return Response
      */
     public function postEdit($user)
     {
-        // Validate the inputs
-        $validator = Validator::make(Input::all(), $user->getUpdateRules());
+        $oldUser = clone $user;
+        $user->username = Input::get( 'username' );
+        $user->email = Input::get( 'email' );
+        $user->confirmed = Input::get( 'confirm' );
 
+        $password = Input::get( 'password' );
+        $passwordConfirmation = Input::get( 'password_confirmation' );
 
-        if ($validator->passes())
-        {
-            $oldUser = clone $user;
-            $user->username = Input::get( 'username' );
-            $user->email = Input::get( 'email' );
-            $user->confirmed = Input::get( 'confirm' );
-
-            $password = Input::get( 'password' );
-            $passwordConfirmation = Input::get( 'password_confirmation' );
-
-            if(!empty($password)) {
-                if($password === $passwordConfirmation) {
-                    $user->password = $password;
-                    // The password confirmation will be removed from model
-                    // before saving. This field will be used in Ardent's
-                    // auto validation.
-                    $user->password_confirmation = $passwordConfirmation;
-                } else {
-                    // Redirect to the new user page
-                    return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
-                }
+        if(!empty($password)) {
+            if($password === $passwordConfirmation) {
+                $user->password = $password;
+                // The password confirmation will be removed from model
+                // before saving. This field will be used in Ardent's
+                // auto validation.
+                $user->password_confirmation = $passwordConfirmation;
             } else {
-                unset($user->password);
-                unset($user->password_confirmation);
+                // Redirect to the new user page
+                return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.password_does_not_match'));
             }
+        }
             
-            if($user->confirmed == null) {
-                $user->confirmed = $oldUser->confirmed;
-            }
+        if($user->confirmed == null) {
+            $user->confirmed = $oldUser->confirmed;
+        }
 
-            $user->prepareRules($oldUser, $user);
-
-            // Save if valid. Password field will be hashed before save
-            $user->amend();
-
+        if ($user->save()) {
             // Save roles. Handles updating.
             $user->saveRoles(Input::get( 'roles' ));
         } else {
-            return Redirect::to('admin/users/' . $user->id . '/edit')->with('error', Lang::get('admin/users/messages.edit.error'));
+            return Redirect::to('admin/users/' . $user->id . '/edit')
+                ->with('error', Lang::get('admin/users/messages.edit.error'));
         }
 
         // Get validation errors (see Ardent package)
