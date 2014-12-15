@@ -19,6 +19,17 @@ class User extends Eloquent implements ConfideUserInterface {
     }
 
     /**
+     * Find the user and check whether they are confirmed
+     *
+     * @param array $identity an array with identities to check (eg. ['username' => 'test'])
+     * @return boolean
+     */
+    public function isConfirmed($identity) {
+        $user = Confide::getUserByEmailOrUsername($identity);
+        return ($user && $user->confirmed);
+    }
+
+    /**
      * Get the date the user was created.
      *
      * @return string
