@@ -110,7 +110,7 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
 		
         /* Additional Providers */
-        'Zizaco\Confide\ConfideServiceProvider', // Confide Provider
+        'Zizaco\Confide\ServiceProvider', // Confide Provider
         'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
         'Bllim\Datatables\DatatablesServiceProvider', // Datatables
 
@@ -186,7 +186,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 
         /* Additional Aliases */
-        'Confide'         => 'Zizaco\Confide\ConfideFacade', // Confide Alias
+        'Confide'         => 'Zizaco\Confide\Facade', // Confide Alias
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade', // Entrust Alias
         'String'          => 'Andrew13\Helpers\String', // String
         'Carbon'          => 'Carbon\Carbon', // Carbon

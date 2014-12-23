@@ -1,15 +1,12 @@
 <?php
 
 use Zizaco\Confide\ConfideUser;
-use Zizaco\Confide\Confide;
-use Zizaco\Confide\ConfideEloquentRepository;
+use Zizaco\Confide\ConfideUserInterface;
 use Zizaco\Entrust\HasRole;
 use Carbon\Carbon;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends ConfideUser implements UserInterface, RemindableInterface{
-    use HasRole;
+class User extends Eloquent implements ConfideUserInterface {
+    use ConfideUser, HasRole;
 
     /**
      * Get user by username
@@ -19,6 +16,17 @@ class User extends ConfideUser implements UserInterface, RemindableInterface{
     public function getUserByUsername( $username )
     {
         return $this->where('username', '=', $username)->first();
+    }
+
+    /**
+     * Find the user and check whether they are confirmed
+     *
+     * @param array $identity an array with identities to check (eg. ['username' => 'test'])
+     * @return boolean
+     */
+    public function isConfirmed($identity) {
+        $user = Confide::getUserByEmailOrUsername($identity);
+        return ($user && $user->confirmed);
     }
 
     /**
@@ -91,7 +99,7 @@ class User extends ConfideUser implements UserInterface, RemindableInterface{
 
     public function currentUser()
     {
-        return (new Confide(new ConfideEloquentRepository()))->user();
+        return Confide::user();
     }
 
     /**
