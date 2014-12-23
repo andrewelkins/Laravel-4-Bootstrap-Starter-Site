@@ -62,7 +62,7 @@ class User extends Eloquent implements ConfideUserInterface {
         $roleIds = false;
         if( !empty( $roles ) ) {
             $roleIds = array();
-            foreach( $roles as &$role )
+            foreach( $roles as $role )
             {
                 $roleIds[] = $role->id;
             }
