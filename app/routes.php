@@ -17,7 +17,6 @@
  */
 Route::model('user', 'User');
 Route::model('comment', 'Comment');
-Route::model('post', 'Post');
 Route::model('role', 'Role');
 
 /** ------------------------------------------
@@ -25,7 +24,6 @@ Route::model('role', 'Role');
  *  ------------------------------------------
  */
 Route::pattern('comment', '[0-9]+');
-Route::pattern('post', '[0-9]+');
 Route::pattern('user', '[0-9]+');
 Route::pattern('role', '[0-9]+');
 Route::pattern('token', '[0-9a-z]+');
@@ -36,22 +34,6 @@ Route::pattern('token', '[0-9a-z]+');
  */
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
-
-    # Comment Management
-    Route::get('comments/{comment}/edit', 'AdminCommentsController@getEdit');
-    Route::post('comments/{comment}/edit', 'AdminCommentsController@postEdit');
-    Route::get('comments/{comment}/delete', 'AdminCommentsController@getDelete');
-    Route::post('comments/{comment}/delete', 'AdminCommentsController@postDelete');
-    Route::controller('comments', 'AdminCommentsController');
-
-    # Blog Management
-    Route::get('blogs/{post}/show', 'AdminBlogsController@getShow');
-    Route::get('blogs/{post}/edit', 'AdminBlogsController@getEdit');
-    Route::post('blogs/{post}/edit', 'AdminBlogsController@postEdit');
-    Route::get('blogs/{post}/delete', 'AdminBlogsController@getDelete');
-    Route::post('blogs/{post}/delete', 'AdminBlogsController@postDelete');
-    Route::controller('blogs', 'AdminBlogsController');
-
     # User Management
     Route::get('users/{user}/show', 'AdminUsersController@getShow');
     Route::get('users/{user}/edit', 'AdminUsersController@getEdit');
@@ -103,9 +85,5 @@ Route::get('contact-us', function()
     return View::make('site/contact-us');
 });
 
-# Posts - Second to last set, match slug
-Route::get('{postSlug}', 'BlogController@getView');
-Route::post('{postSlug}', 'BlogController@postView');
-
 # Index Page - Last route, no matches
-Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+Route::get('/', array('before' => 'detectLang','uses' => 'UserController@getIndex'));

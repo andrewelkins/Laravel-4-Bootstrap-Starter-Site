@@ -1,0 +1,23 @@
+{
+    "name": "awesomedeveloper/uploader",
+    "description": "",
+    "authors": [
+        {
+            "name": "Xueyuan Song",
+            "email": "xueyuansong@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Awesomedeveloper\\Uploader\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
