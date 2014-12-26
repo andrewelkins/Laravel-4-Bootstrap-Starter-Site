@@ -26,6 +26,7 @@ Laravel 4 Bootstrap Starter Site is a sample application for beginning developme
 	* [Entrust](https://github.com/zizaco/entrust)
 	* [Ardent](https://github.com/laravelbook/ardent)
 	* [Generators](https://github.com/JeffreyWay/Laravel-4-Generators/blob/master/readme.md)
+	* [laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
 
 ## Issues
 See [github issue list](https://github.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site/issues) for current list.
