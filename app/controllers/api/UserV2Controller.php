@@ -17,7 +17,7 @@ class UserV2Controller extends \APIController {
 	{
         try{
             $statusCode = 200;
-            $builder = ApiHandler::parseMultiple($this->user->with('history'), array('name,username'), $this->passParams('users'));
+            $builder = ApiHandler::parseMultiple($this->user, array('name,email'), $this->passParams('users'));
             $users = $builder->getResult();
             $response = [];
             foreach($users as $user){
@@ -86,9 +86,19 @@ class UserV2Controller extends \APIController {
 	 */
 	public function destroy($id)
 	{
-        $user = $this->user->findOrFail($id);
-        $user->delete();
-        return 'Deleted';
+        try{
+            $statusCode = 200;
+            $user = $this->user->findOrFail($id);
+            $user->delete();
+
+            $response = "Deleted User ID $id";
+            return Response::json($response,$statusCode);
+
+        }catch (Exception $e){
+            $statusCode = 500;
+            $error = $e->getMessage();
+            return Response::json($error, $statusCode);
+        }
 	}
 
     private function responseMap($object)
