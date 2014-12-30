@@ -10,27 +10,6 @@
         });
     });
 
-    app.directive('testEditLink', function () {
-        return {
-            restrict: 'E',
-            template: '<a class="btn btn-warning btn-xs" ng-href="http://hoidapyhoc.com/quiz/edit/{{entry.values.id}}">' +
-                '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Sửa</a>'
-        };
-    });
-    app.directive('testShowLink', function () {
-        return {
-            restrict: 'E',
-            template: '<a class="btn btn-primary btn-xs" ng-href="http://hoidapyhoc.com/quiz/t/{{entry.values.slug}}">' +
-                '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;Xem</a>'
-        };
-    });
-    app.directive('color', function () {
-        return {
-            restrict: 'E',
-            template: '<span class="btn btn-primary btn-xs" style="background: #{{entry.values.color}}">' +
-                '#{{entry.values.color}}</span>'
-        };
-    });
     app.directive('createdAt', function () {
         return {
             restrict: 'E',
@@ -58,7 +37,7 @@
             console.log(value.date);
             return value.date;
         }
-        var app = new Application('ng-admmin Admin CP') // application main title
+        var app = new Application('ng-admin Admin CP') // application main title
             // remember to change the following to your api link
             .baseApiUrl('http://localhost/laravel-ngadmin/public/api/')
             .transformParams(function(params) {
@@ -72,8 +51,12 @@
         var user = new Entity('users');
         var role = new Entity('roles');
         var permission = new Entity('permissions');
+        var post = new Entity('posts');
+        var comment = new Entity('comments');
 
         app
+            .addEntity(post)
+            .addEntity(comment)
             .addEntity(user)
             .addEntity(role)
             .addEntity(permission);
@@ -82,10 +65,122 @@
          * Menu View
          */
         user.menuView().icon('<i class="glyphicon glyphicon-user"></i> ');
+        post.menuView().icon('<i class="glyphicon glyphicon-list-alt"></i> ');
+        comment.menuView().icon('<i class="glyphicon glyphicon-comment"></i> ');
 
-        role.dashboardView().disable();
+        /*
+         * Post section
+         *
+         */
+        post.dashboardView()
+            .title('Blog Post')
+            .order(1)
+            .limit(10)
+            .addField(new Field('id'))
+            .addField(new Field('title').isDetailLink(true))
+
+        post.creationView()
+            .addField(new Field('title').validation({required: true, minlength: 3}) )
+            .addField(new Field('content').type('wysiwyg').validation({required: true, minlength: 3}) )
+            .addField(new Field('meta_title').defaultValue(''))
+            .addField(new Field('meta_description').defaultValue(''))
+            .addField(new Field('meta_keywords').defaultValue(''))
+
+        post.editionView()
+            .addField(new Field('title').validation({required: true, minlength: 3}) )
+            .addField(new Field('content').type('wysiwyg').validation({required: true, minlength: 3}) )
+            .addField(new Field('meta_title'))
+            .addField(new Field('meta_description'))
+            .addField(new Field('meta_keywords'))
+            .addField(new ReferencedList('comments')
+                .targetEntity(comment)
+                .targetReferenceField('post_id')
+                .targetFields([
+                    new Field('id'),
+                    new Field('content').label('Comment'),
+                    new Field('created_at').type('template').label('Created Date')
+                        .template('<created-at></created-at>')
+                ])
+            )
+        post.showView()
+            .addField(new Field('title').validation({required: true, minlength: 3}) )
+            .addField(new Field('content').type('wysiwyg').validation({required: true, minlength: 3}) )
+            .addField(new Field('meta_title'))
+            .addField(new Field('meta_description'))
+            .addField(new Field('meta_keywords'))
+            .addField(new ReferencedList('comments')
+                .targetEntity(comment)
+                .targetReferenceField('post_id')
+                .targetFields([
+                    new Field('id'),
+                    new Field('content').label('Comment'),
+                    new Field('created_at').type('template').label('Created Date')
+                        .template('<created-at></created-at>')
+                ])
+            )
+
+        post.listView()
+            .addField(new Field('id'))
+            .addField(new Field('title'))
+            .addField(new Field('content').map(truncate).isDetailLink(true))
+            .addField(new Field('created_at').type('template').label('Created Date')
+                .template('<created-at></created-at>'))
+            .listActions(['show','edit', 'delete']);
+
+        /*
+         * Comment section
+         *
+         */
+        comment.dashboardView()
+            .title('Recent Comment')
+            .order(1)
+            .limit(10)
+            .addField(new Field('id'))
+            .addField(new Field('content').isDetailLink(true))
+
+        comment.creationView().disable()
+
+        comment.editionView()
+            .addField(new Field('content').type('wysiwyg').validation({required: true, minlength: 3}) )
+
+        comment.showView()
+            .addField(new Field('content').type('wysiwyg'))
+            .addField(new Reference('post_id')
+                .label('Post title')
+                .targetEntity(post)
+                .targetField(new Field('title'))
+            )
+            .addField(new Reference('user_id').label('User')
+                .targetEntity(user)
+                .targetField(new Field('username'))
+            )
+
+        comment.listView()
+            .title('All comments')
+            .addField(new Field('id'))
+            .addField(new Field('content')
+                .isDetailLink(true)
+                .map(truncate)
+            )
+            .addField(new Reference('post_id').label('Post title')
+                .label('Post title')
+                .targetEntity(post)
+                .targetField(new Field('title'))
+            )
+            .addField(new Reference('user_id').label('User')
+                .targetEntity(user)
+                .targetField(new Field('username'))
+            )
+            .addField(new Field().type('template').label('Created Date')
+                .template('<created-at></created-at>')
+            )
+            .listActions(['show','edit', 'delete']);
+
+        /*
+         * Role section
+         *
+         */
         permission.dashboardView().disable();
-
         permission.listView()
             .title('All permissions')
             .addField(new Field('id'))
@@ -101,6 +196,7 @@
          * Role section
          *
          */
+        role.dashboardView().disable();
         role.listView()
             .title('All roles')
             .addField(new Field('id'))
@@ -136,7 +232,6 @@
             .limit(10)
             .addField(new Field('id').label('ID'))
             .addField(new Field('username'))
-            .addField(new Field('name'));
 
         user.listView()
             .infinitePagination(true)

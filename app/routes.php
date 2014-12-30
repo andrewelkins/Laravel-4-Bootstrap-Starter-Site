@@ -36,11 +36,13 @@ Route::pattern('token', '[0-9a-z]+');
  * ------------------------------------------
  */
 
-Route::group(array('prefix' => 'api/v2'), function()
+Route::group(array('prefix' => 'api'), function()
 {
     Route::resource('users', 'UserV2Controller');
     Route::resource('roles', 'RolesV2Controller');
     Route::resource('permissions', 'PermissionV2Controller');
+    Route::resource('posts', 'PostV2Controller');
+    Route::resource('comments', 'CommentV2Controller');
 });
 
 /** ------------------------------------------
