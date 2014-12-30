@@ -114,6 +114,9 @@ return array(
         'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
         'Bllim\Datatables\DatatablesServiceProvider', // Datatables
 
+        /* Laravel ng-admin Required */
+        'Marcelgwerder\ApiHandler\ApiHandlerServiceProvider',
+
         /* Uncomment for use in development */
 //        'Way\Generators\GeneratorsServiceProvider', // Generators
 //        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
@@ -191,7 +194,8 @@ return array(
         'String'          => 'Andrew13\Helpers\String', // String
         'Carbon'          => 'Carbon\Carbon', // Carbon
         'Datatables'      => 'Bllim\Datatables\Datatables', // DataTables
-
+        /* ng-admin Require */
+        'ApiHandler' => 'Marcelgwerder\ApiHandler\Facades\ApiHandler',
     ),
 
     'available_language' => array('en', 'pt', 'es'),
