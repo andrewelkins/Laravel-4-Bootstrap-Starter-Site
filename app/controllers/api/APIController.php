@@ -5,7 +5,7 @@ class APIController extends BaseController {
     /**
      * Initializer.
      *
-     * @return \AdminController
+     * @return \APIController
      */
     public function __construct()
     {
@@ -48,6 +48,7 @@ class APIController extends BaseController {
                 $params[$column] = Input::get($column);
             }
         }
+        // Return number of total rows in query (for pagination)
         $params ['_config'] = 'meta-filter-count';
         return $params;
     }
