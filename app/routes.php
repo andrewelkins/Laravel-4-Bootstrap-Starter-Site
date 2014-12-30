@@ -47,6 +47,8 @@ Route::group(array('prefix' => 'api/v2'), function()
  *  Admin Routes
  *  ------------------------------------------
  */
+Route::get('admincp', array('before' => 'auth', 'uses' => 'AdminController@ngadmin'));
+
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
 

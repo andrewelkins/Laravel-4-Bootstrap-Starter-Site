@@ -11,5 +11,8 @@ class AdminController extends BaseController {
     {
         parent::__construct();
     }
+    public function ngadmin(){
+        return View::make('admin.ngadmin');
+    }
 
 }
