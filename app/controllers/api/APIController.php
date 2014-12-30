@@ -12,6 +12,12 @@ class APIController extends BaseController {
         parent::__construct();
 
     }
+
+    /**
+     * Transform ng-admin request into Laravel Api Handler
+     * @param $table_name
+     * @return array
+     */
     public function passParams($table_name){
         //Print out all table's columns
         $columns = Schema::getColumnListing($table_name);
@@ -52,7 +58,35 @@ class APIController extends BaseController {
         $params ['_config'] = 'meta-filter-count';
         return $params;
     }
+
+    /**
+     * Make a quick response with pagination supported
+     * @param $response
+     * @param $statusCode
+     * @param $builder
+     * @return mixed
+     */
     public function makeResponse($response,$statusCode, $builder){
         return Response::json($response,$statusCode)->header('X-Total-Count', $builder->getHeaders()['Meta-Filter-Count']);
     }
+
+    /* Testing purpose
+    public function returnIndex($eloquentModel, $fulltext = [], $table_name){
+        try{
+            $statusCode = 200;
+            $builder = ApiHandler::parseMultiple($eloquentModel, $fulltext = [], $this->passParams($table_name));
+            $users = $builder->getResult();
+            $response = [];
+
+            foreach($users as $user){
+                $response[] = $this->responseMap($user);
+            }
+
+            return Response::json($response,$statusCode)->header('X-Total-Count', $builder->getHeaders()['Meta-Filter-Count']);
+        } catch (Exception $e){
+            $statusCode = 500;
+            $message = $e->getMessage();
+            return Response::json($message, $statusCode);
+        }
+    }*/
 }

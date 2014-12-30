@@ -20,12 +20,13 @@ class UserV2Controller extends \APIController {
             $builder = ApiHandler::parseMultiple($this->user, array('name,email'), $this->passParams('users'));
             $users = $builder->getResult();
             $response = [];
+
             foreach($users as $user){
                 $response[] = $this->responseMap($user);
             }
 
             return $this->makeResponse($response,$statusCode, $builder);
-        }catch (Exception $e){
+        } catch (Exception $e){
             $statusCode = 500;
             $message = $e->getMessage();
             return Response::json($message, $statusCode);
