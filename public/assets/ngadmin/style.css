@@ -1,0 +1,49 @@
+/*
+ * Custom theme for ng-admin
+ * by thangngoc89
+ * Website: http://khoanguyen.me
+ */
+#wrapper {
+    width: 100%;
+    background: #30426A;
+}
+
+.nav>li>a {
+    color: #b2bfdc;
+    background: #30426A;
+
+}
+
+.nav>li>a:hover {
+    color: #fff;
+    border-left: 3px solid #e99d1a;
+    background: #2d3e63;
+}
+
+.sidebar ul li a.active {
+    color: #fff;
+    border-left: 3px solid #60e928;
+    background: #2d3e63;
+}
+.sidebar ul li {
+    border-bottom: 0px;
+}
+.navbar-default, .navbar-brand{
+    background-color: #2D3E63;
+    border: 0px;
+
+}
+.navbar-default .navbar-brand {
+    color: #fff;
+    font-size: 16pt;
+}
+.navbar-default .navbar-brand:visited {
+    color: #fff;
+}
+.table{
+    margin-bottom: 0;
+}
+.dashboard-content .panel-default {
+    overflow: auto;
+    height: 21em;
+}
