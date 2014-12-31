@@ -54,9 +54,9 @@ class CommentV2Controller extends \APIController {
 	{
         try{
             $statusCode = 200;
-            $user = Comment::findOrFail($id);
+            $comment = Comment::findOrFail($id);
 
-            $response = $this->responseMap($user);
+            $response = $this->responseMap($comment);
 
             return Response::json($response,$statusCode);
 
@@ -89,10 +89,10 @@ class CommentV2Controller extends \APIController {
 	{
         try{
             $statusCode = 200;
-            $user = $this->user->findOrFail($id);
-            $user->delete();
+            $comment = $this->comment->findOrFail($id);
+            $comment->delete();
 
-            $response = "Deleted User ID $id";
+            $response = "Deleted comment ID $id";
             return Response::json($response,$statusCode);
 
         }catch (Exception $e){
