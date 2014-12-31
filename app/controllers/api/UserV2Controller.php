@@ -2,17 +2,38 @@
 
 class UserV2Controller extends \APIController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * User Model
+     * @var User
+     */
     protected $user;
-    public function __construct(User $user)
+
+    /**
+     * Role Model
+     * @var Role
+     */
+    protected $role;
+
+    /**
+     * Permission Model
+     * @var Permission
+     */
+    protected $permission;
+
+    /**
+     * Inject the models.
+     * @param User $user
+     * @param Role $role
+     * @param Permission $permission
+     */
+    public function __construct(User $user, Role $role, Permission $permission)
     {
         parent::__construct();
-        $this->user         = $user;
+        $this->user = $user;
+        $this->role = $role;
+        $this->permission = $permission;
     }
+
 	public function index()
 	{
         try{
@@ -40,7 +61,54 @@ class UserV2Controller extends \APIController {
 	 */
 	public function store()
 	{
-		//
+        try {
+            $this->user->username = Input::get( 'username' );
+            $this->user->email = Input::get( 'email' );
+            $this->user->password = Input::get( 'password' );
+
+            // The password confirmation will be removed from model
+            // before saving. This field will be used in Ardent's
+            // auto validation.
+            $this->user->password_confirmation = Input::get( 'password_confirmation' );
+
+            // Generate a random confirmation code
+            $this->user->confirmation_code = md5(uniqid(mt_rand(), true));
+
+            if (Input::get('confirm')) {
+                $this->user->confirmed = (Input::get('confirmed') == 'true') ? true : false;
+            }
+
+            // Save if valid. Password field will be hashed before save
+            $this->user->save();
+
+            if ( $this->user->id ) {
+                // Save roles. Handles updating.
+                $this->user->saveRoles(Input::get( 'roles' ));
+
+                if (Config::get('confide::signup_email')) {
+                    $user = $this->user;
+                    Mail::queueOn(
+                        Config::get('confide::email_queue'),
+                        Config::get('confide::email_account_confirmation'),
+                        compact('user'),
+                        function ($message) use ($user) {
+                            $message
+                                ->to($user->email, $user->username)
+                                ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
+                        }
+                    );
+                }
+                return $this->show($this->user->id);
+            } else {
+                $statusCode = 500;
+                $error = $this->user->errors()->all();
+                return Response::json($error, $statusCode);
+            }
+        } catch (Exception $e){
+            $statusCode = 500;
+            $error = $e->getMessage();
+            return Response::json($error, $statusCode);
+        }
 	}
 
 
@@ -75,7 +143,47 @@ class UserV2Controller extends \APIController {
 	 */
 	public function update($id)
 	{
-		//
+        try {
+            $user = $this->user->findOrFail($id);
+            $user->username = Input::get( 'username' );
+            $user->email = Input::get( 'email' );
+
+            $password = Input::get( 'password' );
+            $passwordConfirmation = Input::get( 'password_confirmation' );
+
+            if(!empty($password)) {
+                if($password === $passwordConfirmation) {
+                    $user->password = $password;
+                    // The password confirmation will be removed from model
+                    // before saving. This field will be used in Ardent's
+                    // auto validation.
+                    $user->password_confirmation = $passwordConfirmation;
+                } else {
+                    throw new Exception (Lang::get('admin/users/messages.password_does_not_match'));
+                }
+            }
+
+            // Generate a random confirmation code
+            $user->confirmation_code = md5(uniqid(mt_rand(), true));
+
+            if (!$user->confirmed) {
+                $user->confirmed = (Input::get('confirmed') == 'true') ? true : false;
+            }
+
+            if ( $user->save() ) {
+                // Save roles. Handles updating.
+                $user->saveRoles(Input::get( 'roles' ));
+                return $this->show($user->id);
+            } else {
+                $statusCode = 500;
+                $error = $user->errors()->all();
+                return Response::json($error, $statusCode);
+            }
+        } catch (Exception $e){
+            $statusCode = 500;
+            $error = $e->getMessage();
+            return Response::json($error, $statusCode);
+        }
 	}
 
 
@@ -90,9 +198,29 @@ class UserV2Controller extends \APIController {
         try{
             $statusCode = 200;
             $user = $this->user->findOrFail($id);
+            // Check if we are not trying to delete ourselves
+            if ($user->id === Confide::user()->id)
+            {
+                // Redirect to the user management page
+                throw new Exception (Lang::get('admin/users/messages.delete.impossible'));
+            }
+
+            AssignedRoles::where('user_id', $user->id)->delete();
+
+            $id = $user->id;
             $user->delete();
 
-            $response = "Deleted User ID $id";
+            // Was the comment post deleted?
+            $user = $this->user->find($id);
+            if ( empty($user) )
+            {
+                $response = Lang::get('admin/users/messages.delete.success');
+            }
+            else
+            {
+                // There was a problem deleting the user
+                $response = Lang::get('admin/users/messages.delete.error');
+            }
             return Response::json($response,$statusCode);
 
         }catch (Exception $e){
@@ -108,6 +236,8 @@ class UserV2Controller extends \APIController {
             'id'            => $object->id,
             'email'         => $object->email,
             'username'      => $object->username,
+            'confirmed'     => ($object->confirmed) ? true : false,
+            'roles'         => $object->currentRoleIds(),
         ];
     }
 

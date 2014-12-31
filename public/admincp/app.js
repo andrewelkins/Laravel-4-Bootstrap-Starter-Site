@@ -248,14 +248,68 @@
             .filterQuery(function(searchQuery) {
                 return { q: searchQuery };
             })
+            .addField(new ReferenceMany('roles')
+                .targetEntity(role)
+                .targetField(new Field('name'))
+            )
+            .addField(new Field('confirmed').type('boolean'))
+            .addQuickFilter('Not Activated', function () {
+                return {
+                    confirmed: 0
+                };
+            })
             .listActions(['edit', 'delete']);
 
+        user.creationView()
+            .title('Create User')
+            .addField(new Field('username').validation({required: true, minlength: 3}) )
+            .addField(new Field('email').type('email').validation({required: true}) )
+            .addField(new Field('password').type('password').validation({required: true, minlength: 6}))
+            .addField(new Field('password_confirmation').type('password').validation({required: true, minlength: 6}))
+            .addField(new Field('confirmed').type('boolean'))
+            .addField(new ReferenceMany('roles')
+                .targetEntity(role)
+                .targetField(new Field('name'))
+            )
+
         user.editionView()
-            .title('Edit user "{{ entry.values.user }}"')
+            .title('Edit user "{{ entry.values.username }}"')
             .actions(['list', 'delete'])
-            .addField(new Field('id'))
+            .addField(new Field('id').editable(false))
             .addField(new Field('username'))
-            .addField(new Field('email'));
+            .addField(new Field('email'))
+            .addField(new Field('password')
+                .type('password')
+                .defaultValue(null)
+                .validation({minlength: 6}))
+            .addField(new Field('password_confirmation')
+                .type('password')
+                .defaultValue(null)
+                .validation({minlength: 6}))
+            .addField(new Field('confirmed').type('boolean'))
+            .addField(new ReferenceMany('roles')
+                .targetEntity(role)
+                .targetField(new Field('name'))
+            )
+            .addField(new ReferencedList('comments')
+                .targetEntity(comment)
+                .targetReferenceField('user_id')
+                .targetFields([
+                    new Field('content').label('Comment'),
+                    new Field('created_at').type('template').label('Created Date')
+                        .template('<created-at></created-at>')
+                ])
+            )
+            .addField(new ReferencedList('posts')
+                .targetEntity(post)
+                .targetReferenceField('user_id')
+                .targetFields([
+                    new Field('title'),
+                    new Field('created_at').type('template').label('Created Date')
+                        .template('<created-at></created-at>')
+                ])
+            )
+        ;
 
         NgAdminConfigurationProvider.configure(app);
     });
