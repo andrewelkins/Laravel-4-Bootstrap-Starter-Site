@@ -1,4 +1,7 @@
 /*global angular*/
+/* Laravel ng-admin by thangngoc89
+ * http://ngadmin.khoanguyen.me
+ */
 (function () {
     "use strict";
 

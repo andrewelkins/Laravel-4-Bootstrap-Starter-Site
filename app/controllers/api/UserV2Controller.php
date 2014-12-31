@@ -38,7 +38,7 @@ class UserV2Controller extends \APIController {
 	{
         try{
             $statusCode = 200;
-            $builder = ApiHandler::parseMultiple($this->user, array('name,email'), $this->passParams('users'));
+            $builder = ApiHandler::parseMultiple($this->user, array('username,email'), $this->passParams('users'));
             $users = $builder->getResult();
             $response = [];
 
