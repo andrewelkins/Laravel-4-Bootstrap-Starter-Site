@@ -33,10 +33,7 @@
             params._sort = 'name';
             return params;
         }
-        function dateParser(value){
-            console.log(value.date);
-            return value.date;
-        }
+
         var app = new Application('ng-admin Admin CP') // application main title
             // remember to change the following to your api link
             .baseApiUrl('http://localhost/laravel-ngadmin/public/api/')
@@ -191,6 +188,15 @@
                 .label('Display Name')
                 .isDetailLink(true)
             )
+            .listActions(['edit', 'delete']);
+
+        permission.creationView()
+            .addField(new Field('name').validation({required: true, minlength: 3}) )
+            .addField(new Field('display_name').validation({required: true, minlength: 3}) )
+
+        permission.editionView()
+            .addField(new Field('name').validation({required: true, minlength: 3}) )
+            .addField(new Field('display_name').validation({required: true, minlength: 3}) )
 
         /*
          * Role section

@@ -41,7 +41,32 @@ class PermissionV2Controller extends \APIController {
 	 */
 	public function store()
 	{
-		//
+        try {
+            $rules = array(
+                'name'          => 'required|min:3|unique:permissions,name',
+                'display_name'  => 'required|min:3',
+            );
+
+            $validator = Validator::make(Input::all(), $rules);
+            if ($validator->passes())
+            {
+
+                $this->permission->name         = Input::get('name');
+                $this->permission->display_name = Input::get('display_name');
+
+                $this->permission->save();
+                return $this->show($this->permission->id);
+
+            } else {
+                $statusCode = 400;
+                $message = $validator->messages();
+                return Response::json($message, $statusCode);
+            }
+        } catch (Exception $e){
+            $statusCode = 500;
+            $message = $e->getMessage();
+            return Response::json($message, $statusCode);
+        }
 	}
 
 	/**
@@ -65,18 +90,6 @@ class PermissionV2Controller extends \APIController {
         }
 	}
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		dd(Input::all());
-	}
-
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -86,7 +99,33 @@ class PermissionV2Controller extends \APIController {
 	 */
 	public function update($id)
 	{
-        return Response::json(Input::all());
+        try {
+            $rules = array(
+                'name'          => 'required|min:3',
+                'display_name'  => 'required|min:3',
+            );
+
+            $validator = Validator::make(Input::all(), $rules);
+            $permission = $this->permission->findOrFail($id);
+            if ($validator->passes())
+            {
+
+                $permission->name         = Input::get('name');
+                $permission->display_name = Input::get('display_name');
+
+                $permission->save();
+                return $this->show($permission->id);
+
+            } else {
+                $statusCode = 400;
+                $message = $validator->messages();
+                return Response::json($message, $statusCode);
+            }
+        } catch (Exception $e){
+            $statusCode = 500;
+            $message = $e->getMessage();
+            return Response::json($message, $statusCode);
+        }
 	}
 
 	/**
@@ -97,9 +136,19 @@ class PermissionV2Controller extends \APIController {
 	 */
 	public function destroy($id)
 	{
-        $test = $this->permission->findOrFail($id);
-        $test->delete();
-        return 'Deleted';
+        try{
+            $statusCode = 200;
+            $object = $this->permission->findOrFail($id);
+            $object->delete();
+
+            $response = "Deleted Permission ID $id";
+            return Response::json($response,$statusCode);
+
+        }catch (Exception $e){
+            $statusCode = 500;
+            $error = $e->getMessage();
+            return Response::json($error, $statusCode);
+        }
 	}
 
     private function responseMap($object)
