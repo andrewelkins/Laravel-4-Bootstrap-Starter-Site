@@ -5,5 +5,8 @@ class AssignedRoles extends Eloquent {
 
     public static $rules = array();
 
+    public function role() {
+        return $this->belongsTo('Role');
+    }
 
 }

@@ -13,14 +13,16 @@
         "laravel/framework": "~4.2",
         "zizaco/confide": "~4.0",
         "zizaco/entrust": "1.2.*",
-        "bllim/datatables": "~1.3"
+        "bllim/datatables": "~1.3",
+        "marcelgwerder/laravel-api-handler": "0.4.*"
     },
     "require-dev": {
         "way/generators": "~2.6",
         "phpunit/phpunit": "~4.0",
         "mockery/mockery": "~0.9",
         "summerstreet/woodling": "~0.1.6",
-        "barryvdh/laravel-ide-helper": "~1.11"
+        "barryvdh/laravel-ide-helper": "~1.11",
+        "barryvdh/laravel-debugbar": "~1.8@dev"
     },
     "autoload": {
         "classmap": [

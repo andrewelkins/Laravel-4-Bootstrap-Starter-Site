@@ -30,10 +30,27 @@ Route::pattern('user', '[0-9]+');
 Route::pattern('role', '[0-9]+');
 Route::pattern('token', '[0-9a-z]+');
 
+/*
+ ** -----------------------------------------
+ * RESTful API route
+ * ------------------------------------------
+ */
+
+Route::group(array('prefix' => 'api'), function()
+{
+    Route::resource('users', 'UserV2Controller');
+    Route::resource('roles', 'RolesV2Controller');
+    Route::resource('permissions', 'PermissionV2Controller');
+    Route::resource('posts', 'PostV2Controller');
+    Route::resource('comments', 'CommentV2Controller');
+});
+
 /** ------------------------------------------
  *  Admin Routes
  *  ------------------------------------------
  */
+Route::get('admincp', array('before' => 'auth', 'uses' => 'AdminController@ngadmin'));
+
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
 

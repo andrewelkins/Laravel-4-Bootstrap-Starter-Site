@@ -20,4 +20,10 @@ class Role extends EntrustRole {
         }
         return $roleValidation;
     }
+    public function assigned_role() {
+        return $this->hasMany('AssignedRoles');
+    }
+    public function permission() {
+        return $this->hasMany('Permission');
+    }
 }

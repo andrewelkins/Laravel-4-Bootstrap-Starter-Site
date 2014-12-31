@@ -73,6 +73,7 @@ Route::filter('guest', function()
 
 // Check for role on all admin routes
 Entrust::routeNeedsRole( 'admin*', array('admin'), Redirect::to('/') );
+Entrust::routeNeedsRole( 'api*', array('admin'), Redirect::to('/') );
 
 // Check for permissions on admin actions
 Entrust::routeNeedsPermission( 'admin/blogs*', 'manage_blogs', Redirect::to('/admin') );
@@ -93,7 +94,7 @@ Entrust::routeNeedsPermission( 'admin/roles*', 'manage_roles', Redirect::to('/ad
 
 Route::filter('csrf', function()
 {
-	if (Session::getToken() !== Input::get('csrf_token') &&  Session::getToken() !== Input::get('_token'))
+	if (Session::getToken() !== Input::get('csrf_token') &&  Session::getToken() !== Input::get('_token' ) && Session::getToken() !== Request::header('x-csrf-token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
