@@ -60,19 +60,17 @@ $ git clone git://github.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site.git l
 ```bash
 $ cd laravel
 $ curl -s http://getcomposer.org/installer | php
-$ php composer.phar install --dev
+$ php composer.phar install
 ```
 
 #### Option 2: Composer is installed globally
 
 ```bash
 $ cd laravel
-$ composer install --dev
+$ composer install
 ```
 
 If you haven't already, you might want to make [composer be installed globally](http://andrewelkins.com/programming/php/setting-up-composer-globally-for-laravel-4/) for future ease of use.
-
-Please note the use of the `--dev` flag.
 
 Some packages used to preprocess and minify assests are required on the development environment.
 
