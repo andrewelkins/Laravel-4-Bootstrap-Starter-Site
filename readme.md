@@ -61,7 +61,7 @@ $ git clone git://github.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site.git l
 
 ```bash
 $ cd laravel
-$ curl -s http://getcomposer.org/installer | php
+$ curl -s https://getcomposer.org/installer | php
 $ php composer.phar install
 ```
 
