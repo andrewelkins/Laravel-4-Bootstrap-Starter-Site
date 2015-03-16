@@ -42,6 +42,8 @@ Also I recommend using [Former](http://anahkiasen.github.io/former/) for your fo
 	PHP >= 5.4.0
 	MCrypt PHP Extension
 
+Installation instructions for the mcrypt extension are available [here](http://php.net/manual/en/mcrypt.installation.php).
+
 ##How to install
 ### Step 1: Get the code
 #### Option 1: Git Clone
