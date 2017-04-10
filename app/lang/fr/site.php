@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Pagination Language Lines
+	| Site Language Lines
 	|--------------------------------------------------------------------------
 	|
 	| The following language lines are used by the paginator library to build
@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'previous' => '&laquo; Previous',
-	'next'     => 'Next &raquo;',
+	'contact_us' => 'Contactez nous',
+    'sign_up'    => 'Inscription',
 
 );
