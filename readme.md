@@ -1,4 +1,4 @@
-#Laravel 4 Bootstrap Starter Site [![ProjectStatus](http://stillmaintained.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site)
+# Laravel 4 Bootstrap Starter Site [![ProjectStatus](http://stillmaintained.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site)
 [![Build Status](https://api.travis-ci.org/andrewelkins/Laravel-4-Bootstrap-Starter-Site.png)](https://travis-ci.org/andrewelkins/Laravel-4-Bootstrap-Starter-Site)
 
 Laravel 4 Bootstrap Starter Site is a sample application for beginning development with Laravel 4.
@@ -37,14 +37,14 @@ Also I recommend using [Former](http://anahkiasen.github.io/former/) for your fo
 
 -----
 
-##Requirements
+## Requirements
 
 	PHP >= 5.4.0
 	MCrypt PHP Extension
 
 Installation instructions for the mcrypt extension are available [here](http://php.net/manual/en/mcrypt.installation.php).
 
-##How to install
+## How to install
 ### Step 1: Get the code
 #### Option 1: Git Clone
 
